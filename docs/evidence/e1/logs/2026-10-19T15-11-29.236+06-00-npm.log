@@ -1,0 +1,19 @@
+START 2026-10-19T15:11:29.236+06:00
+COMMAND npm install
+npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.hirok.io
+npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.hirok.io
+
+added 141 packages, and audited 145 packages in 50s
+
+37 packages are looking for funding
+  run `npm fund` for details
+
+4 moderate severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+END 2026-10-19T15:12:19.285+06:00
+EXIT 0

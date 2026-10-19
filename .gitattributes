@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.png binary
+*.zip binary
+# Raw command evidence must keep original bytes/SHA-256 (including CLI padding/CRLF).
+docs/evidence/**/logs/*.log -text whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab,cr-at-eol

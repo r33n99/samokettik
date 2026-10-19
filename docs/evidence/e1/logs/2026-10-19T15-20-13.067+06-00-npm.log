@@ -1,0 +1,31 @@
+START 2026-10-19T15:20:13.067+06:00
+COMMAND npm run build
+
+> samokettik@0.1.0 build
+> npm run build -w @samokettik/contracts && npm run build -w @samokettik/server && npm run build -w @samokettik/web
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+
+> @samokettik/server@0.1.0 build
+> tsc -p tsconfig.json
+
+
+> @samokettik/web@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 266 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.49 kB │ gzip:  0.35 kB
+dist/assets/index-D_1TsKyh.css    1.93 kB │ gzip:  0.82 kB
+dist/assets/index-CcAox1JF.js   275.21 kB │ gzip: 83.73 kB
+
+✓ built in 620ms
+
+END 2026-10-19T15:20:19.046+06:00
+EXIT 0

@@ -1,0 +1,26 @@
+{
+  "name": "@samokettik/server",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/entrypoints/api.ts",
+    "dev:worker": "tsx watch src/entrypoints/worker.ts",
+    "start:worker": "node dist/entrypoints/worker.js",
+    "start": "node dist/entrypoints/api.js",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tools.json",
+    "db:generate": "drizzle-kit generate --config drizzle.config.ts",
+    "db:migrate": "tsx src/db/migrate.ts",
+    "db:seed": "tsx src/db/seed.ts",
+    "db:check": "tsx src/db/check.ts"
+  },
+  "dependencies": {
+    "@samokettik/contracts": "0.1.0",
+    "@sinclair/typebox": "0.34.52",
+    "drizzle-orm": "0.45.4",
+    "fastify": "5.12.7",
+    "pg": "8.23.1"
+  },
+  "devDependencies": { "@types/pg": "8.23.1", "drizzle-kit": "0.31.11", "tsx": "4.23.15" }
+}

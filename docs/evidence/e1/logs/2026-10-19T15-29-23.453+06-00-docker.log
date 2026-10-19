@@ -1,0 +1,6 @@
+START 2026-10-19T15:29:23.453+06:00
+COMMAND docker compose exec -T api node --version
+v24.22.0
+
+END 2026-10-19T15:29:24.040+06:00
+EXIT 0

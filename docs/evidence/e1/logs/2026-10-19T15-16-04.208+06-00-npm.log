@@ -1,0 +1,34 @@
+START 2026-10-19T15:16:04.208+06:00
+COMMAND npm run typecheck
+
+> samokettik@0.1.0 typecheck
+> npm run build -w @samokettik/contracts && npm run typecheck --workspaces --if-present
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+
+> @samokettik/server@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tools.json
+
+src/app.ts(18,82): error TS18046: 'error' is of type 'unknown'.
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 1
+npm error path C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\apps\server
+npm error workspace @samokettik/server@0.1.0
+npm error location C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\apps\server
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tools.json
+
+
+> @samokettik/web@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @samokettik/contracts@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+
+END 2026-10-19T15:16:08.028+06:00
+EXIT 1

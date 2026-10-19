@@ -1,0 +1,25 @@
+START 2026-10-19T15:17:35.350+06:00
+COMMAND npm run typecheck
+
+> samokettik@0.1.0 typecheck
+> npm run build -w @samokettik/contracts && npm run typecheck --workspaces --if-present
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+
+> @samokettik/server@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tools.json
+
+
+> @samokettik/web@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @samokettik/contracts@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+
+END 2026-10-19T15:17:38.884+06:00
+EXIT 0

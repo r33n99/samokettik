@@ -1,0 +1,14 @@
+START 2026-10-19T16:36:52.295+06:00
+COMMAND npm exec -- vitest run --config vitest.db.config.ts tests/integration/reservations.test.ts -t two users simultaneously|real worker processes
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed | 13 skipped (15)
+   Start at  16:36:53
+   Duration  6.66s (tests 87%, import 12%, transform 1%)
+
+
+END 2026-10-19T16:37:00.417+06:00
+EXIT 0

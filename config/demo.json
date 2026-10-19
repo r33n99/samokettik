@@ -1,0 +1,17 @@
+{
+  "productName": "СамоКеттик",
+  "city": "Бишкек",
+  "timezone": "Asia/Bishkek",
+  "currency": "KGS",
+  "locales": ["ru", "ky"],
+  "defaultLocale": "ru",
+  "rideRateMinorPerMinute": 800,
+  "pauseRateMinorPerMinute": 200,
+  "reservationDurationSeconds": 900,
+  "reservationWarningBeforeSeconds": 180,
+  "minRentalBatteryBp": 1500,
+  "simulationTickMs": 3000,
+  "fleetSize": 30,
+  "seedOrigin": { "latitudeE7": 428740000, "longitudeE7": 746020000 },
+  "seedSpacingE7": 8000
+}

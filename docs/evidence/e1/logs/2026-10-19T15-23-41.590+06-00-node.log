@@ -1,0 +1,6 @@
+START 2026-10-19T15:23:41.590+06:00
+COMMAND node work/check-dev.mjs
+{"devFrontend":200,"viteClient":true,"proxyVehicleCount":30,"apiPort":3003,"webPort":5175}
+
+END 2026-10-19T15:23:45.790+06:00
+EXIT 0

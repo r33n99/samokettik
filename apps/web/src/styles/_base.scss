@@ -1,0 +1,7 @@
+@use 'tokens' as t;
+* { box-sizing: border-box; }
+body { margin: 0; background: t.$canvas; color: t.$ink; font-family: t.$font; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid t.$accent; outline-offset: 4px; }

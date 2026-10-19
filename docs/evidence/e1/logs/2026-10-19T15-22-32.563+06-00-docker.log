@@ -1,0 +1,19 @@
+START 2026-10-19T15:22:32.563+06:00
+COMMAND docker compose logs --tail 12 migrate seed api
+seed-1     | Seed complete: 30 deterministic vehicle fixtures and 2 users (no login credentials yet). Existing rows preserved.
+migrate-1  | Database migrations applied.
+api-1      | {"level":30,"time":1792401724690,"pid":7,"hostname":"ed4f77ab1dd4","reqId":"req-2","req":{"method":"GET","url":"/health/ready","host":"127.0.0.1:3001","remoteAddress":"127.0.0.1","remotePort":42908},"msg":"incoming request"}
+api-1      | {"level":30,"time":1792401724692,"pid":7,"hostname":"ed4f77ab1dd4","reqId":"req-2","res":{"statusCode":200},"responseTime":1.9599730000009004,"msg":"request completed"}
+api-1      | {"level":30,"time":1792401729797,"pid":7,"hostname":"ed4f77ab1dd4","reqId":"req-3","req":{"method":"GET","url":"/health/ready","host":"127.0.0.1:3001","remoteAddress":"127.0.0.1","remotePort":49770},"msg":"incoming request"}
+api-1      | {"level":30,"time":1792401729798,"pid":7,"hostname":"ed4f77ab1dd4","reqId":"req-3","res":{"statusCode":200},"responseTime":1.711355999999796,"msg":"request completed"}
+api-1      | {"level":30,"time":1792401734919,"pid":7,"hostname":"ed4f77ab1dd4","reqId":"req-4","req":{"method":"GET","url":"/health/ready","host":"127.0.0.1:3001","remoteAddress":"127.0.0.1","remotePort":49778},"msg":"incoming request"}
+api-1      | {"level":30,"time":1792401734921,"pid":7,"hostname":"ed4f77ab1dd4","reqId":"req-4","res":{"statusCode":200},"responseTime":1.697957000000315,"msg":"request completed"}
+api-1      | {"level":30,"time":1792401740027,"pid":7,"hostname":"ed4f77ab1dd4","reqId":"req-5","req":{"method":"GET","url":"/health/ready","host":"127.0.0.1:3001","remoteAddress":"127.0.0.1","remotePort":44250},"msg":"incoming request"}
+api-1      | {"level":30,"time":1792401740029,"pid":7,"hostname":"ed4f77ab1dd4","reqId":"req-5","res":{"statusCode":200},"responseTime":1.9489680000006047,"msg":"request completed"}
+api-1      | {"level":30,"time":1792401745142,"pid":7,"hostname":"ed4f77ab1dd4","reqId":"req-6","req":{"method":"GET","url":"/health/ready","host":"127.0.0.1:3001","remoteAddress":"127.0.0.1","remotePort":44266},"msg":"incoming request"}
+api-1      | {"level":30,"time":1792401745143,"pid":7,"hostname":"ed4f77ab1dd4","reqId":"req-6","res":{"statusCode":200},"responseTime":1.4058980000008887,"msg":"request completed"}
+api-1      | {"level":30,"time":1792401750257,"pid":7,"hostname":"ed4f77ab1dd4","reqId":"req-7","req":{"method":"GET","url":"/health/ready","host":"127.0.0.1:3001","remoteAddress":"127.0.0.1","remotePort":60904},"msg":"incoming request"}
+api-1      | {"level":30,"time":1792401750258,"pid":7,"hostname":"ed4f77ab1dd4","reqId":"req-7","res":{"statusCode":200},"responseTime":1.581421999995655,"msg":"request completed"}
+
+END 2026-10-19T15:22:33.113+06:00
+EXIT 0

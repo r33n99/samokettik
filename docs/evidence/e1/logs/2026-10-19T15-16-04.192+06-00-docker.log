@@ -1,0 +1,162 @@
+START 2026-10-19T15:16:04.192+06:00
+COMMAND docker compose up -d --wait postgres
+ postgres Pulling 
+ 99ce35cabaf9 Pulling fs layer 
+ 748f1c7b1aa5 Pulling fs layer 
+ d3f84db5dc4c Pulling fs layer 
+ e590c436acb0 Pulling fs layer 
+ 7fd1ebe418b5 Pulling fs layer 
+ 0f0fb0a9ae5b Pulling fs layer 
+ 8dca3c457775 Pulling fs layer 
+ 1b8e0581bcf1 Pulling fs layer 
+ 4597e57da557 Pulling fs layer 
+ 6f76e9d43497 Pulling fs layer 
+ 9b2148361c22 Pulling fs layer 
+ 5e3d1f2c4d0f Pulling fs layer 
+ 3367705c2f4b Pulling fs layer 
+ 0f0fb0a9ae5b Download complete 
+ 5e3d1f2c4d0f Download complete 
+ 6f76e9d43497 Download complete 
+ e590c436acb0 Download complete 
+ 1b8e0581bcf1 Download complete 
+ 99ce35cabaf9 Download complete 
+ 3367705c2f4b Download complete 
+ 9b2148361c22 Download complete 
+ d3f84db5dc4c Downloading [===========>                                       ]  1.049MB/4.534MB
+ d3f84db5dc4c Downloading [=======================>                           ]  2.097MB/4.534MB
+ 8dca3c457775 Downloading [>                                                  ]  1.049MB/116.2MB
+ 4597e57da557 Downloading [======>                                            ]  1.049MB/8.066MB
+ 748f1c7b1aa5 Downloading [===========================================>       ]  1.049MB/1.196MB
+ 7fd1ebe418b5 Downloading [=>                                                 ]  1.049MB/28.25MB
+ 8dca3c457775 Downloading [>                                                  ]  2.097MB/116.2MB
+ 4597e57da557 Downloading [============>                                      ]  2.097MB/8.066MB
+ 748f1c7b1aa5 Download complete 
+ 7fd1ebe418b5 Downloading [===>                                               ]  2.097MB/28.25MB
+ d3f84db5dc4c Downloading [=======================>                           ]  2.097MB/4.534MB
+ 7fd1ebe418b5 Downloading [=====>                                             ]  3.146MB/28.25MB
+ d3f84db5dc4c Downloading [==================================>                ]  3.146MB/4.534MB
+ 8dca3c457775 Downloading [=>                                                 ]  3.146MB/116.2MB
+ 4597e57da557 Downloading [===================>                               ]  3.146MB/8.066MB
+ 7fd1ebe418b5 Downloading [=======>                                           ]  4.194MB/28.25MB
+ d3f84db5dc4c Download complete 
+ 8dca3c457775 Downloading [=>                                                 ]  4.194MB/116.2MB
+ 4597e57da557 Downloading [===================>                               ]  3.146MB/8.066MB
+ 8dca3c457775 Downloading [==>                                                ]  5.243MB/116.2MB
+ 4597e57da557 Downloading [=========================>                         ]  4.194MB/8.066MB
+ 7fd1ebe418b5 Downloading [=========>                                         ]  5.243MB/28.25MB
+ 8dca3c457775 Downloading [==>                                                ]  6.291MB/116.2MB
+ 4597e57da557 Downloading [======================================>            ]  6.291MB/8.066MB
+ 7fd1ebe418b5 Downloading [===========>                                       ]  6.291MB/28.25MB
+ 8dca3c457775 Downloading [===>                                               ]   7.34MB/116.2MB
+ 4597e57da557 Downloading [=============================================>     ]   7.34MB/8.066MB
+ 7fd1ebe418b5 Downloading [============>                                      ]   7.34MB/28.25MB
+ 8dca3c457775 Downloading [====>                                              ]  9.437MB/116.2MB
+ 4597e57da557 Download complete 
+ 7fd1ebe418b5 Downloading [================>                                  ]  9.437MB/28.25MB
+ 7fd1ebe418b5 Downloading [==================>                                ]  10.49MB/28.25MB
+ 8dca3c457775 Downloading [====>                                              ]  10.49MB/116.2MB
+ 7fd1ebe418b5 Downloading [======================>                            ]  12.58MB/28.25MB
+ 8dca3c457775 Downloading [=====>                                             ]  12.58MB/116.2MB
+ 7fd1ebe418b5 Downloading [=========================>                         ]  14.68MB/28.25MB
+ 8dca3c457775 Downloading [=====>                                             ]  13.76MB/116.2MB
+ 7fd1ebe418b5 Downloading [=============================>                     ]  16.43MB/28.25MB
+ 8dca3c457775 Downloading [======>                                            ]  15.73MB/116.2MB
+ 8dca3c457775 Downloading [=======>                                           ]  17.83MB/116.2MB
+ 7fd1ebe418b5 Downloading [===============================>                   ]  17.83MB/28.25MB
+ 7fd1ebe418b5 Downloading [===================================>               ]  19.92MB/28.25MB
+ 8dca3c457775 Downloading [========>                                          ]  19.92MB/116.2MB
+ 7fd1ebe418b5 Downloading [======================================>            ]  22.02MB/28.25MB
+ 8dca3c457775 Downloading [=========>                                         ]  22.02MB/116.2MB
+ 8dca3c457775 Downloading [==========>                                        ]  24.12MB/116.2MB
+ 7fd1ebe418b5 Downloading [==========================================>        ]  24.12MB/28.25MB
+ 7fd1ebe418b5 Downloading [==============================================>    ]  26.21MB/28.25MB
+ 8dca3c457775 Downloading [==========>                                        ]  25.17MB/116.2MB
+ 8dca3c457775 Downloading [===========>                                       ]  27.26MB/116.2MB
+ 7fd1ebe418b5 Downloading [================================================>  ]  27.26MB/28.25MB
+ 8dca3c457775 Downloading [=============>                                     ]  31.46MB/116.2MB
+ 7fd1ebe418b5 Download complete 
+ 7fd1ebe418b5 Extracting 1 s
+ 8dca3c457775 Downloading [==============>                                    ]   34.6MB/116.2MB
+ 7fd1ebe418b5 Extracting 1 s
+ 8dca3c457775 Downloading [================>                                  ]  37.75MB/116.2MB
+ 7fd1ebe418b5 Extracting 1 s
+ 8dca3c457775 Downloading [=================>                                 ]  40.89MB/116.2MB
+ 7fd1ebe418b5 Extracting 1 s
+ 8dca3c457775 Downloading [==================>                                ]  44.04MB/116.2MB
+ 7fd1ebe418b5 Extracting 1 s
+ 8dca3c457775 Downloading [====================>                              ]  48.23MB/116.2MB
+ 7fd1ebe418b5 Extracting 1 s
+ 8dca3c457775 Downloading [======================>                            ]  51.38MB/116.2MB
+ 7fd1ebe418b5 Extracting 1 s
+ 8dca3c457775 Downloading [=======================>                           ]  54.53MB/116.2MB
+ 7fd1ebe418b5 Extracting 1 s
+ 8dca3c457775 Downloading [=========================>                         ]  58.72MB/116.2MB
+ 7fd1ebe418b5 Extracting 1 s
+ 8dca3c457775 Downloading [==========================>                        ]  61.87MB/116.2MB
+ 7fd1ebe418b5 Pull complete 
+ 8dca3c457775 Downloading [===========================>                       ]  65.01MB/116.2MB
+ 0f0fb0a9ae5b Pull complete 
+ d3f84db5dc4c Extracting 1 s
+ 8dca3c457775 Downloading [=============================>                     ]  68.16MB/116.2MB
+ e590c436acb0 Extracting 1 s
+ d3f84db5dc4c Pull complete 
+ 4597e57da557 Extracting 1 s
+ 8dca3c457775 Downloading [===============================>                   ]  72.35MB/116.2MB
+ e590c436acb0 Pull complete 
+ 4597e57da557 Extracting 1 s
+ 8dca3c457775 Downloading [================================>                  ]  75.82MB/116.2MB
+ 4597e57da557 Extracting 1 s
+ 8dca3c457775 Downloading [==================================>                ]  79.69MB/116.2MB
+ 4597e57da557 Pull complete 
+ 8dca3c457775 Downloading [===================================>               ]  82.84MB/116.2MB
+ 748f1c7b1aa5 Pull complete 
+ 8dca3c457775 Downloading [=====================================>             ]  87.03MB/116.2MB
+ 6f76e9d43497 Pull complete 
+ 3367705c2f4b Pull complete 
+ 8dca3c457775 Downloading [======================================>            ]  90.18MB/116.2MB
+ 8dca3c457775 Downloading [========================================>          ]  93.32MB/116.2MB
+ 8dca3c457775 Downloading [=========================================>         ]  97.52MB/116.2MB
+ 8dca3c457775 Downloading [===========================================>       ]  101.7MB/116.2MB
+ 8dca3c457775 Downloading [=============================================>     ]  104.9MB/116.2MB
+ 8dca3c457775 Downloading [==============================================>    ]  109.1MB/116.2MB
+ 8dca3c457775 Downloading [================================================>  ]  112.2MB/116.2MB
+ 8dca3c457775 Downloading [==================================================>]  116.2MB/116.2MB
+ 8dca3c457775 Download complete 
+ 8dca3c457775 Extracting 1 s
+ 8dca3c457775 Extracting 1 s
+ 8dca3c457775 Extracting 1 s
+ 8dca3c457775 Extracting 1 s
+ 8dca3c457775 Extracting 1 s
+ 8dca3c457775 Extracting 1 s
+ 8dca3c457775 Extracting 1 s
+ 8dca3c457775 Extracting 1 s
+ 8dca3c457775 Extracting 1 s
+ 8dca3c457775 Extracting 1 s
+ 8dca3c457775 Extracting 1 s
+ 8dca3c457775 Extracting 2 s
+ 8dca3c457775 Extracting 2 s
+ 8dca3c457775 Extracting 2 s
+ 8dca3c457775 Extracting 2 s
+ 8dca3c457775 Extracting 2 s
+ 8dca3c457775 Extracting 2 s
+ 8dca3c457775 Extracting 2 s
+ 5e3d1f2c4d0f Pull complete 
+ 1b8e0581bcf1 Pull complete 
+ 99ce35cabaf9 Extracting 1 s
+ 9b2148361c22 Pull complete 
+ 8dca3c457775 Pull complete 
+ 99ce35cabaf9 Pull complete 
+ postgres Pulled 
+ Network samokettik_default  Creating
+ Network samokettik_default  Created
+ Volume "samokettik_postgres_data"  Creating
+ Volume "samokettik_postgres_data"  Created
+ Container samokettik-postgres-1  Creating
+ Container samokettik-postgres-1  Created
+ Container samokettik-postgres-1  Starting
+ Container samokettik-postgres-1  Started
+ Container samokettik-postgres-1  Waiting
+ Container samokettik-postgres-1  Healthy
+
+END 2026-10-19T15:16:19.626+06:00
+EXIT 0

@@ -1,0 +1,22 @@
+import { spawn } from 'node:child_process';
+import { mkdir, appendFile, writeFile } from 'node:fs/promises';
+import { npmCommand } from './npm-command.mjs';
+const [command, ...args] = process.argv.slice(2);
+if (!command) throw new Error('Usage: node scripts/check.mjs <command> [args]');
+const now = () => new Date(Date.now() + 6 * 3600000).toISOString().replace('Z', '+06:00');
+const startedAt = now();
+const invocation = command === 'npm' ? npmCommand(args) : { command, args };
+const displayCommand = [command, ...args].join(' ');
+await mkdir('work/checks', { recursive: true });
+const log = `work/checks/${startedAt.replaceAll(':', '-')}-${command}.log`;
+let output = '';
+const child = spawn(invocation.command, invocation.args, { env: process.env, stdio: ['inherit', 'pipe', 'pipe'] });
+for (const stream of [child.stdout, child.stderr]) stream.on('data', chunk => { const text = chunk.toString(); output += text; process.stdout.write(text); });
+const exitCode = await new Promise(resolve => {
+  child.on('error', error => { output += error.message; resolve(1); });
+  child.on('close', code => resolve(code ?? 1));
+});
+const finishedAt = now();
+await writeFile(log, `START ${startedAt}\nCOMMAND ${displayCommand}\n${output}\nEND ${finishedAt}\nEXIT ${exitCode}\n`);
+await appendFile('docs/WORKLOG.md', `\n- ${finishedAt} — Команда: \`${displayCommand.replaceAll('`', '')}\`; начало ${startedAt}; exit ${exitCode}. Лог: \`${log}\`.\n`);
+process.exitCode = Number(exitCode);

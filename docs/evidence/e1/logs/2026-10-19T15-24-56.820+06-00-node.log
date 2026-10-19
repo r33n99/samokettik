@@ -1,0 +1,15 @@
+START 2026-10-19T15:24:56.820+06:00
+COMMAND node work/check-restart.mjs
+COMMAND docker compose stop postgres
+ Container samokettik-postgres-1  Stopping
+ Container samokettik-postgres-1  Stopped
+OUTAGE: readiness=503, liveness=200
+COMMAND docker compose up -d --wait postgres
+ Container samokettik-postgres-1  Starting
+ Container samokettik-postgres-1  Started
+ Container samokettik-postgres-1  Waiting
+ Container samokettik-postgres-1  Healthy
+RECOVERED: readiness=200, persisted vehicle count=30
+
+END 2026-10-19T15:25:04.129+06:00
+EXIT 0

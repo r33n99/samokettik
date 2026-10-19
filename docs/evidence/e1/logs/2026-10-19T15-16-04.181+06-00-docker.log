@@ -1,0 +1,5 @@
+START 2026-10-19T15:16:04.181+06:00
+COMMAND docker compose config --quiet
+
+END 2026-10-19T15:16:04.772+06:00
+EXIT 0

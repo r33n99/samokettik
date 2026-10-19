@@ -1,0 +1,52 @@
+{
+  "startedAt": "2026-10-19T16:36:52.518+06:00",
+  "mode": "live Compose API + PostgreSQL + independent worker",
+  "fixture": "Only the newly created reservation is backdated; expiry is accelerated to DB now + 3 seconds. Production config is unchanged.",
+  "steps": [
+    {
+      "at": "2026-10-19T16:36:52.645+06:00",
+      "check": "Occupied scooter rejects the second user",
+      "firstStatus": 201,
+      "secondStatus": 409,
+      "errorCode": "VEHICLE_NOT_AVAILABLE",
+      "activeRows": 1,
+      "vehicleStatus": "reserved",
+      "durationSeconds": 900,
+      "warningBeforeSeconds": 180
+    },
+    {
+      "at": "2026-10-19T16:36:52.652+06:00",
+      "check": "Identical request replays the original result",
+      "passed": true
+    },
+    {
+      "at": "2026-10-19T16:36:56.667+06:00",
+      "check": "Worker expired the booking before any subsequent rental HTTP request",
+      "database": {
+        "state": "expired",
+        "end_reason": "reservation_expired",
+        "ended_at_equals_deadline": true,
+        "observed_at": "2026-10-19T10:36:56.668Z",
+        "expiry_notifications": 1,
+        "active_rows": 0
+      }
+    }
+  ],
+  "readiness": {
+    "status": "ready",
+    "database": "connected",
+    "schemaVersion": 2,
+    "reservationWorker": "running"
+  },
+  "vehicleCode": "SK-003",
+  "acceleratedDeadline": "2026-10-19T10:36:55.659Z",
+  "passed": false,
+  "error": "A rejected idempotency key must remain rejected\n+ actual - expected\n\n  {\n    body: {\n      code: 'VEHICLE_NOT_AVAILABLE',\n      message: 'Этот самокат уже забронирован',\n+     requestId: 'req-7p'\n-     requestId: 'req-7j'\n    },\n    status: 409\n  }\n",
+  "cleanup": [
+    {
+      "id": "485f3b25-5f9b-48f5-bdcb-50369daef4a1",
+      "state": "expired"
+    }
+  ],
+  "finishedAt": "2026-10-19T16:36:56.681+06:00"
+}

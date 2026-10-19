@@ -1,0 +1,14 @@
+START 2026-10-19T15:25:04.813+06:00
+COMMAND npm run db:migrate
+
+> samokettik@0.1.0 db:migrate
+> npm run db:migrate -w @samokettik/server
+
+
+> @samokettik/server@0.1.0 db:migrate
+> tsx src/db/migrate.ts
+
+Database migrations applied.
+
+END 2026-10-19T15:25:07.178+06:00
+EXIT 0

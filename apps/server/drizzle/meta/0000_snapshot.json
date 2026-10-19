@@ -1,0 +1,210 @@
+{
+  "id": "7443f548-68df-48b1-ad16-c32f3f03f913",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.app_metadata": {
+      "name": "app_metadata",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "schema_version": {
+          "name": "schema_version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "app_metadata_singleton": {
+          "name": "app_metadata_singleton",
+          "value": "\"app_metadata\".\"id\" = 1"
+        },
+        "app_metadata_version_positive": {
+          "name": "app_metadata_version_positive",
+          "value": "\"app_metadata\".\"schema_version\" > 0"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "email_normalized": {
+          "name": "email_normalized",
+          "type": "varchar(254)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password_hash": {
+          "name": "password_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "locale": {
+          "name": "locale",
+          "type": "varchar(2)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'ru'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "users_email_normalized_unique": {
+          "name": "users_email_normalized_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email_normalized"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "users_email_normalized": {
+          "name": "users_email_normalized",
+          "value": "\"users\".\"email_normalized\" = lower(trim(\"users\".\"email_normalized\")) AND length(\"users\".\"email_normalized\") > 3"
+        },
+        "users_locale_supported": {
+          "name": "users_locale_supported",
+          "value": "\"users\".\"locale\" IN ('ru', 'ky')"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.vehicles": {
+      "name": "vehicles",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "public_code": {
+          "name": "public_code",
+          "type": "varchar(16)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "service_mode": {
+          "name": "service_mode",
+          "type": "varchar(16)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'operational'"
+        },
+        "battery_bp": {
+          "name": "battery_bp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "latitude_e7": {
+          "name": "latitude_e7",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "longitude_e7": {
+          "name": "longitude_e7",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 1
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "vehicles_public_code_unique": {
+          "name": "vehicles_public_code_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "public_code"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "vehicles_battery_range": {
+          "name": "vehicles_battery_range",
+          "value": "\"vehicles\".\"battery_bp\" BETWEEN 0 AND 10000"
+        },
+        "vehicles_latitude_range": {
+          "name": "vehicles_latitude_range",
+          "value": "\"vehicles\".\"latitude_e7\" BETWEEN -900000000 AND 900000000"
+        },
+        "vehicles_longitude_range": {
+          "name": "vehicles_longitude_range",
+          "value": "\"vehicles\".\"longitude_e7\" BETWEEN -1800000000 AND 1800000000"
+        },
+        "vehicles_service_mode": {
+          "name": "vehicles_service_mode",
+          "value": "\"vehicles\".\"service_mode\" IN ('operational', 'maintenance')"
+        },
+        "vehicles_version_positive": {
+          "name": "vehicles_version_positive",
+          "value": "\"vehicles\".\"version\" > 0"
+        }
+      },
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

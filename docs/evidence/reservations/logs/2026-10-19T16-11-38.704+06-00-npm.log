@@ -1,0 +1,260 @@
+START 2026-10-19T16:11:38.704+06:00
+COMMAND npm run test:db
+
+> samokettik@0.1.0 test:db
+> vitest run --config vitest.db.config.ts
+
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql
+
+ ❯ tests/integration/reservations.test.ts (14 tests | 14 failed) 909ms
+   ❯ reservations over real HTTP and PostgreSQL (14)
+     × lists 30 vehicles with charge/maintenance availability without private owners 77ms
+     × two users simultaneously request one vehicle through two API instances: only one succeeds 118ms
+     × same user cannot reserve two vehicles concurrently using different keys 27ms
+     × concurrent same-key repeats return exactly the stored result across a new API instance 30ms
+     × cancellation checks owner, is repeatable with same/new keys, and frees the vehicle 21ms
+     × replays a rejection rather than creating a booking after availability changes 19ms
+     × validates identity, UUID/key, unknown fields, low charge and maintenance 30ms
+     × cleans an expired foreign reservation without a worker before allowing a new owner 18ms
+     × two workers produce one warning and expose it only to the owner 18ms
+     × expiry/cancel race closes once with no stale warning after downtime 19ms
+     × rechecks time after waiting for the vehicle lock at the deadline 17ms
+     × DB constraints protect uniqueness, terminal states and notification ownership independently of JS 17ms
+     × cancels a reservation when its charge drops; missing worker fails readiness 17ms
+     × real worker processes warn without a browser and recover after worker/API restart 77ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 14 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > lists 30 vehicles with charge/maintenance availability without private owners
+AssertionError: expected 503 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 503
+
+ ❯ tests/integration/reservations.test.ts:109:29
+    107|   it('lists 30 vehicles with charge/maintenance availability without p…
+    108|     const response = await fetch(`${urlA}/api/v1/vehicles`);
+    109|     expect(response.status).toBe(200);
+       |                             ^
+    110|     const text = await response.text();
+    111|     const data = JSON.parse(text) as { items: { publicCode: string; st…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > two users simultaneously request one vehicle through two API instances: only one succeeds
+AssertionError: expected [ 503, 503 ] to deeply equal [ 201, 409 ]
+
+- Expected
++ Received
+
+  [
+-   201,
+-   409,
++   503,
++   503,
+  ]
+
+ ❯ tests/integration/reservations.test.ts:127:51
+    125|     finally { await blocker.query('ROLLBACK'); blocker.release(); }
+    126|     const results = await Promise.all(requests);
+    127|     expect(results.map(row => row.status).sort()).toEqual([201, 409]);
+       |                                                   ^
+    128|     expect(results.find(row => row.status === 409)?.data).toMatchObjec…
+    129|     expect(await database.db.select({ count: count() }).from(rentals).…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > same user cannot reserve two vehicles concurrently using different keys
+AssertionError: expected [ 503, 503 ] to deeply equal [ 201, 409 ]
+
+- Expected
++ Received
+
+  [
+-   201,
+-   409,
++   503,
++   503,
+  ]
+
+ ❯ tests/integration/reservations.test.ts:140:51
+    138|   it('same user cannot reserve two vehicles concurrently using differe…
+    139|     const results = await Promise.all([reserve('a', 5, randomUUID(), u…
+    140|     expect(results.map(row => row.status).sort()).toEqual([201, 409]);
+       |                                                   ^
+    141|     expect(results.find(row => row.status === 409)?.data).toMatchObjec…
+    142|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > concurrent same-key repeats return exactly the stored result across a new API instance
+AssertionError: expected 503 to be 201 // Object.is equality
+
+- Expected
++ Received
+
+- 201
++ 503
+
+ ❯ tests/integration/reservations.test.ts:147:26
+    145|     const key = randomUUID();
+    146|     const [first, second] = await Promise.all([reserve('a', 5, key, ur…
+    147|     expect(first.status).toBe(201);
+       |                          ^
+    148|     expect(second).toEqual(first);
+    149|     expect(await database.db.select({ count: count() }).from(rentals))…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > cancellation checks owner, is repeatable with same/new keys, and frees the vehicle
+Error: Expected reservation response, received {"code":"SERVICE_TEMPORARILY_UNAVAILABLE","message":"Не удалось выполнить операцию. Повторите запрос с тем же ключом","requestId":"req-5"}
+ ❯ reservation tests/integration/reservations.test.ts:47:65
+     45| }
+     46| function reservation(result: { data: unknown }): Reservation {
+     47|   if (!Value.Check(ReservationResultSchema, result.data)) throw new Er…
+       |                                                                 ^
+     48|   return result.data.reservation;
+     49| }
+ ❯ tests/integration/reservations.test.ts:159:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > replays a rejection rather than creating a booking after availability changes
+Error: Expected reservation response, received {"code":"SERVICE_TEMPORARILY_UNAVAILABLE","message":"Не удалось выполнить операцию. Повторите запрос с тем же ключом","requestId":"req-6"}
+ ❯ reservation tests/integration/reservations.test.ts:47:65
+     45| }
+     46| function reservation(result: { data: unknown }): Reservation {
+     47|   if (!Value.Check(ReservationResultSchema, result.data)) throw new Er…
+       |                                                                 ^
+     48|   return result.data.reservation;
+     49| }
+ ❯ tests/integration/reservations.test.ts:172:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > validates identity, UUID/key, unknown fields, low charge and maintenance
+AssertionError: expected { …(3) } to match object { code: 'BATTERY_TOO_LOW' }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "code": "BATTERY_TOO_LOW",
++   "code": "SERVICE_TEMPORARILY_UNAVAILABLE",
+  }
+
+ ❯ tests/integration/reservations.test.ts:187:42
+    185|     expect((await post(urlA, '/api/v1/reservations', 'a', { vehicleId:…
+    186|     expect((await post(urlA, '/api/v1/reservations', 'a', { vehicleId:…
+    187|     expect((await reserve('a', 2)).data).toMatchObject({ code: 'BATTER…
+       |                                          ^
+    188|     expect((await reserve('a', 4)).data).toMatchObject({ code: 'VEHICL…
+    189|     expect((await reserve('a', 3)).status).toBe(201);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > cleans an expired foreign reservation without a worker before allowing a new owner
+Error: Expected reservation response, received {"code":"SERVICE_TEMPORARILY_UNAVAILABLE","message":"Не удалось выполнить операцию. Повторите запрос с тем же ключом","requestId":"req-d"}
+ ❯ reservation tests/integration/reservations.test.ts:47:65
+     45| }
+     46| function reservation(result: { data: unknown }): Reservation {
+     47|   if (!Value.Check(ReservationResultSchema, result.data)) throw new Er…
+       |                                                                 ^
+     48|   return result.data.reservation;
+     49| }
+ ❯ tests/integration/reservations.test.ts:193:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > two workers produce one warning and expose it only to the owner
+Error: Expected reservation response, received {"code":"SERVICE_TEMPORARILY_UNAVAILABLE","message":"Не удалось выполнить операцию. Повторите запрос с тем же ключом","requestId":"req-e"}
+ ❯ reservation tests/integration/reservations.test.ts:47:65
+     45| }
+     46| function reservation(result: { data: unknown }): Reservation {
+     47|   if (!Value.Check(ReservationResultSchema, result.data)) throw new Er…
+       |                                                                 ^
+     48|   return result.data.reservation;
+     49| }
+ ❯ tests/integration/reservations.test.ts:203:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > expiry/cancel race closes once with no stale warning after downtime
+Error: Expected reservation response, received {"code":"SERVICE_TEMPORARILY_UNAVAILABLE","message":"Не удалось выполнить операцию. Повторите запрос с тем же ключом","requestId":"req-f"}
+ ❯ reservation tests/integration/reservations.test.ts:47:65
+     45| }
+     46| function reservation(result: { data: unknown }): Reservation {
+     47|   if (!Value.Check(ReservationResultSchema, result.data)) throw new Er…
+       |                                                                 ^
+     48|   return result.data.reservation;
+     49| }
+ ❯ tests/integration/reservations.test.ts:213:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > rechecks time after waiting for the vehicle lock at the deadline
+Error: Expected reservation response, received {"code":"SERVICE_TEMPORARILY_UNAVAILABLE","message":"Не удалось выполнить операцию. Повторите запрос с тем же ключом","requestId":"req-g"}
+ ❯ reservation tests/integration/reservations.test.ts:47:65
+     45| }
+     46| function reservation(result: { data: unknown }): Reservation {
+     47|   if (!Value.Check(ReservationResultSchema, result.data)) throw new Er…
+       |                                                                 ^
+     48|   return result.data.reservation;
+     49| }
+ ❯ tests/integration/reservations.test.ts:223:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > DB constraints protect uniqueness, terminal states and notification ownership independently of JS
+Error: Expected reservation response, received {"code":"SERVICE_TEMPORARILY_UNAVAILABLE","message":"Не удалось выполнить операцию. Повторите запрос с тем же ключом","requestId":"req-h"}
+ ❯ reservation tests/integration/reservations.test.ts:47:65
+     45| }
+     46| function reservation(result: { data: unknown }): Reservation {
+     47|   if (!Value.Check(ReservationResultSchema, result.data)) throw new Er…
+       |                                                                 ^
+     48|   return result.data.reservation;
+     49| }
+ ❯ tests/integration/reservations.test.ts:235:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > cancels a reservation when its charge drops; missing worker fails readiness
+Error: Expected reservation response, received {"code":"SERVICE_TEMPORARILY_UNAVAILABLE","message":"Не удалось выполнить операцию. Повторите запрос с тем же ключом","requestId":"req-i"}
+ ❯ reservation tests/integration/reservations.test.ts:47:65
+     45| }
+     46| function reservation(result: { data: unknown }): Reservation {
+     47|   if (!Value.Check(ReservationResultSchema, result.data)) throw new Er…
+       |                                                                 ^
+     48|   return result.data.reservation;
+     49| }
+ ❯ tests/integration/reservations.test.ts:246:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/14]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > real worker processes warn without a browser and recover after worker/API restart
+Error: Expected reservation response, received {"code":"SERVICE_TEMPORARILY_UNAVAILABLE","message":"Не удалось выполнить операцию. Повторите запрос с тем же ключом","requestId":"req-1"}
+ ❯ reservation tests/integration/reservations.test.ts:47:65
+     45| }
+     46| function reservation(result: { data: unknown }): Reservation {
+     47|   if (!Value.Check(ReservationResultSchema, result.data)) throw new Er…
+       |                                                                 ^
+     48|   return result.data.reservation;
+     49| }
+ ❯ tests/integration/reservations.test.ts:266:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/14]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  14 failed | 6 passed (20)
+   Start at  16:11:39
+   Duration  3.43s (import 49%, tests 42%, transform 9%)
+
+
+END 2026-10-19T16:11:43.098+06:00
+EXIT 1

@@ -1,0 +1,32 @@
+START 2026-10-19T15:24:25.353+06:00
+COMMAND node work/check-restart.mjs
+COMMAND docker compose stop postgres
+ Container samokettik-postgres-1  Stopping
+ Container samokettik-postgres-1  Stopped
+OUTAGE: readiness=503, liveness=200
+COMMAND docker compose start --wait postgres
+node:internal/errors:983
+  const err = new Error(message);
+              ^
+
+Error: Command failed: docker.exe compose start --wait postgres
+unknown flag: --wait
+
+    at genericNodeError (node:internal/errors:983:15)
+    at wrappedFn (node:internal/errors:537:14)
+    at ChildProcess.exithandler (node:child_process:414:12)
+    at ChildProcess.emit (node:events:518:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+  code: 1,
+  killed: false,
+  signal: null,
+  cmd: 'docker.exe compose start --wait postgres',
+  stdout: '',
+  stderr: 'unknown flag: --wait\n'
+}
+
+Node.js v22.14.0
+
+END 2026-10-19T15:24:28.713+06:00
+EXIT 1

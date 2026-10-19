@@ -1,0 +1,11 @@
+START 2026-10-19T16:03:16.345+06:00
+COMMAND docker compose ps -a
+NAME                    IMAGE                                                                                          COMMAND                  SERVICE    CREATED          STATUS                      PORTS
+samokettik-api-1        samokettik-api                                                                                 "docker-entrypoint.s…"   api        41 minutes ago   Up 41 minutes (healthy)     127.0.0.1:3001->3001/tcp
+samokettik-migrate-1    samokettik-migrate                                                                             "docker-entrypoint.s…"   migrate    41 minutes ago   Exited (0) 41 minutes ago   
+samokettik-postgres-1   postgres:18-bookworm@sha256:afc7e2d441324c0388fa80c3d24f733b4194a4eb7f47dd8ee2b08eb1a24a647c   "docker-entrypoint.s…"   postgres   41 minutes ago   Up 38 minutes (healthy)     127.0.0.1:54329->5432/tcp
+samokettik-seed-1       samokettik-seed                                                                                "docker-entrypoint.s…"   seed       41 minutes ago   Exited (0) 41 minutes ago   
+samokettik-web-1        samokettik-web                                                                                 "/docker-entrypoint.…"   web        41 minutes ago   Up 41 minutes (healthy)     127.0.0.1:5173->80/tcp
+
+END 2026-10-19T16:03:16.863+06:00
+EXIT 0

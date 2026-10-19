@@ -1,0 +1,17 @@
+START 2026-10-19T15:17:13.455+06:00
+COMMAND npm install
+
+added 2 packages, removed 2 packages, changed 2 packages, and audited 145 packages in 3s
+
+37 packages are looking for funding
+  run `npm fund` for details
+
+4 moderate severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+END 2026-10-19T15:17:17.053+06:00
+EXIT 0

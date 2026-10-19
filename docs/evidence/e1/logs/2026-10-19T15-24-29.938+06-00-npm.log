@@ -1,0 +1,21 @@
+START 2026-10-19T15:24:29.938+06:00
+COMMAND npm run db:migrate
+
+> samokettik@0.1.0 db:migrate
+> npm run db:migrate -w @samokettik/server
+
+
+> @samokettik/server@0.1.0 db:migrate
+> tsx src/db/migrate.ts
+
+Database migration failed. Check PostgreSQL, credentials and migration SQL.
+npm error Lifecycle script `db:migrate` failed with error:
+npm error code 1
+npm error path C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\apps\server
+npm error workspace @samokettik/server@0.1.0
+npm error location C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\apps\server
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c tsx src/db/migrate.ts
+
+END 2026-10-19T15:24:31.983+06:00
+EXIT 1

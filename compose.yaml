@@ -1,0 +1,87 @@
+name: samokettik
+x-server-environment: &server-environment
+  DATABASE_URL: postgresql://${POSTGRES_USER:?Run npm run setup}:${POSTGRES_PASSWORD:?Run npm run setup}@postgres:5432/${POSTGRES_DB:?Run npm run setup}
+  API_HOST: 0.0.0.0
+  API_PORT: 3001
+  API_LOG_LEVEL: ${API_LOG_LEVEL:-info}
+  BOOKING_JOB_POLL_MS: ${BOOKING_JOB_POLL_MS:-1000}
+  BOOKING_JOB_BATCH_SIZE: ${BOOKING_JOB_BATCH_SIZE:-50}
+  BOOKING_WORKER_STALE_MS: ${BOOKING_WORKER_STALE_MS:-10000}
+services:
+  postgres:
+    image: postgres:18-bookworm@sha256:afc7e2d441324c0388fa80c3d24f733b4194a4eb7f47dd8ee2b08eb1a24a647c
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?Run npm run setup}
+      POSTGRES_USER: ${POSTGRES_USER:?Run npm run setup}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run npm run setup}
+      TZ: UTC
+    command: ["postgres", "-c", "timezone=UTC"]
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-54329}:5432"
+    volumes:
+      # PostgreSQL 18 image stores PGDATA under /var/lib/postgresql/18/docker.
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    stop_grace_period: 20s
+  migrate:
+    build: { context: ., target: migrate }
+    environment: *server-environment
+    depends_on:
+      postgres: { condition: service_healthy }
+    restart: "no"
+  seed:
+    build: { context: ., target: seed }
+    environment:
+      <<: *server-environment
+      DEMO_SEED_ENABLED: ${DEMO_SEED_ENABLED:-false}
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+    restart: "no"
+  worker:
+    build: { context: ., target: worker }
+    init: true
+    environment: *server-environment
+    depends_on:
+      seed: { condition: service_completed_successfully }
+    healthcheck:
+      test: ["CMD", "node", "apps/server/dist/jobs/health.js"]
+      interval: 3s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+    stop_grace_period: 10s
+  api:
+    build: { context: ., target: api }
+    init: true
+    environment:
+      <<: *server-environment
+      DEMO_AUTH_ENABLED: ${DEMO_AUTH_ENABLED:-false}
+      DEMO_USER_RU_TOKEN: ${DEMO_USER_RU_TOKEN:-}
+      DEMO_USER_KY_TOKEN: ${DEMO_USER_KY_TOKEN:-}
+    ports:
+      - "127.0.0.1:${API_PORT:-3001}:3001"
+    depends_on:
+      worker: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/health/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    stop_grace_period: 10s
+  web:
+    build: { context: ., target: web }
+    ports:
+      - "127.0.0.1:${WEB_PORT:-5173}:80"
+    depends_on:
+      api: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+volumes:
+  postgres_data:

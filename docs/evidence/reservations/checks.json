@@ -1,0 +1,190 @@
+{
+  "recordedAt": "2026-10-19T16:24:15.614+06:00",
+  "stage": "U004 server reservations",
+  "checks": [
+    {
+      "log": "logs/2026-10-19T16-03-16.345+06-00-docker.log",
+      "startedAt": "2026-10-19T16:03:16.345+06:00",
+      "command": "docker compose ps -a",
+      "finishedAt": "2026-10-19T16:03:16.863+06:00",
+      "exitCode": 0,
+      "sha256": "de5699a1d993567b8e3136d6ec9e9339d8c54cf5329f92d2e05b39f237fd31a1"
+    },
+    {
+      "log": "logs/2026-10-19T16-06-48.918+06-00-npm.log",
+      "startedAt": "2026-10-19T16:06:48.918+06:00",
+      "command": "npm run setup",
+      "finishedAt": "2026-10-19T16:06:49.384+06:00",
+      "exitCode": 0,
+      "sha256": "873bd3b6dd286dcf72af046936be6adfdc79d75f91ab01e47a1022de30aa833f"
+    },
+    {
+      "log": "logs/2026-10-19T16-06-49.506+06-00-npm.log",
+      "startedAt": "2026-10-19T16:06:49.506+06:00",
+      "command": "npm run db:generate",
+      "finishedAt": "2026-10-19T16:06:51.752+06:00",
+      "exitCode": 0,
+      "sha256": "5dc24032303a2cf4c76791192dc64cdf3376723af17da3f96ad8a40a212a9bf8"
+    },
+    {
+      "log": "logs/2026-10-19T16-09-53.111+06-00-npm.log",
+      "startedAt": "2026-10-19T16:09:53.111+06:00",
+      "command": "npm run typecheck",
+      "finishedAt": "2026-10-19T16:09:56.314+06:00",
+      "exitCode": 1,
+      "sha256": "3bf55553b4c2a4d62cfd2f60290f9c99bc41fb3017940402b9f9aff83356ab94"
+    },
+    {
+      "log": "logs/2026-10-19T16-11-33.986+06-00-npm.log",
+      "startedAt": "2026-10-19T16:11:33.986+06:00",
+      "command": "npm run typecheck",
+      "finishedAt": "2026-10-19T16:11:38.050+06:00",
+      "exitCode": 0,
+      "sha256": "fe6bc46c9462b80cb4c285b491887552bc7e5e041dfc28f44e9aa49f27d36684"
+    },
+    {
+      "log": "logs/2026-10-19T16-11-38.704+06-00-npm.log",
+      "startedAt": "2026-10-19T16:11:38.704+06:00",
+      "command": "npm run test:db",
+      "finishedAt": "2026-10-19T16:11:43.098+06:00",
+      "exitCode": 1,
+      "sha256": "869bfa3c16137ddbcb6cdef3848e706afce5aef114c9aa32decb2924d06a864c"
+    },
+    {
+      "log": "logs/2026-10-19T16-12-26.248+06-00-npm.log",
+      "startedAt": "2026-10-19T16:12:26.248+06:00",
+      "command": "npm run test:db",
+      "finishedAt": "2026-10-19T16:12:36.419+06:00",
+      "exitCode": 1,
+      "sha256": "87f81860db22d840f61436b21fa7bb9f2ac87abe477e0c100911f76eaa9d166b"
+    },
+    {
+      "log": "logs/2026-10-19T16-13-14.423+06-00-npm.log",
+      "startedAt": "2026-10-19T16:13:14.423+06:00",
+      "command": "npm run test:db",
+      "finishedAt": "2026-10-19T16:13:24.732+06:00",
+      "exitCode": 0,
+      "sha256": "6f813cf959e68bf7be2e80eb52594fb89c925f5331ef4028e77ce7cc165ce57d"
+    },
+    {
+      "log": "logs/2026-10-19T16-13-24.599+06-00-npm.log",
+      "startedAt": "2026-10-19T16:13:24.599+06:00",
+      "command": "npm test",
+      "finishedAt": "2026-10-19T16:13:25.934+06:00",
+      "exitCode": 0,
+      "sha256": "148154f3cfd83917a0cf6d44d0d8cad32be36c9a842de46b9bacf66196216687"
+    },
+    {
+      "log": "logs/2026-10-19T16-13-24.615+06-00-npm.log",
+      "startedAt": "2026-10-19T16:13:24.615+06:00",
+      "command": "npm run build",
+      "finishedAt": "2026-10-19T16:13:28.648+06:00",
+      "exitCode": 0,
+      "sha256": "df399281f83b36cf07eebb8face9249b35e61b70d26b2b5a700833400137507a"
+    },
+    {
+      "log": "logs/2026-10-19T16-15-00.643+06-00-npm.log",
+      "startedAt": "2026-10-19T16:15:00.643+06:00",
+      "command": "npm run typecheck",
+      "finishedAt": "2026-10-19T16:15:06.685+06:00",
+      "exitCode": 0,
+      "sha256": "1551d8e035a3de201529c0941c2408082ca6e2bffdd7d716dca88f35718101af"
+    },
+    {
+      "log": "logs/2026-10-19T16-15-00.675+06-00-npm.log",
+      "startedAt": "2026-10-19T16:15:00.675+06:00",
+      "command": "npm test",
+      "finishedAt": "2026-10-19T16:15:03.187+06:00",
+      "exitCode": 0,
+      "sha256": "2a9ca874f58b6559a740e302a1878cc9a245ff86e5796a11e73661a6780da124"
+    },
+    {
+      "log": "logs/2026-10-19T16-15-00.683+06-00-docker.log",
+      "startedAt": "2026-10-19T16:15:00.683+06:00",
+      "command": "docker compose config --quiet",
+      "finishedAt": "2026-10-19T16:15:02.257+06:00",
+      "exitCode": 0,
+      "sha256": "416aa4ef358e7d02ddc9d9a87928e01f1f383c8c03a4590d5dd52c196ad5bb12"
+    },
+    {
+      "log": "logs/2026-10-19T16-15-00.700+06-00-npm.log",
+      "startedAt": "2026-10-19T16:15:00.700+06:00",
+      "command": "npm run test:db",
+      "finishedAt": "2026-10-19T16:15:13.697+06:00",
+      "exitCode": 0,
+      "sha256": "b2a89eef663ad004b93bb794ba0bc876a1df75d5aa23f7a07b3ef3a34c2d0cd5"
+    },
+    {
+      "log": "logs/2026-10-19T16-15-56.397+06-00-npm.log",
+      "startedAt": "2026-10-19T16:15:56.397+06:00",
+      "command": "npm run compose:up",
+      "finishedAt": "2026-10-19T16:16:40.616+06:00",
+      "exitCode": 0,
+      "sha256": "a2eeaf069b90739d6ed5f4a1e634d062d07ad3f1ab97ed78d12b253605271d03"
+    },
+    {
+      "log": "logs/2026-10-19T16-16-06.588+06-00-npm.log",
+      "startedAt": "2026-10-19T16:16:06.588+06:00",
+      "command": "npm run db:generate",
+      "finishedAt": "2026-10-19T16:16:08.878+06:00",
+      "exitCode": 0,
+      "sha256": "29aff02393b5b655a524f860a2f7ab13e901637b866d3364e390d6d10b126554"
+    },
+    {
+      "log": "logs/2026-10-19T16-17-19.852+06-00-npm.log",
+      "startedAt": "2026-10-19T16:17:19.852+06:00",
+      "command": "npm run demo:reservations",
+      "finishedAt": "2026-10-19T16:17:20.657+06:00",
+      "exitCode": 0,
+      "sha256": "451cbb03a38b05d8e9886dfe3fb5ae3aea98a65cf538215e85b59735f05be3f4"
+    },
+    {
+      "log": "logs/2026-10-19T16-17-19.868+06-00-npm.log",
+      "startedAt": "2026-10-19T16:17:19.868+06:00",
+      "command": "npm run test:e2e",
+      "finishedAt": "2026-10-19T16:17:24.201+06:00",
+      "exitCode": 0,
+      "sha256": "fc87c66333998128af689900a32c4ba6cfb0e2a51296bb503774c83f8401241d"
+    },
+    {
+      "log": "logs/2026-10-19T16-17-19.873+06-00-docker.log",
+      "startedAt": "2026-10-19T16:17:19.873+06:00",
+      "command": "docker compose ps -a",
+      "finishedAt": "2026-10-19T16:17:20.499+06:00",
+      "exitCode": 0,
+      "sha256": "5c10df2da5eba41170108ff72e6715f015a75a1337d305f8c021ce3f70621203"
+    },
+    {
+      "log": "logs/2026-10-19T16-18-36.224+06-00-node.log",
+      "startedAt": "2026-10-19T16:18:36.224+06:00",
+      "command": "node work/check-dev.mjs",
+      "finishedAt": "2026-10-19T16:18:40.043+06:00",
+      "exitCode": 0,
+      "sha256": "2e66e141cf26bb6fada365c3d8965dc5b5d27442c629f1dd2506acd93f6c86e4"
+    },
+    {
+      "log": "logs/2026-10-19T16-22-33.748+06-00-git.log",
+      "startedAt": "2026-10-19T16:22:33.748+06:00",
+      "command": "git diff --check",
+      "finishedAt": "2026-10-19T16:22:33.939+06:00",
+      "exitCode": 0,
+      "sha256": "ac9f4d1cd9b55de180724c6384b2452410e6f4bf3e12282e0986de8b31586638"
+    },
+    {
+      "log": "logs/2026-10-19T16-22-34.072+06-00-npm.log",
+      "startedAt": "2026-10-19T16:22:34.072+06:00",
+      "command": "npm audit",
+      "finishedAt": "2026-10-19T16:22:35.397+06:00",
+      "exitCode": 0,
+      "sha256": "8b7c550b287af0db8072a436118fce64233d8048e3b6908e0ac8d608e0b8b4ca"
+    },
+    {
+      "log": "logs/2026-10-19T16-24-14.105+06-00-git.log",
+      "startedAt": "2026-10-19T16:24:14.105+06:00",
+      "command": "git diff --check",
+      "finishedAt": "2026-10-19T16:24:14.299+06:00",
+      "exitCode": 0,
+      "sha256": "618379539dcb07cb2bb0388fbec504f75f580b81937810f84bfa54d0f090eef9"
+    }
+  ]
+}

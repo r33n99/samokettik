@@ -1,0 +1,63 @@
+{
+  "startedAt": "2026-10-19T16:37:11.226+06:00",
+  "mode": "live Compose API + PostgreSQL + independent worker",
+  "fixture": "Only the newly created reservation is backdated; expiry is accelerated to DB now + 3 seconds. Production config is unchanged.",
+  "steps": [
+    {
+      "at": "2026-10-19T16:37:11.339+06:00",
+      "check": "Occupied scooter rejects the second user",
+      "firstStatus": 201,
+      "secondStatus": 409,
+      "errorCode": "VEHICLE_NOT_AVAILABLE",
+      "activeRows": 1,
+      "vehicleStatus": "reserved",
+      "durationSeconds": 900,
+      "warningBeforeSeconds": 180
+    },
+    {
+      "at": "2026-10-19T16:37:11.345+06:00",
+      "check": "Identical request replays the original result",
+      "passed": true
+    },
+    {
+      "at": "2026-10-19T16:37:14.709+06:00",
+      "check": "Worker expired the booking before any subsequent rental HTTP request",
+      "database": {
+        "state": "expired",
+        "end_reason": "reservation_expired",
+        "ended_at_equals_deadline": true,
+        "observed_at": "2026-10-19T10:37:14.709Z",
+        "expiry_notifications": 1,
+        "active_rows": 0
+      }
+    },
+    {
+      "at": "2026-10-19T16:37:14.729+06:00",
+      "check": "Second user can reserve the released scooter with a new command",
+      "previousOwnerCurrent": null,
+      "vehicleStatusBeforeNewBooking": "available",
+      "cachedRejectionStatus": 409,
+      "newBookingStatus": 201
+    }
+  ],
+  "readiness": {
+    "status": "ready",
+    "database": "connected",
+    "schemaVersion": 2,
+    "reservationWorker": "running"
+  },
+  "vehicleCode": "SK-003",
+  "acceleratedDeadline": "2026-10-19T10:37:14.350Z",
+  "passed": true,
+  "cleanup": [
+    {
+      "id": "102552fe-f321-48c7-aac5-1fc5b5c85fe2",
+      "state": "expired"
+    },
+    {
+      "id": "4f2a12f0-46a3-4971-976b-2e985119e86e",
+      "state": "cancelled"
+    }
+  ],
+  "finishedAt": "2026-10-19T16:37:14.738+06:00"
+}

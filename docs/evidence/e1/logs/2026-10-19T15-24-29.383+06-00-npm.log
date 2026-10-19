@@ -1,0 +1,10 @@
+START 2026-10-19T15:24:29.383+06:00
+COMMAND npm run setup
+
+> samokettik@0.1.0 setup
+> node scripts/setup-env.mjs
+
+.env already exists; left unchanged.
+
+END 2026-10-19T15:24:29.831+06:00
+EXIT 0

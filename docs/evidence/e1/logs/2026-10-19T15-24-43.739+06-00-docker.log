@@ -1,0 +1,9 @@
+START 2026-10-19T15:24:43.739+06:00
+COMMAND docker compose up -d --wait postgres
+ Container samokettik-postgres-1  Starting
+ Container samokettik-postgres-1  Started
+ Container samokettik-postgres-1  Waiting
+ Container samokettik-postgres-1  Healthy
+
+END 2026-10-19T15:24:48.041+06:00
+EXIT 0
