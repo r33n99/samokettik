@@ -1,12 +1,12 @@
 import { createHash } from 'node:crypto';
-import { and, eq, sql } from 'drizzle-orm';
+import { and, eq, inArray, sql } from 'drizzle-orm';
 import { Value } from '@sinclair/typebox/value';
-import { StoredReservationResultSchema, type Reservation, type StoredReservationResult } from '@samokettik/contracts';
+import { StoredCommandResultSchema, type Reservation, type StoredReservationResult, type StoredCommandResult } from '@samokettik/contracts';
 import type { BusinessConfig } from '../../config/business.js';
 import { databaseTimeouts, type Database } from '../../db/client.js';
 import { idempotencyRequests, notifications, rentals, users, vehicles } from '../../db/schema.js';
 
-type Transaction = Parameters<Parameters<Database['db']['transaction']>[0]>[0];
+export type Transaction = Parameters<Parameters<Database['db']['transaction']>[0]>[0];
 type Rental = typeof rentals.$inferSelect;
 type Vehicle = typeof vehicles.$inferSelect;
 type NotificationCode = typeof notifications.$inferInsert.code;
@@ -21,10 +21,11 @@ class CleanupRequired extends Error {
 }
 
 export function reservationDto(row: Rental): Reservation {
+  if (row.state !== 'reserved' && row.state !== 'cancelled' && row.state !== 'expired') throw new ReservationUnavailableError();
   return { id: row.id, vehicleId: row.vehicleId, state: row.state, reservedAt: row.reservedAt.toISOString(), warnAt: row.warnAt.toISOString(), expiresAt: row.expiresAt.toISOString(), endedAt: row.endedAt?.toISOString() ?? null, endReason: row.endReason };
 }
 const success = (row: Rental, status: 200 | 201 = 200): StoredReservationResult => ({ status, body: { reservation: reservationDto(row) } });
-const failure = (code: string, message: string, status: 404 | 409 = 409): StoredReservationResult => ({ status, body: { code, message } });
+export const failure = (code: string, message: string, status: 404 | 409 = 409): StoredReservationResult => ({ status, body: { code, message } });
 
 export async function databaseNow(tx: Transaction): Promise<Date> {
   // Drizzle raw execute intentionally returns timestamptz strings. Read integer
@@ -49,7 +50,7 @@ async function closeRental(tx: Transaction, rental: Rental, state: 'expired' | '
   return updated;
 }
 
-async function reconcileLocked(tx: Transaction, rental: Rental, vehicle: Vehicle, time: Date): Promise<ReconcileStats> {
+export async function reconcileLocked(tx: Transaction, rental: Rental, vehicle: Vehicle, time: Date): Promise<ReconcileStats> {
   const stats = emptyStats();
   if (rental.state !== 'reserved') return stats;
   if (time < rental.reservedAt) throw new ReservationUnavailableError();
@@ -90,7 +91,7 @@ function errorField(error: unknown, field: 'code' | 'constraint'): string | unde
   return undefined;
 }
 
-async function command(database: Database, userId: string, key: string, operation: string, payload: object, perform: (tx: Transaction) => Promise<StoredReservationResult>): Promise<StoredReservationResult> {
+export async function rentalCommand(database: Database, userId: string, key: string, operation: string, payload: object, perform: (tx: Transaction) => Promise<StoredCommandResult>): Promise<StoredCommandResult> {
   const requestHash = createHash('sha256').update(JSON.stringify(payload)).digest('hex');
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
@@ -102,7 +103,7 @@ async function command(database: Database, userId: string, key: string, operatio
         const [cached] = await tx.select().from(idempotencyRequests).where(and(eq(idempotencyRequests.userId, userId), eq(idempotencyRequests.key, key)));
         if (cached) {
           if (cached.operation !== operation || cached.requestHash !== requestHash) return failure('IDEMPOTENCY_CONFLICT', 'Этот ключ уже использован для другого запроса');
-          if (!Value.Check(StoredReservationResultSchema, cached.result)) throw new ReservationUnavailableError();
+          if (!Value.Check(StoredCommandResultSchema, cached.result)) throw new ReservationUnavailableError();
           return cached.result;
         }
         const [owner] = await tx.select({ id: users.id }).from(users).where(eq(users.id, userId)).for('update');
@@ -128,19 +129,19 @@ async function command(database: Database, userId: string, key: string, operatio
   throw new ReservationUnavailableError();
 }
 
-export function reserveVehicle(database: Database, config: BusinessConfig, userId: string, key: string, vehicleId: string): Promise<StoredReservationResult> {
-  return command(database, userId, key, 'reserve', { vehicleId }, async tx => {
-    const [own] = await tx.select().from(rentals).where(and(eq(rentals.userId, userId), eq(rentals.state, 'reserved')));
+export function reserveVehicle(database: Database, config: BusinessConfig, userId: string, key: string, vehicleId: string): Promise<StoredCommandResult> {
+  return rentalCommand(database, userId, key, 'reserve', { vehicleId }, async tx => {
+    const [own] = await tx.select().from(rentals).where(and(eq(rentals.userId, userId), inArray(rentals.state, ['reserved', 'riding', 'paused'])));
     if (own) {
-      if (own.expiresAt <= await databaseNow(tx)) throw new CleanupRequired(own.id);
+      if (own.state === 'reserved' && own.expiresAt <= await databaseNow(tx)) throw new CleanupRequired(own.id);
       return failure('ACTIVE_RENTAL_EXISTS', 'У вас уже есть активная бронь');
     }
     const [vehicle] = await tx.select().from(vehicles).where(eq(vehicles.id, vehicleId)).for('update');
     if (!vehicle) return failure('VEHICLE_NOT_FOUND', 'Самокат не найден', 404);
     const time = await databaseNow(tx);
-    const [occupied] = await tx.select().from(rentals).where(and(eq(rentals.vehicleId, vehicleId), eq(rentals.state, 'reserved'))).for('update');
+    const [occupied] = await tx.select().from(rentals).where(and(eq(rentals.vehicleId, vehicleId), inArray(rentals.state, ['reserved', 'riding', 'paused']))).for('update');
     if (occupied) {
-      if (occupied.expiresAt <= time || vehicle.batteryBp < occupied.minimumBatteryBp || vehicle.serviceMode !== 'operational') throw new CleanupRequired(occupied.id);
+      if (occupied.state === 'reserved' && (occupied.expiresAt <= time || vehicle.batteryBp < occupied.minimumBatteryBp || vehicle.serviceMode !== 'operational')) throw new CleanupRequired(occupied.id);
       return failure('VEHICLE_NOT_AVAILABLE', 'Этот самокат уже забронирован');
     }
     if (vehicle.serviceMode !== 'operational') return failure('VEHICLE_UNAVAILABLE', 'Самокат временно недоступен');
@@ -152,14 +153,15 @@ export function reserveVehicle(database: Database, config: BusinessConfig, userI
   });
 }
 
-export function cancelReservation(database: Database, userId: string, key: string, rentalId: string): Promise<StoredReservationResult> {
-  return command(database, userId, key, 'cancel', { rentalId }, async tx => {
+export function cancelReservation(database: Database, userId: string, key: string, rentalId: string): Promise<StoredCommandResult> {
+  return rentalCommand(database, userId, key, 'cancel', { rentalId }, async tx => {
     const [candidate] = await tx.select().from(rentals).where(and(eq(rentals.id, rentalId), eq(rentals.userId, userId)));
     if (!candidate) return failure('RESERVATION_NOT_FOUND', 'Бронь не найдена', 404);
     const [vehicle] = await tx.select().from(vehicles).where(eq(vehicles.id, candidate.vehicleId)).for('update');
     const [rental] = await tx.select().from(rentals).where(and(eq(rentals.id, rentalId), eq(rentals.userId, userId))).for('update');
     if (!rental || !vehicle) return failure('RESERVATION_NOT_FOUND', 'Бронь не найдена', 404);
     if (rental.state === 'cancelled') return success(rental);
+    if (rental.state !== 'reserved' && rental.state !== 'expired') return failure('INVALID_RENTAL_STATE', 'Поездка уже начата; бронь отменить нельзя');
     const time = await databaseNow(tx);
     if (time < rental.reservedAt) throw new ReservationUnavailableError();
     if (rental.state === 'expired' || time >= rental.expiresAt) {

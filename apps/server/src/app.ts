@@ -8,6 +8,7 @@ import { appMetadata, vehicles } from './db/schema.js';
 import { registerReservationRoutes, identityFailure } from './modules/reservations/routes.js';
 import { ReservationUnavailableError } from './modules/reservations/service.js';
 import { reservationWorkerHealthy } from './jobs/reservations.js';
+import { registerTripRoutes } from './modules/trips/routes.js';
 
 export function buildApp(env: Environment, config: BusinessConfig, database: Database) {
   const app = Fastify({
@@ -35,9 +36,9 @@ export function buildApp(env: Environment, config: BusinessConfig, database: Dat
       const [metadata] = await database.db.select().from(appMetadata).where(eq(appMetadata.id, 1));
       // Query an application table as well, so missing migrations are not reported as ready.
       await database.db.select({ id: vehicles.id }).from(vehicles).limit(1);
-      if (metadata?.schemaVersion !== 2) throw new Error('Schema version mismatch');
+      if (metadata?.schemaVersion !== 3) throw new Error('Schema version mismatch');
       if (!await reservationWorkerHealthy(database, config, env.workerStaleMs)) return reply.status(503).send({ code: 'WORKER_NOT_READY', message: 'Фоновая обработка бронирований ещё не готова', requestId: request.id });
-      return { status: 'ready' as const, database: 'connected' as const, schemaVersion: 2 as const, reservationWorker: 'running' as const };
+      return { status: 'ready' as const, database: 'connected' as const, schemaVersion: 3 as const, reservationWorker: 'running' as const };
     } catch {
       return reply.status(503).send({ code: 'DATABASE_NOT_READY', message: 'База данных недоступна или миграции не применены', requestId: request.id });
     }
@@ -53,5 +54,6 @@ export function buildApp(env: Environment, config: BusinessConfig, database: Dat
   });
   app.log.info({ configHash: configHash(config) }, 'Business configuration loaded');
   registerReservationRoutes(app, env, config, database);
+  registerTripRoutes(app, env, config, database);
   return app;
 }

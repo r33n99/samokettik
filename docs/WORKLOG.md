@@ -207,3 +207,57 @@
 
 - 2026-10-19T16:45:41.318+06:00 — сохранено прямое разрешение пользователя создать коммит и выполнить push. Подтверждены effective author/committer Reen <rinni499@gmail.com>, отсутствие GIT_AUTHOR/GIT_COMMITTER overrides и активный gh account r33n99. Исходный main без коммитов, remote отсутствовал; gh repo create r33n99/samokettik --private --source . --remote origin --description ... завершился exit 0, создан https://github.com/r33n99/samokettik.
 - 2026-10-19T16:45:41.318+06:00 — индекс содержит 165 файлов: локальный .env, outputs/work/node_modules исключены; точные локальные пароль и два demo-токена отсутствуют, credential-pattern scan и git diff --cached --check пройдены. Полный набор app-тестов повторно не запускался: app-код после проверок U004/U005 не менялся. Следующее действие — первый реальный коммит текущего состояния и push main без force; это план, а не утверждение об успешной публикации. Фактический hash, время, exit codes и совпадение remote/local будут записаны после выполнения в outputs/git-publication/result.json. История этапов не синтезируется задним числом.
+
+- 2026-10-19T16:53:41.586+06:00 — Команда: `gitleaks.exe git --log-opts=--all --redact=100 --no-banner --no-color --report-format=json --report-path=outputs/secret-audit/gitleaks-history.json .`; начало 2026-10-19T16:53:40.930+06:00; exit 0. Лог: `work/checks/2026-10-19T16-53-40.930+06-00-gitleaks.exe.log`.
+
+## Проверка возможного секрета — U007
+
+- 2026-10-19T16:54:34.021+06:00 — сохранён U007 и запрошены ссылка/путь/строка инцидента без значения пароля. Проверены remote main, GitHub visibility/checks/statuses; GitHub secret-scanning API ответил 404 disabled. Все 165 blobs одного опубликованного коммита проверены на текущие локальные credentials и выбранные encodings без вывода секретов: совпадений нет. Официальный Gitleaks 8.30.1 (release checksum verified) просканировал all refs, 0 findings; redacted report и raw log сохранены в docs/evidence/secret-audit. Первый wrapper-запуск упал после сканирования из-за пути executable в имени лога; повтор с gitleaks.exe в PATH exit 0. App-код, секреты и Git-история не менялись, новый commit/push не выполнялся. Внешнее срабатывание пока не идентифицировано: нельзя считать его false positive без location. Подробности: docs/SECRET-AUDIT.md.
+
+## Поездки и тарификация — U008
+
+- 2026-10-19T17:13:04.513+06:00 — пользователь сообщил, что Generic Password был ложной тревогой; это сообщение пользователя, а не независимая идентификация внешнего инцидента. Начат U008: прочитаны существующие schema/locks/config/contracts/tests, применяются PostgreSQL lock-order и partial-index рекомендации. Выбрано суммарное ceil округление отдельно по riding/paused, стоимость в integer minor units. Из Nominatim единичным запросом получен реальный OSM MultiPolygon relation 8493930 (около 24 KB геометрии), сохранён с attribution/source/retrievedAt в config/service-zone.json. Это snapshot OSM, не юридическое подтверждение городской границы. Trip UI, simulation и email не входят в текущую реализацию.
+
+- 2026-10-19T17:16:32.037+06:00 — Команда: `npm run typecheck`; начало 2026-10-19T17:16:27.688+06:00; exit 0. Лог: `work/checks/2026-10-19T17-16-27.688+06-00-npm.log`.
+
+- 2026-10-19T17:16:40.726+06:00 — Команда: `npm run db:generate`; начало 2026-10-19T17:16:38.555+06:00; exit 0. Лог: `work/checks/2026-10-19T17-16-38.555+06-00-npm.log`.
+
+- 2026-10-19T17:17:24.357+06:00 — Команда: `npm test`; начало 2026-10-19T17:17:22.881+06:00; exit 0. Лог: `work/checks/2026-10-19T17-17-22.881+06-00-npm.log`.
+
+- 2026-10-19T17:19:29.423+06:00 — Команда: `npm run typecheck`; начало 2026-10-19T17:19:25.106+06:00; exit 0. Лог: `work/checks/2026-10-19T17-19-25.106+06-00-npm.log`.
+
+- 2026-10-19T17:19:54.917+06:00 — Команда: `npm run test:db`; начало 2026-10-19T17:19:40.562+06:00; exit 0. Лог: `work/checks/2026-10-19T17-19-40.562+06-00-npm.log`.
+
+- 2026-10-19T17:20:52.037+06:00 — Команда: `npm run test:db`; начало 2026-10-19T17:20:37.784+06:00; exit 0. Лог: `work/checks/2026-10-19T17-20-37.784+06-00-npm.log`.
+
+- 2026-10-19T17:21:41.670+06:00 — Команда: `npm run verify`; начало 2026-10-19T17:21:30.977+06:00; exit 0. Лог: `work/checks/2026-10-19T17-21-30.977+06-00-npm.log`.
+
+- 2026-10-19T17:22:36.839+06:00 — Команда: `npm run compose:up`; начало 2026-10-19T17:21:49.698+06:00; exit 0. Лог: `work/checks/2026-10-19T17-21-49.698+06-00-npm.log`.
+
+- 2026-10-19T17:24:42.638+06:00 — Команда: `docker compose ps -a`; начало 2026-10-19T17:24:42.031+06:00; exit 0. Лог: `work/checks/2026-10-19T17-24-42.031+06-00-docker.log`.
+
+- 2026-10-19T17:24:43.125+06:00 — Команда: `npm run demo:trips`; начало 2026-10-19T17:24:42.026+06:00; exit 0. Лог: `work/checks/2026-10-19T17-24-42.026+06-00-npm.log`.
+
+- 2026-10-19T17:24:45.818+06:00 — Команда: `npm run test:e2e`; начало 2026-10-19T17:24:42.046+06:00; exit 0. Лог: `work/checks/2026-10-19T17-24-42.046+06-00-npm.log`.
+
+- 2026-10-19T17:25:44.286+06:00 — Команда: `npm run test:db`; начало 2026-10-19T17:25:29.927+06:00; exit 0. Лог: `work/checks/2026-10-19T17-25-29.927+06-00-npm.log`.
+
+- 2026-10-19T17:26:24.935+06:00 — Команда: `node work/check-trip-persistence.mjs`; начало 2026-10-19T17:26:24.622+06:00; exit 0. Лог: `work/checks/2026-10-19T17-26-24.622+06-00-node.log`.
+
+- 2026-10-19T17:26:26.903+06:00 — Команда: `npm run db:generate`; начало 2026-10-19T17:26:24.631+06:00; exit 0. Лог: `work/checks/2026-10-19T17-26-24.631+06-00-npm.log`.
+
+- 2026-10-19T17:26:29.017+06:00 — Команда: `npm run typecheck`; начало 2026-10-19T17:26:24.621+06:00; exit 0. Лог: `work/checks/2026-10-19T17-26-24.621+06-00-npm.log`.
+
+- 2026-10-19T17:28:51.780+06:00 — U008 завершён: 27 unit, 35 real PostgreSQL integration, 4 browser regression, typecheck/build и Compose upgrade v3 прошли. Live proxy demo: 195/139 ms, totalMinor=1000, paid, 1 receipt, 0 open intervals; SQL сверил интервалы со счётом. Barrier races finish/pay, outside finish, invoice rollback и lock-time start проверены. Report/BILLING/README/matrix/decisions/prompts обновлены. Ограничения: статичные GPS, demo auth/payment, без email/WS/depletion/UI; full-minute wall-clock тест не выполнялся. Коммит предлагается, не создаётся; следующий этап не начат.
+
+- 2026-10-19T17:29:45.170+06:00 — Команда: `git diff --check`; начало 2026-10-19T17:29:45.015+06:00; exit 2. Лог: `work/checks/2026-10-19T17-29-45.015+06-00-git.log`.
+
+- 2026-10-19T17:30:29.376+06:00 — первая финальная export/whitespace проверка остановилась на лишней пустой строке EOF в docs/PROMPTS.md (git diff --check exit 2). Исправлен только Markdown EOF; тесты приложения не затронуты. Неудачный check сохранён в evidence/trips, экспорт повторяется после исправления.
+
+- 2026-10-19T17:30:29.640+06:00 — Команда: `git diff --check`; начало 2026-10-19T17:30:29.493+06:00; exit 0. Лог: `work/checks/2026-10-19T17-30-29.493+06-00-git.log`.
+
+- 2026-10-19T17:30:31.207+06:00 — финальная проверка U008: 205 source/evidence files, 29 Markdown и 72 локальных ссылок доступны; NUL/type-bypass/current local secret checks пройдены, старые применённые 0000/0001 migrations побайтно равны HEAD. git diff --check exit 0. Экспорт подготовлен в outputs/trips-review с SHA-256; ни .env, ни work/node_modules/.git в него не включены.
+
+## Публикация поездок — U009
+
+- 2026-10-19T17:38:50.272+06:00 — пользователь разрешил commit/push U008; сохранён точный запрос U009. Подтверждены effective author/committer Reen <rinni499@gmail.com>, аккаунт r33n99, private origin и совпадение main с remote на 4d6bdcde101286c0632bc8e9889861a1a8b1c7d7. 83 non-doc source/config/test files побайтно совпадают с SHA-256 проверенного экспорта U008; app-код не менялся, повтор тестов без изменений не выполнялся. В prose/evidence исправлена описка exit 1 → фактический exit 2 failed whitespace check по его исходному raw log; сами raw logs не менялись. План: commit feat: add trip lifecycle, geofence and exact billing и обычный push main. Фактические результаты/hashes/время будут записаны в outputs/trips-publication/result.json после выполнения.

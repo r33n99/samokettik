@@ -39,3 +39,8 @@ UI-референсы для СамоКеттик ещё не исследова
 ## U004: конкурентное бронирование
 
 Повторно прочитаны официальные PostgreSQL 18 [Explicit Locking](https://www.postgresql.org/docs/18/explicit-locking.html), [Partial Indexes](https://www.postgresql.org/docs/18/indexes-partial.html), [Date/Time Functions](https://www.postgresql.org/docs/18/functions-datetime.html), Fastify [Validation and Serialization](https://fastify.dev/docs/latest/Reference/Validation-and-Serialization/). Применён `supabase-postgres-best-practices` с lock-deadlock-prevention/lock-short-transactions. SQL и прикладной код брони написаны для проекта; готовое чужое решение не копировалось. Фактическое поведение Drizzle raw timestamptz отдельно проверено запросом к локальной БД, а не предположено из TypeScript-аннотации.
+
+## U008: поездки и геоданные
+
+- [OSM relation 8493930](https://www.openstreetmap.org/relation/8493930), получено через Nominatim search city=Bishkek/country=Kyrgyzstan&format=jsonv2&polygon_geojson=1&limit=1. Данные © OpenStreetMap contributors, [ODbL](https://www.openstreetmap.org/copyright); сохранены все четыре части MultiPolygon без упрощения. Timestamp — в config/service-zone.json и WORKLOG.
+- PostgreSQL [Range Types](https://www.postgresql.org/docs/15/rangetypes.html), [btree_gist](https://www.postgresql.org/docs/15/btree-gist.html) и [CREATE TABLE 18](https://www.postgresql.org/docs/18/sql-createtable.html): прочитаны официальные материалы по exclusion constraints, проверено исполнением на настоящем PostgreSQL. Ready-made application solution не копировалось; point-in-polygon и billing реализованы в проекте, источник геоданных указан отдельно.

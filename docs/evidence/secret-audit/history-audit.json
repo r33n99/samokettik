@@ -1,0 +1,35 @@
+{
+  "recordedAt": "2026-10-19T16:52:57.095+06:00",
+  "commits": 1,
+  "blobsChecked": 165,
+  "exactLocalCredentialMatches": [],
+  "credentialPatternMatches": [],
+  "literalPasswordCandidates": [
+    {
+      "path": ".env.example",
+      "line": 4,
+      "classification": "placeholder or test fixture"
+    },
+    {
+      "path": "compose.yaml",
+      "line": 3,
+      "classification": "schema, reference or generated value"
+    },
+    {
+      "path": "compose.yaml",
+      "line": 16,
+      "classification": "schema, reference or generated value"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "line": 358,
+      "classification": "manual review needed"
+    }
+  ],
+  "limits": [
+    "Exact matching only covers current local secrets and selected encodings, not unknown or previously rotated credentials.",
+    "Generic-password candidates are triage results, not a reproduction of the vendor detector."
+  ],
+  "excludedLocalEnv": true,
+  "passedCurrentCredentialCheck": true
+}

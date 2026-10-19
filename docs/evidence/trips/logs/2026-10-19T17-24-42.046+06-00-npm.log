@@ -1,0 +1,26 @@
+START 2026-10-19T17:24:42.046+06:00
+COMMAND npm run test:e2e
+
+> samokettik@0.1.0 test:e2e
+> playwright test
+
+
+Running 4 tests using 2 workers
+
+(node:33368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 [desktop] › tests\e2e\foundation.spec.ts:2:1 › frontend reads actual API and PostgreSQL through the proxy (561ms)
+  ok 1 [mobile] › tests\e2e\foundation.spec.ts:2:1 › frontend reads actual API and PostgreSQL through the proxy (674ms)
+  ok 3 [desktop] › tests\e2e\foundation.spec.ts:15:1 › connection failure is explained and retry recovers (370ms)
+  ok 4 [mobile] › tests\e2e\foundation.spec.ts:15:1 › connection failure is explained and retry recovers (398ms)
+
+  4 passed (2.2s)
+
+END 2026-10-19T17:24:45.818+06:00
+EXIT 0

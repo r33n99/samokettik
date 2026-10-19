@@ -1,0 +1,26 @@
+START 2026-10-19T17:24:42.026+06:00
+COMMAND npm run demo:trips
+
+> samokettik@0.1.0 demo:trips
+> node scripts/demo-trips.mjs
+
+{
+  "vehicleCode": "SK-003",
+  "states": [
+    "riding",
+    "paused",
+    "riding",
+    "finished"
+  ],
+  "activeMilliseconds": "195",
+  "pausedMilliseconds": "139",
+  "totalMinor": "1000",
+  "currency": "KGS",
+  "invoiceStatus": "paid",
+  "provider": "demo",
+  "repeatedFinishMatches": true,
+  "repeatedPaymentMatches": true
+}
+
+END 2026-10-19T17:24:43.125+06:00
+EXIT 0

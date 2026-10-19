@@ -7,6 +7,8 @@
   "defaultLocale": "ru",
   "rideRateMinorPerMinute": 800,
   "pauseRateMinorPerMinute": 200,
+  "billingPolicy": "ceil-per-mode-v1",
+  "serviceZoneFile": "config/service-zone.json",
   "reservationDurationSeconds": 900,
   "reservationWarningBeforeSeconds": 180,
   "minRentalBatteryBp": 1500,

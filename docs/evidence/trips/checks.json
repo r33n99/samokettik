@@ -1,0 +1,117 @@
+{
+  "recordedAt": "2026-10-19T17:28:51.780+06:00",
+  "checks": [
+    {
+      "startedAt": "2026-10-19T17:16:27.688+06:00",
+      "command": "npm run typecheck",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-16-27.688+06-00-npm.log",
+      "sha256": "91fb2bd76e8c93c3b345cf91110fec96ac0085fd91d97beaf3ee9bed56bea0c3"
+    },
+    {
+      "startedAt": "2026-10-19T17:16:38.555+06:00",
+      "command": "npm run db:generate",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-16-38.555+06-00-npm.log",
+      "sha256": "cfd0ad31271591d687e586b3046a1fa6b163727496a60ab7597bdefffeb2a75a"
+    },
+    {
+      "startedAt": "2026-10-19T17:17:22.881+06:00",
+      "command": "npm test",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-17-22.881+06-00-npm.log",
+      "sha256": "09df18d4240b9e335f67849c661f51535877e07f76388059c36a993fb20cb9f3"
+    },
+    {
+      "startedAt": "2026-10-19T17:19:25.106+06:00",
+      "command": "npm run typecheck",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-19-25.106+06-00-npm.log",
+      "sha256": "c707d57ad205b1455cfd798aadbd581ef540f0329d24f999de029ffd397f7965"
+    },
+    {
+      "startedAt": "2026-10-19T17:19:40.562+06:00",
+      "command": "npm run test:db",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-19-40.562+06-00-npm.log",
+      "sha256": "7bce2bccbfe1132d0cf1b735b6800fbcb26d62dda5f22ec6174e1e5e15b0f259"
+    },
+    {
+      "startedAt": "2026-10-19T17:20:37.784+06:00",
+      "command": "npm run test:db",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-20-37.784+06-00-npm.log",
+      "sha256": "30b6e1366c76560a85bf6e5ce7a35be25b4626c0b13d641d54dcd9fb5e16fd73"
+    },
+    {
+      "startedAt": "2026-10-19T17:21:30.977+06:00",
+      "command": "npm run verify",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-21-30.977+06-00-npm.log",
+      "sha256": "6fec4d8c202bb5bd384e3cd5236a875499dbccd52c4ec0dd7538210f36c00ea9"
+    },
+    {
+      "startedAt": "2026-10-19T17:21:49.698+06:00",
+      "command": "npm run compose:up",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-21-49.698+06-00-npm.log",
+      "sha256": "3b73307c3dd986d52d73d73bffb8d99b188b5e6a38bdcd26f81a55dfbf8761b4"
+    },
+    {
+      "startedAt": "2026-10-19T17:24:42.026+06:00",
+      "command": "npm run demo:trips",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-24-42.026+06-00-npm.log",
+      "sha256": "89461ab19cce3b9c31ddecc08a7ab94c524cf333cef5afb0d27817873bf1f9b4"
+    },
+    {
+      "startedAt": "2026-10-19T17:24:42.031+06:00",
+      "command": "docker compose ps -a",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-24-42.031+06-00-docker.log",
+      "sha256": "438466e649e49101820e892a370bfaff1dc62538dc1b358f57875721d94977e0"
+    },
+    {
+      "startedAt": "2026-10-19T17:24:42.046+06:00",
+      "command": "npm run test:e2e",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-24-42.046+06-00-npm.log",
+      "sha256": "562a67cfb756e3d844bc52c3c368d9252406cbfa91ccbb9f38e981b543818068"
+    },
+    {
+      "startedAt": "2026-10-19T17:25:29.927+06:00",
+      "command": "npm run test:db",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-25-29.927+06-00-npm.log",
+      "sha256": "e6dda6c6a1bf080ae641bae1d61bf3eb9092dab8ce01df36971db68b9182f8e1"
+    },
+    {
+      "startedAt": "2026-10-19T17:26:24.621+06:00",
+      "command": "npm run typecheck",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-26-24.621+06-00-npm.log",
+      "sha256": "bc548f12b25d982bbd6fa1fa5add135ae01f20f096e30eaf98f3ed4d8be93bf5"
+    },
+    {
+      "startedAt": "2026-10-19T17:26:24.622+06:00",
+      "command": "node work/check-trip-persistence.mjs",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-26-24.622+06-00-node.log",
+      "sha256": "abd8181153cf2d168938708982f8ddc07dda76e146e56526bcd7c958163f1415"
+    },
+    {
+      "startedAt": "2026-10-19T17:26:24.631+06:00",
+      "command": "npm run db:generate",
+      "exit": 0,
+      "log": "logs/2026-10-19T17-26-24.631+06-00-npm.log",
+      "sha256": "9dd9b588debf404fec55a679a833537fd7bdf20c33a09a05ba8c1e6de29b334b"
+    },
+    {
+      "startedAt": "2026-10-19T17:29:45.015+06:00",
+      "command": "git diff --check",
+      "exit": 2,
+      "log": "logs/2026-10-19T17-29-45.015+06-00-git.log",
+      "sha256": "d114ef50af202d106c9a5378b08bc193520ead42418534d5b8ab11233347a2d1"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "recordedAt": "2026-10-19T17:26:24.915+06:00",
+  "readiness": {
+    "status": "ready",
+    "database": "connected",
+    "schemaVersion": 3,
+    "reservationWorker": "running"
+  },
+  "zone": {
+    "version": "bishkek-osm-8493930-2026-10-19",
+    "source": "https://www.openstreetmap.org/relation/8493930",
+    "parts": 4
+  },
+  "persistedDemoTrip": {
+    "rental_id": "61415b36-ea03-4229-aba6-3289aa65a5f4",
+    "state": "finished",
+    "public_code": "SK-003",
+    "invoice_status": "paid",
+    "total_minor": "1000",
+    "active_ms": "195",
+    "paused_ms": "139",
+    "active_minutes": "1",
+    "paused_minutes": "1",
+    "billing_policy": "ceil-per-mode-v1",
+    "zone_version": "bishkek-osm-8493930-2026-10-19",
+    "currency": "KGS",
+    "active_ms_match": true,
+    "paused_ms_match": true,
+    "receipt_count": 1,
+    "open_intervals": 0
+  }
+}

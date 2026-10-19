@@ -21,6 +21,7 @@
     "test:db": "vitest run --config vitest.db.config.ts",
     "test:e2e": "playwright test",
     "demo:reservations": "node scripts/demo-reservations.mjs",
+    "demo:trips": "node scripts/demo-trips.mjs",
     "verify": "npm run typecheck && npm test && npm run build",
     "infra:up": "docker compose up -d --wait postgres",
     "compose:up": "docker compose up --build -d --wait",
