@@ -1,0 +1,13 @@
+START 2026-10-21T00:13:43.532+06:00
+COMMAND npm run infra:up
+
+> samokettik@0.1.0 infra:up
+> docker compose up -d --wait postgres
+
+ Container samokettik-postgres-1  Starting
+ Container samokettik-postgres-1  Started
+ Container samokettik-postgres-1  Waiting
+ Container samokettik-postgres-1  Healthy
+
+END 2026-10-21T00:13:57.816+06:00
+EXIT 0

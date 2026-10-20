@@ -1,0 +1,21 @@
+START 2026-10-21T00:04:53.799+06:00
+COMMAND npm run db:generate
+
+> samokettik@0.1.0 db:generate
+> npm run db:generate -w @samokettik/server
+
+
+> @samokettik/server@0.1.0 db:generate
+> drizzle-kit generate --config drizzle.config.ts
+
+Reading config file 'C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\apps\server\drizzle.config.ts'
+TypeError: Do not know how to serialize a BigInt
+    at JSON.stringify (<anonymous>)
+    at diffSchemasOrTables (C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\node_modules\drizzle-kit\bin.cjs:22188:27)
+    at applyPgSnapshotsDiff (C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\node_modules\drizzle-kit\bin.cjs:28202:26)
+    at async prepareAndMigratePg (C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\node_modules\drizzle-kit\bin.cjs:32191:42)
+    at async Object.handler (C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\node_modules\drizzle-kit\bin.cjs:91998:7)
+    at async run (C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\node_modules\drizzle-kit\bin.cjs:91472:7)
+
+END 2026-10-21T00:04:59.219+06:00
+EXIT 0

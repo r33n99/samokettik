@@ -1,0 +1,10 @@
+START 2026-10-21T00:06:32.984+06:00
+COMMAND npm run infra:up
+
+> samokettik@0.1.0 infra:up
+> docker compose up -d --wait postgres
+
+unable to get image 'postgres:18-bookworm@sha256:afc7e2d441324c0388fa80c3d24f733b4194a4eb7f47dd8ee2b08eb1a24a647c': error during connect: Get "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/v1.51/images/postgres:18-bookworm@sha256:afc7e2d441324c0388fa80c3d24f733b4194a4eb7f47dd8ee2b08eb1a24a647c/json": open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+
+END 2026-10-21T00:06:33.964+06:00
+EXIT 1

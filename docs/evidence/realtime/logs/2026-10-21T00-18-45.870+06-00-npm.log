@@ -1,0 +1,10 @@
+START 2026-10-21T00:18:45.870+06:00
+COMMAND npm run setup
+
+> samokettik@0.1.0 setup
+> node scripts/setup-env.mjs
+
+Existing .env values preserved; added 6 missing settings. Local demo tokens are never printed.
+
+END 2026-10-21T00:18:46.431+06:00
+EXIT 0

@@ -14,6 +14,6 @@ export function createDatabase(databaseUrl: string) {
   });
   // Idle connection errors must not crash Node with an unhandled emitter event.
   pool.on('error', () => console.error('PostgreSQL idle connection failed; subsequent requests will reconnect.'));
-  return { pool, db: drizzle(pool, { schema }), close: () => pool.end() };
+  return { pool, db: drizzle(pool, { schema }), connectionString: databaseUrl, close: () => pool.end() };
 }
 export type Database = ReturnType<typeof createDatabase>;

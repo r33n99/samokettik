@@ -1,0 +1,38 @@
+START 2026-10-21T00:34:16.934+06:00
+COMMAND node work/check-realtime-persistence.mjs
+{
+  "recordedAt": "2026-10-21T00:34:17.251+06:00",
+  "readiness": {
+    "status": "ready",
+    "database": "connected",
+    "schemaVersion": 4,
+    "reservationWorker": "running"
+  },
+  "persistedDemoTrip": {
+    "state": "finished",
+    "end_reason": "finished_by_user",
+    "public_code": "SK-003",
+    "battery_bp": 1489,
+    "battery_remainder": 49580,
+    "invoice_status": "unpaid",
+    "total_minor": "1000",
+    "active_ms": "7068",
+    "paused_ms": "139",
+    "active_minutes": "1",
+    "paused_minutes": "1",
+    "distance_mm": "21204",
+    "tick_ms": 3000,
+    "ride_drain_bp_per_minute": 100,
+    "pause_drain_bp_per_minute": 20,
+    "active_ms_match": true,
+    "paused_ms_match": true,
+    "open_intervals": 0,
+    "finish_notifications": 1,
+    "outbox_count": 1,
+    "acknowledged_count": 1,
+    "mailbox_count": 1
+  }
+}
+
+END 2026-10-21T00:34:17.276+06:00
+EXIT 0

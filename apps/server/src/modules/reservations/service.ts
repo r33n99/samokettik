@@ -5,6 +5,7 @@ import { StoredCommandResultSchema, type Reservation, type StoredReservationResu
 import type { BusinessConfig } from '../../config/business.js';
 import { databaseTimeouts, type Database } from '../../db/client.js';
 import { idempotencyRequests, notifications, rentals, users, vehicles } from '../../db/schema.js';
+import { hasMinimumBattery } from '../simulation/battery.js';
 
 export type Transaction = Parameters<Parameters<Database['db']['transaction']>[0]>[0];
 type Rental = typeof rentals.$inferSelect;
@@ -58,8 +59,8 @@ export async function reconcileLocked(tx: Transaction, rental: Rental, vehicle: 
     await closeRental(tx, rental, 'expired', rental.expiresAt, 'reservation_expired');
     await notify(tx, rental, 'RESERVATION_EXPIRED', time);
     stats.expired = 1;
-  } else if (vehicle.batteryBp < rental.minimumBatteryBp || vehicle.serviceMode !== 'operational') {
-    await closeRental(tx, rental, 'cancelled', time, vehicle.batteryBp < rental.minimumBatteryBp ? 'battery_too_low' : 'vehicle_unavailable');
+  } else if (!hasMinimumBattery(vehicle, rental.minimumBatteryBp) || vehicle.serviceMode !== 'operational') {
+    await closeRental(tx, rental, 'cancelled', time, !hasMinimumBattery(vehicle, rental.minimumBatteryBp) ? 'battery_too_low' : 'vehicle_unavailable');
     await notify(tx, rental, 'RESERVATION_UNAVAILABLE', time);
     stats.cancelled = 1;
   } else if (time >= rental.warnAt) {
@@ -141,11 +142,11 @@ export function reserveVehicle(database: Database, config: BusinessConfig, userI
     const time = await databaseNow(tx);
     const [occupied] = await tx.select().from(rentals).where(and(eq(rentals.vehicleId, vehicleId), inArray(rentals.state, ['reserved', 'riding', 'paused']))).for('update');
     if (occupied) {
-      if (occupied.state === 'reserved' && (occupied.expiresAt <= time || vehicle.batteryBp < occupied.minimumBatteryBp || vehicle.serviceMode !== 'operational')) throw new CleanupRequired(occupied.id);
+      if (occupied.state === 'reserved' && (occupied.expiresAt <= time || !hasMinimumBattery(vehicle, occupied.minimumBatteryBp) || vehicle.serviceMode !== 'operational')) throw new CleanupRequired(occupied.id);
       return failure('VEHICLE_NOT_AVAILABLE', 'Этот самокат уже забронирован');
     }
     if (vehicle.serviceMode !== 'operational') return failure('VEHICLE_UNAVAILABLE', 'Самокат временно недоступен');
-    if (vehicle.batteryBp < config.minRentalBatteryBp) return failure('BATTERY_TOO_LOW', 'Заряда недостаточно для бронирования');
+    if (!hasMinimumBattery(vehicle, config.minRentalBatteryBp)) return failure('BATTERY_TOO_LOW', 'Заряда недостаточно для бронирования');
     const expiresAt = new Date(time.getTime() + config.reservationDurationSeconds * 1000);
     const [rental] = await tx.insert(rentals).values({ userId, vehicleId, reservedAt: time, warnAt: new Date(expiresAt.getTime() - config.reservationWarningBeforeSeconds * 1000), expiresAt, minimumBatteryBp: config.minRentalBatteryBp }).returning();
     if (!rental) throw new ReservationUnavailableError();

@@ -16,6 +16,12 @@ const EnvSchema = Type.Object({
   jobPollMs: Type.Integer({ minimum: 100, maximum: 60000 }),
   jobBatchSize: Type.Integer({ minimum: 1, maximum: 200 }),
   workerStaleMs: Type.Integer({ minimum: 1000, maximum: 300000 }),
+  wsAllowedOrigins: Type.Array(Type.String(), { minItems: 1 }),
+  wsReconcileMs: Type.Integer({ minimum: 100, maximum: 60000 }),
+  wsHeartbeatMs: Type.Integer({ minimum: 1000, maximum: 60000 }),
+  wsTicketSeconds: Type.Integer({ minimum: 1, maximum: 120 }),
+  wsMaxClients: Type.Integer({ minimum: 1, maximum: 1000 }),
+  wsMaxBufferedBytes: Type.Integer({ minimum: 16384, maximum: 16777216 }),
 }, { additionalProperties: false });
 export type Environment = Static<typeof EnvSchema>;
 
@@ -32,6 +38,12 @@ export function parseEnvironment(values: NodeJS.ProcessEnv): Environment {
     jobPollMs: Number(values['BOOKING_JOB_POLL_MS'] ?? '1000'),
     jobBatchSize: Number(values['BOOKING_JOB_BATCH_SIZE'] ?? '50'),
     workerStaleMs: Number(values['BOOKING_WORKER_STALE_MS'] ?? '10000'),
+    wsAllowedOrigins: (values['WS_ALLOWED_ORIGINS'] ?? 'http://localhost:5173,http://127.0.0.1:5173').split(',').map(value => value.trim()),
+    wsReconcileMs: Number(values['WS_RECONCILE_MS'] ?? '3000'),
+    wsHeartbeatMs: Number(values['WS_HEARTBEAT_MS'] ?? '15000'),
+    wsTicketSeconds: Number(values['WS_TICKET_SECONDS'] ?? '30'),
+    wsMaxClients: Number(values['WS_MAX_CLIENTS'] ?? '100'),
+    wsMaxBufferedBytes: Number(values['WS_MAX_BUFFERED_BYTES'] ?? '1048576'),
   };
   if (values['DEMO_SEED_ENABLED'] && !['true', 'false'].includes(values['DEMO_SEED_ENABLED'])) {
     throw new Error('DEMO_SEED_ENABLED must be true or false');
@@ -43,6 +55,11 @@ export function parseEnvironment(values: NodeJS.ProcessEnv): Environment {
   }
   if (candidate.demoAuthEnabled && (candidate.demoRuToken.length < 32 || candidate.demoKyToken.length < 32 || candidate.demoRuToken === candidate.demoKyToken)) throw new Error('Demo auth requires two different secret tokens of at least 32 characters');
   if (candidate.workerStaleMs < candidate.jobPollMs * 2) throw new Error('BOOKING_WORKER_STALE_MS must allow at least two polling intervals');
+  for (const origin of candidate.wsAllowedOrigins) {
+    let parsed: URL;
+    try { parsed = new URL(origin); } catch { throw new Error('WS_ALLOWED_ORIGINS must contain HTTP origins'); }
+    if (!['http:', 'https:'].includes(parsed.protocol) || parsed.origin !== origin) throw new Error('WS_ALLOWED_ORIGINS must contain exact HTTP origins');
+  }
   let url: URL;
   try { url = new URL(candidate.databaseUrl); }
   catch { throw new Error('DATABASE_URL must be a PostgreSQL connection URL'); }

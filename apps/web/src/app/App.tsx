@@ -1,12 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { SystemInfo } from '@samokettik/contracts';
 import { checkSystem } from '../api/system';
+import { connectRealtime, type RealtimeStatus } from '../api/realtime';
 import styles from './App.module.scss';
 
 type Connection = { state: 'checking' } | { state: 'ready'; system: SystemInfo } | { state: 'error'; message: string };
 
 export function App() {
   const [connection, setConnection] = useState<Connection>({ state: 'checking' });
+  const [realtime, setRealtime] = useState<RealtimeStatus>('restoring');
+  const [liveCount, setLiveCount] = useState<number | null>(null);
   const controller = useRef<AbortController | null>(null);
   const refresh = useCallback(() => {
     controller.current?.abort();
@@ -20,6 +23,10 @@ export function App() {
       });
   }, []);
   useEffect(() => { refresh(); return () => controller.current?.abort(); }, [refresh]);
+  useEffect(() => {
+    const client = connectRealtime({ onFleet: fleet => setLiveCount(fleet.items.length), onStatus: setRealtime });
+    return client.stop;
+  }, []);
   return (
     <main className={styles.page}>
       <header className={styles.header}><a className={styles.wordmark} href="/">СамоКеттик</a><span>Бишкек</span></header>
@@ -31,13 +38,14 @@ export function App() {
           <p>{connection.state === 'checking' ? 'Проверяем API и PostgreSQL…' : connection.state === 'ready' ? 'API и PostgreSQL доступны' : connection.message}</p>
         </div>
         {connection.state === 'ready' ? <dl className={styles.details}>
-          <div><dt>Транспорт в базе</dt><dd>{connection.system.vehicleCount} самокатов</dd></div>
+          <div><dt>Транспорт в базе</dt><dd>{liveCount ?? connection.system.vehicleCount} самокатов</dd></div>
+          <div><dt>Синхронизация</dt><dd>{realtime === 'connected' ? 'WebSocket подключён' : realtime === 'restoring' ? 'Восстанавливаем состояние…' : 'Переподключаемся…'}</dd></div>
           <div><dt>Часовой пояс</dt><dd>{connection.system.timezone}</dd></div>
           <div><dt>Валюта</dt><dd>{connection.system.currency}</dd></div>
         </dl> : null}
         <button className={styles.button} type="button" onClick={refresh} disabled={connection.state === 'checking'}>Проверить снова</button>
       </section>
-      <footer className={styles.footer}>Технический стенд. Аренда пока не реализована.</footer>
+      <footer className={styles.footer}>Технический стенд. Интерфейс аренды ещё не подключён.</footer>
     </main>
   );
 }

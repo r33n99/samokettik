@@ -1,0 +1,51 @@
+START 2026-10-21T00:15:17.230+06:00
+COMMAND npm run test:db
+
+> samokettik@0.1.0 test:db
+> vitest run --config vitest.db.config.ts
+
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql
+
+ ❯ tests/integration/realtime.test.ts (6 tests | 2 failed) 27160ms
+   ❯ persistent simulation, realtime snapshots and local invoice mail (6)
+     × broadcasts committed state to three clients across two API instances and keeps private data isolated 6354ms
+     × delivers one reservation warning/expiry and restores current state through the API before reconnect 6213ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/realtime.test.ts > persistent simulation, realtime snapshots and local invoice mail > broadcasts committed state to three clients across two API instances and keeps private data isolated
+Error: Condition timed out
+ ❯ until tests/integration/realtime.test.ts:45:9
+     43|   const deadline = Date.now() + timeout;
+     44|   while (Date.now() < deadline) { if (await check()) return; await del…
+     45|   throw new Error('Condition timed out');
+       |         ^
+     46| }
+     47| async function connect(base = urlA, user?: 'a' | 'b') {
+ ❯ tests/integration/realtime.test.ts:130:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/realtime.test.ts > persistent simulation, realtime snapshots and local invoice mail > delivers one reservation warning/expiry and restores current state through the API before reconnect
+Error: Condition timed out
+ ❯ until tests/integration/realtime.test.ts:45:9
+     43|   const deadline = Date.now() + timeout;
+     44|   while (Date.now() < deadline) { if (await check()) return; await del…
+     45|   throw new Error('Condition timed out');
+       |         ^
+     46| }
+     47| async function connect(base = urlA, user?: 'a' | 'b') {
+ ❯ tests/integration/realtime.test.ts:181:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  2 failed | 39 passed (41)
+   Start at  00:15:18
+   Duration  47.64s (tests 89%, import 10%, transform 1%)
+
+
+END 2026-10-21T00:16:05.967+06:00
+EXIT 1

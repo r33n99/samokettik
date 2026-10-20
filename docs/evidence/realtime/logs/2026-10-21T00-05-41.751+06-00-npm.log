@@ -1,0 +1,66 @@
+START 2026-10-21T00:05:41.751+06:00
+COMMAND npm run test:db
+
+> samokettik@0.1.0 test:db
+> vitest run --config vitest.db.config.ts
+
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql
+
+ ❯ tests/integration/reservations.test.ts (15 tests | 15 skipped) 287ms
+ ❯ tests/integration/trips.test.ts (14 tests | 14 skipped) 261ms
+ ❯ tests/integration/foundation.test.ts (6 tests | 6 skipped) 155ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/foundation.test.ts [ tests/integration/foundation.test.ts ]
+Error: connect ECONNREFUSED 127.0.0.1:54329
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/integration/foundation.test.ts:28:3
+     26|   // Only this newly generated test database is ever removed.
+     27|   if (!/^samokettik_test_[a-f0-9]{32}$/.test(testDbName)) throw new Er…
+     28|   await admin.query(`CREATE DATABASE "${testDbName}"`);
+       |   ^
+     29|   created = true;
+     30|   await migrate(database.db, { migrationsFolder: migrationsPath });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/integration/reservations.test.ts [ tests/integration/reservations.test.ts ]
+Error: connect ECONNREFUSED 127.0.0.1:54329
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/integration/reservations.test.ts:84:3
+     82| beforeAll(async () => {
+     83|   if (!/^samokettik_test_[a-f0-9]{32}$/.test(testDbName)) throw new Er…
+     84|   await admin.query(`CREATE DATABASE "${testDbName}"`);
+       |   ^
+     85|   created = true;
+     86|   await migrate(database.db, { migrationsFolder: migrationsPath });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/integration/trips.test.ts [ tests/integration/trips.test.ts ]
+Error: connect ECONNREFUSED 127.0.0.1:54329
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/integration/trips.test.ts:93:3
+     91| beforeAll(async () => {
+     92|   if (!/^samokettik_test_[a-f0-9]{32}$/.test(testName)) throw new Erro…
+     93|   await admin.query(`CREATE DATABASE "${testName}"`); created = true;
+       |   ^
+     94|   await migrate(database.db, { migrationsFolder: migrationsPath });
+     95|   await seedDatabase(database, config);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  35 skipped (35)
+   Start at  00:05:43
+   Duration  7.84s (import 79%, transform 10%, tests 10%)
+
+    Isolate  3 workers spawned · ~234ms startup each (spawn + environment, per file)
+             at least ~467ms faster with isolate: false — reuses workers across files instead of one per file
+
+
+END 2026-10-21T00:05:51.113+06:00
+EXIT 1

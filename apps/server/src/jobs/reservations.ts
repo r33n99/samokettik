@@ -24,7 +24,7 @@ export async function runReservationJobs(database: Database, config: BusinessCon
     sql`(${rentals.expiresAt} <= clock_timestamp()
       OR (${rentals.warnAt} <= clock_timestamp() AND NOT EXISTS (
         SELECT 1 FROM notifications n WHERE n.rental_id = ${rentals.id} AND n.code = 'RESERVATION_EXPIRING'
-      )) OR ${vehicles.batteryBp} < ${rentals.minimumBatteryBp} OR ${vehicles.serviceMode} <> 'operational')`,
+      )) OR ${vehicles.batteryBp} < ${rentals.minimumBatteryBp} OR (${vehicles.batteryBp} = ${rentals.minimumBatteryBp} AND ${vehicles.batteryRemainder} > 0) OR ${vehicles.serviceMode} <> 'operational')`,
   )).orderBy(rentals.expiresAt, rentals.id).limit(batchSize);
   const totals: ReconcileStats = { warnings: 0, expired: 0, cancelled: 0 };
   for (const candidate of candidates) {

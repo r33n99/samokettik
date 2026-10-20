@@ -13,6 +13,10 @@
   "reservationWarningBeforeSeconds": 180,
   "minRentalBatteryBp": 1500,
   "simulationTickMs": 3000,
+  "rideDrainBpPerMinute": 100,
+  "pauseDrainBpPerMinute": 20,
+  "simulationSpeedMetersPerMinute": 180,
+  "simulationRouteSideE7": 6000,
   "fleetSize": 30,
   "seedOrigin": { "latitudeE7": 428740000, "longitudeE7": 746020000 },
   "seedSpacingE7": 8000

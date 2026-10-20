@@ -261,3 +261,91 @@
 ## Публикация поездок — U009
 
 - 2026-10-19T17:38:50.272+06:00 — пользователь разрешил commit/push U008; сохранён точный запрос U009. Подтверждены effective author/committer Reen <rinni499@gmail.com>, аккаунт r33n99, private origin и совпадение main с remote на 4d6bdcde101286c0632bc8e9889861a1a8b1c7d7. 83 non-doc source/config/test files побайтно совпадают с SHA-256 проверенного экспорта U008; app-код не менялся, повтор тестов без изменений не выполнялся. В prose/evidence исправлена описка exit 1 → фактический exit 2 failed whitespace check по его исходному raw log; сами raw logs не менялись. План: commit feat: add trip lifecycle, geofence and exact billing и обычный push main. Фактические результаты/hashes/время будут записаны в outputs/trips-publication/result.json после выполнения.
+
+- 2026-10-20T23:57:22.826+06:00 — Команда: `npm install -w @samokettik/server --save-exact ws@8.22.0`; начало 2026-10-20T23:57:20.898+06:00; exit 0. Лог: `work/checks/2026-10-20T23-57-20.898+06-00-npm.log`.
+
+- 2026-10-20T23:57:26.054+06:00 — Команда: `npm install -D -w @samokettik/server --save-exact @types/ws@8.18.2`; начало 2026-10-20T23:57:23.623+06:00; exit 0. Лог: `work/checks/2026-10-20T23-57-23.623+06-00-npm.log`.
+
+## Симуляция, фоновые задачи, WebSocket и локальная почта — U010
+
+- 2026-10-20T23:57:26.860+06:00 — аудит чистого main после 3356e01, изучены существующие locks/intervals/jobs/API/UI и PostgreSQL skill. Запрос сохранён в docs/prompts/010-simulation-realtime.md. Прочитаны официальные ws README и PostgreSQL 18 NOTIFY. Из npm registry проверены ws 8.22.0 и @types/ws 8.18.2. Решение: elapsed-time simulation с целочисленными остатками и stop в расчётную ms; transactional NOTIFY + snapshots + API resync; local PostgreSQL mailbox/outbox для проверяемого one logical email, без обещаний SMTP exactly-once. Значения drain/speed/route внесены в config, пока функциональность не проверена.
+
+- 2026-10-21T00:02:26.121+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T00:02:19.737+06:00; exit 0. Лог: `work/checks/2026-10-21T00-02-19.737+06-00-npm.log`.
+
+- 2026-10-21T00:03:49.615+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T00:03:43.131+06:00; exit 0. Лог: `work/checks/2026-10-21T00-03-43.131+06-00-npm.log`.
+
+- 2026-10-21T00:04:53.072+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T00:04:47.374+06:00; exit 0. Лог: `work/checks/2026-10-21T00-04-47.374+06-00-npm.log`.
+
+- 2026-10-21T00:04:59.219+06:00 — Команда: `npm run db:generate`; начало 2026-10-21T00:04:53.799+06:00; exit 0. Лог: `work/checks/2026-10-21T00-04-53.799+06-00-npm.log`.
+
+- 2026-10-21T00:05:16.721+06:00 — Команда: `npm run db:generate`; начало 2026-10-21T00:05:13.960+06:00; exit 0. Лог: `work/checks/2026-10-21T00-05-13.960+06-00-npm.log`.
+
+- 2026-10-21T00:05:40.879+06:00 — strict typecheck нового domain/realtime кода прошёл. Первый db:generate напечатал TypeError BigInt serialization, но CLI ошибочно вернул exit 0: миграция не была создана и успехом это не считается. BigInt default(0n) заменён на SQL default 0; повтор сгенерировал 0003, SQL проверен, до применения добавлены transactional NOTIFY statement triggers и metadata version 4. Прежние миграции не изменены.
+
+- 2026-10-21T00:05:51.113+06:00 — Команда: `npm run test:db`; начало 2026-10-21T00:05:41.751+06:00; exit 1. Лог: `work/checks/2026-10-21T00-05-41.751+06-00-npm.log`.
+
+- 2026-10-21T00:06:01.917+06:00 — Команда: `npm run infra:up`; начало 2026-10-21T00:06:00.683+06:00; exit 1. Лог: `work/checks/2026-10-21T00-06-00.683+06-00-npm.log`.
+
+- 2026-10-21T00:06:32.098+06:00 — Команда: `npm test`; начало 2026-10-21T00:06:30.067+06:00; exit 0. Лог: `work/checks/2026-10-21T00-06-30.067+06-00-npm.log`.
+
+- 2026-10-21T00:06:33.964+06:00 — Команда: `npm run infra:up`; начало 2026-10-21T00:06:32.984+06:00; exit 1. Лог: `work/checks/2026-10-21T00-06-32.984+06-00-npm.log`.
+
+- 2026-10-21T00:12:02.966+06:00 — Команда: `npm run db:generate`; начало 2026-10-21T00:12:00.238+06:00; exit 0. Лог: `work/checks/2026-10-21T00-12-00.238+06-00-npm.log`.
+
+- 2026-10-21T00:12:22.787+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T00:12:16.977+06:00; exit 0. Лог: `work/checks/2026-10-21T00-12-16.977+06-00-npm.log`.
+
+- 2026-10-21T00:13:24.251+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T00:13:17.793+06:00; exit 0. Лог: `work/checks/2026-10-21T00-13-17.793+06-00-npm.log`.
+
+- 2026-10-21T00:13:48.141+06:00 — Команда: `npm test`; начало 2026-10-21T00:13:43.435+06:00; exit 0. Лог: `work/checks/2026-10-21T00-13-43.435+06-00-npm.log`.
+
+- 2026-10-21T00:13:57.816+06:00 — Команда: `npm run infra:up`; начало 2026-10-21T00:13:43.532+06:00; exit 0. Лог: `work/checks/2026-10-21T00-13-43.532+06-00-npm.log`.
+
+- 2026-10-21T00:15:27.563+06:00 — Docker Engine восстановлен после повторного dockerInference stale socket. Границы путей проверены; только Docker/run переименован в C:/Users/Rinni/AppData/Local/Docker/run.stale-20261021-001314, старый каталог сохранён; зависший CLI и аварийные Desktop/backend процессы остановлены, Desktop запущен Hidden. PostgreSQL healthy после infra:up, volumes/settings не удалялись. Неудачные infra/test:db команды сохранены; тесты PostgreSQL повторно запущены. Фракционный расход хранится на vehicle и переносится между поездками; min 15% проверяет полный дробный остаток.
+
+- 2026-10-21T00:16:05.967+06:00 — Команда: `npm run test:db`; начало 2026-10-21T00:15:17.230+06:00; exit 1. Лог: `work/checks/2026-10-21T00-15-17.230+06-00-npm.log`.
+
+- 2026-10-21T00:17:25.524+06:00 — Команда: `npm exec -- vitest run --config vitest.db.config.ts tests/integration/realtime.test.ts`; начало 2026-10-21T00:17:05.034+06:00; exit 0. Лог: `work/checks/2026-10-21T00-17-05.034+06-00-npm.log`.
+
+- 2026-10-21T00:17:55.302+06:00 — Команда: `npm run verify`; начало 2026-10-21T00:17:39.754+06:00; exit 0. Лог: `work/checks/2026-10-21T00-17-39.754+06-00-npm.log`.
+
+- 2026-10-21T00:18:46.431+06:00 — Команда: `npm run setup`; начало 2026-10-21T00:18:45.870+06:00; exit 0. Лог: `work/checks/2026-10-21T00-18-45.870+06-00-npm.log`.
+
+- 2026-10-21T00:20:16.892+06:00 — Команда: `npm run test:db`; начало 2026-10-21T00:18:47.381+06:00; exit 1. Лог: `work/checks/2026-10-21T00-18-47.381+06-00-npm.log`.
+
+- 2026-10-21T00:20:49.585+06:00 — Команда: `npm run compose:up`; начало 2026-10-21T00:18:47.447+06:00; exit 0. Лог: `work/checks/2026-10-21T00-18-47.447+06-00-npm.log`.
+
+- 2026-10-21T00:22:22.788+06:00 — Команда: `npm run test:db`; начало 2026-10-21T00:21:38.824+06:00; exit 0. Лог: `work/checks/2026-10-21T00-21-38.824+06-00-npm.log`.
+
+- 2026-10-21T00:22:33.920+06:00 — Команда: `npm run demo:realtime`; начало 2026-10-21T00:22:25.025+06:00; exit 0. Лог: `work/checks/2026-10-21T00-22-25.025+06-00-npm.log`.
+
+- 2026-10-21T00:22:41.597+06:00 — Команда: `docker compose ps -a`; начало 2026-10-21T00:22:40.438+06:00; exit 0. Лог: `work/checks/2026-10-21T00-22-40.438+06-00-docker.log`.
+
+- 2026-10-21T00:22:44.594+06:00 — Команда: `npm run db:generate`; начало 2026-10-21T00:22:40.284+06:00; exit 0. Лог: `work/checks/2026-10-21T00-22-40.284+06-00-npm.log`.
+
+- 2026-10-21T00:22:49.345+06:00 — Команда: `npm run test:e2e`; начало 2026-10-21T00:22:40.167+06:00; exit 0. Лог: `work/checks/2026-10-21T00-22-40.167+06-00-npm.log`.
+
+- 2026-10-21T00:24:06.937+06:00 — Команда: `npm audit`; начало 2026-10-21T00:24:05.090+06:00; exit 0. Лог: `work/checks/2026-10-21T00-24-05.090+06-00-npm.log`.
+
+- 2026-10-21T00:24:33.307+06:00 — Команда: `npm run test:db`; начало 2026-10-21T00:23:54.871+06:00; exit 0. Лог: `work/checks/2026-10-21T00-23-54.871+06-00-npm.log`.
+
+- 2026-10-21T00:27:24.852+06:00 — Команда: `npm run mail:show`; начало 2026-10-21T00:27:23.740+06:00; exit 0. Лог: `work/checks/2026-10-21T00-27-23.740+06-00-npm.log`.
+
+- 2026-10-21T00:27:32.596+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T00:27:23.745+06:00; exit 0. Лог: `work/checks/2026-10-21T00-27-23.745+06-00-npm.log`.
+
+- 2026-10-21T00:32:53.263+06:00 — U010: финальные результаты команд подтверждены по raw logs: verify/typecheck/build и 32 unit; 43 PostgreSQL integration, 6 Playwright, audit 0. Compose schema4 healthy; live demo три WS, движение при disconnect, REST restore, итог 1000 minor, одно локальное письмо и notice. Локальный mail:show показал реальное RU demo-письмо. Обновлены решения D42–D48 и матрица; следующий этап/commit/push не выполняются.
+
+- 2026-10-21T00:32:53.263+06:00 — разбор неудачных прогонов U010: (1) Docker Engine отсутствовал, suite недоступен; восстановлен runtime socket без удаления volumes. (2) два WS timeout при 39 passed: LISTEN ошибочно подключался к main env DB вместо injected isolated DB; исправлено подключение, target suite прошёл. (3) полный PG suite ошибочно запущен параллельно с тяжёлым Compose build: PostgreSQL перешёл в recovery и оборвал connections; 1 failed /35 passed /6 skipped, root cause не установлен, OOMKilled=false и restartcount=0. После healthy и последовательного прогона 42 passed; затем добавлен отдельный paused-depletion case и финальный прогон 43 passed. Неудачные логи сохраняются в evidence, не заменяются последним зелёным запуском.
+
+- 2026-10-21T00:34:05.503+06:00 — Команда: `node work/check-realtime-persistence.mjs`; начало 2026-10-21T00:34:05.127+06:00; exit 1. Лог: `work/checks/2026-10-21T00-34-05.127+06-00-node.log`.
+
+- 2026-10-21T00:34:17.276+06:00 — Команда: `node work/check-realtime-persistence.mjs`; начало 2026-10-21T00:34:16.934+06:00; exit 0. Лог: `work/checks/2026-10-21T00-34-16.934+06-00-node.log`.
+
+- 2026-10-21T00:34:33.130+06:00 — Команда: `docker compose logs --since 2026-10-20T18:19:00Z --tail 80 postgres`; начало 2026-10-21T00:34:32.559+06:00; exit 0. Лог: `work/checks/2026-10-21T00-34-32.559+06-00-docker.log`.
+
+- 2026-10-21T00:34:37.915+06:00 — Команда: `docker compose logs --since 2026-10-20T18:19:00Z postgres`; начало 2026-10-21T00:34:37.365+06:00; exit 0. Лог: `work/checks/2026-10-21T00-34-37.365+06-00-docker.log`.
+
+- 2026-10-21T00:35:52.977+06:00 — скопированы 35 raw command logs U010 в docs/evidence/realtime/logs, SHA-256/время/exit в COMMANDS.json; сохранены failed runs и db:generate с ошибочным exit0. Read-only live DB подтвердил schema4, закрытые интервалы и сумму1000, ровно1 invoice finish notice/outbox/ack/mail, persisted distance21204mm и battery remainder. Первое выполнение вспомогательной проверки ошибочно ожидало enum manual вместо фактического finished_by_user; исправлена только проверка, повтор прошёл, оба лога сохранены. Скриншоты desktop/mobile просмотрены: текущий технический стенд без overflow.
+
+- 2026-10-21T00:37:35.624+06:00 — финальная проверка U010: 268 source/evidence files, 34 Markdown и 110 локальных ссылок доступны; NUL/UTF-8/type-bypass/current-local-secret checks пройдены. Применённые 0000/0001/0002 migrations побайтно равны HEAD, hashes35 новых raw logs совпадают. git diff --check exit0. Экспорт outputs/realtime-review с SHA-256, без .env/work/node_modules/.git. Коммит/push не выполнялись.
+
+- 2026-10-21T00:39:42.791+06:00 — U011: сохранена точная команда пользователя на commit/push U010. Проверены effective Git identity и author/committer: Reen <rinni499@gmail.com>, overrides отсутствуют, GitHub login r33n99. git fetch origin успешен; main и origin/main до коммита совпадают (0/0). Все 268 файлов совпали с SHA-256 проверенного экспорта U010; функциональный код после 32 unit /43 PostgreSQL /6 Playwright, typecheck/build не менялся, тесты повторно без причины не запускались. git diff --check exit0. Подготовлен отдельный commit с симуляцией/jobs/WS/local mailbox; выполнение commit/push и remote SHA будут проверены последовательно, без изменения истории.

@@ -1,0 +1,12 @@
+START 2026-10-20T23:57:23.623+06:00
+COMMAND npm install -D -w @samokettik/server --save-exact @types/ws@8.18.2
+
+added 1 package, and audited 147 packages in 2s
+
+37 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+END 2026-10-20T23:57:26.054+06:00
+EXIT 0

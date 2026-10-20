@@ -15,6 +15,7 @@ export function tripDto(row: RentalRow, intervals: readonly TimedInterval[], tim
   const durations = sumIntervals(intervals, row.startedAt, row.endedAt ?? time);
   const fare = calculateFare(durations.activeMs, durations.pausedMs, row.rideRateMinorPerMinute, row.pauseRateMinorPerMinute);
   return { id: row.id, vehicleId: row.vehicleId, state: row.state, startedAt: row.startedAt.toISOString(), endedAt: row.endedAt?.toISOString() ?? null,
+    endReason: row.endReason === 'finished_by_user' || row.endReason === 'battery_depleted' ? row.endReason : null,
     activeMilliseconds: fare.activeMs.toString(), pausedMilliseconds: fare.pausedMs.toString(), totalMinor: fare.totalMinor.toString(), rideRateMinorPerMinute: row.rideRateMinorPerMinute, pauseRateMinorPerMinute: row.pauseRateMinorPerMinute, currency: row.currency, billingPolicy: row.billingPolicy, zoneVersion: row.zoneSnapshot.version };
 }
 export async function tripResult(tx: Transaction, row: RentalRow, time: Date): Promise<TripResult> {

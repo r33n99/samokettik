@@ -1,0 +1,25 @@
+START 2026-10-21T00:34:05.127+06:00
+COMMAND node work/check-realtime-persistence.mjs
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'finished_by_user'
+- 'manual'
+
+    at file:///C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql/work/check-realtime-persistence.mjs:25:62
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'finished_by_user',
+  expected: 'manual',
+  operator: 'strictEqual'
+}
+
+Node.js v22.14.0
+
+END 2026-10-21T00:34:05.503+06:00
+EXIT 1

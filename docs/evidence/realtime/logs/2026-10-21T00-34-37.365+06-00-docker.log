@@ -1,0 +1,195 @@
+START 2026-10-21T00:34:37.365+06:00
+COMMAND docker compose logs --since 2026-10-20T18:19:00Z postgres
+postgres-1  | 2026-10-21 00:19:03.101 +06 [995] LOG:  unexpected EOF on client connection with an open transaction
+postgres-1  | 2026-10-21 00:19:12.255 +06 [29] LOG:  checkpoint starting: immediate force wait
+postgres-1  | 2026-10-21 00:19:12.419 +06 [29] LOG:  checkpoint complete: wrote 5 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 1 recycled; write=0.004 s, sync=0.006 s, total=0.165 s; sync files=6, longest=0.003 s, average=0.001 s; distance=5893 kB, estimate=5969 kB; lsn=0/A4D3BF8, redo lsn=0/A4D3BA0
+postgres-1  | 2026-10-21 00:19:20.130 +06 [1054] LOG:  invalid length of startup packet
+postgres-1  | 2026-10-21 00:19:21.748 +06 [1049] ERROR:  duplicate key value violates unique constraint "rentals_one_active_vehicle"
+postgres-1  | 2026-10-21 00:19:21.748 +06 [1049] DETAIL:  Key (vehicle_id)=(10000000-0000-4000-8000-000000000005) already exists.
+postgres-1  | 2026-10-21 00:19:21.748 +06 [1049] STATEMENT:  insert into "rentals" ("id", "user_id", "vehicle_id", "state", "reserved_at", "warn_at", "expires_at", "ended_at", "end_reason", "minimum_battery_bp", "started_at", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "currency", "billing_policy", "zone_snapshot") values (default, $1, $2, default, $3, $4, $5, default, default, $6, default, default, default, default, default, default)
+postgres-1  | 2026-10-21 00:19:21.751 +06 [1050] ERROR:  duplicate key value violates unique constraint "rentals_one_active_user"
+postgres-1  | 2026-10-21 00:19:21.751 +06 [1050] DETAIL:  Key (user_id)=(20000000-0000-4000-8000-000000000001) already exists.
+postgres-1  | 2026-10-21 00:19:21.751 +06 [1050] STATEMENT:  insert into "rentals" ("id", "user_id", "vehicle_id", "state", "reserved_at", "warn_at", "expires_at", "ended_at", "end_reason", "minimum_battery_bp", "started_at", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "currency", "billing_policy", "zone_snapshot") values (default, $1, $2, default, $3, $4, $5, default, default, $6, default, default, default, default, default, default)
+postgres-1  | 2026-10-21 00:19:21.754 +06 [1036] ERROR:  new row for relation "rentals" violates check constraint "rentals_terminal_state"
+postgres-1  | 2026-10-21 00:19:21.754 +06 [1036] DETAIL:  Failing row contains (586ac33b-2dc4-46a0-bc42-70d45e6e0b65, 20000000-0000-4000-8000-000000000001, 10000000-0000-4000-8000-000000000005, expired, 2026-10-20 18:19:21.732+00, 2026-10-20 18:31:21.732+00, 2026-10-20 18:34:21.732+00, null, null, 1500, null, null, null, null, null, null).
+postgres-1  | 2026-10-21 00:19:21.754 +06 [1036] STATEMENT:  update "rentals" set "state" = $1 where "rentals"."id" = $2
+postgres-1  | 2026-10-21 00:19:21.798 +06 [1064] ERROR:  insert or update on table "notifications" violates foreign key constraint "notifications_rental_owner_fk"
+postgres-1  | 2026-10-21 00:19:21.798 +06 [1064] DETAIL:  Key (rental_id, user_id)=(586ac33b-2dc4-46a0-bc42-70d45e6e0b65, 20000000-0000-4000-8000-000000000002) is not present in table "rentals".
+postgres-1  | 2026-10-21 00:19:21.798 +06 [1064] STATEMENT:  insert into "notifications" ("id", "user_id", "rental_id", "code", "reason", "expires_at", "created_at") values (default, $1, $2, $3, default, $4, $5)
+postgres-1  | 2026-10-21 00:19:30.094 +06 [1086] FATAL:  terminating connection due to administrator command
+postgres-1  | 2026-10-21 00:19:30.925 +06 [29] LOG:  checkpoint starting: immediate force wait
+postgres-1  | 2026-10-21 00:19:37.941 +06 [29] LOG:  checkpoint complete: wrote 5 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=1.984 s, sync=0.008 s, total=7.016 s; sync files=6, longest=0.005 s, average=0.002 s; distance=5865 kB, estimate=5959 kB; lsn=0/AA8FE70, redo lsn=0/AA8E2B0
+postgres-1  | 2026-10-21 00:19:44.757 +06 [1126] ERROR:  duplicate key value violates unique constraint "rentals_one_active_vehicle"
+postgres-1  | 2026-10-21 00:19:44.757 +06 [1126] DETAIL:  Key (vehicle_id)=(10000000-0000-4000-8000-000000000005) already exists.
+postgres-1  | 2026-10-21 00:19:44.757 +06 [1126] STATEMENT:  insert into "rentals" ("id", "user_id", "vehicle_id", "state", "reserved_at", "warn_at", "expires_at", "ended_at", "end_reason", "minimum_battery_bp", "started_at", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "currency", "billing_policy", "zone_snapshot") values (default, $1, $2, default, $3, $4, $5, default, default, $6, default, default, default, default, default, default)
+postgres-1  | 2026-10-21 00:19:52.307 +06 [1150] ERROR:  test invoice insert failure
+postgres-1  | 2026-10-21 00:19:52.307 +06 [1150] CONTEXT:  PL/pgSQL function reject_test_invoice() line 1 at RAISE
+postgres-1  | 2026-10-21 00:19:52.307 +06 [1150] STATEMENT:  insert into "invoices" ("id", "rental_id", "user_id", "currency", "billing_policy", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "active_ms", "paused_ms", "active_minutes", "paused_minutes", "total_minor", "status", "created_at", "paid_at") values (default, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, default, $12, default) returning "id", "rental_id", "user_id", "currency", "billing_policy", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "active_ms", "paused_ms", "active_minutes", "paused_minutes", "total_minor", "status", "created_at", "paid_at"
+postgres-1  | 2026-10-21 00:19:53.429 +06 [1149] ERROR:  duplicate key value violates unique constraint "trip_intervals_one_open"
+postgres-1  | 2026-10-21 00:19:53.429 +06 [1149] DETAIL:  Key (rental_id)=(fc5085a2-2b57-43e2-9905-65b5274787f2) already exists.
+postgres-1  | 2026-10-21 00:19:53.429 +06 [1149] STATEMENT:  insert into "trip_intervals" ("id", "rental_id", "mode", "ordinal", "started_at", "ended_at") values (default, $1, $2, $3, $4, default)
+postgres-1  | 2026-10-21 00:19:53.436 +06 [1150] ERROR:  conflicting key value violates exclusion constraint "trip_intervals_no_overlap"
+postgres-1  | 2026-10-21 00:19:53.436 +06 [1150] DETAIL:  Key (rental_id, tstzrange(started_at, ended_at, '[)'::text))=(fc5085a2-2b57-43e2-9905-65b5274787f2, ["2026-10-20 18:19:53.388+00","2026-10-20 18:19:53.389+00")) conflicts with existing key (rental_id, tstzrange(started_at, ended_at, '[)'::text))=(fc5085a2-2b57-43e2-9905-65b5274787f2, ["2026-10-20 18:19:53.388+00",)).
+postgres-1  | 2026-10-21 00:19:53.436 +06 [1150] STATEMENT:  insert into "trip_intervals" ("id", "rental_id", "mode", "ordinal", "started_at", "ended_at") values (default, $1, $2, $3, $4, $5)
+postgres-1  | 2026-10-21 00:19:53.537 +06 [1138] ERROR:  new row for relation "invoices" violates check constraint "invoices_amounts"
+postgres-1  | 2026-10-21 00:19:53.537 +06 [1138] DETAIL:  Failing row contains (c199f555-f04d-47ff-a18b-9ab798d29808, fc5085a2-2b57-43e2-9905-65b5274787f2, 20000000-0000-4000-8000-000000000001, KGS, ceil-per-mode-v1, 800, 200, 102, 0, 1, 0, 123, unpaid, 2026-10-20 18:19:53.49+00, null).
+postgres-1  | 2026-10-21 00:19:53.537 +06 [1138] STATEMENT:  update "invoices" set "total_minor" = $1 where "invoices"."id" = $2
+postgres-1  | 2026-10-21 00:19:53.564 +06 [1169] ERROR:  insert or update on table "demo_payments" violates foreign key constraint "demo_payments_invoice_amount_fk"
+postgres-1  | 2026-10-21 00:19:53.564 +06 [1169] DETAIL:  Key (invoice_id, amount_minor, currency)=(c199f555-f04d-47ff-a18b-9ab798d29808, 123, KGS) is not present in table "invoices".
+postgres-1  | 2026-10-21 00:19:53.564 +06 [1169] STATEMENT:  insert into "demo_payments" ("id", "invoice_id", "provider", "amount_minor", "currency", "created_at") values (default, $1, default, $2, $3, $4)
+postgres-1  | 2026-10-21 00:19:55.013 +06 [29] LOG:  checkpoint starting: immediate force wait
+postgres-1  | 2026-10-21 00:19:55.420 +06 [29] LOG:  checkpoint complete: wrote 5 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 1 recycled; write=0.090 s, sync=0.079 s, total=0.407 s; sync files=6, longest=0.033 s, average=0.014 s; distance=5844 kB, estimate=5947 kB; lsn=0/B043490, redo lsn=0/B043438
+postgres-1  | 2026-10-21 00:20:07.230 +06 [1] LOG:  untracked child process (PID 1209) exited with exit code 2
+postgres-1  | 2026-10-21 00:20:07.230 +06 [1] LOG:  terminating any other active server processes
+postgres-1  | 2026-10-21 00:20:08.740 +06 [1212] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:09.744 +06 [1213] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:10.289 +06 [1221] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:10.394 +06 [1222] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:10.748 +06 [1223] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:11.751 +06 [1224] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:12.754 +06 [1] LOG:  issuing SIGKILL to recalcitrant children
+postgres-1  | 2026-10-21 00:20:12.755 +06 [1225] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:13.385 +06 [1233] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:13.760 +06 [1234] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:14.004 +06 [1235] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:14.763 +06 [1236] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:15.767 +06 [1237] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:16.506 +06 [1245] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:16.606 +06 [1] LOG:  all server processes terminated; reinitializing
+postgres-1  | 2026-10-21 00:20:17.747 +06 [1249] LOG:  database system was interrupted; last known up at 2026-10-21 00:19:55 +06
+postgres-1  | 2026-10-21 00:20:17.749 +06 [1252] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:17.749 +06 [1253] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:18.753 +06 [1254] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:19.656 +06 [1262] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:19.759 +06 [1263] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:20.783 +06 [1264] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:21.641 +06 [1265] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:21.791 +06 [1266] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:22.777 +06 [1274] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:22.795 +06 [1275] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:25.879 +06 [1283] FATAL:  the database system is in recovery mode
+postgres-1  | 2026-10-21 00:20:27.565 +06 [1249] LOG:  database system was not properly shut down; automatic recovery in progress
+postgres-1  | 2026-10-21 00:20:27.618 +06 [1249] LOG:  redo starts at 0/B043438
+postgres-1  | 2026-10-21 00:20:27.619 +06 [1249] WARNING:  could not open directory "base/40483": No such file or directory
+postgres-1  | 2026-10-21 00:20:27.619 +06 [1249] CONTEXT:  WAL redo at 0/B043508 for Database/DROP: dir 1663/40483
+postgres-1  | 2026-10-21 00:20:27.619 +06 [1249] WARNING:  some useless files may be left behind in old database directory "base/40483"
+postgres-1  | 2026-10-21 00:20:27.619 +06 [1249] CONTEXT:  WAL redo at 0/B043508 for Database/DROP: dir 1663/40483
+postgres-1  | 2026-10-21 00:20:27.930 +06 [1249] LOG:  invalid record length at 0/B0477A0: expected at least 24, got 0
+postgres-1  | 2026-10-21 00:20:27.930 +06 [1249] LOG:  redo done at 0/B047778 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.31 s
+postgres-1  | 2026-10-21 00:20:28.106 +06 [1250] LOG:  checkpoint starting: end-of-recovery immediate wait
+postgres-1  | 2026-10-21 00:20:28.392 +06 [1250] LOG:  checkpoint complete: wrote 4 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.110 s, sync=0.110 s, total=0.296 s; sync files=6, longest=0.052 s, average=0.019 s; distance=16 kB, estimate=16 kB; lsn=0/B0477A0, redo lsn=0/B0477A0
+postgres-1  | 2026-10-21 00:20:28.446 +06 [1] LOG:  database system is ready to accept connections
+postgres-1  | 2026-10-21 00:21:45.426 +06 [1519] LOG:  invalid length of startup packet
+postgres-1  | 2026-10-21 00:21:47.098 +06 [1506] ERROR:  duplicate key value violates unique constraint "rentals_one_active_vehicle"
+postgres-1  | 2026-10-21 00:21:47.098 +06 [1506] DETAIL:  Key (vehicle_id)=(10000000-0000-4000-8000-000000000005) already exists.
+postgres-1  | 2026-10-21 00:21:47.098 +06 [1506] STATEMENT:  insert into "rentals" ("id", "user_id", "vehicle_id", "state", "reserved_at", "warn_at", "expires_at", "ended_at", "end_reason", "minimum_battery_bp", "started_at", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "currency", "billing_policy", "zone_snapshot") values (default, $1, $2, default, $3, $4, $5, default, default, $6, default, default, default, default, default, default)
+postgres-1  | 2026-10-21 00:21:47.101 +06 [1507] ERROR:  duplicate key value violates unique constraint "rentals_one_active_user"
+postgres-1  | 2026-10-21 00:21:47.101 +06 [1507] DETAIL:  Key (user_id)=(20000000-0000-4000-8000-000000000001) already exists.
+postgres-1  | 2026-10-21 00:21:47.101 +06 [1507] STATEMENT:  insert into "rentals" ("id", "user_id", "vehicle_id", "state", "reserved_at", "warn_at", "expires_at", "ended_at", "end_reason", "minimum_battery_bp", "started_at", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "currency", "billing_policy", "zone_snapshot") values (default, $1, $2, default, $3, $4, $5, default, default, $6, default, default, default, default, default, default)
+postgres-1  | 2026-10-21 00:21:47.103 +06 [1503] ERROR:  new row for relation "rentals" violates check constraint "rentals_terminal_state"
+postgres-1  | 2026-10-21 00:21:47.103 +06 [1503] DETAIL:  Failing row contains (f22af622-0935-4935-8bfe-d16432fc2431, 20000000-0000-4000-8000-000000000001, 10000000-0000-4000-8000-000000000005, expired, 2026-10-20 18:21:47.079+00, 2026-10-20 18:33:47.079+00, 2026-10-20 18:36:47.079+00, null, null, 1500, null, null, null, null, null, null).
+postgres-1  | 2026-10-21 00:21:47.103 +06 [1503] STATEMENT:  update "rentals" set "state" = $1 where "rentals"."id" = $2
+postgres-1  | 2026-10-21 00:21:47.142 +06 [1529] ERROR:  insert or update on table "notifications" violates foreign key constraint "notifications_rental_owner_fk"
+postgres-1  | 2026-10-21 00:21:47.142 +06 [1529] DETAIL:  Key (rental_id, user_id)=(f22af622-0935-4935-8bfe-d16432fc2431, 20000000-0000-4000-8000-000000000002) is not present in table "rentals".
+postgres-1  | 2026-10-21 00:21:47.142 +06 [1529] STATEMENT:  insert into "notifications" ("id", "user_id", "rental_id", "code", "reason", "expires_at", "created_at") values (default, $1, $2, $3, default, $4, $5)
+postgres-1  | 2026-10-21 00:21:53.486 +06 [1250] LOG:  checkpoint starting: immediate force wait
+postgres-1  | 2026-10-21 00:21:53.677 +06 [1250] LOG:  checkpoint complete: wrote 98 buffers (0.6%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.177 s, total=0.192 s; sync files=73, longest=0.112 s, average=0.003 s; distance=6367 kB, estimate=6367 kB; lsn=0/B680998, redo lsn=0/B67F4B0
+postgres-1  | 2026-10-21 00:21:55.633 +06 [1557] ERROR:  new row for relation "vehicles" violates check constraint "vehicles_battery_range"
+postgres-1  | 2026-10-21 00:21:55.633 +06 [1557] DETAIL:  Failing row contains (1b82beca-0556-4d5a-b709-596b45b2ec20, BAD-TEST, operational, 10001, 428740000, 746020000, 1, 2026-10-20 18:21:55.632882+00, 0).
+postgres-1  | 2026-10-21 00:21:55.633 +06 [1557] STATEMENT:  insert into "vehicles" ("id", "public_code", "service_mode", "battery_bp", "battery_remainder", "latitude_e7", "longitude_e7", "version", "created_at") values (default, $1, default, $2, default, $3, $4, default, default)
+postgres-1  | 2026-10-21 00:21:55.648 +06 [1559] ERROR:  new row for relation "vehicles" violates check constraint "vehicles_latitude_range"
+postgres-1  | 2026-10-21 00:21:55.648 +06 [1559] DETAIL:  Failing row contains (59657d6d-588e-41cc-a2da-9dd4e222b629, BAD-TEST, operational, 5000, 900000001, 746020000, 1, 2026-10-20 18:21:55.647755+00, 0).
+postgres-1  | 2026-10-21 00:21:55.648 +06 [1559] STATEMENT:  insert into "vehicles" ("id", "public_code", "service_mode", "battery_bp", "battery_remainder", "latitude_e7", "longitude_e7", "version", "created_at") values (default, $1, default, $2, default, $3, $4, default, default)
+postgres-1  | 2026-10-21 00:21:55.662 +06 [1560] ERROR:  duplicate key value violates unique constraint "vehicles_public_code_unique"
+postgres-1  | 2026-10-21 00:21:55.662 +06 [1560] DETAIL:  Key (public_code)=(SK-001) already exists.
+postgres-1  | 2026-10-21 00:21:55.662 +06 [1560] STATEMENT:  insert into "vehicles" ("id", "public_code", "service_mode", "battery_bp", "battery_remainder", "latitude_e7", "longitude_e7", "version", "created_at") values (default, $1, default, $2, default, $3, $4, default, default)
+postgres-1  | 2026-10-21 00:21:55.911 +06 [1563] ERROR:  relation "app_metadata" does not exist at character 36
+postgres-1  | 2026-10-21 00:21:55.911 +06 [1563] STATEMENT:  select "id", "schema_version" from "app_metadata" where "app_metadata"."id" = $1
+postgres-1  | 2026-10-21 00:21:55.923 +06 [1250] LOG:  checkpoint starting: immediate force wait
+postgres-1  | 2026-10-21 00:21:56.035 +06 [1250] LOG:  checkpoint complete: wrote 4 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.003 s, total=0.113 s; sync files=5, longest=0.002 s, average=0.001 s; distance=5636 kB, estimate=6294 kB; lsn=0/BC00518, redo lsn=0/BC004C0
+postgres-1  | 2026-10-21 00:22:01.149 +06 [1574] ERROR:  test mail ack crash
+postgres-1  | 2026-10-21 00:22:01.149 +06 [1574] CONTEXT:  PL/pgSQL function reject_mail_ack() line 1 at RAISE
+postgres-1  | 2026-10-21 00:22:01.149 +06 [1574] STATEMENT:  update "mail_outbox" set "delivered_at" = $1 where "mail_outbox"."id" = $2
+postgres-1  | 2026-10-21 00:22:14.869 +06 [1250] LOG:  checkpoint starting: immediate force wait
+postgres-1  | 2026-10-21 00:22:14.931 +06 [1250] LOG:  checkpoint complete: wrote 4 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 1 recycled; write=0.003 s, sync=0.003 s, total=0.062 s; sync files=5, longest=0.002 s, average=0.001 s; distance=5871 kB, estimate=6251 kB; lsn=0/C1BC290, redo lsn=0/C1BC238
+postgres-1  | 2026-10-21 00:22:20.405 +06 [1641] ERROR:  duplicate key value violates unique constraint "rentals_one_active_vehicle"
+postgres-1  | 2026-10-21 00:22:20.405 +06 [1641] DETAIL:  Key (vehicle_id)=(10000000-0000-4000-8000-000000000005) already exists.
+postgres-1  | 2026-10-21 00:22:20.405 +06 [1641] STATEMENT:  insert into "rentals" ("id", "user_id", "vehicle_id", "state", "reserved_at", "warn_at", "expires_at", "ended_at", "end_reason", "minimum_battery_bp", "started_at", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "currency", "billing_policy", "zone_snapshot") values (default, $1, $2, default, $3, $4, $5, default, default, $6, default, default, default, default, default, default)
+postgres-1  | 2026-10-21 00:22:21.008 +06 [1655] ERROR:  test invoice insert failure
+postgres-1  | 2026-10-21 00:22:21.008 +06 [1655] CONTEXT:  PL/pgSQL function reject_test_invoice() line 1 at RAISE
+postgres-1  | 2026-10-21 00:22:21.008 +06 [1655] STATEMENT:  insert into "invoices" ("id", "rental_id", "user_id", "currency", "billing_policy", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "active_ms", "paused_ms", "active_minutes", "paused_minutes", "total_minor", "status", "created_at", "paid_at") values (default, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, default, $12, default) returning "id", "rental_id", "user_id", "currency", "billing_policy", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "active_ms", "paused_ms", "active_minutes", "paused_minutes", "total_minor", "status", "created_at", "paid_at"
+postgres-1  | 2026-10-21 00:22:21.433 +06 [1654] ERROR:  duplicate key value violates unique constraint "trip_intervals_one_open"
+postgres-1  | 2026-10-21 00:22:21.433 +06 [1654] DETAIL:  Key (rental_id)=(dd569630-e04c-41a9-a584-4dd1a233cd90) already exists.
+postgres-1  | 2026-10-21 00:22:21.433 +06 [1654] STATEMENT:  insert into "trip_intervals" ("id", "rental_id", "mode", "ordinal", "started_at", "ended_at") values (default, $1, $2, $3, $4, default)
+postgres-1  | 2026-10-21 00:22:21.435 +06 [1655] ERROR:  conflicting key value violates exclusion constraint "trip_intervals_no_overlap"
+postgres-1  | 2026-10-21 00:22:21.435 +06 [1655] DETAIL:  Key (rental_id, tstzrange(started_at, ended_at, '[)'::text))=(dd569630-e04c-41a9-a584-4dd1a233cd90, ["2026-10-20 18:22:21.413+00","2026-10-20 18:22:21.414+00")) conflicts with existing key (rental_id, tstzrange(started_at, ended_at, '[)'::text))=(dd569630-e04c-41a9-a584-4dd1a233cd90, ["2026-10-20 18:22:21.413+00",)).
+postgres-1  | 2026-10-21 00:22:21.435 +06 [1655] STATEMENT:  insert into "trip_intervals" ("id", "rental_id", "mode", "ordinal", "started_at", "ended_at") values (default, $1, $2, $3, $4, $5)
+postgres-1  | 2026-10-21 00:22:21.484 +06 [1653] ERROR:  new row for relation "invoices" violates check constraint "invoices_amounts"
+postgres-1  | 2026-10-21 00:22:21.484 +06 [1653] DETAIL:  Failing row contains (b05ac13f-59ec-4742-a476-0feea793e833, dd569630-e04c-41a9-a584-4dd1a233cd90, 20000000-0000-4000-8000-000000000001, KGS, ceil-per-mode-v1, 800, 200, 42, 0, 1, 0, 123, unpaid, 2026-10-20 18:22:21.455+00, null).
+postgres-1  | 2026-10-21 00:22:21.484 +06 [1653] STATEMENT:  update "invoices" set "total_minor" = $1 where "invoices"."id" = $2
+postgres-1  | 2026-10-21 00:22:21.507 +06 [1665] ERROR:  insert or update on table "demo_payments" violates foreign key constraint "demo_payments_invoice_amount_fk"
+postgres-1  | 2026-10-21 00:22:21.507 +06 [1665] DETAIL:  Key (invoice_id, amount_minor, currency)=(b05ac13f-59ec-4742-a476-0feea793e833, 123, KGS) is not present in table "invoices".
+postgres-1  | 2026-10-21 00:22:21.507 +06 [1665] STATEMENT:  insert into "demo_payments" ("id", "invoice_id", "provider", "amount_minor", "currency", "created_at") values (default, $1, default, $2, $3, $4)
+postgres-1  | 2026-10-21 00:22:22.697 +06 [1250] LOG:  checkpoint starting: immediate force wait
+postgres-1  | 2026-10-21 00:22:22.714 +06 [1250] LOG:  checkpoint complete: wrote 4 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.003 s, total=0.017 s; sync files=5, longest=0.002 s, average=0.001 s; distance=5841 kB, estimate=6210 kB; lsn=0/C770A68, redo lsn=0/C770A10
+postgres-1  | 2026-10-21 00:24:01.219 +06 [1954] ERROR:  test mail ack crash
+postgres-1  | 2026-10-21 00:24:01.219 +06 [1954] CONTEXT:  PL/pgSQL function reject_mail_ack() line 1 at RAISE
+postgres-1  | 2026-10-21 00:24:01.219 +06 [1954] STATEMENT:  update "mail_outbox" set "delivered_at" = $1 where "mail_outbox"."id" = $2
+postgres-1  | 2026-10-21 00:24:06.813 +06 [1978] LOG:  unexpected EOF on client connection with an open transaction
+postgres-1  | 2026-10-21 00:24:14.886 +06 [1250] LOG:  checkpoint starting: immediate force wait
+postgres-1  | 2026-10-21 00:24:14.914 +06 [1250] LOG:  checkpoint complete: wrote 70 buffers (0.4%), wrote 2 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.013 s, total=0.028 s; sync files=58, longest=0.007 s, average=0.001 s; distance=6049 kB, estimate=6194 kB; lsn=0/CD58FD0, redo lsn=0/CD58F78
+postgres-1  | 2026-10-21 00:24:18.310 +06 [2027] LOG:  invalid length of startup packet
+postgres-1  | 2026-10-21 00:24:19.476 +06 [2021] ERROR:  duplicate key value violates unique constraint "rentals_one_active_vehicle"
+postgres-1  | 2026-10-21 00:24:19.476 +06 [2021] DETAIL:  Key (vehicle_id)=(10000000-0000-4000-8000-000000000005) already exists.
+postgres-1  | 2026-10-21 00:24:19.476 +06 [2021] STATEMENT:  insert into "rentals" ("id", "user_id", "vehicle_id", "state", "reserved_at", "warn_at", "expires_at", "ended_at", "end_reason", "minimum_battery_bp", "started_at", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "currency", "billing_policy", "zone_snapshot") values (default, $1, $2, default, $3, $4, $5, default, default, $6, default, default, default, default, default, default)
+postgres-1  | 2026-10-21 00:24:19.479 +06 [2022] ERROR:  duplicate key value violates unique constraint "rentals_one_active_user"
+postgres-1  | 2026-10-21 00:24:19.479 +06 [2022] DETAIL:  Key (user_id)=(20000000-0000-4000-8000-000000000001) already exists.
+postgres-1  | 2026-10-21 00:24:19.479 +06 [2022] STATEMENT:  insert into "rentals" ("id", "user_id", "vehicle_id", "state", "reserved_at", "warn_at", "expires_at", "ended_at", "end_reason", "minimum_battery_bp", "started_at", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "currency", "billing_policy", "zone_snapshot") values (default, $1, $2, default, $3, $4, $5, default, default, $6, default, default, default, default, default, default)
+postgres-1  | 2026-10-21 00:24:19.482 +06 [2018] ERROR:  new row for relation "rentals" violates check constraint "rentals_terminal_state"
+postgres-1  | 2026-10-21 00:24:19.482 +06 [2018] DETAIL:  Failing row contains (7df5e5f6-72fd-42fd-be9b-cc84a24c6cf0, 20000000-0000-4000-8000-000000000001, 10000000-0000-4000-8000-000000000005, expired, 2026-10-20 18:24:19.463+00, 2026-10-20 18:36:19.463+00, 2026-10-20 18:39:19.463+00, null, null, 1500, null, null, null, null, null, null).
+postgres-1  | 2026-10-21 00:24:19.482 +06 [2018] STATEMENT:  update "rentals" set "state" = $1 where "rentals"."id" = $2
+postgres-1  | 2026-10-21 00:24:19.524 +06 [2037] ERROR:  insert or update on table "notifications" violates foreign key constraint "notifications_rental_owner_fk"
+postgres-1  | 2026-10-21 00:24:19.524 +06 [2037] DETAIL:  Key (rental_id, user_id)=(7df5e5f6-72fd-42fd-be9b-cc84a24c6cf0, 20000000-0000-4000-8000-000000000002) is not present in table "rentals".
+postgres-1  | 2026-10-21 00:24:19.524 +06 [2037] STATEMENT:  insert into "notifications" ("id", "user_id", "rental_id", "code", "reason", "expires_at", "created_at") values (default, $1, $2, $3, default, $4, $5)
+postgres-1  | 2026-10-21 00:24:25.534 +06 [1250] LOG:  checkpoint starting: immediate force wait
+postgres-1  | 2026-10-21 00:24:25.551 +06 [1250] LOG:  checkpoint complete: wrote 4 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 1 recycled; write=0.004 s, sync=0.003 s, total=0.018 s; sync files=5, longest=0.002 s, average=0.001 s; distance=5787 kB, estimate=6154 kB; lsn=0/D2FFE90, redo lsn=0/D2FFE38
+postgres-1  | 2026-10-21 00:24:28.833 +06 [2065] ERROR:  duplicate key value violates unique constraint "rentals_one_active_vehicle"
+postgres-1  | 2026-10-21 00:24:28.833 +06 [2065] DETAIL:  Key (vehicle_id)=(10000000-0000-4000-8000-000000000005) already exists.
+postgres-1  | 2026-10-21 00:24:28.833 +06 [2065] STATEMENT:  insert into "rentals" ("id", "user_id", "vehicle_id", "state", "reserved_at", "warn_at", "expires_at", "ended_at", "end_reason", "minimum_battery_bp", "started_at", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "currency", "billing_policy", "zone_snapshot") values (default, $1, $2, default, $3, $4, $5, default, default, $6, default, default, default, default, default, default)
+postgres-1  | 2026-10-21 00:24:29.311 +06 [2079] ERROR:  test invoice insert failure
+postgres-1  | 2026-10-21 00:24:29.311 +06 [2079] CONTEXT:  PL/pgSQL function reject_test_invoice() line 1 at RAISE
+postgres-1  | 2026-10-21 00:24:29.311 +06 [2079] STATEMENT:  insert into "invoices" ("id", "rental_id", "user_id", "currency", "billing_policy", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "active_ms", "paused_ms", "active_minutes", "paused_minutes", "total_minor", "status", "created_at", "paid_at") values (default, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, default, $12, default) returning "id", "rental_id", "user_id", "currency", "billing_policy", "ride_rate_minor_per_minute", "pause_rate_minor_per_minute", "active_ms", "paused_ms", "active_minutes", "paused_minutes", "total_minor", "status", "created_at", "paid_at"
+postgres-1  | 2026-10-21 00:24:29.711 +06 [2078] ERROR:  duplicate key value violates unique constraint "trip_intervals_one_open"
+postgres-1  | 2026-10-21 00:24:29.711 +06 [2078] DETAIL:  Key (rental_id)=(07f31040-b0a7-464e-96f7-c4bd3542f2bb) already exists.
+postgres-1  | 2026-10-21 00:24:29.711 +06 [2078] STATEMENT:  insert into "trip_intervals" ("id", "rental_id", "mode", "ordinal", "started_at", "ended_at") values (default, $1, $2, $3, $4, default)
+postgres-1  | 2026-10-21 00:24:29.713 +06 [2079] ERROR:  conflicting key value violates exclusion constraint "trip_intervals_no_overlap"
+postgres-1  | 2026-10-21 00:24:29.713 +06 [2079] DETAIL:  Key (rental_id, tstzrange(started_at, ended_at, '[)'::text))=(07f31040-b0a7-464e-96f7-c4bd3542f2bb, ["2026-10-20 18:24:29.695+00","2026-10-20 18:24:29.696+00")) conflicts with existing key (rental_id, tstzrange(started_at, ended_at, '[)'::text))=(07f31040-b0a7-464e-96f7-c4bd3542f2bb, ["2026-10-20 18:24:29.695+00",)).
+postgres-1  | 2026-10-21 00:24:29.713 +06 [2079] STATEMENT:  insert into "trip_intervals" ("id", "rental_id", "mode", "ordinal", "started_at", "ended_at") values (default, $1, $2, $3, $4, $5)
+postgres-1  | 2026-10-21 00:24:29.757 +06 [2077] ERROR:  new row for relation "invoices" violates check constraint "invoices_amounts"
+postgres-1  | 2026-10-21 00:24:29.757 +06 [2077] DETAIL:  Failing row contains (9ec613ca-77ac-4f5e-8571-b3fa1ee443db, 07f31040-b0a7-464e-96f7-c4bd3542f2bb, 20000000-0000-4000-8000-000000000001, KGS, ceil-per-mode-v1, 800, 200, 33, 0, 1, 0, 123, unpaid, 2026-10-20 18:24:29.728+00, null).
+postgres-1  | 2026-10-21 00:24:29.757 +06 [2077] STATEMENT:  update "invoices" set "total_minor" = $1 where "invoices"."id" = $2
+postgres-1  | 2026-10-21 00:24:29.774 +06 [2081] ERROR:  insert or update on table "demo_payments" violates foreign key constraint "demo_payments_invoice_amount_fk"
+postgres-1  | 2026-10-21 00:24:29.774 +06 [2081] DETAIL:  Key (invoice_id, amount_minor, currency)=(9ec613ca-77ac-4f5e-8571-b3fa1ee443db, 123, KGS) is not present in table "invoices".
+postgres-1  | 2026-10-21 00:24:29.774 +06 [2081] STATEMENT:  insert into "demo_payments" ("id", "invoice_id", "provider", "amount_minor", "currency", "created_at") values (default, $1, default, $2, $3, $4)
+postgres-1  | 2026-10-21 00:24:30.877 +06 [1250] LOG:  checkpoint starting: immediate force wait
+postgres-1  | 2026-10-21 00:24:30.894 +06 [1250] LOG:  checkpoint complete: wrote 4 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.005 s, total=0.017 s; sync files=5, longest=0.004 s, average=0.001 s; distance=5844 kB, estimate=6123 kB; lsn=0/D8B5160, redo lsn=0/D8B5108
+postgres-1  | 2026-10-21 00:24:32.922 +06 [2095] ERROR:  new row for relation "vehicles" violates check constraint "vehicles_battery_range"
+postgres-1  | 2026-10-21 00:24:32.922 +06 [2095] DETAIL:  Failing row contains (ec9361a8-75a9-4099-87ee-96f8c49d1481, BAD-TEST, operational, 10001, 428740000, 746020000, 1, 2026-10-20 18:24:32.922491+00, 0).
+postgres-1  | 2026-10-21 00:24:32.922 +06 [2095] STATEMENT:  insert into "vehicles" ("id", "public_code", "service_mode", "battery_bp", "battery_remainder", "latitude_e7", "longitude_e7", "version", "created_at") values (default, $1, default, $2, default, $3, $4, default, default)
+postgres-1  | 2026-10-21 00:24:32.944 +06 [2097] ERROR:  new row for relation "vehicles" violates check constraint "vehicles_latitude_range"
+postgres-1  | 2026-10-21 00:24:32.944 +06 [2097] DETAIL:  Failing row contains (c78a5404-9e11-449a-b023-edb367864a36, BAD-TEST, operational, 5000, 900000001, 746020000, 1, 2026-10-20 18:24:32.94256+00, 0).
+postgres-1  | 2026-10-21 00:24:32.944 +06 [2097] STATEMENT:  insert into "vehicles" ("id", "public_code", "service_mode", "battery_bp", "battery_remainder", "latitude_e7", "longitude_e7", "version", "created_at") values (default, $1, default, $2, default, $3, $4, default, default)
+postgres-1  | 2026-10-21 00:24:32.958 +06 [2098] ERROR:  duplicate key value violates unique constraint "vehicles_public_code_unique"
+postgres-1  | 2026-10-21 00:24:32.958 +06 [2098] DETAIL:  Key (public_code)=(SK-001) already exists.
+postgres-1  | 2026-10-21 00:24:32.958 +06 [2098] STATEMENT:  insert into "vehicles" ("id", "public_code", "service_mode", "battery_bp", "battery_remainder", "latitude_e7", "longitude_e7", "version", "created_at") values (default, $1, default, $2, default, $3, $4, default, default)
+postgres-1  | 2026-10-21 00:24:33.213 +06 [2101] ERROR:  relation "app_metadata" does not exist at character 36
+postgres-1  | 2026-10-21 00:24:33.213 +06 [2101] STATEMENT:  select "id", "schema_version" from "app_metadata" where "app_metadata"."id" = $1
+postgres-1  | 2026-10-21 00:24:33.225 +06 [1250] LOG:  checkpoint starting: immediate force wait
+postgres-1  | 2026-10-21 00:24:33.240 +06 [1250] LOG:  checkpoint complete: wrote 4 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.003 s, total=0.015 s; sync files=5, longest=0.002 s, average=0.001 s; distance=5639 kB, estimate=6074 kB; lsn=0/DE37038, redo lsn=0/DE36FE0
+postgres-1  | 2026-10-21 00:29:33.327 +06 [1250] LOG:  checkpoint starting: time
+postgres-1  | 2026-10-21 00:29:33.642 +06 [1250] LOG:  checkpoint complete: wrote 3 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.303 s, sync=0.004 s, total=0.316 s; sync files=4, longest=0.003 s, average=0.001 s; distance=115 kB, estimate=5478 kB; lsn=0/DE53F28, redo lsn=0/DE53ED0
+postgres-1  | 2026-10-21 00:34:33.728 +06 [1250] LOG:  checkpoint starting: time
+postgres-1  | 2026-10-21 00:34:34.443 +06 [1250] LOG:  checkpoint complete: wrote 7 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.703 s, sync=0.005 s, total=0.716 s; sync files=8, longest=0.003 s, average=0.001 s; distance=120 kB, estimate=4942 kB; lsn=0/DE72B58, redo lsn=0/DE71EE0
+
+END 2026-10-21T00:34:37.915+06:00
+EXIT 0

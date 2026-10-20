@@ -9,7 +9,7 @@ export const ErrorResponseSchema = Type.Object({
 export const ReadinessSchema = Type.Object({
   status: Type.Literal('ready'),
   database: Type.Literal('connected'),
-  schemaVersion: Type.Literal(3),
+  schemaVersion: Type.Literal(4),
   reservationWorker: Type.Literal('running'),
 }, { additionalProperties: false });
 export type Readiness = Static<typeof ReadinessSchema>;
@@ -53,7 +53,7 @@ export const VehicleListSchema = Type.Object({
 }, { additionalProperties: false });
 
 export const NotificationListSchema = Type.Object({ items: Type.Array(Type.Object({
-  id: UuidSchema, rentalId: UuidSchema, code: Type.String(), message: Type.String(), expiresAt: Type.String(), createdAt: Type.String(),
+  id: UuidSchema, rentalId: UuidSchema, code: Type.String(), message: Type.String(), expiresAt: Type.Union([Type.String(), Type.Null()]), createdAt: Type.String(), reason: Type.Union([Type.String(), Type.Null()]),
 }, { additionalProperties: false })) }, { additionalProperties: false });
 
 const PositionSchema = Type.Tuple([Type.Number({ minimum: -180, maximum: 180 }), Type.Number({ minimum: -90, maximum: 90 })]);
@@ -79,6 +79,7 @@ export type Invoice = Static<typeof InvoiceSchema>;
 export const TripSchema = Type.Object({
   id: UuidSchema, vehicleId: UuidSchema, state: Type.Union([Type.Literal('riding'), Type.Literal('paused'), Type.Literal('finished')]),
   startedAt: Type.String(), endedAt: Type.Union([Type.String(), Type.Null()]),
+  endReason: Type.Optional(Type.Union([Type.Literal('finished_by_user'), Type.Literal('battery_depleted'), Type.Null()])),
   activeMilliseconds: UnsignedDecimalSchema, pausedMilliseconds: UnsignedDecimalSchema,
   rideRateMinorPerMinute: Type.Integer(), pauseRateMinorPerMinute: Type.Integer(),
   totalMinor: UnsignedDecimalSchema, currency: Type.Literal('KGS'), billingPolicy: Type.Literal('ceil-per-mode-v1'), zoneVersion: Type.String(),
@@ -95,3 +96,19 @@ export const StoredCommandResultSchema = Type.Union([
   Type.Object({ status: Type.Literal(200), body: PaymentResultSchema }, { additionalProperties: false }),
 ]);
 export type StoredCommandResult = Static<typeof StoredCommandResultSchema>;
+
+export const MailboxSchema = Type.Object({ items: Type.Array(Type.Object({ id: UuidSchema, invoiceId: UuidSchema, recipient: Type.String(), subject: Type.String(), body: Type.String(), receivedAt: Type.String() }, { additionalProperties: false })) }, { additionalProperties: false });
+export const CurrentRentalSchema = Type.Object({ serverTime: Type.String(), reservation: Type.Union([ReservationSchema, Type.Null()]), trip: Type.Union([TripSchema, Type.Null()]) }, { additionalProperties: false });
+export const SyncStateSchema = Type.Object({
+  serverTime: Type.String(), fleet: VehicleListSchema, current: CurrentRentalSchema,
+  notifications: NotificationListSchema, invoices: Type.Object({ items: Type.Array(InvoiceSchema) }, { additionalProperties: false }), mailbox: MailboxSchema,
+}, { additionalProperties: false });
+export type SyncState = Static<typeof SyncStateSchema>;
+export type VehicleList = Static<typeof VehicleListSchema>;
+export const RealtimeTicketSchema = Type.Object({ ticket: Type.String({ pattern: '^[a-f0-9]{64}$' }), expiresAt: Type.String() }, { additionalProperties: false });
+const FrameProperties = { connectionId: UuidSchema, sequence: Type.Integer({ minimum: 1 }) };
+export const RealtimeFrameSchema = Type.Union([
+  Type.Object({ ...FrameProperties, type: Type.Literal('fleet_snapshot'), fleet: VehicleListSchema }, { additionalProperties: false }),
+  Type.Object({ ...FrameProperties, type: Type.Literal('state_snapshot'), state: SyncStateSchema }, { additionalProperties: false }),
+]);
+export type RealtimeFrame = Static<typeof RealtimeFrameSchema>;

@@ -1,0 +1,14 @@
+START 2026-10-21T00:17:05.034+06:00
+COMMAND npm exec -- vitest run --config vitest.db.config.ts tests/integration/realtime.test.ts
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  00:17:07
+   Duration  18.19s (tests 93%, import 6%, transform 1%)
+
+
+END 2026-10-21T00:17:25.524+06:00
+EXIT 0

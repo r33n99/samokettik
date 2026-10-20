@@ -13,13 +13,13 @@ import { DEMO_USER_IDS } from '../../apps/server/src/config/demo-identities.js';
 import { migrationsPath } from '../../apps/server/src/config/paths.js';
 import { createDatabase } from '../../apps/server/src/db/client.js';
 import { seedDatabase } from '../../apps/server/src/db/seed-data.js';
-import { demoPayments, idempotencyRequests, invoices, notifications, rentals, tripIntervals, vehicles } from '../../apps/server/src/db/schema.js';
+import { demoPayments, idempotencyRequests, invoices, localMailbox, mailOutbox, notifications, rentals, tripIntervals, tripSimulations, vehicles } from '../../apps/server/src/db/schema.js';
 import { runReservationJobs } from '../../apps/server/src/jobs/reservations.js';
 
 const baseEnv = loadEnvironment();
 const env = { ...baseEnv, logLevel: 'silent' as const, demoAuthEnabled: true, demoRuToken: 'c'.repeat(64), demoKyToken: 'd'.repeat(64) };
 const zone: ServiceZone = { version: 'integration-square-v1', source: 'synthetic integration fixture', retrievedAt: 'test', attribution: 'test fixture', geometry: { type: 'Polygon', coordinates: [[[74.5, 42.8], [74.7, 42.8], [74.7, 43], [74.5, 43], [74.5, 42.8]]] } };
-const config = { ...loadBusinessConfig(), serviceZone: zone };
+const config = { ...loadBusinessConfig(), serviceZone: zone, simulationSpeedMetersPerMinute: 0 };
 const testName = `samokettik_test_${randomUUID().replaceAll('-', '')}`;
 const admin = new pg.Pool({ connectionString: env.databaseUrl, connectionTimeoutMillis: 2000 });
 const testUrl = new URL(env.databaseUrl); testUrl.pathname = `/${testName}`;
@@ -99,11 +99,14 @@ beforeAll(async () => {
 beforeEach(async () => {
   await database.db.delete(idempotencyRequests);
   await database.db.delete(demoPayments);
+  await database.db.delete(localMailbox);
+  await database.db.delete(mailOutbox);
   await database.db.delete(invoices);
+  await database.db.delete(tripSimulations);
   await database.db.delete(tripIntervals);
   await database.db.delete(notifications);
   await database.db.delete(rentals);
-  await database.db.update(vehicles).set({ batteryBp: 10000, serviceMode: 'operational', latitudeE7: 428740000, longitudeE7: 746020000 });
+  await database.db.update(vehicles).set({ batteryBp: 10000, batteryRemainder: 0, serviceMode: 'operational', latitudeE7: 428740000, longitudeE7: 746020000 });
 });
 afterAll(async () => {
   await Promise.all([appA.close(), appB.close()]);

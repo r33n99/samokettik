@@ -22,6 +22,8 @@
     "test:e2e": "playwright test",
     "demo:reservations": "node scripts/demo-reservations.mjs",
     "demo:trips": "node scripts/demo-trips.mjs",
+    "demo:realtime": "node scripts/demo-realtime.mjs",
+    "mail:show": "node scripts/show-mailbox.mjs",
     "verify": "npm run typecheck && npm test && npm run build",
     "infra:up": "docker compose up -d --wait postgres",
     "compose:up": "docker compose up --build -d --wait",

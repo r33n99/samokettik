@@ -23,7 +23,7 @@ export function registerTripRoutes(app: FastifyInstance, env: Environment, confi
       schema: { headers, params, body: Type.Object({}, { additionalProperties: false }), response: { 200: TripResultSchema, ...errors } },
     }, async (request, reply) => {
       const userId = owner(env, request), key = request.headers['idempotency-key'].toLowerCase(), id = request.params.id.toLowerCase();
-      const result = action === 'start' ? await startTrip(database, config, userId, key, id) : await transitionTrip(database, userId, key, id, action);
+      const result = action === 'start' ? await startTrip(database, config, userId, key, id) : await transitionTrip(database, config, userId, key, id, action);
       return reply.status(result.status).send('code' in result.body ? { ...result.body, requestId: request.id } : result.body);
     });
   }

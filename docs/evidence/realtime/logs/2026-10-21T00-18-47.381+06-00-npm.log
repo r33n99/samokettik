@@ -1,0 +1,54 @@
+START 2026-10-21T00:18:47.381+06:00
+COMMAND npm run test:db
+
+> samokettik@0.1.0 test:db
+> vitest run --config vitest.db.config.ts
+
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql
+
+ ❯ tests/integration/reservations.test.ts (15 tests | 1 failed) 23687ms
+   ❯ reservations over real HTTP and PostgreSQL (15)
+     × real worker processes warn without a browser and recover after worker/API restart 7383ms
+ ❯ tests/integration/foundation.test.ts (6 tests | 6 skipped) 19634ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/foundation.test.ts [ tests/integration/foundation.test.ts ]
+Error: Connection terminated unexpectedly
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/integration/foundation.test.ts:28:3
+     26|   // Only this newly generated test database is ever removed.
+     27|   if (!/^samokettik_test_[a-f0-9]{32}$/.test(testDbName)) throw new Er…
+     28|   await admin.query(`CREATE DATABASE "${testDbName}"`);
+       |   ^
+     29|   created = true;
+     30|   await migrate(database.db, { migrationsFolder: migrationsPath });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > real worker processes warn without a browser and recover after worker/API restart
+Error: Condition timed out
+ ❯ until tests/integration/reservations.test.ts:54:9
+     52|   const deadline = Date.now() + timeout;
+     53|   while (Date.now() < deadline) { if (await check()) return; await del…
+     54|   throw new Error('Condition timed out');
+       |         ^
+     55| }
+     56| async function lockWaiters(minimum: number): Promise<void> {
+ ❯ tests/integration/reservations.test.ts:285:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 2 passed (4)
+      Tests  1 failed | 35 passed | 6 skipped (42)
+   Start at  00:18:49
+   Duration  87.81s (tests 92%, import 7%)
+
+
+END 2026-10-21T00:20:16.892+06:00
+EXIT 1

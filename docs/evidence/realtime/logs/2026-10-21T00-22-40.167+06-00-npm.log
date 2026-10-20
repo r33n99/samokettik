@@ -1,0 +1,36 @@
+START 2026-10-21T00:22:40.167+06:00
+COMMAND npm run test:e2e
+
+> samokettik@0.1.0 test:e2e
+> playwright test
+
+
+Running 6 tests using 4 workers
+
+(node:40820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31496) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:27824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:40400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31496) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:40820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:27824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:40400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\e2e\foundation.spec.ts:2:1 › frontend reads actual API and PostgreSQL through the proxy (2.1s)
+  ok 3 [mobile] › tests\e2e\foundation.spec.ts:2:1 › frontend reads actual API and PostgreSQL through the proxy (2.2s)
+  ok 4 [mobile] › tests\e2e\realtime.spec.ts:3:1 › WebSocket reconnection restores authoritative fleet through API (2.8s)
+  ok 5 [desktop] › tests\e2e\foundation.spec.ts:15:1 › connection failure is explained and retry recovers (823ms)
+  ok 2 [desktop] › tests\e2e\realtime.spec.ts:3:1 › WebSocket reconnection restores authoritative fleet through API (3.0s)
+  ok 6 [mobile] › tests\e2e\foundation.spec.ts:15:1 › connection failure is explained and retry recovers (805ms)
+
+  6 passed (5.7s)
+
+END 2026-10-21T00:22:49.345+06:00
+EXIT 0

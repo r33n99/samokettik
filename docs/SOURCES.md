@@ -44,3 +44,9 @@ UI-референсы для СамоКеттик ещё не исследова
 
 - [OSM relation 8493930](https://www.openstreetmap.org/relation/8493930), получено через Nominatim search city=Bishkek/country=Kyrgyzstan&format=jsonv2&polygon_geojson=1&limit=1. Данные © OpenStreetMap contributors, [ODbL](https://www.openstreetmap.org/copyright); сохранены все четыре части MultiPolygon без упрощения. Timestamp — в config/service-zone.json и WORKLOG.
 - PostgreSQL [Range Types](https://www.postgresql.org/docs/15/rangetypes.html), [btree_gist](https://www.postgresql.org/docs/15/btree-gist.html) и [CREATE TABLE 18](https://www.postgresql.org/docs/18/sql-createtable.html): прочитаны официальные материалы по exclusion constraints, проверено исполнением на настоящем PostgreSQL. Ready-made application solution не копировалось; point-in-polygon и billing реализованы в проекте, источник геоданных указан отдельно.
+
+## U010: симуляция, WebSocket и local mailbox
+
+- [ws README](https://github.com/websockets/ws/blob/master/README.md): HTTP upgrade, ping/pong, Origin/auth и slow consumers. Версия ws 8.22.0 проверена npm registry, закреплена lockfile.
+- [PostgreSQL 18 NOTIFY](https://www.postgresql.org/docs/18/sql-notify.html): доставка после commit, объединение одинакового payload и недолговечность сигналов; восстановление через REST/snapshot и periodic reconcile.
+- Применён supabase-postgres-best-practices: короткие транзакции, одинаковый порядок блокировок, SKIP LOCKED только для outbox. Новые simulator/SDK/worker/mail реализации написаны для проекта; чужой готовый проект не копировался.

@@ -11,6 +11,7 @@ import { seedDatabase } from '../../apps/server/src/db/seed-data.js';
 import { users, vehicles } from '../../apps/server/src/db/schema.js';
 import { buildApp } from '../../apps/server/src/app.js';
 import { recordReservationHeartbeat } from '../../apps/server/src/jobs/reservations.js';
+import { recordTransportHeartbeat } from '../../apps/server/src/jobs/transport.js';
 
 const env = loadEnvironment();
 const config = loadBusinessConfig();
@@ -28,6 +29,7 @@ beforeAll(async () => {
   created = true;
   await migrate(database.db, { migrationsFolder: migrationsPath });
   await recordReservationHeartbeat(database, config);
+  await recordTransportHeartbeat(database, config);
 });
 afterAll(async () => {
   await app.close();

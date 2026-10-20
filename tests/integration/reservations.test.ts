@@ -17,6 +17,7 @@ import { seedDatabase } from '../../apps/server/src/db/seed-data.js';
 import { idempotencyRequests, jobHeartbeats, notifications, rentals, vehicles } from '../../apps/server/src/db/schema.js';
 import { buildApp } from '../../apps/server/src/app.js';
 import { recordReservationHeartbeat, runReservationJobs } from '../../apps/server/src/jobs/reservations.js';
+import { recordTransportHeartbeat, runBackgroundJobs } from '../../apps/server/src/jobs/transport.js';
 
 const baseEnv = loadEnvironment();
 const config = loadBusinessConfig();
@@ -96,6 +97,7 @@ beforeEach(async () => {
   await database.db.update(vehicles).set({ batteryBp: 1500 }).where(eq(vehicles.id, vehicleId(3)));
   await database.db.update(vehicles).set({ serviceMode: 'maintenance' }).where(eq(vehicles.id, vehicleId(4)));
   await recordReservationHeartbeat(database, config);
+  await recordTransportHeartbeat(database, config);
 });
 afterAll(async () => {
   await Promise.all([appA.close(), appB.close()]);
@@ -260,7 +262,7 @@ describe('reservations over real HTTP and PostgreSQL', () => {
     expect(row).toMatchObject({ state: 'cancelled', endReason: 'battery_too_low' });
     await database.db.delete(jobHeartbeats);
     expect((await fetch(`${urlA}/health/ready`)).status).toBe(503);
-    await runReservationJobs(database, config, 50);
+    await runBackgroundJobs(database, config, 50);
     expect((await fetch(`${urlA}/health/ready`)).status).toBe(200);
   });
 

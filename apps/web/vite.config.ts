@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     // Backend secrets are not exposed: browser code has no import.meta.env usage.
     envDir: root,
-    server: { host: '127.0.0.1', port, strictPort: true, proxy: { '/api': { target }, '/health': { target } } },
+    server: { host: '127.0.0.1', port, strictPort: true, proxy: { '/api': { target, ws: true }, '/health': { target } } },
     preview: { host: '127.0.0.1', port, strictPort: true },
   };
 });
