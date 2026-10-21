@@ -1,59 +1,53 @@
-# Готовность к сдаче — СамоКеттик
+# СамоКеттик — готовность к сдаче
 
-**Уточнение U023:** пользователь исключил обязательность password/Google/KY/external SMTP. Приведённая ниже прежняя оценка этих пунктов относится к U021 и больше не означает недостаток обязательного объёма. Актуальная матрица — [SUBMISSION-MATRIX.md](SUBMISSION-MATRIX.md), новая проверка ровно одного письма/автостопа/warning — [MAIL-REVIEW.md](MAIL-REVIEW.md). Исторические времена и результаты U021 сохранены.
+**Проект готов к сдаче как локальная демонстрация кейса №11 в уточнённом объёме U023.** Обязательные сценарии реализованы и подтверждены указанными ниже проверками.
 
-Записано 2026-10-21T19:59:15.759+06:00, этап [U021](prompts/021-submission.md). **Готов к воспроизводимой локальной демонстрации основного кейса. Полное исходное ТЗ ещё не выполнено.** Отдельно не реализованы email/password и Google-авторизация, кыргызские письма/полная языковая приёмка. Локальная эмуляция почты проверена, внешняя SMTP-доставка не заявляется. Нельзя представлять общие demo profiles как production accounts.
+Актуализировано 2026-10-21T20:46:14.744+06:00 по [U025](prompts/025-submission-current-status.md). Эта редактура меняет только документацию; новых запусков приложения или тестов на U025 не проводилось.
 
-## Что передано
+## Объём приёмки
 
-[README](../README.md) с зависимостями, чистой установкой, Docker/host dev, миграциями/seed, profiles и тестами. [Текущая архитектура](ARCHITECTURE.md) и [сохранённое предложение E0](ARCHITECTURE-PROPOSAL.md). [Матрица46требований](SUBMISSION-MATRIX.md), [критерии и хронология](REQUIREMENTS.md), [сценарий двух клиентов](DEMO.md), [22прямых npm packages, generators/лицензии/заимствования](DEPENDENCIES.md), [решения](DECISIONS.md), [реальный журнал](WORKLOG.md), [точные запросы U000–U021](PROMPTS.md). Прошлые времена/failed runs не изменялись, ранние предложения больше не выданы за текущий код.
+По [явному уточнению пользователя U023](prompts/023-mail-scope-review.md) и решению D59:
 
-## Реальная новая проверка
+- Для проверки конкуренции достаточно двух demo-пользователей Айжан и Бек. Email/password и Google OAuth не требуются.
+- Кыргызская локализация интерфейса и писем не обязательна. Существующий KY интерфейс сохранён; интерфейс и письма доступны на русском.
+- Локальная эмуляция почты допустима. Внешняя SMTP-доставка не требуется.
+- После завершения поездки обязательно ровно одно письмо со счётом; при разряде — также объяснение автоматического завершения.
+- Уведомление за 3 минуты до истечения брони обязательно, отправка именно по email не требуется.
 
-Чистый источник: git archive **b7a6c7541650c968490dc6c2874633da67308227**, новая папка без .env/node_modules/dist. Выполнены npm ci, setup×2 (второй сохранил env), отдельный Compose project/new PG volume, новые случайные credentials и ports5190/3190/54339. Использовался доступный Docker layer cache; полностью uncached host/Linux install не имитировался. Source overlay — только исправление WS integration fixture с SHA256, production app/config/SQL/package-lock не менялись. Документация подготовлена поверх этого исходника; на момент завершения U021 она ещё не была в Git-коммите. Публикация отдельно разрешена U022.
+Отсутствие OAuth, новой авторизации, кыргызских писем или внешнего SMTP не препятствует сдаче этого кейса. Полная [матрица требований](SUBMISSION-MATRIX.md) указывает реализацию, тест и границы каждого результата.
 
-| Проверка | Результат | Реальный конец команды |
+## Реализованный и проверенный объём
+
+Бронирование действует 15 минут, уведомление приходит за 3 минуты, просроченная бронь освобождается автоматически. Минимальный заряд для аренды — 15%. Блокировки, ограничения PostgreSQL и идемпотентность исключают двойное бронирование. Реализованы старт, пауза, возобновление и завершение поездки, раздельная тарификация движения и паузы целыми минимальными денежными единицами, серверный запрет ручного завершения вне геозоны, симуляция координат и заряда, автоматическое завершение при 0%, счета и демонстрационная оплата.
+
+Frontend показывает 30 самокатов, геозону, состояния, карточку транспорта, таймер брони и управление поездкой; истории поездок и счетов доступны с пагинацией. HTTP/WS синхронизация восстанавливает серверное состояние после отключения. Для перехода к своему самокату есть отдельная кнопка; выбор другого маркера не возвращает карту к своей аренде. Конкуренция двух demo-пользователей проверена независимыми браузерными контекстами.
+
+Письмо создаётся через transactional outbox. Приём в PostgreSQL mailbox и подтверждение outbox атомарны. Повтор завершения, параллельные workers, откат подтверждения и восстановление после перезапуска не дублируют локальное письмо. Проверены получатель, тема, идентификаторы счёта и поездки, время, раздельные минуты и тарифы, сумма и причина. При разряде в движении и на паузе письмо содержит объяснение «Автоматическое завершение: аккумулятор полностью разряжен». Уведомление о скором истечении брони адресовано владельцу и видно через API/WS/UI; email для него не создаётся.
+
+## Последние фактические проверки
+
+Результаты относятся к указанным этапам и не выдаются за новые прогоны при правке текста:
+
+| Проверка | Результат | Доказательства |
 | --- | --- | --- |
-| npm ci в пустой копии | Установлено146packages/audited150,exit0; upstream deprecation warnings сохранены | 2026-10-21T19:41:52.934+06:00 |
-| setup×2 | Созданы новые secrets; повтор побайтно сохранил значения | 2026-10-21T19:41:53.693+06:00 |
-| Новый Compose + PostgreSQL | migrate/seed exit0; web/API/worker/postgres healthy; schema6 | 2026-10-21T19:42:24.489+06:00 |
-| Host contracts/migrate/seed×2/db:check | После исправления README passed; PG18.6,30vehicles/2users | 2026-10-21T19:43:27.337+06:00 |
-| verify | Strict typecheck,44unit и production build passed | 2026-10-21T19:43:53.030+06:00 |
-| Повторный typecheck после test patch | Passed | 2026-10-21T19:50:34.812+06:00 |
-| PostgreSQL integration | 53passed,реальные HTTP/locks/constraints/две API/worker recovery | 2026-10-21T19:51:14.739+06:00 |
-| Playwright | 34passed,desktop/mobile,real API/worker/Vite/UUID DB | 2026-10-21T19:47:55.455+06:00 |
-| npm audit |0vulnerabilities; ограниченный снимок advisories | 2026-10-21T19:43:31.493+06:00 |
-| CLI reservations/trips/realtime/mail |201/409 + replay; riding/paused/riding/finished; invoice1000minor и payment replay;3WS + owner disconnect;1mail/1notice на finish | 2026-10-21T19:51:24.808+06:00 |
-| npm run dev + browser smoke | API/worker ready6;30markers/loaded tiles,no page errors/overflow на1440×900 и393×851 | 2026-10-21T19:53:22.498+06:00 |
-| Gitleaks8.30.1 |6commits и подготовленный snapshot:0findings,exit0 | См.COMMANDS.json |
-| Точные текущие secrets двух env |633reachable blobs и541publishable files;0совпадений literal/URI/base64; .env в истории отсутствует | 2026-10-21T19:56:42.829+06:00 |
+| Unit, strict typecheck, production build | U023: 44 unit-теста и обе проверки прошли; конец 2026-10-21T20:19:34.383+06:00 | [Команды U023](evidence/mail-review/COMMANDS.json) |
+| PostgreSQL integration | U023: 54 теста прошли; конец 2026-10-21T20:20:13.045+06:00 | [Логи и SHA256](evidence/mail-review/COMMANDS.json) |
+| Целевые Playwright | U023: 8 тестов desktop/mobile прошли; конец 2026-10-21T20:20:16.539+06:00 — конкуренция, цикл поездки, уведомление и истечение, разряд и одно письмо | [Почтовая приёмка](MAIL-REVIEW.md) |
+| Полный Playwright | U021: 34 теста прошли; конец 2026-10-21T19:47:55.455+06:00 | [Команды U021](evidence/submission/COMMANDS.json) |
+| Реальные 15 минут | U017: бронь 900 секунд, уведомление на 12-й минуте, перезапуск worker и истечение; конец 2026-10-21T16:28:23.818+06:00 | [Фактические сроки](evidence/case11-audit/reservation-clock.json) |
+| Чистая установка, миграции, seed, Compose и host dev | U021: новые env/dependencies/PG volume/ports; схема с 6 миграциями, 30 самокатов и 2 пользователя; проверка прошла после исправления README | [История чистого запуска](SUBMISSION-U021-HISTORY.md), [dev smoke](evidence/submission/dev-smoke.json) |
+| Секреты и npm audit | U021: Gitleaks — 6 коммитов и подготовленный snapshot, 0 находок; известные secrets не найдены; npm audit — 0 замечаний | [Проверенный объём](evidence/submission/README.md) |
 
-[Raw logs и SHA256](evidence/submission/COMMANDS.json). [Dev desktop](evidence/submission/dev-desktop.png), [mobile](evidence/submission/dev-mobile.png). Повторный полный E2E после изменения **только integration fixture** не запускался: production/E2E source не менялись, их новый34passed результат относится к тому же исходнику. Реальный900s acceptance U017 не повторялся; [исторические точные сроки/ограничения](CASE11-AUDIT.md) сохранены и не выдаются за новый запуск.
+Примеры писем из изолированной тестовой БД: [ручное завершение](evidence/mail-review/manual.json), [разряд в движении](evidence/mail-review/depleted-riding.json), [разряд на паузе](evidence/mail-review/depleted-paused.json). Значения и времена тестовых фикстур объяснены в [MAIL-REVIEW.md](MAIL-REVIEW.md).
 
-## Найдено и исправлено
+## Ограничения и необязательные улучшения
 
-1. **README host flow падал после npm ci.** db:seed импортировал отсутствующий contracts/dist. В README перед host seed/check/dev добавлена явная сборка contracts; повтор в той же чистой копии и npm run dev прошёл. Полный Docker flow уже собирал contracts и был исправен.
-2. **WS integration зависел от Origin основного demo.** На отдельном5190 host первый PostgreSQL run:48passed/5failed c timeout. Fixture посылал5173, но наследовал allowlist5190. Теперь тест явно задаёт собственный origin и передаёт его child API/worker; server validation не ослаблена. Повтор53passed. Тестовый patch отдельно записан в source-overlay.json.
-3. Устаревшие тексты «последние100», «pagination ещё нет», «текущий U004» и смешение E0/current архитектуры устранены в актуальных документах. Исторические отчёты/сохранённые prompts не переписаны задним числом.
+Почта проверена в локальном PostgreSQL mailbox. Оплата демонстрационная, реальные деньги не списываются. Движение синтетическое, геозона демонстрационная, тайлы зависят от сети. Списки уведомлений и локальных писем ограничены последними 100 записями; истории поездок и счетов доступны с пагинацией.
 
-## Реализованный объём
+Нагрузочный SLA, авария PostgreSQL/хоста и восстановление из резервной копии не проверены; перезапуск API/worker и восстановление пропущенных обновлений проверены. Разделение production-ролей, операционный мониторинг, политика хранения данных и минимизация runtime image относятся к подготовке к эксплуатации. OAuth, новая авторизация, кыргызские письма и внешний SMTP могут добавляться только отдельными этапами; обязательными недоработками кейса они не являются.
 
-Серверная бронь900s/warning180s/expiry/min charge15%, PostgreSQL атомарность и идемпотентность; start/pause/resume/finish и целые деньги с отдельным ceil-per-mode; polygon geofence; сохранённая GPS/charge simulation и depletion finalization; REST recovery/public-private WS; invoice/demo approved-declined payment; один логический local mailbox mail. Frontend:30distributed markers/geozone/list/card,active locate без перехвата выбора,loading/error/offline/reconnect,RU/KY,полная cursor history/old invoice payment. Условия и тесты по каждому пункту — отдельная матрица, а не общий рекламный «готово».
+## Материалы для проверяющего
 
-## Оставшиеся задачи и разумный порядок
+[README](../README.md) — установка и команды; [DEMO.md](DEMO.md) — воспроизводимый сценарий двух клиентов; [ARCHITECTURE.md](ARCHITECTURE.md) — текущие модули, данные и транзакции; [DEPENDENCIES.md](DEPENDENCIES.md) — пакеты, генераторы, лицензии и заимствования; [DECISIONS.md](DECISIONS.md), [WORKLOG.md](WORKLOG.md), [PROMPTS.md](PROMPTS.md) — решения, реальные события и сохранённые запросы.
 
-1. **Обязательное ТЗ:** email/password (регистрация/hash/session/logout/rate limits/защита) и настоящий Google OIDC со state/nonce/callback/token checks; реальные account isolation/smoke tests. Сейчас есть только demo identities, даже при наличии HMAC/WS expiry.
-2. **Обязательная локализация:** KY mail/понятные серверные сообщения и независимая содержательная языковая проверка. Cmap/рендер RU/KY fonts проверены, но не заменяют носителя языка.
-3. **Почта:** если требуется внешний email, выбрать transport/provider и документировать его idempotency contract; локальная PG mailbox exactly-one не доказывает external SMTP exactly-once. В текущем demo внешняя отправка не нужна для выбранной эмуляции.
-4. **Для эксплуатации:** отдельные минимальные PG roles, session/secrets lifecycle/TLS, pruning dev tooling из runtime image, CI и backup/restore, мониторинг queue lag/worker health. PG outage/host power loss/restore не проверены; API/worker restarts/catch-up проверены. Нагрузочный SLA/20HTTP-user benchmark не измерялся,20service-users race не выдаётся за него.
-5. **Продуктовые улучшения:** дорожные маршруты/зоны парковки и более реалистичная телеметрия; pagination notifications/mailbox при необходимости (их snapshot100 ограничен); очистка старых idempotency/tickets/outbox по выбранной retention policy. Payment остаётся намеренно заглушкой. Debt gate — дополнительное несогласованное правило, не обязательный дефект.
-
-## Секреты, Git и передача
-
-Сканеры и точное сравнение не находят известных текущих секретов в проверенном объёме; это не гарантия отсутствия неизвестного или ранее сменённого секрета. .env/work/node_modules/dist/traceZIP не входят в передачу. В bundle проверки U019 сохранены; на U021 production frontend bundle не менялся. Внешний Generic Password incident ранее назван пользователем ложной тревогой; новый Gitleaks не устанавливает неизвестный GitGuardian location.
-
-База проверки U021: Git HEAD **b7a6c75**, branch main. На старте U021 дерево было чистым; на момент завершения U021 имелись ожидаемые незакоммиченные README/docs/evidence и один integration-test patch. Staged files0, история/зависимости/применённые миграции не переписывались; commit/push по U021 не выполнялись. Предлагаемый commit: **docs: prepare reproducible submission and isolate websocket test origins**. После отчёта U021 пользователь отдельно разрешил commit/push командой U022; момент фактической публикации проверяется по Git, исторические результаты выше относятся к указанной базе.
-
-Проверочный Compose project/volume удалены после smoke; основной samokettik API/worker/web/postgres healthy, migrate/seed exit0. Новых бизнес-записей в main этот этап не создавал: CLI/browser scenarios выполнялись только на отдельном стенде/UUID DB. Игнорируемая копия с установленными dependencies остаётся в work для воспроизведения, её env не передаётся.
-
-Финальная проверка всех подготовленных файлов/ссылок/неизменности production source и SQL: [validation.json](evidence/submission/validation.json). После подготовки итоговых документов snapshot повторно просканирован Gitleaks; результат0findings и новое реальное время сохранены в COMMANDS.json.
+Предыдущая оценка обязательности auth/KY и подробная история U021 вынесены в [SUBMISSION-U021-HISTORY.md](SUBMISSION-U021-HISTORY.md). Исходные времена, неудачные команды и последующие успешные результаты сохранены. Исторический документ не задаёт текущие критерии приёмки.

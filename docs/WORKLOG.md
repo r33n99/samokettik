@@ -1,6 +1,6 @@
 # СамоКеттик — журнал фактически выполненной работы
 
-Текущий этап: U021 — подготовка к сдаче. Актуальное состояние и результаты: [SUBMISSION.md](SUBMISSION.md); предыдущие записи сохраняют факты и ограничения соответствующего момента, а не описывают текущую готовность. Существующие временные отметки и неудачные прогоны не переписываются.
+Текущий этап: U025 — актуальная оценка готовности и отделение истории. Актуальное состояние и результаты: [SUBMISSION.md](SUBMISSION.md); предыдущие записи сохраняют факты и ограничения соответствующего момента, а не описывают текущую готовность. Существующие временные отметки и неудачные прогоны не переписываются.
 
 Часовой пояс журнала: Asia/Bishkek, ISO 8601 с `+06:00`. Источник времени: clock tool и `[DateTimeOffset]::UtcNow.ToOffset([TimeSpan]::FromHours(6))` в момент выполнения. Даты и длительности прошлых действий не реконструируются. Новые записи добавляются по факту, без выдуманных запусков и backdating.
 
@@ -699,3 +699,11 @@
 - 2026-10-21T20:28:33.6818555+06:00 — U024: получена команда commit/push проверенного U023. Проверены status/branch/remote, effective author и committer Reen <rinni499@gmail.com>, env overrides отсутствуют, активный GitHub r33n99. Выполнен fetch origin, main синхронизирована с origin/main (0/0). Далее final validation, отдельный commit и обычный push origin main; на момент записи публикация ещё не выполнена. Код после завершённых проверок не менялся.
 
 - 2026-10-21T20:28:34.753+06:00 — U023 final validation: 567publishable files/341local Markdown links,UTF8/NUL/type-bypass/current-secret checks passed;4raw log SHA256 matches,6applied SQL byte-equal HEAD;runtime/config/dependencies unchanged,46matrix rows,git diff --check0,staged0. Результат docs/evidence/mail-review/validation.json. Commit/push не выполнялись.
+
+- 2026-10-21T20:43:40.707+06:00 — U025: с чистого HEAD e355430 исправлена структура отчёта сдачи. SUBMISSION.md теперь начинается с актуальной готовности в уточнённом U023 объёме,без обязательных auth/KY/SMTP задач. Прежний текст сохранён после явного historical banner в SUBMISSION-U021-HISTORY.md,без изменения событий/времён/результатов. В актуальном тексте разделены последние U023 checks,исторические U021 full E2E/clean launch и U017 actual900s. Runtime/tests не менялись; новые тестовые прогоны не заявляются. Далее проверяются ссылки,сохранность исторического текста и diff.
+
+- 2026-10-21T20:44:55.111+06:00 — U025 documentation validation passed: 369local Markdown links,UTF8/NUL,исторический текст совпадает с прежним HEAD после banner,в актуальном SUBMISSION нет прежнего утверждения об обязательных auth/KY задачах;изменения только README/docs,git diff --check0,staged0. Тесты/приложение не перезапускались для doc-only правки. Результат outputs/submission-document-check.json;commit/push не выполнялись.
+
+- 2026-10-21T20:46:15.061+06:00 — U025 documentation validation passed: 369local Markdown links,UTF8/NUL,исторический текст совпадает с прежним HEAD после banner,в актуальном SUBMISSION нет прежнего утверждения об обязательных auth/KY задачах;изменения только README/docs,git diff --check0,staged0. Тесты/приложение не перезапускались для doc-only правки. Результат outputs/submission-document-check.json;commit/push не выполнялись.
+
+- 2026-10-21T20:47:20.863+06:00 — U026: явное задание «коммит пуш». Перед публикацией проверены Git author/committer Reen <rinni499@gmail.com>, отсутствие GIT_AUTHOR/GIT_COMMITTER overrides, GitHub login r33n99 и origin r33n99/samokettik. git fetch origin успешен, HEAD и origin/main совпадают; git diff --check0. Изменения только в документации U025/U026. Подготовлен отдельный коммит docs: clarify current submission readiness and preserve history; commit/push на момент записи ещё не выполнялись.
