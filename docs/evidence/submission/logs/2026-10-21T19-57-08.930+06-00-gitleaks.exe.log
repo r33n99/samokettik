@@ -1,0 +1,7 @@
+START 2026-10-21T19:57:08.930+06:00
+COMMAND gitleaks.exe dir work/submission-publishable-scan --redact=100 --no-banner --no-color --report-format=json --report-path=docs/evidence/submission/gitleaks-working-tree.json
+7:57PM INF scanned ~2051899 bytes (2.05 MB) in 117ms
+7:57PM INF no leaks found
+
+END 2026-10-21T19:57:09.585+06:00
+EXIT 0

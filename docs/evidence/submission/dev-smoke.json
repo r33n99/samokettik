@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-21T19:53:22.498+06:00",
+  "sourceHead": "b7a6c7541650c968490dc6c2874633da67308227",
+  "readiness": {
+    "status": "ready",
+    "database": "connected",
+    "schemaVersion": 6,
+    "reservationWorker": "running"
+  },
+  "results": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "markers": 30,
+      "tiles": 4,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "name": "mobile",
+      "width": 393,
+      "height": 851,
+      "markers": 30,
+      "tiles": 2,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "pageErrors": []
+    }
+  ],
+  "mutations": "Only demo session issuance; no new rental/payment/GPS writes"
+}

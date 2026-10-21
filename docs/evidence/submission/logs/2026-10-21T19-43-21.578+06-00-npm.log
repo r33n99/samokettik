@@ -1,0 +1,15 @@
+START 2026-10-21T19:43:21.578+06:00
+COMMAND npm run db:seed
+CWD work\submission-d584ff116f8b
+
+> samokettik@0.1.0 db:seed
+> npm run db:seed -w @samokettik/server
+
+
+> @samokettik/server@0.1.0 db:seed
+> tsx src/db/seed.ts
+
+Seed complete: 30 deterministic vehicle fixtures and 2 users (no login credentials yet). Existing rows preserved.
+
+END 2026-10-21T19:43:24.208+06:00
+EXIT 0

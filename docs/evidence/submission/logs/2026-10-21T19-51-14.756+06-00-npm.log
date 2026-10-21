@@ -1,0 +1,19 @@
+START 2026-10-21T19:51:14.756+06:00
+COMMAND npm run demo:reservations
+CWD work\submission-d584ff116f8b
+
+> samokettik@0.1.0 demo:reservations
+> node scripts/demo-reservations.mjs
+
+{
+  "vehicleCode": "SK-003",
+  "raceStatuses": [
+    201,
+    409
+  ],
+  "replayMatches": true
+}
+Demo reservation cancelled; scooter released.
+
+END 2026-10-21T19:51:15.200+06:00
+EXIT 0

@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-21T20:11:55.351+06:00",
+  "sourceHead": "b7a6c7541650c968490dc6c2874633da67308227",
+  "publishableFiles": 554,
+  "localMarkdownLinks": 321,
+  "knownSecretMatches": 0,
+  "oldMigrationFilesUnchanged": 6,
+  "rawLogsVerified": 37,
+  "productionAndDependenciesUnchanged": true,
+  "stagedFiles": 0,
+  "gitStatus": [
+    " M README.md",
+    " M docs/ARCHITECTURE.md",
+    " M docs/DECISIONS.md",
+    " M docs/IMPLEMENTATION-PLAN.md",
+    " M docs/PROMPTS.md",
+    " M docs/REQUIREMENTS.md",
+    " M docs/SECRET-AUDIT.md",
+    " M docs/SOURCES.md",
+    " M docs/WORKLOG.md",
+    " M tests/integration/realtime.test.ts",
+    "?? docs/ARCHITECTURE-PROPOSAL.md",
+    "?? docs/DEMO.md",
+    "?? docs/DEPENDENCIES.md",
+    "?? docs/PROMPTS-HISTORY.md",
+    "?? docs/SUBMISSION-MATRIX.md",
+    "?? docs/SUBMISSION.md",
+    "?? docs/evidence/submission/",
+    "?? docs/prompts/021-submission.md",
+    "?? docs/prompts/022-publish-submission.md"
+  ],
+  "diffCheck": "passed"
+}

@@ -1,0 +1,15 @@
+START 2026-10-21T19:41:38.725+06:00
+COMMAND npm ci
+CWD work\submission-d584ff116f8b
+npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.hirok.io
+npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.hirok.io
+
+added 146 packages, and audited 150 packages in 14s
+
+37 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+END 2026-10-21T19:41:52.934+06:00
+EXIT 0

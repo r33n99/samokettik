@@ -1,6 +1,10 @@
 # СамоКеттик — матрица требований и проверок
 
-Актуальный полный аудит U017: [Требование — Реализация — Тест — Результат](CASE11-AUDIT.md). Его результаты и ограничения имеют приоритет над историческими статусами этапов ниже. Последующее обновление историй и карты U019: [HISTORY-MAP-REPORT.md](HISTORY-MAP-REPORT.md).
+Актуальная четырёхколоночная матрица — [SUBMISSION-MATRIX.md](SUBMISSION-MATRIX.md). Ниже сохранены ID, критерии и хронологические уточнения.
+
+Текущее состояние сдачи U021: [SUBMISSION.md](SUBMISSION.md), [сценарий двух клиентов](DEMO.md), [архитектура](ARCHITECTURE.md). Исторические отчёты не заменяют актуальный статус ниже.
+
+Аудит U017: [Требование — Реализация — Тест — Результат](CASE11-AUDIT.md). Он сохраняет результаты своего этапа; последующие изменения U019/U021 указаны отдельно. Последующее обновление историй и карты U019: [HISTORY-MAP-REPORT.md](HISTORY-MAP-REPORT.md).
 
 Исходный запрос: [точный текст](prompts/001-project-task.md). После U002 реализован каркас, после U004 — серверная бронь, worker и persistent уведомления. После U008 реализованы серверные поездки/billing/demo payment и зона; U012/U013 добавили согласованный frontend: карта/аренда/history/demo. Доказательства U008: [TRIPS-REPORT.md](TRIPS-REPORT.md); U010: [REALTIME-REPORT.md](REALTIME-REPORT.md); U012: [FRONTEND-REPORT.md](FRONTEND-REPORT.md). Статус `План` означает отсутствие доказательства выполнения. Частично выполненные инфраструктурные требования отмечены ниже; доказательства — [FOUNDATION-REPORT.md](FOUNDATION-REPORT.md) и [RESERVATIONS-REPORT.md](RESERVATIONS-REPORT.md). Открытые продуктовые решения нельзя автоматически превратить в принятые критерии.
 
@@ -41,8 +45,8 @@
 | R31 | Восстановление актуального состояния | I/E: disconnect, missed event, API/worker restart, out-of-order HTTP snapshot; full reconciliation | E6,E8,E9 | REST-before-WS, reload pending intent и same-key replay, два профиля и восстановление running ride проверены |
 | R32 | Документированный локальный запуск | M: чистый checkout, .env.example, Compose build/migrate/seed, demo accounts, два клиента; инструкции Windows и типовые ошибки | E9 | README setup/Compose/UI demo и изолированный E2E описаны; результаты и ограничения в FRONTEND-REPORT |
 | R33 | Конфигурируемые значения | I/M: все заданные параметры имеют один источник, invalid config останавливает start; API/worker hash; snapshots не меняются | E1,E2 | Публичный client-config из business config, валидируемые demo/session/tile env; snapshot rates/zone не пересчитываются клиентом |
-| R34 | Email/password | I/E: регистрация/вход/выход, hash, cookie, неверный пароль, истечение сессии, protected routes, rate limit | E3 | План |
-| R35 | Google | I/M: реальный OIDC, state/nonce/token checks, callback, новый/existing user, без auto-link по email; один настоящий smoke login | E3,E9 | Внешняя зависимость: credentials |
+| R34 | Email/password | I/E: регистрация/вход/выход, hash/session/rate limit | E3 | НЕ РЕАЛИЗОВАНО. Есть только общие demo profiles; это обязательный незакрытый пункт |
+| R35 | Google | I/M: настоящий OIDC/state/nonce/callback/token checks и smoke login | E3,E9 | НЕ РЕАЛИЗОВАНО: отсутствует интеграция, а не только credentials; обязательный незакрытый пункт |
 | R36 | RU/KY | E/M: язык всех действий/ошибок/уведомлений/писем, actual glyphs Ңң Өө Үү; содержательная проверка переводов | E7,E8,E9 | RU/KY frontend/даты/errors и cmap реальных fonts проверены; независимая native-language review и KY mail пока открыты |
 | R37 | Asia/Bishkek и KGS | U/I/E: UTC persistence, ISO API, local render +06:00; minor units, ru/ky money formatting | E2,E5,E8 | UTC API, явный Asia/Bishkek в UI, KGS minor-unit strings; BigInt UI formatting test |
 | R38 | 30 демонстрационных самокатов | I/M: seed повторяем, ровно 30, нет дублей, распределены по зоне, разные заряды, свободные/недоступные | E2,E6 | 30 настоящих markers/seed scooters, статусы и movement из backend; доступный список и поиск по номеру |
@@ -54,13 +58,13 @@
 | R44 | Изоляция пользователей | I/E: чужие rentals/invoices/notifications/mail недоступны, fleet/WS не раскрывает owners; logout/expiry закрывает WS | E3,E6–E9 | U017: private WS ограничен deadline browser credential, включая consume ticket другим API; реальные60s E2E проверяют expiry/401/очистку private view. Demo adapter не означает password/Google |
 | R45 | Конкурентный worker | I: два worker, гонки warning/start/expiry и finish/depletion; idempotent outcomes и отсутствие двойного списания | E6,E7,E9 | Два worker/pool, expiry/warning, simulation/depletion/manual finish, local mail rollback/retry проверены |
 | R46 | Актуальное время после ожидания lock | I: искусственно удержать user/vehicle lock через expires_at; start получает expired, не stale now() | E4,E9 | Cancel и start читают DB-время после ожидания vehicle lock; истёкший start запрещён |
-| P01 | Маленькие этапы и контроль пользователя | M: каждый этап имеет exit criteria; после него агент ждёт отдельную команду | Все | U012/U013: согласованный frontend/demo и проверки; дальнейший этап требует команды, commit только предложен |
-| P02 | Нет функционального кода на текущем этапе | M: только Markdown-документы и скрипты проверки/экспорта документов в work; нет package/migrations/app/compose | E0 | Проверено аудитом документов, см. WORKLOG |
+| P01 | Маленькие этапы и контроль пользователя | M: отдельные задания/результаты/ожидание следующей команды | Все | U021 подготовка к сдаче завершена; U022 разрешил отдельный commit/push |
+| P02 | Запрет функционального кода на архитектурном E0 | M: исторический аудит E0 | E0 | Выполнен на E0; последующие отдельные команды U002 и далее разрешили реализацию |
 | P03 | WORKLOG/DECISIONS/PROMPTS/REQUIREMENTS | M: документы E0, реальные ISO timestamps; ссылки на сохранённые промпты | E0 и далее | Проверено наличие/ссылки/формат timestamps, см. WORKLOG |
 | P04 | Типизация и валидация | I/M: strict tsc, DTO runtime validation, ограниченные inputs, нет any для обхода границ | E1 и далее | Strict TypeScript tests/tools/frontend, TypeBox HTTP/WS/storage boundaries, без as any/@ts-ignore; типы ошибок и retry policy |
 | P05 | Атомарные критические операции | I/M: SQL-ограничения и транзакции, race tests на PostgreSQL, не SQLite mock | E2,E4–E7 | State/interval/simulation/battery/invoice/notice/outbox атомарны; mailbox accept+ack одной транзакцией, настоящие PG race/rollback tests |
 | P06 | Честные результаты и источники | M: план/запуск/результат разделены; failing tests сохранены; sources и ограничения в документации | Все | Фактические команды/время/результаты и ограничения сохранены; исторические failed runs не удалялись |
-| P07 | Git без фиктивной истории | M: перед commit identity check; author=committer=user, без AI coauthor, без history rewrite; коммит только реально выполненного этапа | Все | Первый реальный commit 4d6bdcd опубликован в private r33n99/samokettik по U006; author=committer=пользователь, без history rewrite |
+| P07 | Git без фиктивной истории | M: identity, author=committer user, без rewrite/coauthor | Все | HEAD b7a6c75, опубликованные этапы по отдельным U006/U009/U011/U016/U018/U020; U022 отдельно разрешил публикацию проверенного U021 |
 | P08 | SCSS и библиотечные примитивы | M: раздельные SCSS modules, @use/@forward; нет готового библиотечного дизайна | E8 | Авторские SCSS разделены по feature/component, @use, два OFL шрифта; UI library defaults не использованы |
 
 ## Контрольный демонстрационный сценарий
@@ -68,11 +72,11 @@
 1. Чистый запуск по README; показать миграции, seed, здоровье API/worker и 30 самокатов.
 2. Два пользователя открывают один fleet; одновременно бронируют один самокат. Успех у одного, другой получает объяснимый конфликт; обе карты обновились.
 3. Владелец начинает, ставит на паузу, возобновляет; другой клиент видит занятость. Закрыть клиент владельца, показать продолжение на сервере, войти снова.
-4. Дойти до границы зоны на demo route: обычный finish снаружи отклонён; вернуть маршрут в зону, завершить, сверить тариф/интервалы/счёт.
+4. Проверить запрет finish вне зоны через изолированный E2E trusted GPS fixture. Рабочий синтетический маршрут не обещает выезд за границу; main GPS вручную не менять. Затем завершить в зоне и сверить счёт.
 5. Оплатить заглушкой: отказ, затем успех; повторить успешный запрос и проверить единственный платёж.
 6. Новая бронь: warning на 12-й минуте, expiry на 15-й. Быстрые автоматические тесты используют другую тестовую конфигурацию; хотя бы один полный 15-минутный прогон идёт с реальными демонстрационными настройками.
 7. Поездка с разрядом до 0%, включая pause/outside; показать ровно один invoice и письмо с причиной. Воспроизвести crash mail-ack window для выбранного транспорта.
-8. Перезапуск API/worker/БД с сохранением volume и восстановление состояния. Проверить RU/KY и mobile/desktop.
+8. API/worker stop/start проверены интеграционно; restart самого PG/backup restore/авария хоста остаются ограничениями приёмки. Проверить RU/KY и mobile/desktop.
 
 ## Правила принятия результатов
 
@@ -87,3 +91,7 @@
 ## U015 — стабильность карточки и просмотр соседнего транспорта
 
 2026-10-21T16:07:17.684+06:00: проверено28browser +42unit/typecheck/build; дополнительный focused4passed. Независимый выбор при reserved/riding, возврат к своему, сохранение выбора при API/WS reconnect. Pause/resume:RU/KY,desktop/mobile,720кадров без изменений geometry/scroll при задержанных настоящих POST/GET. [Доказательства](evidence/ui-stability/README.md).
+
+## U021 — проверка сдачи
+
+[SUBMISSION.md](SUBMISSION.md) содержит реальные новые прогоны и ограничения. README исправляет порядок сборки contracts перед host seed/check; integration WS fixture не зависит от host demo Origin. Новая авторизация/внешняя почта этим этапом не реализуются. Ручной двухклиентский показ и точная автоматическая race-команда — [DEMO.md](DEMO.md). Исторические результаты ниже не удаляются.

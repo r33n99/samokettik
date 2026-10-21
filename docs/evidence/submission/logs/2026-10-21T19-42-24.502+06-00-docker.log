@@ -1,0 +1,13 @@
+START 2026-10-21T19:42:24.502+06:00
+COMMAND docker compose ps -a
+CWD work\submission-d584ff116f8b
+NAME                                            IMAGE                                                                                          COMMAND                  SERVICE    CREATED          STATUS                      PORTS
+samokettik-submission-d584ff116f8b-api-1        samokettik-submission-d584ff116f8b-api                                                         "docker-entrypoint.s…"   api        23 seconds ago   Up 11 seconds (healthy)     127.0.0.1:3190->3001/tcp
+samokettik-submission-d584ff116f8b-migrate-1    samokettik-submission-d584ff116f8b-migrate                                                     "docker-entrypoint.s…"   migrate    24 seconds ago   Exited (0) 17 seconds ago   
+samokettik-submission-d584ff116f8b-postgres-1   postgres:18-bookworm@sha256:afc7e2d441324c0388fa80c3d24f733b4194a4eb7f47dd8ee2b08eb1a24a647c   "docker-entrypoint.s…"   postgres   24 seconds ago   Up 23 seconds (healthy)     127.0.0.1:54339->5432/tcp
+samokettik-submission-d584ff116f8b-seed-1       samokettik-submission-d584ff116f8b-seed                                                        "docker-entrypoint.s…"   seed       24 seconds ago   Exited (0) 16 seconds ago   
+samokettik-submission-d584ff116f8b-web-1        samokettik-submission-d584ff116f8b-web                                                         "/docker-entrypoint.…"   web        23 seconds ago   Up 6 seconds (healthy)      127.0.0.1:5190->80/tcp
+samokettik-submission-d584ff116f8b-worker-1     samokettik-submission-d584ff116f8b-worker                                                      "docker-entrypoint.s…"   worker     24 seconds ago   Up 16 seconds (healthy)     
+
+END 2026-10-21T19:42:24.976+06:00
+EXIT 0

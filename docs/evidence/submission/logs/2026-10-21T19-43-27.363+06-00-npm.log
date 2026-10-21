@@ -1,0 +1,6 @@
+START 2026-10-21T19:43:27.363+06:00
+COMMAND npm exec -- playwright install chromium
+CWD work\submission-d584ff116f8b
+
+END 2026-10-21T19:43:29.484+06:00
+EXIT 0

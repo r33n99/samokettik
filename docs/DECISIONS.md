@@ -1,6 +1,6 @@
 # СамоКеттик — технические решения
 
-Статус: архитектурная основа принята командой U002 начать E1; таблица ниже сохраняет исходные варианты E0. Реально принятые решения E1 перечислены после таблицы. Новые продуктовые правила, почтовый режим, точная зона и будущий UI не выбираются молча. Реальные отметки подготовки и проверок — в WORKLOG.md.
+Текущее состояние — [ARCHITECTURE.md](ARCHITECTURE.md), итог — [SUBMISSION.md](SUBMISSION.md). Решения ниже сохраняют хронологию: исходные «предложено/на согласовании» не являются текущими неподтверждёнными реализациями. Фактические решения: D01–D06/D09–D12 — модульный backend/PG/worker/idempotency; D38–D41 — billing/geofence; D42–D48 — simulation/WS/local mail; D49–D53 — выбранный frontend/demo adapter; D54 — fleet distribution; D55/D57 — map browsing; D56 — private WS expiry; D57 — pagination. Авторизация email/password/Google не реализована.
 
 | ID | Решение / статус | Причина | Альтернативы и цена выбора |
 | --- | --- | --- | --- |
@@ -118,3 +118,11 @@
 - React History читает оба списка из отдельных paginated API, а не из100 последних invoices в sync. AbortController предотвращает запоздалые ответы при смене view/profile/cursor. Смена профиля пересоздаёт History; reconnect, изменение invoices и оплата перечитывают текущую страницу. Back/Next/Retry сразу показывают loading, ошибки можно повторить; offline блокирует переходы. WS snapshot сохраняет100 записей как ограниченную сверку текущего состояния, это больше не предел доступной истории.
 - Клик маркера меняет только выбранный самокат; autoPanOnFocus отключён. Explicit locate активного и выбор из списка могут переместить карту. ActiveId/sync сами не центрируют её, включая повторное открытие map.
 - Leaflet prefix отключён через официальную опцию; видимая OSM attribution перенесена в нижний край, под mobile sheet оставлено24px. Пользователь дополнительно попросил убрать attribution; полное скрытие не применено из-за условий текущих tiles. Источники: [Leaflet attribution](https://leafletjs.com/reference.html#control-attribution-prefix), [OSM tile policy](https://operations.osmfoundation.org/policies/tiles/#2-attribution-and-licensing), [PostgreSQL row comparison](https://www.postgresql.org/docs/current/functions-comparisons.html#ROW-WISE-COMPARISON).
+
+
+## D58 — подготовка к сдаче U021
+
+- Текущая архитектура отделена от предложения E0, первоначальный текст сохранён рядом в ARCHITECTURE-PROPOSAL.md. WORKLOG остаётся историческим append-only журналом; прошлое время/результаты не реконструируются. PROMPTS содержит полный индекс точных сохранённых user requests.
+- Чистый запуск проверяется из git archive HEADb7a6c75 без .env/node_modules/dist, собственный Compose project/PG volume и ports5190/3190/54339; main demo не используется для сценариев и не очищается. Docker cache доступен, это явно не проверка машины без cache. Обнаруженный пропуск contracts build исправлен в README перед host seed/check/dev.
+- PostgreSQL WS integration fixtures теперь задают Origin allowlist сами, включая child processes; тесты не должны зависеть от WEB_PORT/WS_ALLOWED_ORIGINS пользовательского demo. Изменена только тестовая конфигурация, production allowlist не расширяется. Причина подтверждена failed run на отдельном port5190; результаты повторов фиксируются после выполнения.
+- Полное исходное ТЗ нельзя объявить завершённым без password/Google и полного RU/KY; local mailbox допускает проверенное одно локальное письмо, не внешнюю SMTP exactly-once. Долг-блокировка R41 остаётся отдельным предложением, а не обязательным невыполненным требованием. Пакеты/генераторы/геоданные/лицензии перечислены в DEPENDENCIES.md; лицензия оригинального проекта владельцем не назначена автоматически.

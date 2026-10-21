@@ -1,0 +1,41 @@
+START 2026-10-21T19:42:29.212+06:00
+COMMAND npm run db:seed
+CWD work\submission-d584ff116f8b
+
+> samokettik@0.1.0 db:seed
+> npm run db:seed -w @samokettik/server
+
+
+> @samokettik/server@0.1.0 db:seed
+> tsx src/db/seed.ts
+
+
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\work\submission-d584ff116f8b\node_modules\@samokettik\contracts\dist\index.js' imported from C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\work\submission-d584ff116f8b\apps\server\src\config\business.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:275:11)
+    at moduleResolve (node:internal/modules/esm/resolve:860:10)
+    at defaultResolve (node:internal/modules/esm/resolve:984:11)
+    at nextResolve (node:internal/modules/esm/hooks:748:28)
+    at resolveBase (file:///C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql/work/submission-d584ff116f8b/node_modules/tsx/dist/register-nyXW-TH3.mjs:2:10494)
+    at resolveDirectory (file:///C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql/work/submission-d584ff116f8b/node_modules/tsx/dist/register-nyXW-TH3.mjs:2:11581)
+    at resolveTsPaths (file:///C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql/work/submission-d584ff116f8b/node_modules/tsx/dist/register-nyXW-TH3.mjs:2:13222)
+    at resolve (file:///C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql/work/submission-d584ff116f8b/node_modules/tsx/dist/register-nyXW-TH3.mjs:2:15453)
+    at nextResolve (node:internal/modules/esm/hooks:748:28)
+    at Hooks.resolve (node:internal/modules/esm/hooks:240:30) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql/work/submission-d584ff116f8b/node_modules/@samokettik/contracts/dist/index.js'
+}
+
+Node.js v22.14.0
+npm error Lifecycle script `db:seed` failed with error:
+npm error code 1
+npm error path C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\work\submission-d584ff116f8b\apps\server
+npm error workspace @samokettik/server@0.1.0
+npm error location C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\work\submission-d584ff116f8b\apps\server
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c tsx src/db/seed.ts
+
+END 2026-10-21T19:42:30.348+06:00
+EXIT 1

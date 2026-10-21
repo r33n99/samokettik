@@ -1,0 +1,97 @@
+START 2026-10-21T19:43:29.510+06:00
+COMMAND npm run test:db
+CWD work\submission-d584ff116f8b
+
+> samokettik@0.1.0 test:db
+> vitest run --config vitest.db.config.ts
+
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql/work/submission-d584ff116f8b
+
+ ❯ tests/integration/realtime.test.ts (9 tests | 5 failed) 36444ms
+   ❯ persistent simulation, realtime snapshots and local invoice mail (9)
+     × closes an already authenticated private WebSocket when its browser credential expires 6230ms
+     × uses single-use expiring WS tickets, validates Origin and rejects commands over sockets 6099ms
+     × broadcasts committed state to three clients across two API instances and keeps private data isolated 6059ms
+     × delivers one reservation warning/expiry and restores current state through the API before reconnect 6066ms
+     × continues while the API process is down, catches up after worker restart and sends one invoice mail 9096ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/realtime.test.ts > persistent simulation, realtime snapshots and local invoice mail > closes an already authenticated private WebSocket when its browser credential expires
+Error: Condition timed out
+ ❯ until tests/integration/realtime.test.ts:46:9
+     44|   const deadline = Date.now() + timeout;
+     45|   while (Date.now() < deadline) { if (await check()) return; await del…
+     46|   throw new Error('Condition timed out');
+       |         ^
+     47| }
+     48| async function connect(base = urlA, user?: 'a' | 'b') {
+ ❯ tests/integration/realtime.test.ts:123:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/integration/realtime.test.ts > persistent simulation, realtime snapshots and local invoice mail > uses single-use expiring WS tickets, validates Origin and rejects commands over sockets
+Error: Condition timed out
+ ❯ until tests/integration/realtime.test.ts:46:9
+     44|   const deadline = Date.now() + timeout;
+     45|   while (Date.now() < deadline) { if (await check()) return; await del…
+     46|   throw new Error('Condition timed out');
+       |         ^
+     47| }
+     48| async function connect(base = urlA, user?: 'a' | 'b') {
+ ❯ tests/integration/realtime.test.ts:144:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/integration/realtime.test.ts > persistent simulation, realtime snapshots and local invoice mail > broadcasts committed state to three clients across two API instances and keeps private data isolated
+Error: Condition timed out
+ ❯ until tests/integration/realtime.test.ts:46:9
+     44|   const deadline = Date.now() + timeout;
+     45|   while (Date.now() < deadline) { if (await check()) return; await del…
+     46|   throw new Error('Condition timed out');
+       |         ^
+     47| }
+     48| async function connect(base = urlA, user?: 'a' | 'b') {
+ ❯ connect tests/integration/realtime.test.ts:59:3
+ ❯ tests/integration/realtime.test.ts:153:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/integration/realtime.test.ts > persistent simulation, realtime snapshots and local invoice mail > delivers one reservation warning/expiry and restores current state through the API before reconnect
+Error: Condition timed out
+ ❯ until tests/integration/realtime.test.ts:46:9
+     44|   const deadline = Date.now() + timeout;
+     45|   while (Date.now() < deadline) { if (await check()) return; await del…
+     46|   throw new Error('Condition timed out');
+       |         ^
+     47| }
+     48| async function connect(base = urlA, user?: 'a' | 'b') {
+ ❯ connect tests/integration/realtime.test.ts:59:3
+ ❯ tests/integration/realtime.test.ts:226:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/integration/realtime.test.ts > persistent simulation, realtime snapshots and local invoice mail > continues while the API process is down, catches up after worker restart and sends one invoice mail
+Error: Condition timed out
+ ❯ until tests/integration/realtime.test.ts:46:9
+     44|   const deadline = Date.now() + timeout;
+     45|   while (Date.now() < deadline) { if (await check()) return; await del…
+     46|   throw new Error('Condition timed out');
+       |         ^
+     47| }
+     48| async function connect(base = urlA, user?: 'a' | 'b') {
+ ❯ connect tests/integration/realtime.test.ts:59:3
+ ❯ tests/integration/realtime.test.ts:241:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  5 failed | 48 passed (53)
+   Start at  19:43:31
+   Duration  69.31s (tests 85%, import 12%, transform 3%)
+
+
+END 2026-10-21T19:44:40.477+06:00
+EXIT 1

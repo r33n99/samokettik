@@ -1,0 +1,11 @@
+{
+  "recordedAt": "2026-10-21T19:50:30.044+06:00",
+  "baseHead": "b7a6c7541650c968490dc6c2874633da67308227",
+  "files": [
+    {
+      "file": "tests/integration/realtime.test.ts",
+      "sha256": "da1978b7f55accbdec783c1958b39b475889317167a4aeb4ac06545a0fa22893",
+      "purpose": "Isolated WS fixture owns Origin allowlist; no production source change"
+    }
+  ]
+}

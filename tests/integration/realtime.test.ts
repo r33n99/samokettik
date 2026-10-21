@@ -20,14 +20,16 @@ import { runReservationJobs } from '../../apps/server/src/jobs/reservations.js';
 import { deliverLocalMail } from '../../apps/server/src/jobs/mail.js';
 import { issueDemoSession } from '../../apps/server/src/modules/auth/session.js';
 
-const env = { ...loadEnvironment(), logLevel: 'silent' as const, demoAuthEnabled: true, demoRuToken: 'e'.repeat(64), demoKyToken: 'f'.repeat(64), wsReconcileMs: 60000 };
+const origin = 'http://127.0.0.1:5173';
+// The fixture owns its Origin allowlist; host demo ports must not change it.
+const env = { ...loadEnvironment(), logLevel: 'silent' as const, demoAuthEnabled: true, demoRuToken: 'e'.repeat(64), demoKyToken: 'f'.repeat(64), wsReconcileMs: 60000, wsAllowedOrigins: [origin] };
 const config = { ...loadBusinessConfig(), simulationTickMs: 100 };
 const testName = `samokettik_test_${randomUUID().replaceAll('-', '')}`;
 const testUrl = new URL(env.databaseUrl); testUrl.pathname = `/${testName}`;
 const admin = new pg.Pool({ connectionString: env.databaseUrl });
 const database = createDatabase(testUrl.toString()), databaseB = createDatabase(testUrl.toString());
 const appA = buildApp(env, config, database), appB = buildApp(env, config, databaseB);
-const vehicleId = '10000000-0000-4000-8000-000000000005', origin = 'http://127.0.0.1:5173';
+const vehicleId = '10000000-0000-4000-8000-000000000005';
 const sockets = new Set<WebSocket>(), children = new Set<ChildProcess>();
 let urlA: string, urlB: string, created = false;
 const token = (user: 'a' | 'b') => user === 'a' ? env.demoRuToken : env.demoKyToken;
@@ -68,7 +70,7 @@ async function reserveAndStart(base = urlA) {
   return id;
 }
 function launch(entry: string) {
-  const child = spawn(process.execPath, ['--import', 'tsx', entry], { cwd: projectRoot, env: { ...process.env, DATABASE_URL: testUrl.toString(), DEMO_AUTH_ENABLED: 'true', DEMO_USER_RU_TOKEN: env.demoRuToken, DEMO_USER_KY_TOKEN: env.demoKyToken, BOOKING_JOB_POLL_MS: '100' }, stdio: ['ignore', 'pipe', 'pipe'] });
+  const child = spawn(process.execPath, ['--import', 'tsx', entry], { cwd: projectRoot, env: { ...process.env, DATABASE_URL: testUrl.toString(), DEMO_AUTH_ENABLED: 'true', DEMO_USER_RU_TOKEN: env.demoRuToken, DEMO_USER_KY_TOKEN: env.demoKyToken, WS_ALLOWED_ORIGINS: env.wsAllowedOrigins.join(','), BOOKING_JOB_POLL_MS: '100' }, stdio: ['ignore', 'pipe', 'pipe'] });
   children.add(child); child.on('exit', () => children.delete(child)); child.stdout?.on('data', () => {}); child.stderr?.on('data', () => {});
   return child;
 }

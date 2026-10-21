@@ -1,0 +1,27 @@
+START 2026-10-21T19:51:15.210+06:00
+COMMAND npm run demo:trips
+CWD work\submission-d584ff116f8b
+
+> samokettik@0.1.0 demo:trips
+> node scripts/demo-trips.mjs
+
+{
+  "vehicleCode": "SK-003",
+  "states": [
+    "riding",
+    "paused",
+    "riding",
+    "finished"
+  ],
+  "activeMilliseconds": "178",
+  "pausedMilliseconds": "158",
+  "totalMinor": "1000",
+  "currency": "KGS",
+  "invoiceStatus": "paid",
+  "provider": "demo",
+  "repeatedFinishMatches": true,
+  "repeatedPaymentMatches": true
+}
+
+END 2026-10-21T19:51:15.973+06:00
+EXIT 0

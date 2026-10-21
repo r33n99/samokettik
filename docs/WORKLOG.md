@@ -1,6 +1,6 @@
 # СамоКеттик — журнал фактически выполненной работы
 
-Текущий этап: серверное бронирование по U004. Исторические записи E0/E1 ниже относятся к соответствующим моментам, а не к текущему состоянию.
+Текущий этап: U021 — подготовка к сдаче. Актуальное состояние и результаты: [SUBMISSION.md](SUBMISSION.md); предыдущие записи сохраняют факты и ограничения соответствующего момента, а не описывают текущую готовность. Существующие временные отметки и неудачные прогоны не переписываются.
 
 Часовой пояс журнала: Asia/Bishkek, ISO 8601 с `+06:00`. Источник времени: clock tool и `[DateTimeOffset]::UtcNow.ToOffset([TimeSpan]::FromHours(6))` в момент выполнения. Даты и длительности прошлых действий не реконструируются. Новые записи добавляются по факту, без выдуманных запусков и backdating.
 
@@ -591,3 +591,93 @@
 - 2026-10-21T19:37:06.1346651+06:00 — U020: пользователь разрешил commit/push завершённого U019. Выполнены git status, branch/remote, git var GIT_AUTHOR_IDENT и GIT_COMMITTER_IDENT, проверка env overrides, git fetch origin, rev-list HEAD...origin/main и gh auth status. Author/committer Reen <rinni499@gmail.com>, overrides отсутствуют; GitHub r33n99; main синхронизирована с origin/main (0/0). Состав изменений соответствует U019; функциональный код после проверенного этапа не менялся. Далее выполняются проверка содержимого, отдельный commit и обычный push origin main; на момент записи публикация ещё не выполнена.
 
 - 2026-10-21T19:37:07.227+06:00 — U019 pre-delivery validation: 499 publishable files,228 local Markdown links, UTF8/NUL/no-type-bypass и4actual-secret scans passed; 15raw SHA256 matches,5 applied migrations byte-equal HEAD; git diff --check0,staged0. Результаты — docs/evidence/history-map/validation.json. Commit/push не выполнялись.
+
+- 2026-10-21T19:40:10.2734897+06:00 — U021 начат: Git status исходно чистый, HEAD b7a6c75; проверены README/Compose/setup/package manifests и документация. Обнаружены устаревшие описания100-record history и pagination в открытых задачах. Планируется отдельный чистый checkout snapshot без .env/node_modules/dist, собственный Compose project/volume/ports, воспроизводимый двухклиентский сценарий, provenance/limitations и secret/Git validation. Прочитан verification skill; результаты будущих запусков пока не заявляются. Среда: Node22.14.0/npm10.9.2/DockerEngine28.3.2/Compose2.39.1/Git2.49.0.windows.1.
+
+- 2026-10-21T19:41:35.937+06:00 — U021 команда: `git rev-parse HEAD`; cwd `.`; начало 2026-10-21T19:41:35.904+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-41-35.904+06-00-git.log`.
+
+- 2026-10-21T19:41:36.501+06:00 — U021 команда: `git archive --format=tar --output=C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\work\submission-d584ff116f8b.tar HEAD`; cwd `.`; начало 2026-10-21T19:41:35.947+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-41-35.947+06-00-git.log`.
+
+- 2026-10-21T19:41:38.711+06:00 — U021 команда: `tar -xf C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\work\submission-d584ff116f8b.tar -C C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\work\submission-d584ff116f8b`; cwd `.`; начало 2026-10-21T19:41:36.513+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-41-36.513+06-00-tar.log`.
+
+- 2026-10-21T19:41:52.934+06:00 — U021 команда: `npm ci`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:41:38.725+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-41-38.725+06-00-npm.log`.
+
+- 2026-10-21T19:41:53.255+06:00 — U021 команда: `npm run setup`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:41:52.950+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-41-52.950+06-00-npm.log`.
+
+- 2026-10-21T19:41:53.693+06:00 — U021 команда: `npm run setup`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:41:53.277+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-41-53.277+06-00-npm.log`.
+
+- 2026-10-21T19:41:53.865+06:00 — U021 команда: `docker volume ls --filter label=com.docker.compose.project=samokettik-submission-d584ff116f8b --format {{.Name}}`; cwd `.`; начало 2026-10-21T19:41:53.713+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-41-53.713+06-00-docker.log`.
+
+- 2026-10-21T19:41:54.250+06:00 — U021 команда: `docker compose config --quiet`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:41:53.872+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-41-53.872+06-00-docker.log`.
+
+- 2026-10-21T19:42:24.489+06:00 — U021 команда: `npm run compose:up`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:41:54.258+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-41-54.258+06-00-npm.log`.
+
+- 2026-10-21T19:42:24.976+06:00 — U021 команда: `docker compose ps -a`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:42:24.502+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-42-24.502+06-00-docker.log`.
+
+- 2026-10-21T19:42:29.202+06:00 — U021 команда: `npm run db:migrate`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:42:24.985+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-42-24.985+06-00-npm.log`.
+
+- 2026-10-21T19:42:30.348+06:00 — U021 команда: `npm run db:seed`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:42:29.212+06:00; exit 1; лог `docs/evidence/submission/logs/2026-10-21T19-42-29.212+06-00-npm.log`.
+
+- 2026-10-21T19:43:14.966+06:00 — U021 clean snapshot b7a6c75: npm ci/setup×2, новый Compose project/volume/ports5190/3190/54339, fresh migrations/seed и healthy прошли. Host db:migrate повтор прошёл; db:seed по прежнему README упал ERR_MODULE_NOT_FOUND @samokettik/contracts/dist/index.js. README исправлен: build contracts перед host DB/dev. Неудачная команда сохранена в submission raw logs, основной Compose не менялся. Дальнейшая проверка следует исправленному порядку.
+
+- 2026-10-21T19:43:15.861+06:00 — U021 команда: `npm run build -w @samokettik/contracts`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:43:15.056+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-43-15.056+06-00-npm.log`.
+
+- 2026-10-21T19:43:18.935+06:00 — U021 команда: `npm run db:migrate`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:43:15.869+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-43-15.869+06-00-npm.log`.
+
+- 2026-10-21T19:43:21.504+06:00 — U021 команда: `npm run db:seed`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:43:18.948+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-43-18.948+06-00-npm.log`.
+
+- 2026-10-21T19:43:24.208+06:00 — U021 команда: `npm run db:seed`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:43:21.578+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-43-21.578+06-00-npm.log`.
+
+- 2026-10-21T19:43:27.337+06:00 — U021 команда: `npm run db:check`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:43:24.221+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-43-24.221+06-00-npm.log`.
+
+- 2026-10-21T19:43:29.484+06:00 — U021 команда: `npm exec -- playwright install chromium`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:43:27.363+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-43-27.363+06-00-npm.log`.
+
+- 2026-10-21T19:43:31.493+06:00 — U021 команда: `npm audit`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:43:29.520+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-43-29.520+06-00-npm.log`.
+
+- 2026-10-21T19:43:53.030+06:00 — U021 команда: `npm run verify`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:43:29.503+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-43-29.503+06-00-npm.log`.
+
+- 2026-10-21T19:44:40.477+06:00 — U021 команда: `npm run test:db`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:43:29.510+06:00; exit 1; лог `docs/evidence/submission/logs/2026-10-21T19-43-29.510+06-00-npm.log`.
+
+- 2026-10-21T19:47:55.455+06:00 — U021 команда: `npm run test:e2e`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:43:29.515+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-43-29.515+06-00-npm.log`.
+
+- 2026-10-21T19:49:28.417+06:00 — Команда: `gitleaks.exe version`; начало 2026-10-21T19:49:27.809+06:00; exit 0. Лог: `work/checks/2026-10-21T19-49-27.809+06-00-gitleaks.exe.log`.
+
+- 2026-10-21T19:49:29.843+06:00 — Команда: `gitleaks.exe git --log-opts=--all --redact=100 --no-banner --no-color --report-format=json --report-path=docs/evidence/submission/gitleaks-history.json .`; начало 2026-10-21T19:49:28.491+06:00; exit 0. Лог: `work/checks/2026-10-21T19-49-28.491+06-00-gitleaks.exe.log`.
+
+- 2026-10-21T19:50:29.922+06:00 — U021 clean verify44unit/typecheck/build и Playwright34/34 passed, npm audit0; PostgreSQL integration48passed/5failed. Причина WS failures: fixture Origin127.0.0.1:5173 не входил в allowlist отдельного host5190. Fixture теперь явно задаёт allowlist и передаёт его child API/worker; production origin checks не менялись. В чистую копию переносится только этот test patch, SHA256/base HEAD фиксируются в source-overlay.json; повторяются typecheck/PG и затем CLI demos.
+
+- 2026-10-21T19:50:34.812+06:00 — U021 команда: `npm run typecheck`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:50:30.050+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-50-30.050+06-00-npm.log`.
+
+- 2026-10-21T19:51:14.739+06:00 — U021 команда: `npm run test:db`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:50:34.823+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-50-34.823+06-00-npm.log`.
+
+- 2026-10-21T19:51:15.200+06:00 — U021 команда: `npm run demo:reservations`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:51:14.756+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-51-14.756+06-00-npm.log`.
+
+- 2026-10-21T19:51:15.973+06:00 — U021 команда: `npm run demo:trips`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:51:15.210+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-51-15.210+06-00-npm.log`.
+
+- 2026-10-21T19:51:24.406+06:00 — U021 команда: `npm run demo:realtime`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:51:15.982+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-51-15.982+06-00-npm.log`.
+
+- 2026-10-21T19:51:24.808+06:00 — U021 команда: `npm run mail:show`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:51:24.419+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-51-24.419+06-00-npm.log`.
+
+- 2026-10-21T19:53:22.831+06:00 — U021 npm run dev в отдельном clean checkout/ports3190/5190: результат browser/API/DB/WS smoke записан в dev-smoke.json при успехе. Dev long-running process tree завершён taskkill только по собственному child PID; PostgreSQL/volume сохранены до cleanup. Raw log: docs/evidence/submission/logs/2026-10-21T19-53-15.838+06-00-dev.log.
+
+- 2026-10-21T19:53:54.015+06:00 — U021 команда: `docker compose --project-name samokettik-submission-d584ff116f8b down --volumes --remove-orphans`; cwd `work\submission-d584ff116f8b`; начало 2026-10-21T19:53:52.362+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-53-52.362+06-00-docker.log`.
+
+- 2026-10-21T19:53:54.174+06:00 — U021 команда: `docker volume ls --filter label=com.docker.compose.project=samokettik-submission-d584ff116f8b --format {{.Name}}`; cwd `.`; начало 2026-10-21T19:53:54.024+06:00; exit 0; лог `docs/evidence/submission/logs/2026-10-21T19-53-54.024+06-00-docker.log`.
+
+- 2026-10-21T19:53:54.693+06:00 — Команда: `docker compose ps -a`; начало 2026-10-21T19:53:54.240+06:00; exit 0. Лог: `work/checks/2026-10-21T19-53-54.240+06-00-docker.log`.
+
+- 2026-10-21T19:56:42.919+06:00 — Команда: `node work/submission-secret-check.mjs`; начало 2026-10-21T19:55:44.716+06:00; exit 0. Лог: `work/checks/2026-10-21T19-55-44.716+06-00-node.log`.
+
+- 2026-10-21T19:57:09.585+06:00 — Команда: `gitleaks.exe dir work/submission-publishable-scan --redact=100 --no-banner --no-color --report-format=json --report-path=docs/evidence/submission/gitleaks-working-tree.json`; начало 2026-10-21T19:57:08.930+06:00; exit 0. Лог: `work/checks/2026-10-21T19-57-08.930+06-00-gitleaks.exe.log`.
+
+- 2026-10-21T19:59:15.766+06:00 — U021 итог подготовлен: clean Compose+host dev passed после contracts-build поправки README;44unit/typecheck/build,34Playwright,повтор53PG, audit0. ПервыйPG48/5 из-за fixture Origin и первый host seedERR_MODULE_NOT_FOUND сохранены. Gitleaks6commits+publishable snapshot0findings, exact current secrets2env в633blobs/541files0matches; .env в истории нет. Изменён только integration WS fixture и docs, dependencies/runtime/migrations не менялись. Проверочный Compose/volume удалены, основной healthy. Документы: SUBMISSION.md/MATRIX/DEMO/DEPENDENCIES/current architecture; historical proposal/prompts/worklog сохранены. Коммит только предложен, staging/push не выполнялись.
+
+- 2026-10-21T20:01:03.267+06:00 — U021 final validation: 551publishable files,319local Markdown links, UTF8/NUL/type-bypass и2env exact-secret checks passed; 36raw log SHA256 matches,6применённых SQL побайтно HEAD; production/dependencies unchanged, test patch SHA совпал,46matrix rows,README script references valid,git diff --check0,staged0. Git status содержит только ожидаемые docs/evidence/README и integration fixture. Подробности — docs/evidence/submission/validation.json. Commit/push не выполнялись.
+
+- 2026-10-21T20:01:42.905+06:00 — Команда: `gitleaks.exe dir work/submission-publishable-scan --redact=100 --no-banner --no-color --report-format=json --report-path=docs/evidence/submission/gitleaks-working-tree.json`; начало 2026-10-21T20:01:42.230+06:00; exit 0. Лог: `work/checks/2026-10-21T20-01-42.230+06-00-gitleaks.exe.log`.
+
+- 2026-10-21T20:01:45.379+06:00 — U021 final validation: 553publishable files,320local Markdown links, UTF8/NUL/type-bypass и2env exact-secret checks passed; 37raw log SHA256 matches,6применённых SQL побайтно HEAD; production/dependencies unchanged, test patch SHA совпал,46matrix rows,README script references valid,git diff --check0,staged0. Git status содержит только ожидаемые docs/evidence/README и integration fixture. Подробности — docs/evidence/submission/validation.json. Commit/push не выполнялись.
+
+- 2026-10-21T20:11:53.5860918+06:00 — U022: пользователь разрешил commit/push подготовки к сдаче. Проверены git status, branch/remote, GIT_AUTHOR_IDENT/GIT_COMMITTER_IDENT и env overrides, выполнены git fetch origin и rev-list HEAD...origin/main (0/0), gh auth status. Author/committer Reen <rinni499@gmail.com>, overrides отсутствуют, GitHub r33n99. Изменения соответствуют завершённому U021; далее pre-publication validation, отдельный commit и push origin main. На момент записи commit/push ещё не выполнены.
+
+- 2026-10-21T20:11:55.351+06:00 — U021 final validation: 554publishable files,321local Markdown links, UTF8/NUL/type-bypass и2env exact-secret checks passed; 37raw log SHA256 matches,6применённых SQL побайтно HEAD; production/dependencies unchanged, test patch SHA совпал,46matrix rows,README script references valid,git diff --check0,staged0. Git status содержит только ожидаемые docs/evidence/README и integration fixture. Подробности — docs/evidence/submission/validation.json. Commit/push не выполнялись.

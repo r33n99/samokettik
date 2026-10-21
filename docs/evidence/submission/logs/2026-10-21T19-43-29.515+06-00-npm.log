@@ -1,0 +1,62 @@
+START 2026-10-21T19:43:29.515+06:00
+COMMAND npm run test:e2e
+CWD work\submission-d584ff116f8b
+
+> samokettik@0.1.0 test:e2e
+> npm run build -w @samokettik/contracts && playwright test
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+Isolated E2E: fresh PostgreSQL database, real API/worker/Vite are ready; main demo data untouched.
+
+Running 34 tests using 1 worker
+
+(node:32232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\e2e\foundation.spec.ts:2:1 › map reads real API fleet and geozone, supports keyboard list and RU/KY (5.4s)
+  ok  2 [desktop] › tests\e2e\foundation.spec.ts:56:1 › tile failure leaves authoritative markers, geozone and accessible selection usable (1.2s)
+  ok  3 [desktop] › tests\e2e\foundation.spec.ts:82:1 › startup API error is explained and retry loads actual data (2.0s)
+  ok  4 [desktop] › tests\e2e\realtime.spec.ts:3:1 › WebSocket reconnection restores authoritative fleet through API (2.2s)
+  ok  5 [desktop] › tests\e2e\rental.spec.ts:166:1 › two browser users compete for one scooter; one reservation wins and cancel releases it (5.1s)
+  ok  6 [desktop] › tests\e2e\rental.spec.ts:237:3 › can inspect another scooter while reserved without refocusing the owned scooter (3.7s)
+  ok  7 [desktop] › tests\e2e\rental.spec.ts:237:3 › can inspect another scooter while riding without refocusing the owned scooter (3.3s)
+  ok  8 [desktop] › tests\e2e\rental.spec.ts:304:1 › pause and resume keep panel geometry stable during slow real requests and state restoration (9.5s)
+  ok  9 [desktop] › tests\e2e\rental.spec.ts:428:1 › ride pause resume finish history and demo payment use the backend invoice (4.3s)
+  ok 10 [desktop] › tests\e2e\rental.spec.ts:507:1 › expired browser access closes private realtime and restores the same reservation after a fresh login (1.0m)
+  ok 11 [desktop] › tests\e2e\rental.spec.ts:538:1 › an offline browser restores its running ride and the worker continues movement and charge (5.4s)
+  ok 12 [desktop] › tests\e2e\rental.spec.ts:580:1 › a response lost after commit is replayed with the same key even after page reload (3.0s)
+  ok 13 [desktop] › tests\e2e\rental.spec.ts:632:1 › server rejects finish outside the polygon and allows it after trusted coordinates return (4.3s)
+  ok 14 [desktop] › tests\e2e\rental.spec.ts:675:1 › persistent warning and automatic expiration release the reservation in the browser (4.9s)
+  ok 15 [desktop] › tests\e2e\rental.spec.ts:705:1 › depletion updates the browser with one invoice, notification and local mail (3.1s)
+  ok 16 [desktop] › tests\e2e\rental.spec.ts:765:1 › marker clicks preserve the viewport and the explicit locate button restores the owned scooter (3.0s)
+  ok 17 [desktop] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice (4.3s)
+(node:12904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 18 [mobile] › tests\e2e\foundation.spec.ts:2:1 › map reads real API fleet and geozone, supports keyboard list and RU/KY (2.9s)
+  ok 19 [mobile] › tests\e2e\foundation.spec.ts:56:1 › tile failure leaves authoritative markers, geozone and accessible selection usable (1.1s)
+  ok 20 [mobile] › tests\e2e\foundation.spec.ts:82:1 › startup API error is explained and retry loads actual data (812ms)
+  ok 21 [mobile] › tests\e2e\realtime.spec.ts:3:1 › WebSocket reconnection restores authoritative fleet through API (1.8s)
+  ok 22 [mobile] › tests\e2e\rental.spec.ts:166:1 › two browser users compete for one scooter; one reservation wins and cancel releases it (4.1s)
+  ok 23 [mobile] › tests\e2e\rental.spec.ts:237:3 › can inspect another scooter while reserved without refocusing the owned scooter (2.3s)
+  ok 24 [mobile] › tests\e2e\rental.spec.ts:237:3 › can inspect another scooter while riding without refocusing the owned scooter (3.1s)
+  ok 25 [mobile] › tests\e2e\rental.spec.ts:304:1 › pause and resume keep panel geometry stable during slow real requests and state restoration (8.2s)
+  ok 26 [mobile] › tests\e2e\rental.spec.ts:428:1 › ride pause resume finish history and demo payment use the backend invoice (3.7s)
+  ok 27 [mobile] › tests\e2e\rental.spec.ts:507:1 › expired browser access closes private realtime and restores the same reservation after a fresh login (1.0m)
+  ok 28 [mobile] › tests\e2e\rental.spec.ts:538:1 › an offline browser restores its running ride and the worker continues movement and charge (5.4s)
+  ok 29 [mobile] › tests\e2e\rental.spec.ts:580:1 › a response lost after commit is replayed with the same key even after page reload (2.1s)
+  ok 30 [mobile] › tests\e2e\rental.spec.ts:632:1 › server rejects finish outside the polygon and allows it after trusted coordinates return (3.1s)
+  ok 31 [mobile] › tests\e2e\rental.spec.ts:675:1 › persistent warning and automatic expiration release the reservation in the browser (5.1s)
+  ok 32 [mobile] › tests\e2e\rental.spec.ts:705:1 › depletion updates the browser with one invoice, notification and local mail (2.2s)
+  ok 33 [mobile] › tests\e2e\rental.spec.ts:765:1 › marker clicks preserve the viewport and the explicit locate button restores the owned scooter (2.8s)
+  ok 34 [mobile] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice (6.8s)
+
+  34 passed (4.3m)
+
+END 2026-10-21T19:47:55.455+06:00
+EXIT 0

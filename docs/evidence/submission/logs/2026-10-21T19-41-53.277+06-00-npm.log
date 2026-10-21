@@ -1,0 +1,11 @@
+START 2026-10-21T19:41:53.277+06:00
+COMMAND npm run setup
+CWD work\submission-d584ff116f8b
+
+> samokettik@0.1.0 setup
+> node scripts/setup-env.mjs
+
+Existing .env values preserved; added 0 missing settings. Local demo tokens are never printed.
+
+END 2026-10-21T19:41:53.693+06:00
+EXIT 0

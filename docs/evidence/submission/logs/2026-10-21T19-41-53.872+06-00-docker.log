@@ -1,0 +1,6 @@
+START 2026-10-21T19:41:53.872+06:00
+COMMAND docker compose config --quiet
+CWD work\submission-d584ff116f8b
+
+END 2026-10-21T19:41:54.250+06:00
+EXIT 0

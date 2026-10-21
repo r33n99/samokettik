@@ -1,0 +1,8 @@
+START 2026-10-21T19:49:28.491+06:00
+COMMAND gitleaks.exe git --log-opts=--all --redact=100 --no-banner --no-color --report-format=json --report-path=docs/evidence/submission/gitleaks-history.json .
+7:49PM INF 6 commits scanned.
+7:49PM INF scanned ~2210972 bytes (2.21 MB) in 924ms
+7:49PM INF no leaks found
+
+END 2026-10-21T19:49:29.843+06:00
+EXIT 0

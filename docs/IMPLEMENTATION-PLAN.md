@@ -55,3 +55,7 @@ E2E: два независимых Playwright BrowserContext с разными �
 ## Дополнение U019
 
 Пагинация поездок/счетов, явная кнопка active locate и независимый выбор маркеров завершены и проверены. Drizzle0005/readiness6,44unit/53PostgreSQL/34Playwright; подробности и ограничения — [HISTORY-MAP-REPORT.md](HISTORY-MAP-REPORT.md). Коммит только предложен, следующий этап требует отдельной команды.
+
+## Подготовка к сдаче U021
+
+README/current architecture/packages/provenance/prompts/matrix упорядочены; clean git-archive install/Compose/new volume/host dev и сценарии проверены. Обнаружены пропуск contracts build в README и зависимый от host Origin integration fixture; исправления и raw failed/passed runs сохранены. Итог — [SUBMISSION.md](SUBMISSION.md), текущая [матрица](SUBMISSION-MATRIX.md), [двухклиентский сценарий](DEMO.md). Это не закрывает E3 password/Google и KY mail; commit/push требуют отдельной команды.

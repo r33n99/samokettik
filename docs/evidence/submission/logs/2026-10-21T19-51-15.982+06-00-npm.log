@@ -1,0 +1,31 @@
+START 2026-10-21T19:51:15.982+06:00
+COMMAND npm run demo:realtime
+CWD work\submission-d584ff116f8b
+
+> samokettik@0.1.0 demo:realtime
+> node scripts/demo-realtime.mjs
+
+{
+  "vehicleCode": "SK-005",
+  "initialBatteryBp": 9308,
+  "changedBatteryBp": 9303,
+  "initialPosition": [
+    74.7105042,
+    42.8683161
+  ],
+  "changedPosition": [
+    74.7106264,
+    42.8683161
+  ],
+  "parallelClients": 3,
+  "continuedWhileOwnerDisconnected": true,
+  "restoredViaApiBeforeWs": true,
+  "totalMinor": "1000",
+  "localInvoiceMailCount": 1,
+  "finishNotificationCount": 1,
+  "privacyPassed": true,
+  "configuredSimulationTickMs": 3000
+}
+
+END 2026-10-21T19:51:24.406+06:00
+EXIT 0

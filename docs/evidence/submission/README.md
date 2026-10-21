@@ -1,0 +1,3 @@
+# U021 — воспроизводимость и доказательства
+
+Записано 2026-10-21T19:59:15.749+06:00. [Команды/start/end/exit/SHA256](COMMANDS.json) включают failed host seed и первый failed PostgreSQL run. Dev — long-running bounded smoke: exitCode=null, проверка200/schema6 и browser results — [dev-smoke.json](dev-smoke.json). [Source overlay](source-overlay.json) фиксирует единственный test patch после чистого git archive; production исходники — HEADb7a6c75. [Gitleaks history](gitleaks-history.json), [publishable files](gitleaks-working-tree.json), [точное сравнение известных secrets](secret-exact-match.json). Traces с credentials не публикуются. Проверочный Compose project/volume удалены; основной самокеттик не очищался.

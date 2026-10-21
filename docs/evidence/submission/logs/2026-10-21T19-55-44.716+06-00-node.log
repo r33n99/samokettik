@@ -1,0 +1,6 @@
+START 2026-10-21T19:55:44.716+06:00
+COMMAND node work/submission-secret-check.mjs
+{"recordedAt":"2026-10-21T19:56:42.829+06:00","sourceHead":"b7a6c7541650c968490dc6c2874633da67308227","commits":6,"reachableBlobs":633,"publishableFiles":541,"localEnvironmentsChecked":2,"actualSecretMatches":0,"representations":["literal","URI encoded","base64"],"trackedEnvHistory":"absent","scope":"Known current local demo secrets; does not prove absence of unknown/rotated secrets"}
+
+END 2026-10-21T19:56:42.919+06:00
+EXIT 0

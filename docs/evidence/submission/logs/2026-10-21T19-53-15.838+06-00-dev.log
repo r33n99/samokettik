@@ -1,0 +1,94 @@
+START 2026-10-21T19:53:15.838+06:00
+COMMAND npm run dev (bounded smoke; terminated own process tree after verification)
+
+> samokettik@0.1.0 dev
+> npm run build -w @samokettik/contracts && node scripts/dev.mjs
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+
+> @samokettik/web@0.1.0 dev
+> vite
+
+
+> @samokettik/server@0.1.0 dev:worker
+> tsx watch src/entrypoints/worker.ts
+
+
+> @samokettik/server@0.1.0 dev
+> tsx watch src/entrypoints/api.ts
+
+
+  VITE v8.3.4  ready in 346 ms
+
+  ➜  Local:   http://127.0.0.1:5190/
+19:53:17 [vite] http proxy error: /health/ready
+Error: connect ECONNREFUSED 127.0.0.1:3190
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)
+19:53:18 [vite] http proxy error: /health/ready
+Error: connect ECONNREFUSED 127.0.0.1:3190
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)
+19:53:18 [vite] http proxy error: /health/ready
+Error: connect ECONNREFUSED 127.0.0.1:3190
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)
+19:53:18 [vite] http proxy error: /health/ready
+Error: connect ECONNREFUSED 127.0.0.1:3190
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)
+19:53:18 [vite] http proxy error: /health/ready
+Error: connect ECONNREFUSED 127.0.0.1:3190
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)
+19:53:18 [vite] http proxy error: /health/ready
+Error: connect ECONNREFUSED 127.0.0.1:3190
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)
+19:53:19 [vite] http proxy error: /health/ready
+Error: connect ECONNREFUSED 127.0.0.1:3190
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)
+19:53:19 [vite] http proxy error: /health/ready
+Error: connect ECONNREFUSED 127.0.0.1:3190
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)
+{"level":30,"time":1792590799479,"pid":11852,"hostname":"r33n","configHash":"ea9e2d7fd240c1ad17e32e75578bb8b3d45f6bee1be8f9a5e613b4448f99abaa","msg":"Business configuration loaded"}
+19:53:19 [vite] http proxy error: /health/ready
+Error: connect ECONNREFUSED 127.0.0.1:3190
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1634:16)
+{"level":30,"time":1792590799619,"pid":11852,"hostname":"r33n","msg":"Server listening at http://127.0.0.1:3190"}
+{"level":30,"time":1792590799771,"pid":11852,"hostname":"r33n","reqId":"req-1","req":{"method":"GET","url":"/health/ready","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":53056},"msg":"incoming request"}
+{"level":30,"time":1792590799828,"pid":11852,"hostname":"r33n","reqId":"req-1","res":{"statusCode":200},"responseTime":56.35660000000007,"msg":"request completed"}
+{"level":30,"time":1792590800715,"pid":11852,"hostname":"r33n","reqId":"req-2","req":{"method":"GET","url":"/api/v1/client-config","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":54051},"msg":"incoming request"}
+{"level":30,"time":1792590800724,"pid":11852,"hostname":"r33n","reqId":"req-2","res":{"statusCode":200},"responseTime":8.399000000000342,"msg":"request completed"}
+{"level":30,"time":1792590800725,"pid":11852,"hostname":"r33n","reqId":"req-3","req":{"method":"GET","url":"/api/v1/service-zone","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":54052},"msg":"incoming request"}
+{"level":30,"time":1792590800744,"pid":11852,"hostname":"r33n","reqId":"req-3","res":{"statusCode":200},"responseTime":19.132400000000416,"msg":"request completed"}
+{"level":30,"time":1792590800745,"pid":11852,"hostname":"r33n","reqId":"req-4","req":{"method":"GET","url":"/api/v1/vehicles","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":54053},"msg":"incoming request"}
+{"level":30,"time":1792590800748,"pid":11852,"hostname":"r33n","reqId":"req-5","req":{"method":"GET","url":"/api/v1/client-config","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":54054},"msg":"incoming request"}
+{"level":30,"time":1792590800748,"pid":11852,"hostname":"r33n","reqId":"req-5","res":{"statusCode":200},"responseTime":0.45679999999993015,"msg":"request completed"}
+{"level":30,"time":1792590800749,"pid":11852,"hostname":"r33n","reqId":"req-6","req":{"method":"GET","url":"/api/v1/service-zone","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":64531},"msg":"incoming request"}
+{"level":30,"time":1792590800751,"pid":11852,"hostname":"r33n","reqId":"req-6","res":{"statusCode":200},"responseTime":1.4839999999999236,"msg":"request completed"}
+{"level":30,"time":1792590800751,"pid":11852,"hostname":"r33n","reqId":"req-7","req":{"method":"GET","url":"/api/v1/vehicles","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":64532},"msg":"incoming request"}
+{"level":30,"time":1792590800782,"pid":11852,"hostname":"r33n","reqId":"req-7","res":{"statusCode":200},"responseTime":31.403899999999794,"msg":"request completed"}
+{"level":30,"time":1792590801079,"pid":11852,"hostname":"r33n","reqId":"req-8","req":{"method":"POST","url":"/api/v1/demo/session","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":57721},"msg":"incoming request"}
+{"level":30,"time":1792590801085,"pid":11852,"hostname":"r33n","reqId":"req-8","res":{"statusCode":200},"responseTime":6.086499999999887,"msg":"request completed"}
+{"level":30,"time":1792590801100,"pid":11852,"hostname":"r33n","reqId":"req-9","req":{"method":"GET","url":"/api/v1/sync","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":57722},"msg":"incoming request"}
+{"level":30,"time":1792590801170,"pid":11852,"hostname":"r33n","reqId":"req-9","res":{"statusCode":200},"responseTime":70.33359999999993,"msg":"request completed"}
+{"level":30,"time":1792590801180,"pid":11852,"hostname":"r33n","reqId":"req-a","req":{"method":"POST","url":"/api/v1/realtime/tickets","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":52849},"msg":"incoming request"}
+{"level":30,"time":1792590801191,"pid":11852,"hostname":"r33n","reqId":"req-a","res":{"statusCode":200},"responseTime":9.881799999999657,"msg":"request completed"}
+{"level":30,"time":1792590801914,"pid":11852,"hostname":"r33n","reqId":"req-b","req":{"method":"GET","url":"/api/v1/client-config","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":64581},"msg":"incoming request"}
+{"level":30,"time":1792590801915,"pid":11852,"hostname":"r33n","reqId":"req-b","res":{"statusCode":200},"responseTime":0.2937000000001717,"msg":"request completed"}
+{"level":30,"time":1792590801915,"pid":11852,"hostname":"r33n","reqId":"req-c","req":{"method":"GET","url":"/api/v1/service-zone","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":64582},"msg":"incoming request"}
+{"level":30,"time":1792590801916,"pid":11852,"hostname":"r33n","reqId":"req-c","res":{"statusCode":200},"responseTime":0.9395999999997002,"msg":"request completed"}
+{"level":30,"time":1792590801917,"pid":11852,"hostname":"r33n","reqId":"req-d","req":{"method":"GET","url":"/api/v1/client-config","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":64584},"msg":"incoming request"}
+{"level":30,"time":1792590801917,"pid":11852,"hostname":"r33n","reqId":"req-d","res":{"statusCode":200},"responseTime":0.24699999999938882,"msg":"request completed"}
+{"level":30,"time":1792590801917,"pid":11852,"hostname":"r33n","reqId":"req-e","req":{"method":"GET","url":"/api/v1/service-zone","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":64585},"msg":"incoming request"}
+{"level":30,"time":1792590801919,"pid":11852,"hostname":"r33n","reqId":"req-e","res":{"statusCode":200},"responseTime":1.193699999999808,"msg":"request completed"}
+{"level":30,"time":1792590801919,"pid":11852,"hostname":"r33n","reqId":"req-f","req":{"method":"GET","url":"/api/v1/vehicles","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":64586},"msg":"incoming request"}
+{"level":30,"time":1792590801927,"pid":11852,"hostname":"r33n","reqId":"req-f","res":{"statusCode":200},"responseTime":8.031299999999646,"msg":"request completed"}
+{"level":30,"time":1792590802111,"pid":11852,"hostname":"r33n","reqId":"req-g","req":{"method":"POST","url":"/api/v1/demo/session","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":57305},"msg":"incoming request"}
+{"level":30,"time":1792590802112,"pid":11852,"hostname":"r33n","reqId":"req-g","res":{"statusCode":200},"responseTime":0.7676000000001295,"msg":"request completed"}
+{"level":30,"time":1792590802128,"pid":11852,"hostname":"r33n","reqId":"req-h","req":{"method":"GET","url":"/api/v1/sync","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":50401},"msg":"incoming request"}
+{"level":30,"time":1792590802144,"pid":11852,"hostname":"r33n","reqId":"req-h","res":{"statusCode":200},"responseTime":15.817400000000816,"msg":"request completed"}
+{"level":30,"time":1792590802148,"pid":11852,"hostname":"r33n","reqId":"req-i","req":{"method":"POST","url":"/api/v1/realtime/tickets","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":50262},"msg":"incoming request"}
+{"level":30,"time":1792590802153,"pid":11852,"hostname":"r33n","reqId":"req-i","res":{"statusCode":200},"responseTime":4.751000000000204,"msg":"request completed"}
+{"level":30,"time":1792590802482,"pid":11852,"hostname":"r33n","reqId":"req-j","req":{"method":"GET","url":"/health/ready","host":"127.0.0.1:5190","remoteAddress":"127.0.0.1","remotePort":54105},"msg":"incoming request"}
+{"level":30,"time":1792590802493,"pid":11852,"hostname":"r33n","reqId":"req-j","res":{"statusCode":200},"responseTime":11.253000000000611,"msg":"request completed"}
+
+END 2026-10-21T19:53:22.831+06:00

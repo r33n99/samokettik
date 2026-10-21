@@ -1,0 +1,6 @@
+START 2026-10-21T19:53:54.024+06:00
+COMMAND docker volume ls --filter label=com.docker.compose.project=samokettik-submission-d584ff116f8b --format {{.Name}}
+CWD .
+
+END 2026-10-21T19:53:54.174+06:00
+EXIT 0

@@ -1,0 +1,301 @@
+{
+  "recordedAt": "2026-10-21T20:01:42.988+06:00",
+  "commands": [
+    {
+      "command": "git rev-parse HEAD",
+      "startedAt": "2026-10-21T19:41:35.904+06:00",
+      "finishedAt": "2026-10-21T19:41:35.937+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-41-35.904+06-00-git.log",
+      "sha256": "435430f089d916a87bdfa8f9fb12696ed1fbfe9cf751f5a4929ce7842fd4185e"
+    },
+    {
+      "command": "git archive --format=tar --output=C:\\Users\\Rinni\\Documents\\Codex\\2026-10-19\\senior-fullstack-developer-software-architect-postgresql\\work\\submission-d584ff116f8b.tar HEAD",
+      "startedAt": "2026-10-21T19:41:35.947+06:00",
+      "finishedAt": "2026-10-21T19:41:36.501+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-41-35.947+06-00-git.log",
+      "sha256": "ca2bd73c5e50ac6091b3270dcfb726496a9e7605fb65e3fb82c74d8fb24a139f"
+    },
+    {
+      "command": "tar -xf C:\\Users\\Rinni\\Documents\\Codex\\2026-10-19\\senior-fullstack-developer-software-architect-postgresql\\work\\submission-d584ff116f8b.tar -C C:\\Users\\Rinni\\Documents\\Codex\\2026-10-19\\senior-fullstack-developer-software-architect-postgresql\\work\\submission-d584ff116f8b",
+      "startedAt": "2026-10-21T19:41:36.513+06:00",
+      "finishedAt": "2026-10-21T19:41:38.711+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-41-36.513+06-00-tar.log",
+      "sha256": "7cb66495d192cebd655a1c7924dbf72164ee42d0e77d9ddd00f3d9a02128b67c"
+    },
+    {
+      "command": "npm ci",
+      "startedAt": "2026-10-21T19:41:38.725+06:00",
+      "finishedAt": "2026-10-21T19:41:52.934+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-41-38.725+06-00-npm.log",
+      "sha256": "41835793b895a51e38d310f487b183ccbb0c832e4dd28420383b204fbb093bb8"
+    },
+    {
+      "command": "npm run setup",
+      "startedAt": "2026-10-21T19:41:52.950+06:00",
+      "finishedAt": "2026-10-21T19:41:53.255+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-41-52.950+06-00-npm.log",
+      "sha256": "b4035a71b43e49f619031b5d20b2576f929c6d002020ab1cc56745b513c1c927"
+    },
+    {
+      "command": "npm run setup",
+      "startedAt": "2026-10-21T19:41:53.277+06:00",
+      "finishedAt": "2026-10-21T19:41:53.693+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-41-53.277+06-00-npm.log",
+      "sha256": "a6a09ba6a81ebfbcf273885490e9704d00ef8011f7cd95c6d29b9f78100a7678"
+    },
+    {
+      "command": "docker volume ls --filter label=com.docker.compose.project=samokettik-submission-d584ff116f8b --format {{.Name}}",
+      "startedAt": "2026-10-21T19:41:53.713+06:00",
+      "finishedAt": "2026-10-21T19:41:53.865+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-41-53.713+06-00-docker.log",
+      "sha256": "f99534c609abf388ec7980715947c33e49531553c9032cee83a29538e1b76c20"
+    },
+    {
+      "command": "docker compose config --quiet",
+      "startedAt": "2026-10-21T19:41:53.872+06:00",
+      "finishedAt": "2026-10-21T19:41:54.250+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-41-53.872+06-00-docker.log",
+      "sha256": "c794638b9a95a68512516546110431a11a01c194f02b4a1555e4d9dc4d96ff3c"
+    },
+    {
+      "command": "npm run compose:up",
+      "startedAt": "2026-10-21T19:41:54.258+06:00",
+      "finishedAt": "2026-10-21T19:42:24.489+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-41-54.258+06-00-npm.log",
+      "sha256": "4a6e581df9c108a54e182d9887f5ce04f63c7be96bd967ef3a835e77fbb05172"
+    },
+    {
+      "command": "docker compose ps -a",
+      "startedAt": "2026-10-21T19:42:24.502+06:00",
+      "finishedAt": "2026-10-21T19:42:24.976+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-42-24.502+06-00-docker.log",
+      "sha256": "391a1f354c6e874ae36eec9ee411398014d1193a05bdc570052b98ed98651133"
+    },
+    {
+      "command": "npm run db:migrate",
+      "startedAt": "2026-10-21T19:42:24.985+06:00",
+      "finishedAt": "2026-10-21T19:42:29.202+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-42-24.985+06-00-npm.log",
+      "sha256": "6bb87d30d3ac116fc724a675c2c118575a09e0da9d49b7db5e0ede93922be044"
+    },
+    {
+      "command": "npm run db:seed",
+      "startedAt": "2026-10-21T19:42:29.212+06:00",
+      "finishedAt": "2026-10-21T19:42:30.348+06:00",
+      "exitCode": 1,
+      "file": "logs/2026-10-21T19-42-29.212+06-00-npm.log",
+      "sha256": "70eb8b6db26755d3a812041100e0ea0e9da55a59621fb08c7b7067ae5aea6deb"
+    },
+    {
+      "command": "npm run build -w @samokettik/contracts",
+      "startedAt": "2026-10-21T19:43:15.056+06:00",
+      "finishedAt": "2026-10-21T19:43:15.861+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-43-15.056+06-00-npm.log",
+      "sha256": "d3cc2bce5b9f64e90dcbaec83d52373f2bc34b115b1ce3f136f21b81c1b6bc40"
+    },
+    {
+      "command": "npm run db:migrate",
+      "startedAt": "2026-10-21T19:43:15.869+06:00",
+      "finishedAt": "2026-10-21T19:43:18.935+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-43-15.869+06-00-npm.log",
+      "sha256": "816dcfaa8bd20cf37383e0ba3f72e4606cf3960b3429fc8e09d462eb83c939cb"
+    },
+    {
+      "command": "npm run db:seed",
+      "startedAt": "2026-10-21T19:43:18.948+06:00",
+      "finishedAt": "2026-10-21T19:43:21.504+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-43-18.948+06-00-npm.log",
+      "sha256": "6b98eb225c67d77e8aecca5ce3cd9615fa41d49e576590c633a7b4ec83411676"
+    },
+    {
+      "command": "npm run db:seed",
+      "startedAt": "2026-10-21T19:43:21.578+06:00",
+      "finishedAt": "2026-10-21T19:43:24.208+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-43-21.578+06-00-npm.log",
+      "sha256": "3895db0394386e13153d157ccd2d14914c112fd65dbe4b5eb9a4522f91108dac"
+    },
+    {
+      "command": "npm run db:check",
+      "startedAt": "2026-10-21T19:43:24.221+06:00",
+      "finishedAt": "2026-10-21T19:43:27.337+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-43-24.221+06-00-npm.log",
+      "sha256": "a7e4f08a66eea579a31baac38ace585e610f4bda5fedde31b8707bfba6916afd"
+    },
+    {
+      "command": "npm exec -- playwright install chromium",
+      "startedAt": "2026-10-21T19:43:27.363+06:00",
+      "finishedAt": "2026-10-21T19:43:29.484+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-43-27.363+06-00-npm.log",
+      "sha256": "81d4b9ad0d250c58784573ab13355b79d4b167bdeae07d127fdec80e8a2656b6"
+    },
+    {
+      "command": "npm run verify",
+      "startedAt": "2026-10-21T19:43:29.503+06:00",
+      "finishedAt": "2026-10-21T19:43:53.030+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-43-29.503+06-00-npm.log",
+      "sha256": "97112475c4389d6657df53a798b2ec9dcfdd99d4dcf0c01856a24da587ec72d0"
+    },
+    {
+      "command": "npm run test:db",
+      "startedAt": "2026-10-21T19:43:29.510+06:00",
+      "finishedAt": "2026-10-21T19:44:40.477+06:00",
+      "exitCode": 1,
+      "file": "logs/2026-10-21T19-43-29.510+06-00-npm.log",
+      "sha256": "84cfd92fa7174dfcc8ef708d6f82931eec98ef3e9afdfc84163027cc8a36a388"
+    },
+    {
+      "command": "npm run test:e2e",
+      "startedAt": "2026-10-21T19:43:29.515+06:00",
+      "finishedAt": "2026-10-21T19:47:55.455+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-43-29.515+06-00-npm.log",
+      "sha256": "27c4681eb9959713b73ea28b416c336d6ff6e7c1b4fbf25d55daae40ae5c3365"
+    },
+    {
+      "command": "npm audit",
+      "startedAt": "2026-10-21T19:43:29.520+06:00",
+      "finishedAt": "2026-10-21T19:43:31.493+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-43-29.520+06-00-npm.log",
+      "sha256": "fe75a7e1b75bafd7eeae4a5a3dd027b8958f59ae1ab6047e901a059f6c2f3f46"
+    },
+    {
+      "command": "gitleaks.exe version",
+      "startedAt": "2026-10-21T19:49:27.809+06:00",
+      "finishedAt": "2026-10-21T19:49:28.417+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-49-27.809+06-00-gitleaks.exe.log",
+      "sha256": "bbbb41d3b2f0aad771dd283ba2ee366c44bf183ab949d7bb8757078559ac4117"
+    },
+    {
+      "command": "gitleaks.exe git --log-opts=--all --redact=100 --no-banner --no-color --report-format=json --report-path=docs/evidence/submission/gitleaks-history.json .",
+      "startedAt": "2026-10-21T19:49:28.491+06:00",
+      "finishedAt": "2026-10-21T19:49:29.843+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-49-28.491+06-00-gitleaks.exe.log",
+      "sha256": "b439527b510028fec4177f35a6537598bb13ec25e27980bf3717d001464ad9a2"
+    },
+    {
+      "command": "npm run typecheck",
+      "startedAt": "2026-10-21T19:50:30.050+06:00",
+      "finishedAt": "2026-10-21T19:50:34.812+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-50-30.050+06-00-npm.log",
+      "sha256": "00ed73c9f1571bfa4a7ebffd1ba264abc8851d2eb5014d6151f278177c2012e3"
+    },
+    {
+      "command": "npm run test:db",
+      "startedAt": "2026-10-21T19:50:34.823+06:00",
+      "finishedAt": "2026-10-21T19:51:14.739+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-50-34.823+06-00-npm.log",
+      "sha256": "9720077cbe28afcf3885c4ef55a2c10b68073d27a7388d8eef978a4a3b6ed457"
+    },
+    {
+      "command": "npm run demo:reservations",
+      "startedAt": "2026-10-21T19:51:14.756+06:00",
+      "finishedAt": "2026-10-21T19:51:15.200+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-51-14.756+06-00-npm.log",
+      "sha256": "ea88992556bdb36b4484ea295482b53132da41b823a5dda3e4c3aa26e24534d9"
+    },
+    {
+      "command": "npm run demo:trips",
+      "startedAt": "2026-10-21T19:51:15.210+06:00",
+      "finishedAt": "2026-10-21T19:51:15.973+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-51-15.210+06-00-npm.log",
+      "sha256": "c548a9e474a3f94d8d8d6dce1da6ffcccb1244026b3cf3bd29b795484fce2ddd"
+    },
+    {
+      "command": "npm run demo:realtime",
+      "startedAt": "2026-10-21T19:51:15.982+06:00",
+      "finishedAt": "2026-10-21T19:51:24.406+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-51-15.982+06-00-npm.log",
+      "sha256": "8c52cb2ca6e614eb250523dcbb55d8d7fc71459c0a370c6bca2077f95afe09a9"
+    },
+    {
+      "command": "npm run mail:show",
+      "startedAt": "2026-10-21T19:51:24.419+06:00",
+      "finishedAt": "2026-10-21T19:51:24.808+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-51-24.419+06-00-npm.log",
+      "sha256": "02ee5ae04a2e4609b7d183893aa07c9296fe360035c5e633fa3b0b2c0af3047a"
+    },
+    {
+      "command": "npm run dev (bounded smoke; terminated own process tree after verification)",
+      "startedAt": "2026-10-21T19:53:15.838+06:00",
+      "finishedAt": "2026-10-21T19:53:22.831+06:00",
+      "exitCode": null,
+      "file": "logs/2026-10-21T19-53-15.838+06-00-dev.log",
+      "sha256": "41eeff5bd4639a04c9503f85759e053dcc7263100a4e92cc12770b637b07db66"
+    },
+    {
+      "command": "docker compose --project-name samokettik-submission-d584ff116f8b down --volumes --remove-orphans",
+      "startedAt": "2026-10-21T19:53:52.362+06:00",
+      "finishedAt": "2026-10-21T19:53:54.015+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-53-52.362+06-00-docker.log",
+      "sha256": "1e3c35175d53234ca3f4aeea3db91eb921f8de790c5dc55ba99b6e4496653de8"
+    },
+    {
+      "command": "docker volume ls --filter label=com.docker.compose.project=samokettik-submission-d584ff116f8b --format {{.Name}}",
+      "startedAt": "2026-10-21T19:53:54.024+06:00",
+      "finishedAt": "2026-10-21T19:53:54.174+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-53-54.024+06-00-docker.log",
+      "sha256": "d71df5818bae035dd810eade5b469c93ec6e360c67fcfa91abefb95993eff509"
+    },
+    {
+      "command": "docker compose ps -a",
+      "startedAt": "2026-10-21T19:53:54.240+06:00",
+      "finishedAt": "2026-10-21T19:53:54.693+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-53-54.240+06-00-docker.log",
+      "sha256": "183a1cbdeb8eca4a00cbb63e55aa409f40ef47d833c06bf27a781016e78c4b99"
+    },
+    {
+      "command": "node work/submission-secret-check.mjs",
+      "startedAt": "2026-10-21T19:55:44.716+06:00",
+      "finishedAt": "2026-10-21T19:56:42.919+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-55-44.716+06-00-node.log",
+      "sha256": "90145666c237a56348e46b2d91206b5dc38700e7685e04ed37fa1bd060e0e10f"
+    },
+    {
+      "command": "gitleaks.exe dir work/submission-publishable-scan --redact=100 --no-banner --no-color --report-format=json --report-path=docs/evidence/submission/gitleaks-working-tree.json",
+      "startedAt": "2026-10-21T19:57:08.930+06:00",
+      "finishedAt": "2026-10-21T19:57:09.585+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T19-57-08.930+06-00-gitleaks.exe.log",
+      "sha256": "e52d3fc697bf1d456801a9a1ecba4bb1e7cd81aa55dc502e60c052549347971a"
+    },
+    {
+      "command": "gitleaks.exe dir work/submission-publishable-scan --redact=100 --no-banner --no-color --report-format=json --report-path=docs/evidence/submission/gitleaks-working-tree.json",
+      "startedAt": "2026-10-21T20:01:42.230+06:00",
+      "finishedAt": "2026-10-21T20:01:42.905+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T20-01-42.230+06-00-gitleaks.exe.log",
+      "sha256": "422afcf1052e269edcab0a899f299a4b507f960e8b23917aa76a5a590206ae31"
+    }
+  ]
+}
