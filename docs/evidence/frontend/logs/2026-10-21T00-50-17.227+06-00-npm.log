@@ -1,0 +1,12 @@
+START 2026-10-21T00:50:17.227+06:00
+COMMAND npm install -D -w @samokettik/web --save-exact @types/leaflet@1.9.21
+
+added 2 packages, and audited 150 packages in 3s
+
+37 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+END 2026-10-21T00:50:20.787+06:00
+EXIT 0

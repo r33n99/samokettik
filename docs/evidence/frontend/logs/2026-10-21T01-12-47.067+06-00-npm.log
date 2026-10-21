@@ -1,0 +1,137 @@
+START 2026-10-21T01:12:47.067+06:00
+COMMAND npm run test:e2e
+
+> samokettik@0.1.0 test:e2e
+> npm run build -w @samokettik/contracts && playwright test
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+Isolated E2E: fresh PostgreSQL database, real API/worker/Vite are ready; main demo data untouched.
+
+Running 20 tests using 1 worker
+
+(node:35100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\e2e\foundation.spec.ts:2:1 › map reads real API fleet and geozone, supports keyboard list and RU/KY (3.3s)
+  ok  2 [desktop] › tests\e2e\foundation.spec.ts:37:1 › startup API error is explained and retry loads actual data (1.1s)
+  ok  3 [desktop] › tests\e2e\realtime.spec.ts:3:1 › WebSocket reconnection restores authoritative fleet through API (2.8s)
+  ok  4 [desktop] › tests\e2e\rental.spec.ts:162:1 › two browser users compete for one scooter; one reservation wins and cancel releases it (6.7s)
+  x   5 [desktop] › tests\e2e\rental.spec.ts:232:1 › ride pause resume finish history and demo payment use the backend invoice (9.6s)
+(node:37968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:37968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  6 [desktop] › tests\e2e\rental.spec.ts:300:1 › an offline browser restores its running ride and the worker continues movement and charge (7.5s)
+  ok  7 [desktop] › tests\e2e\rental.spec.ts:342:1 › a response lost after commit is replayed with the same key even after page reload (8.2s)
+  ok  8 [desktop] › tests\e2e\rental.spec.ts:394:1 › server rejects finish outside the polygon and allows it after trusted coordinates return (5.7s)
+  ok  9 [desktop] › tests\e2e\rental.spec.ts:437:1 › persistent warning and automatic expiration release the reservation in the browser (6.0s)
+  ok 10 [desktop] › tests\e2e\rental.spec.ts:467:1 › depletion updates the browser with one invoice, notification and local mail (3.6s)
+(node:19080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 11 [mobile] › tests\e2e\foundation.spec.ts:2:1 › map reads real API fleet and geozone, supports keyboard list and RU/KY (3.8s)
+  ok 12 [mobile] › tests\e2e\foundation.spec.ts:37:1 › startup API error is explained and retry loads actual data (1.4s)
+  ok 13 [mobile] › tests\e2e\realtime.spec.ts:3:1 › WebSocket reconnection restores authoritative fleet through API (2.5s)
+  ok 14 [mobile] › tests\e2e\rental.spec.ts:162:1 › two browser users compete for one scooter; one reservation wins and cancel releases it (5.2s)
+  x  15 [mobile] › tests\e2e\rental.spec.ts:232:1 › ride pause resume finish history and demo payment use the backend invoice (9.1s)
+(node:39484) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:39484) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 16 [mobile] › tests\e2e\rental.spec.ts:300:1 › an offline browser restores its running ride and the worker continues movement and charge (6.1s)
+  ok 17 [mobile] › tests\e2e\rental.spec.ts:342:1 › a response lost after commit is replayed with the same key even after page reload (4.5s)
+  ok 18 [mobile] › tests\e2e\rental.spec.ts:394:1 › server rejects finish outside the polygon and allows it after trusted coordinates return (4.2s)
+  ok 19 [mobile] › tests\e2e\rental.spec.ts:437:1 › persistent warning and automatic expiration release the reservation in the browser (5.7s)
+  ok 20 [mobile] › tests\e2e\rental.spec.ts:467:1 › depletion updates the browser with one invoice, notification and local mail (3.1s)
+
+
+  1) [desktop] › tests\e2e\rental.spec.ts:232:1 › ride pause resume finish history and demo payment use the backend invoice 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog').getByRole('alert')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog').getByRole('alert') with timeout 5000ms
+      - waiting for getByRole('dialog').getByRole('alert')
+
+
+      275 |     .getByRole("button", { name: "Проверить отказ", exact: true })
+      276 |     .click();
+    > 277 |   await expect(dialog.getByRole("alert")).toBeVisible();
+          |                                           ^
+      278 |   await expect(dialog.getByText("Не оплачен", { exact: true })).toBeVisible();
+      279 |   await expect(
+      280 |     dialog.getByRole("button", { name: "Оплатить в демо", exact: true }),
+        at C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:277:43
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rental-ride-pause-resume-f-3ddc1-ent-use-the-backend-invoice-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rental-ride-pause-resume-f-3ddc1-ent-use-the-backend-invoice-desktop\error-context.md
+
+    Error Context: test-results\rental-ride-pause-resume-f-3ddc1-ent-use-the-backend-invoice-desktop\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rental-ride-pause-resume-f-3ddc1-ent-use-the-backend-invoice-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rental-ride-pause-resume-f-3ddc1-ent-use-the-backend-invoice-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests\e2e\rental.spec.ts:232:1 › ride pause resume finish history and demo payment use the backend invoice 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog').getByRole('alert')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog').getByRole('alert') with timeout 5000ms
+      - waiting for getByRole('dialog').getByRole('alert')
+
+
+      275 |     .getByRole("button", { name: "Проверить отказ", exact: true })
+      276 |     .click();
+    > 277 |   await expect(dialog.getByRole("alert")).toBeVisible();
+          |                                           ^
+      278 |   await expect(dialog.getByText("Не оплачен", { exact: true })).toBeVisible();
+      279 |   await expect(
+      280 |     dialog.getByRole("button", { name: "Оплатить в демо", exact: true }),
+        at C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:277:43
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rental-ride-pause-resume-f-3ddc1-ent-use-the-backend-invoice-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rental-ride-pause-resume-f-3ddc1-ent-use-the-backend-invoice-mobile\error-context.md
+
+    Error Context: test-results\rental-ride-pause-resume-f-3ddc1-ent-use-the-backend-invoice-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rental-ride-pause-resume-f-3ddc1-ent-use-the-backend-invoice-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rental-ride-pause-resume-f-3ddc1-ent-use-the-backend-invoice-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests\e2e\rental.spec.ts:232:1 › ride pause resume finish history and demo payment use the backend invoice 
+    [mobile] › tests\e2e\rental.spec.ts:232:1 › ride pause resume finish history and demo payment use the backend invoice 
+  18 passed (2.0m)
+
+END 2026-10-21T01:14:50.094+06:00
+EXIT 1

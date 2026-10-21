@@ -3,7 +3,10 @@
   "city": "Бишкек",
   "timezone": "Asia/Bishkek",
   "currency": "KGS",
-  "locales": ["ru", "ky"],
+  "locales": [
+    "ru",
+    "ky"
+  ],
   "defaultLocale": "ru",
   "rideRateMinorPerMinute": 800,
   "pauseRateMinorPerMinute": 200,
@@ -18,6 +21,126 @@
   "simulationSpeedMetersPerMinute": 180,
   "simulationRouteSideE7": 6000,
   "fleetSize": 30,
-  "seedOrigin": { "latitudeE7": 428740000, "longitudeE7": 746020000 },
-  "seedSpacingE7": 8000
+  "seedLocations": [
+    {
+      "latitudeE7": 428885323,
+      "longitudeE7": 744599816
+    },
+    {
+      "latitudeE7": 428560209,
+      "longitudeE7": 745806773
+    },
+    {
+      "latitudeE7": 429969476,
+      "longitudeE7": 745180352
+    },
+    {
+      "latitudeE7": 427219117,
+      "longitudeE7": 745945180
+    },
+    {
+      "latitudeE7": 428683161,
+      "longitudeE7": 747105042
+    },
+    {
+      "latitudeE7": 427822502,
+      "longitudeE7": 744941260
+    },
+    {
+      "latitudeE7": 429420868,
+      "longitudeE7": 746239529
+    },
+    {
+      "latitudeE7": 427945453,
+      "longitudeE7": 746528034
+    },
+    {
+      "latitudeE7": 428437258,
+      "longitudeE7": 745085512
+    },
+    {
+      "latitudeE7": 427822502,
+      "longitudeE7": 745806773
+    },
+    {
+      "latitudeE7": 429052014,
+      "longitudeE7": 745662521
+    },
+    {
+      "latitudeE7": 428929063,
+      "longitudeE7": 746383781
+    },
+    {
+      "latitudeE7": 428437258,
+      "longitudeE7": 746528034
+    },
+    {
+      "latitudeE7": 428068405,
+      "longitudeE7": 745374017
+    },
+    {
+      "latitudeE7": 428191356,
+      "longitudeE7": 746095277
+    },
+    {
+      "latitudeE7": 428806112,
+      "longitudeE7": 745229765
+    },
+    {
+      "latitudeE7": 428314307,
+      "longitudeE7": 746960790
+    },
+    {
+      "latitudeE7": 428314307,
+      "longitudeE7": 744652756
+    },
+    {
+      "latitudeE7": 429420868,
+      "longitudeE7": 745806773
+    },
+    {
+      "latitudeE7": 428806112,
+      "longitudeE7": 745951025
+    },
+    {
+      "latitudeE7": 428683161,
+      "longitudeE7": 746672286
+    },
+    {
+      "latitudeE7": 428314307,
+      "longitudeE7": 745662521
+    },
+    {
+      "latitudeE7": 429174966,
+      "longitudeE7": 746095277
+    },
+    {
+      "latitudeE7": 427576600,
+      "longitudeE7": 745951025
+    },
+    {
+      "latitudeE7": 428068405,
+      "longitudeE7": 744941260
+    },
+    {
+      "latitudeE7": 428191356,
+      "longitudeE7": 746528034
+    },
+    {
+      "latitudeE7": 428560209,
+      "longitudeE7": 744652756
+    },
+    {
+      "latitudeE7": 429666770,
+      "longitudeE7": 746239529
+    },
+    {
+      "latitudeE7": 428560209,
+      "longitudeE7": 746239529
+    },
+    {
+      "latitudeE7": 428560209,
+      "longitudeE7": 745374017
+    }
+  ]
 }

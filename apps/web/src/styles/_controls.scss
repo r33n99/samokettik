@@ -1,0 +1,59 @@
+@use "tokens" as t;
+.primary {
+  border: 1px solid t.$accent;
+  background: t.$accent;
+  color: #fff;
+  padding: 13px 16px;
+  min-height: 48px;
+  width: 100%;
+  font-weight: 550;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.primary:hover:not(:disabled) {
+  background: #963c27;
+  border-color: #963c27;
+}
+.secondary {
+  border: 1px solid #bfc7b9;
+  border-radius: 6px;
+  background: transparent;
+  color: t.$ink;
+  min-height: 44px;
+  padding: 11px 14px;
+  font-size: 13px;
+}
+.secondary:hover:not(:disabled) {
+  background: #eaece3;
+}
+.text-button {
+  color: t.$accent;
+  font-size: 12px;
+  border: 0;
+  padding: 10px 0;
+  min-height: 40px;
+  background: transparent;
+  text-underline-offset: 3px;
+}
+.text-button:hover {
+  text-decoration: underline;
+}
+.icon-button {
+  color: t.$muted;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  flex: 0 0 auto;
+  border: 0;
+  background: transparent;
+  font-size: 24px;
+  line-height: 1;
+}
+.fine-print {
+  font-size: 10px;
+  color: t.$muted;
+  line-height: 1.65;
+  margin: 12px 0 0;
+}

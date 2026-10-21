@@ -1,0 +1,33 @@
+START 2026-10-21T16:02:50.729+06:00
+COMMAND npm run typecheck
+
+> samokettik@0.1.0 typecheck
+> npm run build -w @samokettik/contracts && npm run typecheck --workspaces --if-present && tsc -p tsconfig.tests.json
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+
+> @samokettik/server@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tools.json
+
+
+> @samokettik/web@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @samokettik/contracts@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+tests/e2e/rental.spec.ts(384,39): error TS2379: Argument of type '{ name: string | undefined; exact: true; }' is not assignable to parameter of type '{ checked?: boolean; description?: string | RegExp; disabled?: boolean; exact?: boolean; expanded?: boolean; includeHidden?: boolean; level?: number; name?: string | RegExp; pressed?: boolean; selected?: boolean; }' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'name' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string | RegExp'.
+      Type 'undefined' is not assignable to type 'string | RegExp'.
+tests/e2e/rental.spec.ts(387,35): error TS2379: Argument of type '{ name: string | undefined; exact: true; }' is not assignable to parameter of type '{ checked?: boolean; description?: string | RegExp; disabled?: boolean; exact?: boolean; expanded?: boolean; includeHidden?: boolean; level?: number; name?: string | RegExp; pressed?: boolean; selected?: boolean; }' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'name' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string | RegExp'.
+      Type 'undefined' is not assignable to type 'string | RegExp'.
+
+END 2026-10-21T16:02:53.496+06:00
+EXIT 1

@@ -1,0 +1,15 @@
+START 2026-10-21T15:20:54.313+06:00
+COMMAND node work/apply-fleet-distribution.mjs
+
+> samokettik@0.1.0 demo:redistribute
+> npm run demo:redistribute -w @samokettik/server
+
+
+> @samokettik/server@0.1.0 demo:redistribute
+> tsx src/db/redistribute.ts
+
+{"moved":30,"skippedActive":0,"missing":0}
+{"recordedAt":"2026-10-21T15:20:56.484+06:00","count":30,"moved":30,"skippedActive":0,"coordinatesUnique":30,"allInside":true,"parallelRealtimeClients":2,"snapshotsMatchDatabase":true,"chargeServiceHistoryPreserved":true}
+
+END 2026-10-21T15:20:56.506+06:00
+EXIT 0

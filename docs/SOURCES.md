@@ -50,3 +50,7 @@ UI-референсы для СамоКеттик ещё не исследова
 - [ws README](https://github.com/websockets/ws/blob/master/README.md): HTTP upgrade, ping/pong, Origin/auth и slow consumers. Версия ws 8.22.0 проверена npm registry, закреплена lockfile.
 - [PostgreSQL 18 NOTIFY](https://www.postgresql.org/docs/18/sql-notify.html): доставка после commit, объединение одинакового payload и недолговечность сигналов; восстановление через REST/snapshot и periodic reconcile.
 - Применён supabase-postgres-best-practices: короткие транзакции, одинаковый порядок блокировок, SKIP LOCKED только для outbox. Новые simulator/SDK/worker/mail реализации написаны для проекта; чужой готовый проект не копировался.
+
+## U012/U013: frontend
+
+[Опубликованные аналоги, fonts/OFL, реальные browser statuses и выбранный вариант](design-research/frontend/README.md). [Leaflet1.9.4 reference](https://leafletjs.com/reference.html) — marker/GeoJSON/cleanup; [OSM Tile Usage Policy](https://operations.osmfoundation.org/policies/tiles/) — корректный HTTPS template, attribution/cache/Referer, отсутствие bulk/prefetch. ws/React snippets готовых приложений не копировались. Temporary formatter Prettier3.9.10 проверен npm registry и использован через npm exec, не добавлен в runtime dependencies.

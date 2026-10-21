@@ -1,0 +1,296 @@
+START 2026-10-21T15:59:38.549+06:00
+COMMAND npm run test:e2e -- --grep inspect another|geometry stable
+
+> samokettik@0.1.0 test:e2e
+> npm run build -w @samokettik/contracts && playwright test --grep inspect another|geometry stable
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+Isolated E2E: fresh PostgreSQL database, real API/worker/Vite are ready; main demo data untouched.
+
+Running 6 tests using 1 worker
+
+(node:12028) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12028) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [desktop] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while reserved without refocusing the owned scooter (5.9s)
+(node:22648) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22648) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [desktop] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while riding without refocusing the owned scooter (5.6s)
+(node:30588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 [desktop] › tests\e2e\rental.spec.ts:261:1 › pause and resume keep panel geometry stable during slow real requests and state restoration (5.6s)
+(node:13040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  4 [mobile] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while reserved without refocusing the owned scooter (5.6s)
+(node:9636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:9636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  5 [mobile] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while riding without refocusing the owned scooter (5.6s)
+(node:32320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  6 [mobile] › tests\e2e\rental.spec.ts:261:1 › pause and resume keep panel geometry stable during slow real requests and state restoration (5.6s)
+
+
+  1) [desktop] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while reserved without refocusing the owned scooter 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Синхронизировано')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Синхронизировано') with timeout 5000ms
+      - waiting for getByText('Синхронизировано')
+
+
+      30 |   await expect(
+      31 |     page.getByText("Синхронизировано", { exact: false }),
+    > 32 |   ).toBeVisible();
+         |     ^
+      33 |   await page
+      34 |     .getByRole("button", { name: "Выбрать демо-профиль", exact: true })
+      35 |     .click();
+        at login (C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:32:5)
+        at C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:234:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rental-can-inspect-another-241c7-efocusing-the-owned-scooter-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rental-can-inspect-another-241c7-efocusing-the-owned-scooter-desktop\error-context.md
+
+    Error Context: test-results\rental-can-inspect-another-241c7-efocusing-the-owned-scooter-desktop\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rental-can-inspect-another-241c7-efocusing-the-owned-scooter-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rental-can-inspect-another-241c7-efocusing-the-owned-scooter-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while riding without refocusing the owned scooter 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Синхронизировано')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Синхронизировано') with timeout 5000ms
+      - waiting for getByText('Синхронизировано')
+
+
+      30 |   await expect(
+      31 |     page.getByText("Синхронизировано", { exact: false }),
+    > 32 |   ).toBeVisible();
+         |     ^
+      33 |   await page
+      34 |     .getByRole("button", { name: "Выбрать демо-профиль", exact: true })
+      35 |     .click();
+        at login (C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:32:5)
+        at C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:234:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rental-can-inspect-another-38055-efocusing-the-owned-scooter-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rental-can-inspect-another-38055-efocusing-the-owned-scooter-desktop\error-context.md
+
+    Error Context: test-results\rental-can-inspect-another-38055-efocusing-the-owned-scooter-desktop\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rental-can-inspect-another-38055-efocusing-the-owned-scooter-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rental-can-inspect-another-38055-efocusing-the-owned-scooter-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests\e2e\rental.spec.ts:261:1 › pause and resume keep panel geometry stable during slow real requests and state restoration 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Синхронизировано')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Синхронизировано') with timeout 5000ms
+      - waiting for getByText('Синхронизировано')
+
+
+      30 |   await expect(
+      31 |     page.getByText("Синхронизировано", { exact: false }),
+    > 32 |   ).toBeVisible();
+         |     ^
+      33 |   await page
+      34 |     .getByRole("button", { name: "Выбрать демо-профиль", exact: true })
+      35 |     .click();
+        at login (C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:32:5)
+        at C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:262:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rental-pause-and-resume-ke-ac299-uests-and-state-restoration-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rental-pause-and-resume-ke-ac299-uests-and-state-restoration-desktop\error-context.md
+
+    Error Context: test-results\rental-pause-and-resume-ke-ac299-uests-and-state-restoration-desktop\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rental-pause-and-resume-ke-ac299-uests-and-state-restoration-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rental-pause-and-resume-ke-ac299-uests-and-state-restoration-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [mobile] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while reserved without refocusing the owned scooter 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Синхронизировано')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Синхронизировано') with timeout 5000ms
+      - waiting for getByText('Синхронизировано')
+
+
+      30 |   await expect(
+      31 |     page.getByText("Синхронизировано", { exact: false }),
+    > 32 |   ).toBeVisible();
+         |     ^
+      33 |   await page
+      34 |     .getByRole("button", { name: "Выбрать демо-профиль", exact: true })
+      35 |     .click();
+        at login (C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:32:5)
+        at C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:234:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rental-can-inspect-another-241c7-efocusing-the-owned-scooter-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rental-can-inspect-another-241c7-efocusing-the-owned-scooter-mobile\error-context.md
+
+    Error Context: test-results\rental-can-inspect-another-241c7-efocusing-the-owned-scooter-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rental-can-inspect-another-241c7-efocusing-the-owned-scooter-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rental-can-inspect-another-241c7-efocusing-the-owned-scooter-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [mobile] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while riding without refocusing the owned scooter 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Синхронизировано')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Синхронизировано') with timeout 5000ms
+      - waiting for getByText('Синхронизировано')
+
+
+      30 |   await expect(
+      31 |     page.getByText("Синхронизировано", { exact: false }),
+    > 32 |   ).toBeVisible();
+         |     ^
+      33 |   await page
+      34 |     .getByRole("button", { name: "Выбрать демо-профиль", exact: true })
+      35 |     .click();
+        at login (C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:32:5)
+        at C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:234:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rental-can-inspect-another-38055-efocusing-the-owned-scooter-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rental-can-inspect-another-38055-efocusing-the-owned-scooter-mobile\error-context.md
+
+    Error Context: test-results\rental-can-inspect-another-38055-efocusing-the-owned-scooter-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rental-can-inspect-another-38055-efocusing-the-owned-scooter-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rental-can-inspect-another-38055-efocusing-the-owned-scooter-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [mobile] › tests\e2e\rental.spec.ts:261:1 › pause and resume keep panel geometry stable during slow real requests and state restoration 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Синхронизировано')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Синхронизировано') with timeout 5000ms
+      - waiting for getByText('Синхронизировано')
+
+
+      30 |   await expect(
+      31 |     page.getByText("Синхронизировано", { exact: false }),
+    > 32 |   ).toBeVisible();
+         |     ^
+      33 |   await page
+      34 |     .getByRole("button", { name: "Выбрать демо-профиль", exact: true })
+      35 |     .click();
+        at login (C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:32:5)
+        at C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:262:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rental-pause-and-resume-ke-ac299-uests-and-state-restoration-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rental-pause-and-resume-ke-ac299-uests-and-state-restoration-mobile\error-context.md
+
+    Error Context: test-results\rental-pause-and-resume-ke-ac299-uests-and-state-restoration-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rental-pause-and-resume-ke-ac299-uests-and-state-restoration-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rental-pause-and-resume-ke-ac299-uests-and-state-restoration-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6 failed
+    [desktop] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while reserved without refocusing the owned scooter 
+    [desktop] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while riding without refocusing the owned scooter 
+    [desktop] › tests\e2e\rental.spec.ts:261:1 › pause and resume keep panel geometry stable during slow real requests and state restoration 
+    [mobile] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while reserved without refocusing the owned scooter 
+    [mobile] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while riding without refocusing the owned scooter 
+    [mobile] › tests\e2e\rental.spec.ts:261:1 › pause and resume keep panel geometry stable during slow real requests and state restoration 
+
+END 2026-10-21T16:00:25.919+06:00
+EXIT 1

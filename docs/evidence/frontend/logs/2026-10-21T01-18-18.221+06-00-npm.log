@@ -1,0 +1,17 @@
+START 2026-10-21T01:18:18.221+06:00
+COMMAND npm exec --yes --package=prettier@3.9.10 -- prettier --write apps/web/src/app/App.tsx apps/web/src/app/app.scss apps/web/src/features/map/TransportMap.tsx apps/web/src/ui/ServerNotice.tsx apps/server/src/config/demo-identities.ts apps/server/src/modules/auth/browser-routes.ts tests/e2e tests/unit/ui-format.test.ts tests/integration/foundation.test.ts
+apps/web/src/app/App.tsx 224ms
+apps/web/src/app/app.scss 90ms
+apps/web/src/features/map/TransportMap.tsx 61ms
+apps/web/src/ui/ServerNotice.tsx 19ms
+apps/server/src/config/demo-identities.ts 4ms
+apps/server/src/modules/auth/browser-routes.ts 11ms
+tests/e2e/foundation.spec.ts 22ms
+tests/e2e/realtime.spec.ts 10ms (unchanged)
+tests/e2e/rental.spec.ts 139ms
+tests/e2e/setup.ts 18ms
+tests/unit/ui-format.test.ts 4ms
+tests/integration/foundation.test.ts 22ms
+
+END 2026-10-21T01:18:20.960+06:00
+EXIT 0

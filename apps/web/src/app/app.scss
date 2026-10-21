@@ -1,0 +1,431 @@
+@use "../styles/tokens" as t;
+.application {
+  min-height: 100svh;
+  background: t.$canvas;
+}
+.app-header {
+  min-height: 80px;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: t.$paper;
+  border-bottom: 1px solid t.$line;
+  position: relative;
+  z-index: 800;
+  .brand {
+    font-family: Geologica, sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.8px;
+    text-decoration: none;
+  }
+  .brand small {
+    display: block;
+    font-family: Golos, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: t.$muted;
+    letter-spacing: 0;
+    margin-top: 3px;
+  }
+  nav {
+    display: flex;
+    gap: 26px;
+  }
+  nav button {
+    background: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    padding: 12px 0;
+    font-size: 14px;
+    color: t.$ink;
+  }
+  nav button[aria-current] {
+    border-color: t.$accent;
+    color: t.$accent;
+  }
+}
+.scooter-icon {
+  width: 25px;
+  height: 25px;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+.scooter-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.locale-button {
+  background: none;
+  border: 0;
+  padding: 8px 0;
+  font-size: 11px;
+  color: t.$muted;
+  min-height: 40px;
+}
+.account-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: 1px solid t.$line;
+  border-radius: 6px;
+  padding: 8px 11px;
+  font-size: 12px;
+  color: t.$ink;
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  background: #e6e9e3;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-weight: 600;
+}
+.notice-button {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 8px 2px;
+  border: 0;
+  background: none;
+  min-height: 40px;
+  color: t.$ink;
+  font-size: 23px;
+}
+.notice-button span {
+  font-size: 10px;
+}
+.connection-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  min-height: 28px;
+  padding: 5px 16px;
+  background: t.$paper;
+  font-size: 10px;
+  border-bottom: 1px solid t.$line;
+}
+.connection-ok {
+  color: #4a6350;
+}
+.connection-warning {
+  color: #8b4724;
+}
+.connection-strip button {
+  background: none;
+  border: 0;
+  color: inherit;
+  text-decoration: underline;
+  font-size: 10px;
+}
+.sync-time {
+  font-variant-numeric: tabular-nums;
+}
+.map-workspace {
+  position: relative;
+  height: calc(100svh - 109px);
+  min-height: 620px;
+}
+.list-toggle,
+.locate-toggle {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  background: t.$paper;
+  color: t.$ink;
+  border: 1px solid t.$line;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  box-shadow: 0 2px 8px #20252210;
+  z-index: 600;
+}
+.locate-toggle {
+  left: 180px;
+}
+.action-notice {
+  position: fixed;
+  left: 50%;
+  top: 118px;
+  transform: translateX(-50%);
+  z-index: 1200;
+  max-width: min(650px, calc(100% - 32px));
+  width: max-content;
+  background: #fff9ed;
+  border: 1px solid #caa877;
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  box-shadow: 0 5px 24px #20252220;
+  font-size: 13px;
+  strong {
+    font-weight: 550;
+  }
+  p {
+    margin: 8px 0;
+    line-height: 1.5;
+  }
+  small {
+    color: t.$muted;
+    overflow-wrap: anywhere;
+  }
+}
+.notice-actions {
+  flex: 0 0 auto;
+  display: grid;
+  gap: 7px;
+}
+.startup-state {
+  min-height: 65svh;
+  display: grid;
+  place-content: center;
+  gap: 16px;
+  text-align: center;
+  padding: 24px;
+}
+.startup-state h1 {
+  font-size: 24px;
+}
+.loading-ring {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid t.$line;
+  border-top-color: t.$accent;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.profile-options {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0;
+}
+.profile-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  background: t.$paper;
+  color: t.$ink;
+  border: 1px solid t.$line;
+  border-radius: 6px;
+  padding: 14px;
+  min-height: 64px;
+}
+.profile-option.selected {
+  border-color: t.$accent;
+}
+.profile-option small {
+  margin-left: auto;
+  color: t.$muted;
+}
+.modal-description {
+  color: t.$muted;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.search-label {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  color: t.$muted;
+}
+.search-label input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid t.$line;
+  border-radius: 5px;
+  background: #fff;
+  font: inherit;
+  color: t.$ink;
+}
+.free-filter {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  margin: 16px 0;
+}
+.vehicle-list {
+  display: grid;
+  max-height: 50svh;
+  overflow: auto;
+}
+.vehicle-list-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  text-align: left;
+  padding: 15px 4px;
+  border: 0;
+  border-bottom: 1px solid t.$line;
+  background: none;
+  color: t.$ink;
+}
+.vehicle-list-row > span:last-child {
+  margin-left: auto;
+  font-size: 13px;
+}
+.vehicle-list-row strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 550;
+}
+.vehicle-list-row small {
+  font-size: 11px;
+  color: t.$muted;
+}
+.notification-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 60svh;
+  overflow: auto;
+}
+.notification-list li {
+  padding: 16px 0;
+  border-bottom: 1px solid t.$line;
+}
+.notification-list p {
+  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.notification-list time {
+  font-size: 11px;
+  color: t.$muted;
+}
+.server-notice {
+  position: fixed;
+  z-index: 850;
+  right: 24px;
+  bottom: 66px;
+  max-width: min(360px, calc(100vw - 24px));
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px;
+  background: t.$paper;
+  border: 1px solid t.$line;
+  border-left: 3px solid #486f51;
+  border-radius: 5px;
+  box-shadow: 0 4px 20px #20252220;
+}
+.server-notice p {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+.server-notice time {
+  display: block;
+  font-size: 10px;
+  color: t.$muted;
+  margin-top: 6px;
+}
+.inline-error {
+  color: #913e25;
+}
+@media (max-width: 760px) {
+  .server-notice {
+    right: 12px;
+    top: 147px;
+    bottom: auto;
+  }
+}
+@media (max-width: 760px) {
+  .app-header {
+    min-height: 108px;
+    padding: 12px 14px 43px;
+    gap: 8px;
+  }
+  .app-header .brand {
+    font-size: 18px;
+  }
+  .app-header .brand .scooter-icon {
+    width: 22px;
+  }
+  .header-actions {
+    gap: 10px;
+  }
+  .account-button {
+    gap: 4px;
+    padding: 9px 7px;
+    font-size: 10px;
+    max-width: 145px;
+  }
+  .account-button .avatar,
+  .account-button > span:last-child {
+    display: none;
+  }
+  .locale-button {
+    font-size: 10px;
+  }
+  .app-header nav {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 0;
+    gap: 28px;
+  }
+  .app-header nav button {
+    font-size: 13px;
+    padding: 9px 0;
+  }
+  .notice-button {
+    font-size: 21px;
+  }
+  .map-workspace {
+    height: calc(100svh - 137px);
+    min-height: 480px;
+  }
+  .list-toggle {
+    left: 12px;
+    top: 14px;
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+  .locate-toggle {
+    left: 12px;
+    top: 58px;
+    padding: 10px;
+    font-size: 10px;
+    max-width: 150px;
+  }
+  .action-notice {
+    top: 145px;
+    flex-direction: column;
+    width: calc(100% - 24px);
+    max-width: none;
+    gap: 8px;
+  }
+  .notice-actions {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loading-ring {
+    animation: none;
+  }
+}

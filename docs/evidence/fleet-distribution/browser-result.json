@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-21T15:21:03.206+06:00",
+  "results": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "markers": 30,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "name": "mobile",
+      "width": 393,
+      "height": 851,
+      "markers": 30,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "pageErrors": []
+    }
+  ]
+}

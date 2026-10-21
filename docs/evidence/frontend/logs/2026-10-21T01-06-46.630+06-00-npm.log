@@ -1,0 +1,43 @@
+START 2026-10-21T01:06:46.630+06:00
+COMMAND npm exec --yes --package=prettier@3.9.10 -- prettier --write apps/web/src apps/server/src/modules/auth apps/server/src/config/env.ts apps/server/src/app.ts packages/contracts/src/index.ts tests/e2e tests/unit/api-client.test.ts tests/unit/demo-session.test.ts tests/integration/foundation.test.ts playwright.config.ts
+apps/web/src/api/client.ts 403ms
+apps/web/src/api/realtime.ts 43ms
+apps/web/src/api/system.ts 8ms
+apps/web/src/app/app.scss 129ms
+apps/web/src/app/App.tsx 81ms
+apps/web/src/features/history/history.scss 18ms
+apps/web/src/features/history/History.tsx 74ms
+apps/web/src/features/map/map.scss 16ms
+apps/web/src/features/map/TransportMap.tsx 38ms
+apps/web/src/features/rental/rental.scss 23ms
+apps/web/src/features/rental/RentalPanel.tsx 29ms
+apps/web/src/i18n/text.ts 14ms
+apps/web/src/main.tsx 2ms
+apps/web/src/state/useRentalApp.ts 43ms
+apps/web/src/styles/_base.scss 9ms
+apps/web/src/styles/_controls.scss 23ms
+apps/web/src/styles/_fonts.scss 4ms
+apps/web/src/styles/_tokens.scss 1ms (unchanged)
+apps/web/src/styles/main.scss 2ms
+apps/web/src/ui/format.ts 6ms
+apps/web/src/ui/icons.tsx 5ms
+apps/web/src/ui/modal.scss 10ms
+apps/web/src/ui/Modal.tsx 5ms
+apps/web/src/ui/useServerClock.ts 3ms
+apps/server/src/modules/auth/browser-routes.ts 8ms
+apps/server/src/modules/auth/demo.ts 6ms
+apps/server/src/modules/auth/session.ts 9ms
+apps/server/src/config/env.ts 20ms
+apps/server/src/app.ts 18ms
+packages/contracts/src/index.ts 40ms
+tests/e2e/foundation.spec.ts 13ms
+tests/e2e/realtime.spec.ts 7ms
+tests/e2e/rental.spec.ts 110ms
+tests/e2e/setup.ts 45ms
+tests/unit/api-client.test.ts 13ms
+tests/unit/demo-session.test.ts 11ms
+tests/integration/foundation.test.ts 23ms
+playwright.config.ts 4ms
+
+END 2026-10-21T01:06:52.574+06:00
+EXIT 0

@@ -1,0 +1,30 @@
+START 2026-10-21T01:18:21.948+06:00
+COMMAND npm run verify
+
+> samokettik@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+
+> samokettik@0.1.0 typecheck
+> npm run build -w @samokettik/contracts && npm run typecheck --workspaces --if-present && tsc -p tsconfig.tests.json
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+
+> @samokettik/server@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tools.json
+
+
+> @samokettik/web@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @samokettik/contracts@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+apps/web/src/ui/format.ts(1,29): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../i18n/text.js'?
+
+END 2026-10-21T01:18:31.794+06:00
+EXIT 1

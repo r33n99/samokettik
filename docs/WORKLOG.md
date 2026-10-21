@@ -349,3 +349,147 @@
 - 2026-10-21T00:37:35.624+06:00 — финальная проверка U010: 268 source/evidence files, 34 Markdown и 110 локальных ссылок доступны; NUL/UTF-8/type-bypass/current-local-secret checks пройдены. Применённые 0000/0001/0002 migrations побайтно равны HEAD, hashes35 новых raw logs совпадают. git diff --check exit0. Экспорт outputs/realtime-review с SHA-256, без .env/work/node_modules/.git. Коммит/push не выполнялись.
 
 - 2026-10-21T00:39:42.791+06:00 — U011: сохранена точная команда пользователя на commit/push U010. Проверены effective Git identity и author/committer: Reen <rinni499@gmail.com>, overrides отсутствуют, GitHub login r33n99. git fetch origin успешен; main и origin/main до коммита совпадают (0/0). Все 268 файлов совпали с SHA-256 проверенного экспорта U010; функциональный код после 32 unit /43 PostgreSQL /6 Playwright, typecheck/build не менялся, тесты повторно без причины не запускались. git diff --check exit0. Подготовлен отдельный commit с симуляцией/jobs/WS/local mailbox; выполнение commit/push и remote SHA будут проверены последовательно, без изменения истории.
+
+- 2026-10-21T00:43:23.598+06:00 — U012: аудит frontend/contracts/auth/realtime/конфигурации, чистый main ccfa41a. Сохранён точный запрос; UI пока технический, визуальный вариант не утверждён. Прочитаны Sites local-only/preview и verification; публикация не планируется. Прочитана пользовательская библиотека референсов. По AGENTS.md перед существенной переработкой готовятся самостоятельные варианты для выбора; готовность доменных API не означает согласования дизайна. Системный Python не содержит fontTools; для реальных TTF используется прямой cmap parse без новой app dependency.
+
+- 2026-10-21T00:43:35.349+06:00 — font/references research: скачаны фактические TTF и OFL из google/fonts, cmap проверен для RU/KY (см. docs/design-research/frontend/font-check.json). Browser reference captures/computed styles сохранены в references.json; статусы/ошибки не скрыты. Это исследование опубликованных аналогов, не копирование чужого приложения.
+
+- 2026-10-21T00:43:52.917+06:00 — Команда: `npm install -w @samokettik/web --save-exact leaflet@1.9.4`; начало 2026-10-21T00:43:49.248+06:00; exit 0. Лог: `work/checks/2026-10-21T00-43-49.248+06-00-npm.log`.
+
+- 2026-10-21T00:47:45.288+06:00 — Команда: `node work/check-frontend-directions.mjs`; начало 2026-10-21T00:47:34.824+06:00; exit 0. Лог: `work/checks/2026-10-21T00-47-34.824+06-00-node.log`.
+
+- 2026-10-21T00:49:37.681+06:00 — Команда: `npm run verify`; начало 2026-10-21T00:49:15.321+06:00; exit 0. Лог: `work/checks/2026-10-21T00-49-15.321+06-00-npm.log`.
+
+- 2026-10-21T00:50:20.787+06:00 — Команда: `npm install -D -w @samokettik/web --save-exact @types/leaflet@1.9.21`; начало 2026-10-21T00:50:17.227+06:00; exit 0. Лог: `work/checks/2026-10-21T00-50-17.227+06-00-npm.log`.
+
+- 2026-10-21T00:51:00.200+06:00 — Команда: `npm run setup`; начало 2026-10-21T00:50:59.288+06:00; exit 0. Лог: `work/checks/2026-10-21T00-50-59.288+06-00-npm.log`.
+
+- 2026-10-21T00:59:40.840+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T00:59:33.864+06:00; exit 1. Лог: `work/checks/2026-10-21T00-59-33.864+06-00-npm.log`.
+
+- 2026-10-21T01:00:12.650+06:00 — Команда: `npm run verify`; начало 2026-10-21T00:59:55.671+06:00; exit 0. Лог: `work/checks/2026-10-21T00-59-55.671+06-00-npm.log`.
+
+- 2026-10-21T01:02:35.169+06:00 — Команда: `npm run compose:up`; начало 2026-10-21T01:01:20.210+06:00; exit 0. Лог: `work/checks/2026-10-21T01-01-20.210+06-00-npm.log`.
+
+- 2026-10-21T01:04:22.647+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T01:04:12.390+06:00; exit 1. Лог: `work/checks/2026-10-21T01-04-12.390+06-00-npm.log`.
+
+- 2026-10-21T01:06:52.574+06:00 — Команда: `npm exec --yes --package=prettier@3.9.10 -- prettier --write apps/web/src apps/server/src/modules/auth apps/server/src/config/env.ts apps/server/src/app.ts packages/contracts/src/index.ts tests/e2e tests/unit/api-client.test.ts tests/unit/demo-session.test.ts tests/integration/foundation.test.ts playwright.config.ts`; начало 2026-10-21T01:06:46.630+06:00; exit 0. Лог: `work/checks/2026-10-21T01-06-46.630+06-00-npm.log`.
+
+- 2026-10-21T01:07:21.377+06:00 — Команда: `npm run verify`; начало 2026-10-21T01:07:02.864+06:00; exit 0. Лог: `work/checks/2026-10-21T01-07-02.864+06-00-npm.log`.
+
+- 2026-10-21T01:11:45.932+06:00 — Команда: `npm exec -- playwright test --project=desktop --max-failures=2`; начало 2026-10-21T01:10:52.983+06:00; exit 0. Лог: `work/checks/2026-10-21T01-10-52.983+06-00-npm.log`.
+
+- 2026-10-21T01:11:47.113+06:00 — первый U012 E2E прогон прерван Ctrl+C после 6 известных результатов (1 passed,5 failed) из-за неоднозначных selectors и доступного имени demo button. Полного wrapper-log нет: родитель также прерван. Ошибки strict-mode: marker/list row SK-005, две Retry; login timeout из-за стрелки в accessible name. Исправлены scoped selectors и явное aria-label. После остановки проверены отсутствие принадлежащих запуску процессов и единственная оставшаяся DB samokettik_test_ac482801ea4f4611ab509fbc148ea888: 2 seed users созданы в интервале остановленного запуска, нет подключений. Удалена только эта явно проверенная DB, без FORCE. Другой пользовательский Node/Vite процесс в соседнем проекте не трогали.
+
+- 2026-10-21T01:14:50.094+06:00 — Команда: `npm run test:e2e`; начало 2026-10-21T01:12:47.067+06:00; exit 1. Лог: `work/checks/2026-10-21T01-12-47.067+06-00-npm.log`.
+
+- 2026-10-21T01:15:42.020+06:00 — U013: зарегистрирован точный выбор «Карта — большая карта и плавающая карточка». Реализованы React map/rental/history/invoices, RU/KY, public config и временные demo profiles. verify прошёл: strict typecheck,38 unit,production build. Первый typecheck обнаружил несовпадение GeoJSON object typing, исправлен прямой geometry input; другой typecheck обнаружил childEnv inferred type, исправлен NodeJS.ProcessEnv. Первый desktop browser target10passed, но поздний full run выявил regression после добавления toast/History key: одинаковые sibling keys ru приводят к stale/duplicated history DOM и скрытому payment error. Этот сбой не относится к серверному billing, исправляется в UI и будет проверен повторно.
+
+- 2026-10-21T01:17:32.412+06:00 — Команда: `npm run test:e2e`; начало 2026-10-21T01:15:57.093+06:00; exit 0. Лог: `work/checks/2026-10-21T01-15-57.093+06-00-npm.log`.
+
+- 2026-10-21T01:18:20.960+06:00 — Команда: `npm exec --yes --package=prettier@3.9.10 -- prettier --write apps/web/src/app/App.tsx apps/web/src/app/app.scss apps/web/src/features/map/TransportMap.tsx apps/web/src/ui/ServerNotice.tsx apps/server/src/config/demo-identities.ts apps/server/src/modules/auth/browser-routes.ts tests/e2e tests/unit/ui-format.test.ts tests/integration/foundation.test.ts`; начало 2026-10-21T01:18:18.221+06:00; exit 0. Лог: `work/checks/2026-10-21T01-18-18.221+06-00-npm.log`.
+
+- 2026-10-21T01:18:31.794+06:00 — Команда: `npm run verify`; начало 2026-10-21T01:18:21.948+06:00; exit 1. Лог: `work/checks/2026-10-21T01-18-21.948+06-00-npm.log`.
+
+- 2026-10-21T01:20:15.918+06:00 — Команда: `npm run verify`; начало 2026-10-21T01:19:54.779+06:00; exit 0. Лог: `work/checks/2026-10-21T01-19-54.779+06-00-npm.log`.
+
+- 2026-10-21T01:20:22.465+06:00 — Команда: `npm run test:db`; начало 2026-10-21T01:19:33.529+06:00; exit 0. Лог: `work/checks/2026-10-21T01-19-33.529+06-00-npm.log`.
+
+- 2026-10-21T01:23:26.018+06:00 — полный UI regression после раздельных React keys прошёл20desktop/mobile scenarios. Проверены45 PostgreSQL integration tests,40unit,strict typecheck/build. Дополнительно улучшено положение selected marker/mobile panel, локализованы zoom controls, добавлена проверка сбоя tiles; final browser run выполняется после этих изменений. Реальные config/README/contracts/матрица обновлены; ограничения password/Google/KY mail/pagination/длительной приёмки сохранены открытыми.
+
+- 2026-10-21T01:23:51.695+06:00 — Команда: `npm run test:e2e`; начало 2026-10-21T01:21:48.707+06:00; exit 0. Лог: `work/checks/2026-10-21T01-21-48.707+06-00-npm.log`.
+
+- 2026-10-21T01:25:01.344+06:00 — Команда: `npm run verify`; начало 2026-10-21T01:24:42.828+06:00; exit 0. Лог: `work/checks/2026-10-21T01-24-42.828+06-00-npm.log`.
+
+- 2026-10-21T01:26:11.357+06:00 — Команда: `npm exec --yes --package=prettier@3.9.10 -- prettier --write apps/web/src/app/App.tsx apps/web/src/app/app.scss apps/web/src/ui/ServerNotice.tsx apps/web/src/i18n/text.ts apps/web/src/features/map/TransportMap.tsx tests/e2e/foundation.spec.ts tests/e2e/rental.spec.ts`; начало 2026-10-21T01:26:08.366+06:00; exit 0. Лог: `work/checks/2026-10-21T01-26-08.366+06-00-npm.log`.
+
+- 2026-10-21T01:26:22.078+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T01:26:12.532+06:00; exit 0. Лог: `work/checks/2026-10-21T01-26-12.532+06-00-npm.log`.
+
+- 2026-10-21T01:27:33.560+06:00 — Команда: `docker compose config --quiet`; начало 2026-10-21T01:27:31.915+06:00; exit 0. Лог: `work/checks/2026-10-21T01-27-31.915+06-00-docker.log`.
+
+- 2026-10-21T01:27:35.723+06:00 — Команда: `npm audit`; начало 2026-10-21T01:27:31.847+06:00; exit 0. Лог: `work/checks/2026-10-21T01-27-31.847+06-00-npm.log`.
+
+- 2026-10-21T01:28:49.286+06:00 — Команда: `npm run test:e2e`; начало 2026-10-21T01:27:00.011+06:00; exit 0. Лог: `work/checks/2026-10-21T01-27-00.011+06-00-npm.log`.
+
+- 2026-10-21T01:30:32.227+06:00 — Команда: `npm run compose:up`; начало 2026-10-21T01:28:52.646+06:00; exit 0. Лог: `work/checks/2026-10-21T01-28-52.646+06-00-npm.log`.
+
+- 2026-10-21T01:31:00.149+06:00 — Команда: `node work/check-live-frontend.mjs`; начало 2026-10-21T01:30:55.571+06:00; exit 0. Лог: `work/checks/2026-10-21T01-30-55.571+06-00-node.log`.
+
+- 2026-10-21T01:32:37.173+06:00 — Команда: `docker compose ps -a`; начало 2026-10-21T01:32:36.444+06:00; exit 0. Лог: `work/checks/2026-10-21T01-32-36.444+06-00-docker.log`.
+
+- 2026-10-21T01:32:46.701+06:00 — Команда: `npm run verify`; начало 2026-10-21T01:32:25.797+06:00; exit 0. Лог: `work/checks/2026-10-21T01-32-25.797+06-00-npm.log`.
+
+- 2026-10-21T01:34:19.824+06:00 — U012/U013 завершён: final22browser/45PostgreSQL/40unit passed, final typecheck/build/Compose healthy, audit0. Live nginx/API/PG проверен desktop/mobile/RU-KY; все tiles загружены, overflow/pageerror0, main business data не изменены. Четыре actual local secrets отсутствуют в served JS/CSS. Скриншоты просмотрены; старый toast при следующей поездке исправлен и проверен. 29 завершённых raw logs скопированы побайтно с SHA-256, failed commands и прерванный browser run описаны честно. Preview5174 helper остановлен; приложение5173 оставлено работающим. Commit/push не выполнялись.
+
+- 2026-10-21T01:35:56.031+06:00 — финальная source/evidence проверка U012: 373 файлов, 43 Markdown и 149 local links доступны, UTF-8/NUL/type-bypass checks пройдены. Все4 текущих local secrets отсутствуют в публикуемых файлах, 29 raw logs совпали с SHA-256. Применённые0000–0003 migrations побайтно равны HEAD. git diff --check exit0; staged files нет; commit/push не выполнялись. Экспорт outputs/frontend-review с manifest подготовлен без .env/work/node_modules/.git/test traces.
+
+- 2026-10-21T15:01:34.495+06:00 — Команда: `docker compose up -d --wait`; начало 2026-10-21T15:01:33.767+06:00; exit 1. Лог: `work/checks/2026-10-21T15-01-33.767+06-00-docker.log`.
+
+- 2026-10-21T15:06:11.459+06:00 — Команда: `docker desktop status`; начало 2026-10-21T15:04:37.773+06:00; exit 4294967295. Лог: `work/checks/2026-10-21T15-04-37.773+06-00-docker.log`.
+
+- 2026-10-21T15:06:11.461+06:00 — Команда: `docker desktop stop --timeout 15`; начало 2026-10-21T15:05:16.001+06:00; exit 4294967295. Лог: `work/checks/2026-10-21T15-05-16.001+06-00-docker.log`.
+
+- 2026-10-21T15:06:11.4866369+06:00 — По просьбе запустить проект: Docker Engine отсутствовал; Desktop повторил dockerInference crash (host log). Штатный stop --timeout 15 сообщил Failed to stop Docker Desktop и завис. После проверки абсолютного пути и отсутствия reparse у Docker/run и родителя завершены проверенные аварийные Desktop/backend/CLI процессы; runtime сохранён как run.stale-20261021-150611. Volumes/settings не удалялись. Desktop запущен Hidden; результат старта проверяется далее.
+
+- 2026-10-21T15:06:26.338+06:00 — Команда: `docker version --format {{.Server.Version}}`; начало 2026-10-21T15:06:16.933+06:00; exit 0. Лог: `work/checks/2026-10-21T15-06-16.933+06-00-docker.log`.
+
+- 2026-10-21T15:06:49.672+06:00 — Команда: `docker compose up -d --wait`; начало 2026-10-21T15:06:30.130+06:00; exit 0. Лог: `work/checks/2026-10-21T15-06-30.130+06-00-docker.log`.
+
+- 2026-10-21T15:06:50.415+06:00 — Команда: `docker compose ps -a`; начало 2026-10-21T15:06:50.027+06:00; exit 0. Лог: `work/checks/2026-10-21T15-06-50.027+06-00-docker.log`.
+
+- 2026-10-21T15:07:02.754+06:00 — Команда: `node work/check-live-frontend.mjs`; начало 2026-10-21T15:06:56.640+06:00; exit 0. Лог: `work/checks/2026-10-21T15-06-56.640+06-00-node.log`.
+
+- 2026-10-21T15:07:14.6087269+06:00 — Запрос пользователя: «запусти проект у себя». После обратимого восстановления dockerInference Docker Engine 28.3.2 доступен. Compose up --wait exit0: PostgreSQL/API/worker/web healthy, migrate/seed exit0. Реальный browser smoke через nginx/API/PostgreSQL прошёл на desktop/mobile: 30 маркеров, tiles загружены, переполнения/ошибок страницы нет; readiness200. Подробности: docs/evidence/frontend/live-smoke.json. Приложение оставлено работающим на http://localhost:5173/; открытие панели браузера запрошено, результат queued. Коммит/push не выполнялись.
+
+- 2026-10-21T15:16:54.105+06:00 — Команда: `npm run verify`; начало 2026-10-21T15:16:43.626+06:00; exit 0. Лог: `work/checks/2026-10-21T15-16-43.626+06-00-npm.log`.
+
+- 2026-10-21T15:17:34.143+06:00 — Команда: `npm run test:db`; начало 2026-10-21T15:17:04.732+06:00; exit 0. Лог: `work/checks/2026-10-21T15-17-04.732+06-00-npm.log`.
+
+- 2026-10-21T15:18:21.3510304+06:00 — U014: найдена причина компактного fleet (seedOrigin/seedSpacing, сетка ~400×350 м). Подготовлены 30 уникальных E7 seedLocations с охватом 0,2750359° широты / 0,2505226° долготы, все внутри геозоны. Добавлены runtime validation, отдельная транзакционная demo:redistribute с пропуском активных аренд, tests coverage/validation/active modes/lock wait. verify exit0 (42 unit). PostgreSQL suite по итоговому логу завершился 2026-10-21T15:17:34.143+06:00, exit0 (49 tests). Основная БД пока не перераспределялась.
+
+- 2026-10-21T15:19:33.439+06:00 — Команда: `npm run test:e2e`; начало 2026-10-21T15:18:33.700+06:00; exit 0. Лог: `work/checks/2026-10-21T15-18-33.700+06-00-npm.log`.
+
+- 2026-10-21T15:20:33.543+06:00 — Команда: `npm run compose:up`; начало 2026-10-21T15:19:44.409+06:00; exit 0. Лог: `work/checks/2026-10-21T15-19-44.409+06-00-npm.log`.
+
+- 2026-10-21T15:20:56.422+06:00 — Команда: `npm run demo:redistribute`; начало 2026-10-21T15:20:54.676+06:00; exit 0. Лог: `work/checks/2026-10-21T15-20-54.676+06-00-npm.log`.
+
+- 2026-10-21T15:20:56.506+06:00 — Команда: `node work/apply-fleet-distribution.mjs`; начало 2026-10-21T15:20:54.313+06:00; exit 0. Лог: `work/checks/2026-10-21T15-20-54.313+06-00-node.log`.
+
+- 2026-10-21T15:21:03.225+06:00 — Команда: `node work/check-fleet-map.mjs`; начало 2026-10-21T15:21:00.923+06:00; exit 0. Лог: `work/checks/2026-10-21T15-21-00.923+06-00-node.log`.
+
+- 2026-10-21T15:21:03.647+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T15:21:00.930+06:00; exit 0. Лог: `work/checks/2026-10-21T15-21-00.930+06-00-npm.log`.
+
+- 2026-10-21T15:21:38.554+06:00 — Команда: `npm run demo:redistribute`; начало 2026-10-21T15:21:37.146+06:00; exit 0. Лог: `work/checks/2026-10-21T15-21-37.146+06-00-npm.log`.
+
+- 2026-10-21T15:22:23.509+06:00 — U014 завершён: verify42unit/typecheck/build exit0; test:db49passed (в т.ч. active-mode preservation и реальный lock wait); test:e2e22passed; Compose rebuild healthy. В основной demo DB явной demo:redistribute перемещены все30, active0, missing0. Заряд/режим/история/счета/платежи сохранены; 2 параллельных WS + REST совпали с PostgreSQL. Повтор moved0. Desktop/mobile screenshots просмотрены: fleet распределён по всей зоне, 30 markers, overflow/page errors0. Финальный typecheck и git diff --check exit0. Доказательства: docs/evidence/fleet-distribution (raw logs+SHA256+JSON+PNG). Миграции не изменены; commit/push не выполнялись. Предлагаемый отдельный commit: fix: distribute demo scooters across the full service zone.
+
+- 2026-10-21T16:00:13.238+06:00 — Команда: `npm run verify`; начало 2026-10-21T16:00:10.459+06:00; exit 1. Лог: `work/checks/2026-10-21T16-00-10.459+06-00-npm.log`.
+
+- 2026-10-21T16:00:25.919+06:00 — Команда: `npm run test:e2e -- --grep inspect another|geometry stable`; начало 2026-10-21T15:59:38.549+06:00; exit 1. Лог: `work/checks/2026-10-21T15-59-38.549+06-00-npm.log`.
+
+- 2026-10-21T16:00:49.553+06:00 — Команда: `npm run verify`; начало 2026-10-21T16:00:40.416+06:00; exit 0. Лог: `work/checks/2026-10-21T16-00-40.416+06-00-npm.log`.
+
+- 2026-10-21T16:01:22.640+06:00 — Команда: `npm run test:e2e -- --grep inspect another|geometry stable`; начало 2026-10-21T16:00:57.203+06:00; exit 0. Лог: `work/checks/2026-10-21T16-00-57.203+06-00-npm.log`.
+
+- 2026-10-21T16:01:46.4799725+06:00 — U015: причины найдены — временная fine-print строка при refresh/restoring и activeId, перезаписывающий selectedId. Реализованы независимый просмотр, возврат к своему самокату, стабильные labels/absolute spinner/aria-busy. Первый typecheck exit1 (current possibly undefined), первый focused E2E6failed на стартовой странице: сравнение двух undefined допускало обращение к отсутствующему current. Исправлено явной проверкой наличия trip/reservation; повторный verify exit0, 42 unit. Сбои сохранены в work/checks и docs/evidence/ui-stability/failures; следующий focused browser run выполняется. Основные данные не менялись, fault fixtures только в изолированной E2E DB.
+
+- 2026-10-21T16:02:43.425+06:00 — Команда: `npm exec --yes --package=prettier@3.9.10 -- prettier --write apps/web/src/app/App.tsx apps/web/src/features/rental/RentalPanel.tsx apps/web/src/features/rental/rental.scss apps/web/src/features/map/TransportMap.tsx apps/web/src/i18n/text.ts tests/e2e/rental.spec.ts`; начало 2026-10-21T16:02:37.769+06:00; exit 0. Лог: `work/checks/2026-10-21T16-02-37.769+06-00-npm.log`.
+
+- 2026-10-21T16:02:53.496+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T16:02:50.729+06:00; exit 1. Лог: `work/checks/2026-10-21T16-02-50.729+06-00-npm.log`.
+
+- 2026-10-21T16:03:25.236+06:00 — Команда: `npm run verify`; начало 2026-10-21T16:03:16.831+06:00; exit 0. Лог: `work/checks/2026-10-21T16-03-16.831+06-00-npm.log`.
+
+- 2026-10-21T16:04:21.904+06:00 — Команда: `npm run test:e2e`; начало 2026-10-21T16:02:58.781+06:00; exit 0. Лог: `work/checks/2026-10-21T16-02-58.781+06-00-npm.log`.
+
+- 2026-10-21T16:04:24.1832271+06:00 — U015: focused browser6passed после исправления current guard. Проверка расширена на RU/KY. Следующий typecheck выявил только ошибку типов test actions (string вместо tuple); заменено readonly [string,string]. Итоговый verify exit0 (42 unit + typecheck/build). Full E2E28 ещё ожидается. React review: выбор вычисляется без effect-state, map effects не зависят от telemetry, cleanup Leaflet сохраняется; aria-busy/disabled/reduced-motion проверены по коду.
+
+- 2026-10-21T16:04:52.430+06:00 — Команда: `docker compose up -d --build --no-deps --wait web`; начало 2026-10-21T16:04:29.903+06:00; exit 0. Лог: `work/checks/2026-10-21T16-04-29.903+06-00-docker.log`.
+
+- 2026-10-21T16:06:00.580+06:00 — Команда: `npm run test:e2e -- --grep inspect another`; начало 2026-10-21T16:05:41.884+06:00; exit 0. Лог: `work/checks/2026-10-21T16-05-41.884+06-00-npm.log`.
+
+- 2026-10-21T16:06:19.755+06:00 — Команда: `node work/check-live-frontend.mjs`; начало 2026-10-21T16:06:17.259+06:00; exit 0. Лог: `work/checks/2026-10-21T16-06-17.259+06-00-node.log`.
+
+- 2026-10-21T16:07:17.684+06:00 — U015 завершён: финальный verify exit0 (typecheck42unit/build); full browser28passed, затем focused4passed с дополнительной проверкой видимости списка. RU/KY×desktop/mobile×pause/resume:720кадров geometry/scroll без изменений, реальные запросы задержаны400ms. Выбор SK-006 при своей брони/поездке SK-005 сохраняется через reconnect, возврат к своему работает. Скриншоты desktop/mobile просмотрены. Обновлён только web Docker (--no-deps,healthy); live nginx/API/PG smoke exit0,30markers/tiles,overflow/page errors0,4actual secrets отсутствуют в bundle. Доказательства и failed runs: docs/evidence/ui-stability. Backend/миграции не менялись, main business data не менялись; commit/push не выполнялись. Предложение: fix: stabilize ride controls and preserve scooter selection.
+
+- 2026-10-21T16:10:01.591+06:00 — U016: пользователь разрешил commit/push завершённых U012–U015. git fetch origin успешен, HEAD...origin/main 0/0; effective author Reen <rinni499@gmail.com>, GIT_AUTHOR/GIT_COMMITTER overrides отсутствуют, gh active r33n99. Предпубликационный аудит: 421 файлов, 172 local Markdown links, UTF-8/NUL/type-bypass и4actual env-secret checks пройдены; 49 raw-log SHA256 совпали; применённые0000–0003 миграции побайтно равны HEAD; git diff --check exit0. Сохранены реальные результаты verify42unit/typecheck/build, PostgreSQL49, browser28 + focused4; тесты повторно не запускались, функциональный код после них не менялся. Commit/push будут выполнены следующим действием; результат будет сообщён отдельно.
+
+- 2026-10-21T16:10:47.8123291+06:00 — U016 staged review:194 изменённых/новых файлов, .env/work/outputs исключены. Author и committer git var подтвердили Reen <rinni499@gmail.com>. Первый git diff --cached --check нашёл trailing spaces только в оригинальных OFL.txt и captured Playwright error-context. Для этих внешних текстов заданы точечные whitespace attributes, как для raw logs, чтобы сохранить исходные данные. Повторная staged-проверка выполняется перед commit.

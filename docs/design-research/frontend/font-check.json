@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-10-21T00:43:26.176+06:00",
+  "fonts": [
+    {
+      "family": "geologica",
+      "source": "https://github.com/google/fonts/blob/main/ofl/geologica/Geologica[CRSV,SHRP,slnt,wght].ttf",
+      "download": "https://raw.githubusercontent.com/google/fonts/main/ofl/geologica/Geologica%5BCRSV%2CSHRP%2Cslnt%2Cwght%5D.ttf",
+      "sha256": "9124d9e88ac6c11d761f35241713a51d68e2c4ebedce0edaca834717a00959ec",
+      "checked": "ҢңӨөҮүРускийКыргзча",
+      "missing": []
+    },
+    {
+      "family": "golostext",
+      "source": "https://github.com/google/fonts/blob/main/ofl/golostext/GolosText[wght].ttf",
+      "download": "https://raw.githubusercontent.com/google/fonts/main/ofl/golostext/GolosText%5Bwght%5D.ttf",
+      "sha256": "17bb58fb69aec2dfb047a2ebf52534023e9b688c97a6b7ac795b0a72912c2063",
+      "checked": "ҢңӨөҮүРускийКыргзча",
+      "missing": []
+    }
+  ]
+}

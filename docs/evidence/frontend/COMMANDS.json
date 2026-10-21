@@ -1,0 +1,243 @@
+{
+  "recordedAt": "2026-10-21T01:34:19.824+06:00",
+  "commands": [
+    {
+      "command": "npm install -w @samokettik/web --save-exact leaflet@1.9.4",
+      "start": "2026-10-21T00:43:49.248+06:00",
+      "end": "2026-10-21T00:43:52.917+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T00-43-49.248+06-00-npm.log",
+      "sha256": "9e0793dead8eeae32642f4861373def28bd7f86da47c6776fb44de10852b14e9"
+    },
+    {
+      "command": "node work/check-frontend-directions.mjs",
+      "start": "2026-10-21T00:47:34.824+06:00",
+      "end": "2026-10-21T00:47:45.288+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T00-47-34.824+06-00-node.log",
+      "sha256": "72428e919f057506087ff16e7feb92e2500027601f12e8c1fcb06c5a3949f80e"
+    },
+    {
+      "command": "npm run verify",
+      "start": "2026-10-21T00:49:15.321+06:00",
+      "end": "2026-10-21T00:49:37.681+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T00-49-15.321+06-00-npm.log",
+      "sha256": "cced914b0d54ecca103e8d30f4a439ebaee8abf1f96d8ca85c5580ff4e220325"
+    },
+    {
+      "command": "npm install -D -w @samokettik/web --save-exact @types/leaflet@1.9.21",
+      "start": "2026-10-21T00:50:17.227+06:00",
+      "end": "2026-10-21T00:50:20.787+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T00-50-17.227+06-00-npm.log",
+      "sha256": "8da5f2437dd34d1911a32d5a954b1b4fbca93472ee9ab48b4431eca514f3055d"
+    },
+    {
+      "command": "npm run setup",
+      "start": "2026-10-21T00:50:59.288+06:00",
+      "end": "2026-10-21T00:51:00.200+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T00-50-59.288+06-00-npm.log",
+      "sha256": "114b930802c8801aeba5f53ad6a031c196b218eb498688322bc078e5e4129b06"
+    },
+    {
+      "command": "npm run typecheck",
+      "start": "2026-10-21T00:59:33.864+06:00",
+      "end": "2026-10-21T00:59:40.840+06:00",
+      "exitCode": 1,
+      "log": "logs/2026-10-21T00-59-33.864+06-00-npm.log",
+      "sha256": "1528d201816842da5d48d68997ee7e6aaeb512294a84321c55ee18501da60757"
+    },
+    {
+      "command": "npm run verify",
+      "start": "2026-10-21T00:59:55.671+06:00",
+      "end": "2026-10-21T01:00:12.650+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T00-59-55.671+06-00-npm.log",
+      "sha256": "8888eb985045dc7c5e181887eca3a2265f9b33bc833b634fbdbf0ab5242c38dd"
+    },
+    {
+      "command": "npm run compose:up",
+      "start": "2026-10-21T01:01:20.210+06:00",
+      "end": "2026-10-21T01:02:35.169+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-01-20.210+06-00-npm.log",
+      "sha256": "de3a6e769b98b6a3be82b1f8b1a64999ce141a8fec81487bd606238e4b7030ba"
+    },
+    {
+      "command": "npm run typecheck",
+      "start": "2026-10-21T01:04:12.390+06:00",
+      "end": "2026-10-21T01:04:22.647+06:00",
+      "exitCode": 1,
+      "log": "logs/2026-10-21T01-04-12.390+06-00-npm.log",
+      "sha256": "86310ddcaa9b016338375087ed8ea828c98ee4b034dbf6385b202551a182c386"
+    },
+    {
+      "command": "npm exec --yes --package=prettier@3.9.10 -- prettier --write apps/web/src apps/server/src/modules/auth apps/server/src/config/env.ts apps/server/src/app.ts packages/contracts/src/index.ts tests/e2e tests/unit/api-client.test.ts tests/unit/demo-session.test.ts tests/integration/foundation.test.ts playwright.config.ts",
+      "start": "2026-10-21T01:06:46.630+06:00",
+      "end": "2026-10-21T01:06:52.574+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-06-46.630+06-00-npm.log",
+      "sha256": "8884664579920083ffa62d5b485b3cd1928dbf49b7acff521765130f9ee06f83"
+    },
+    {
+      "command": "npm run verify",
+      "start": "2026-10-21T01:07:02.864+06:00",
+      "end": "2026-10-21T01:07:21.377+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-07-02.864+06-00-npm.log",
+      "sha256": "f82d6e1748312b864effce118d063f54a4b6cd3d3d70da35b174409fbc41fe84"
+    },
+    {
+      "command": "npm exec -- playwright test --project=desktop --max-failures=2",
+      "start": "2026-10-21T01:10:52.983+06:00",
+      "end": "2026-10-21T01:11:45.932+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-10-52.983+06-00-npm.log",
+      "sha256": "7e20e094384cc893c006b0b44f17bb88de3a8a8710c33d1bd14adc9ef6d83a8d"
+    },
+    {
+      "command": "npm run test:e2e",
+      "start": "2026-10-21T01:12:47.067+06:00",
+      "end": "2026-10-21T01:14:50.094+06:00",
+      "exitCode": 1,
+      "log": "logs/2026-10-21T01-12-47.067+06-00-npm.log",
+      "sha256": "1cbd4bd708f42005560fd65ff863e2463b3681b8c05c79c8e83ca15ef13ea38a"
+    },
+    {
+      "command": "npm run test:e2e",
+      "start": "2026-10-21T01:15:57.093+06:00",
+      "end": "2026-10-21T01:17:32.412+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-15-57.093+06-00-npm.log",
+      "sha256": "9f9bf2cdba36a3bfae39b1caa248e2af5ddd31e66a2e398ef27e234f23896623"
+    },
+    {
+      "command": "npm exec --yes --package=prettier@3.9.10 -- prettier --write apps/web/src/app/App.tsx apps/web/src/app/app.scss apps/web/src/features/map/TransportMap.tsx apps/web/src/ui/ServerNotice.tsx apps/server/src/config/demo-identities.ts apps/server/src/modules/auth/browser-routes.ts tests/e2e tests/unit/ui-format.test.ts tests/integration/foundation.test.ts",
+      "start": "2026-10-21T01:18:18.221+06:00",
+      "end": "2026-10-21T01:18:20.960+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-18-18.221+06-00-npm.log",
+      "sha256": "4d44cd0ad5667c863895bdfa3edc88ed692df4a65c86ef7cd9191e5219b1ad96"
+    },
+    {
+      "command": "npm run verify",
+      "start": "2026-10-21T01:18:21.948+06:00",
+      "end": "2026-10-21T01:18:31.794+06:00",
+      "exitCode": 1,
+      "log": "logs/2026-10-21T01-18-21.948+06-00-npm.log",
+      "sha256": "a37468f41a4fcdbc83a3c2aee6affebdc2179a3c5ad04e6e4bf0075b6743e901"
+    },
+    {
+      "command": "npm run test:db",
+      "start": "2026-10-21T01:19:33.529+06:00",
+      "end": "2026-10-21T01:20:22.465+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-19-33.529+06-00-npm.log",
+      "sha256": "0c2cdf87048fa1c4d4cb78ee9657fd6556ea6567ad27c0bc617644538f046808"
+    },
+    {
+      "command": "npm run verify",
+      "start": "2026-10-21T01:19:54.779+06:00",
+      "end": "2026-10-21T01:20:15.918+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-19-54.779+06-00-npm.log",
+      "sha256": "1f05238055693c71ee1a6b97c8c5eaf68c18dceb02db9e3fa7a1121a773cab2a"
+    },
+    {
+      "command": "npm run test:e2e",
+      "start": "2026-10-21T01:21:48.707+06:00",
+      "end": "2026-10-21T01:23:51.695+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-21-48.707+06-00-npm.log",
+      "sha256": "ff73ed60de7bc188e48a47d02686f2cb4c78cb9df0d9d666fc0544b4debc71df"
+    },
+    {
+      "command": "npm run verify",
+      "start": "2026-10-21T01:24:42.828+06:00",
+      "end": "2026-10-21T01:25:01.344+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-24-42.828+06-00-npm.log",
+      "sha256": "c661157383d90c3fdfb068f69089ebe5d6f4880bc5ddb5888d779da7d3f21afb"
+    },
+    {
+      "command": "npm exec --yes --package=prettier@3.9.10 -- prettier --write apps/web/src/app/App.tsx apps/web/src/app/app.scss apps/web/src/ui/ServerNotice.tsx apps/web/src/i18n/text.ts apps/web/src/features/map/TransportMap.tsx tests/e2e/foundation.spec.ts tests/e2e/rental.spec.ts",
+      "start": "2026-10-21T01:26:08.366+06:00",
+      "end": "2026-10-21T01:26:11.357+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-26-08.366+06-00-npm.log",
+      "sha256": "cdeb9f7fcbdd0480b8681e7447ff7fe58137e774df834e1ef27401b2d6a045ad"
+    },
+    {
+      "command": "npm run typecheck",
+      "start": "2026-10-21T01:26:12.532+06:00",
+      "end": "2026-10-21T01:26:22.078+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-26-12.532+06-00-npm.log",
+      "sha256": "fb9417fde4ae5f33a9a8f741c77cff45e0c5dd4646f851668d6e0041c625ab23"
+    },
+    {
+      "command": "npm run test:e2e",
+      "start": "2026-10-21T01:27:00.011+06:00",
+      "end": "2026-10-21T01:28:49.286+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-27-00.011+06-00-npm.log",
+      "sha256": "93ae95cbd21bfddcc6159302e59293b03c68a4dca7810d3e6a6bbdf4a409243c"
+    },
+    {
+      "command": "npm audit",
+      "start": "2026-10-21T01:27:31.847+06:00",
+      "end": "2026-10-21T01:27:35.723+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-27-31.847+06-00-npm.log",
+      "sha256": "dd552af05a07a9f685601a4e8cf23641b88e2267de73a8227e95ce7d580c6139"
+    },
+    {
+      "command": "docker compose config --quiet",
+      "start": "2026-10-21T01:27:31.915+06:00",
+      "end": "2026-10-21T01:27:33.560+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-27-31.915+06-00-docker.log",
+      "sha256": "580f854ee2bdd75db26ab61a6a5a9bca1bdcc2c6cb61f776d653945fbf024313"
+    },
+    {
+      "command": "npm run compose:up",
+      "start": "2026-10-21T01:28:52.646+06:00",
+      "end": "2026-10-21T01:30:32.227+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-28-52.646+06-00-npm.log",
+      "sha256": "fc61c1f4d2a2b09d73df318585543e5f5f86cea5910bcd8a6e4ddeb95befcf50"
+    },
+    {
+      "command": "node work/check-live-frontend.mjs",
+      "start": "2026-10-21T01:30:55.571+06:00",
+      "end": "2026-10-21T01:31:00.149+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-30-55.571+06-00-node.log",
+      "sha256": "40ead5676a1680072e73b29eebdbe3486573df3b9832a63a9b28af9e2ba5e39c"
+    },
+    {
+      "command": "npm run verify",
+      "start": "2026-10-21T01:32:25.797+06:00",
+      "end": "2026-10-21T01:32:46.701+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-32-25.797+06-00-npm.log",
+      "sha256": "0a6ad7a23962ff993813666b33100ac970cedec244c4409682b38a2c9a882f48"
+    },
+    {
+      "command": "docker compose ps -a",
+      "start": "2026-10-21T01:32:36.444+06:00",
+      "end": "2026-10-21T01:32:37.173+06:00",
+      "exitCode": 0,
+      "log": "logs/2026-10-21T01-32-36.444+06-00-docker.log",
+      "sha256": "8249e700dd8528dcfe7215b008632b4fd4412a99760776a60342970717ca70bd"
+    }
+  ],
+  "interruptedRun": {
+    "command": "npm run test:e2e",
+    "completeRawLog": false,
+    "knownResults": "1 passed, 5 failed before Ctrl+C",
+    "details": "See WORKLOG and FRONTEND-REPORT. The wrapper was interrupted too; no fabricated complete log."
+  }
+}

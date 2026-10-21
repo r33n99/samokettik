@@ -1,0 +1,42 @@
+@use "../styles/tokens" as t;
+.modal {
+  max-width: min(480px, calc(100vw - 32px));
+  width: 480px;
+  max-height: calc(100svh - 40px);
+  padding: 26px;
+  border: 1px solid t.$line;
+  border-radius: 10px;
+  background: t.$paper;
+  color: t.$ink;
+  box-shadow: 0 20px 90px #10251d50;
+}
+.modal::backdrop {
+  background: #1c282966;
+  backdrop-filter: blur(2px);
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.modal-header h2 {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  line-height: 1.25;
+  margin: 0;
+}
+.modal > p {
+  font-size: 13px;
+  line-height: 1.7;
+}
+@media (max-width: 760px) {
+  .modal {
+    padding: 22px;
+  }
+  .modal-header h2 {
+    font-size: 22px;
+  }
+}

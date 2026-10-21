@@ -1,0 +1,11 @@
+START 2026-10-21T16:02:37.769+06:00
+COMMAND npm exec --yes --package=prettier@3.9.10 -- prettier --write apps/web/src/app/App.tsx apps/web/src/features/rental/RentalPanel.tsx apps/web/src/features/rental/rental.scss apps/web/src/features/map/TransportMap.tsx apps/web/src/i18n/text.ts tests/e2e/rental.spec.ts
+apps/web/src/app/App.tsx 138ms (unchanged)
+apps/web/src/features/rental/RentalPanel.tsx 44ms
+apps/web/src/features/rental/rental.scss 59ms
+apps/web/src/features/map/TransportMap.tsx 33ms (unchanged)
+apps/web/src/i18n/text.ts 18ms (unchanged)
+tests/e2e/rental.spec.ts 87ms
+
+END 2026-10-21T16:02:43.425+06:00
+EXIT 0

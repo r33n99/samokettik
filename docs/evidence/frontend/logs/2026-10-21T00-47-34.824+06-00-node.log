@@ -1,0 +1,6 @@
+START 2026-10-21T00:47:34.824+06:00
+COMMAND node work/check-frontend-directions.mjs
+{"recordedAt":"2026-10-21T00:47:45.261+06:00","views":6,"allHaveRealFleetAndZone":true,"horizontalOverflow":false}
+
+END 2026-10-21T00:47:45.288+06:00
+EXIT 0

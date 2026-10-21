@@ -1,0 +1,93 @@
+{
+  "recordedAt": "2026-10-21T16:07:17.684+06:00",
+  "commands": [
+    {
+      "file": "logs/2026-10-21T15-59-38.549+06-00-npm.log",
+      "sha256": "a095b004b8397ee2a1fb45b6c8096d3cf87616dd9d609c5692f06d2972db56e7",
+      "command": "npm run test:e2e -- --grep inspect another|geometry stable",
+      "startedAt": "2026-10-21T15:59:38.549+06:00",
+      "endedAt": "2026-10-21T16:00:25.919+06:00",
+      "exitCode": 1
+    },
+    {
+      "file": "logs/2026-10-21T16-00-10.459+06-00-npm.log",
+      "sha256": "e312b6073f2b2c11df1a8c5a03a9b6b2a31ee3ec5cf2ce679d3adf6fda61428b",
+      "command": "npm run verify",
+      "startedAt": "2026-10-21T16:00:10.459+06:00",
+      "endedAt": "2026-10-21T16:00:13.238+06:00",
+      "exitCode": 1
+    },
+    {
+      "file": "logs/2026-10-21T16-00-40.416+06-00-npm.log",
+      "sha256": "db546161a17036688994993e7218592102f75d6aa29a0957e08a88591c7cfc30",
+      "command": "npm run verify",
+      "startedAt": "2026-10-21T16:00:40.416+06:00",
+      "endedAt": "2026-10-21T16:00:49.553+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T16-00-57.203+06-00-npm.log",
+      "sha256": "ca0fe7cbf53c55a14e13e1900eb190af366cf2a2705e206c506452981463a548",
+      "command": "npm run test:e2e -- --grep inspect another|geometry stable",
+      "startedAt": "2026-10-21T16:00:57.203+06:00",
+      "endedAt": "2026-10-21T16:01:22.640+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T16-02-37.769+06-00-npm.log",
+      "sha256": "a47f73cb2732f6a4a91f0e03eadef0a38931a29998d84a993b9690f674b013d5",
+      "command": "npm exec --yes --package=prettier@3.9.10 -- prettier --write apps/web/src/app/App.tsx apps/web/src/features/rental/RentalPanel.tsx apps/web/src/features/rental/rental.scss apps/web/src/features/map/TransportMap.tsx apps/web/src/i18n/text.ts tests/e2e/rental.spec.ts",
+      "startedAt": "2026-10-21T16:02:37.769+06:00",
+      "endedAt": "2026-10-21T16:02:43.425+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T16-02-50.729+06-00-npm.log",
+      "sha256": "611619c76f1ec8a9e93575740346f967c4d92e09194f2669fcec530c94067b4e",
+      "command": "npm run typecheck",
+      "startedAt": "2026-10-21T16:02:50.729+06:00",
+      "endedAt": "2026-10-21T16:02:53.496+06:00",
+      "exitCode": 1
+    },
+    {
+      "file": "logs/2026-10-21T16-02-58.781+06-00-npm.log",
+      "sha256": "4a9912e1d6bf6b9d713f08d5f4d48e45ba10c9d9574ce1a9cabefd70c0c0a5fa",
+      "command": "npm run test:e2e",
+      "startedAt": "2026-10-21T16:02:58.781+06:00",
+      "endedAt": "2026-10-21T16:04:21.904+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T16-03-16.831+06-00-npm.log",
+      "sha256": "0311302ddd5474648a4f21cc3542dc3856d13e5ffa99cbc573789d1d39307122",
+      "command": "npm run verify",
+      "startedAt": "2026-10-21T16:03:16.831+06:00",
+      "endedAt": "2026-10-21T16:03:25.236+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T16-04-29.903+06-00-docker.log",
+      "sha256": "e264339c99a2a6e561c25bfa2ff00effff962bbfb6a74fbf32677dabfa8113df",
+      "command": "docker compose up -d --build --no-deps --wait web",
+      "startedAt": "2026-10-21T16:04:29.903+06:00",
+      "endedAt": "2026-10-21T16:04:52.430+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T16-05-41.884+06-00-npm.log",
+      "sha256": "fb69743cee979cb309f0002aeb66edcc0cad2a29831a4b8f3ab7afed02137d7a",
+      "command": "npm run test:e2e -- --grep inspect another",
+      "startedAt": "2026-10-21T16:05:41.884+06:00",
+      "endedAt": "2026-10-21T16:06:00.580+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T16-06-17.259+06-00-node.log",
+      "sha256": "caa4ba5c13b2ab824cd350756cde140a4081e476714764608d5f9d27c88d8f3c",
+      "command": "node work/check-live-frontend.mjs",
+      "startedAt": "2026-10-21T16:06:17.259+06:00",
+      "endedAt": "2026-10-21T16:06:19.755+06:00",
+      "exitCode": 0
+    }
+  ]
+}

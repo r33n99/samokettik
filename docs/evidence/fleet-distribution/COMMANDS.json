@@ -1,0 +1,77 @@
+{
+  "recordedAt": "2026-10-21T15:22:23.509+06:00",
+  "commands": [
+    {
+      "file": "logs/2026-10-21T15-16-43.626+06-00-npm.log",
+      "sha256": "cb4a3f3348de3abeacd29d2f20a76a0dd80cd8be7d26d4e926fb28b0caea9031",
+      "command": "npm run verify",
+      "startedAt": "2026-10-21T15:16:43.626+06:00",
+      "endedAt": "2026-10-21T15:16:54.105+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T15-17-04.732+06-00-npm.log",
+      "sha256": "f470639ecbb199f4fafed345794088efe023cfe0cf14113fe29aba55e707647d",
+      "command": "npm run test:db",
+      "startedAt": "2026-10-21T15:17:04.732+06:00",
+      "endedAt": "2026-10-21T15:17:34.143+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T15-18-33.700+06-00-npm.log",
+      "sha256": "5dbefa070ded9cc9ed330d24f069c7ab407c783e2197912441f15a2a7c978c6d",
+      "command": "npm run test:e2e",
+      "startedAt": "2026-10-21T15:18:33.700+06:00",
+      "endedAt": "2026-10-21T15:19:33.439+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T15-19-44.409+06-00-npm.log",
+      "sha256": "489220e39d294e9b8f08d0735c1b120356f76e4e61077703a64c6c59b32f4176",
+      "command": "npm run compose:up",
+      "startedAt": "2026-10-21T15:19:44.409+06:00",
+      "endedAt": "2026-10-21T15:20:33.543+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T15-20-54.313+06-00-node.log",
+      "sha256": "2dd0207209fa8ff991ddfbc18fdf6b4ec900a52647a31feccc8845dad347f1a4",
+      "command": "node work/apply-fleet-distribution.mjs",
+      "startedAt": "2026-10-21T15:20:54.313+06:00",
+      "endedAt": "2026-10-21T15:20:56.506+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T15-20-54.676+06-00-npm.log",
+      "sha256": "d4191f65000854853c912cdc23c4dd7f56962ccbe96b62083cb134afecd500e8",
+      "command": "npm run demo:redistribute",
+      "startedAt": "2026-10-21T15:20:54.676+06:00",
+      "endedAt": "2026-10-21T15:20:56.422+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T15-21-00.923+06-00-node.log",
+      "sha256": "2639ffb91a1d53c214e859379be1fff1d589230fb62fc89fe69d5e698bae5902",
+      "command": "node work/check-fleet-map.mjs",
+      "startedAt": "2026-10-21T15:21:00.923+06:00",
+      "endedAt": "2026-10-21T15:21:03.225+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T15-21-00.930+06-00-npm.log",
+      "sha256": "19fdeb3e51b38fa0225c505d7cb0009cc8e2c571544e53034a14af4f82b0c3e0",
+      "command": "npm run typecheck",
+      "startedAt": "2026-10-21T15:21:00.930+06:00",
+      "endedAt": "2026-10-21T15:21:03.647+06:00",
+      "exitCode": 0
+    },
+    {
+      "file": "logs/2026-10-21T15-21-37.146+06-00-npm.log",
+      "sha256": "4ae0a1da9bf0e2c82c973ffd5b7deab1fda6512f90de5664b562d669dbf7c645",
+      "command": "npm run demo:redistribute",
+      "startedAt": "2026-10-21T15:21:37.146+06:00",
+      "endedAt": "2026-10-21T15:21:38.554+06:00",
+      "exitCode": 0
+    }
+  ]
+}

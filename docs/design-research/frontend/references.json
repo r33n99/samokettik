@@ -1,0 +1,1771 @@
+{
+  "recordedAt": "2026-10-21T00:43:35.342+06:00",
+  "pages": [
+    {
+      "name": "lime",
+      "url": "https://www.li.me/how-to-ride",
+      "status": 403,
+      "title": "Just a moment...",
+      "styles": [
+        {
+          "tag": "H1",
+          "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "weight": "600",
+          "size": "40px",
+          "color": "rgb(49, 49, 49)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 9
+        },
+        {
+          "tag": "H2",
+          "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "weight": "600",
+          "size": "24px",
+          "color": "rgb(49, 49, 49)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 32
+        },
+        {
+          "tag": "P",
+          "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(49, 49, 49)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 65
+        },
+        {
+          "tag": "A",
+          "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "weight": "400",
+          "size": "12px",
+          "color": "rgb(0, 0, 238)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 10
+        },
+        {
+          "tag": "A",
+          "font": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "weight": "400",
+          "size": "12px",
+          "color": "rgb(0, 0, 238)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 7
+        }
+      ]
+    },
+    {
+      "name": "whoosh",
+      "url": "https://whoosh-bike.ru/",
+      "status": 200,
+      "title": "Шеринг самокатов Whoosh, скачать приложение Whoosh здесь!",
+      "styles": [
+        {
+          "tag": "A",
+          "font": "Arial, sans-serif",
+          "weight": "400",
+          "size": "18px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgb(199, 210, 233)",
+          "radius": "8px",
+          "textLength": 20
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 14
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 3
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 9
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 8
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 8
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 10
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 3
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 7
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 7
+        },
+        {
+          "tag": "DIV",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "20px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 4
+        },
+        {
+          "tag": "DIV",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "20px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 9
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "20px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 10
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "18px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgb(255, 185, 40)",
+          "radius": "30px",
+          "textLength": 18
+        },
+        {
+          "tag": "DIV",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "42px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 43
+        },
+        {
+          "tag": "DIV",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgb(80, 90, 100)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "200px",
+          "color": "rgb(255, 185, 40)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 2
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "200px",
+          "color": "rgb(255, 185, 40)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 2
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "200px",
+          "color": "rgb(255, 185, 40)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 2
+        },
+        {
+          "tag": "DIV",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "24px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 20
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "20px",
+          "color": "rgb(130, 130, 130)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 47
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "65px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 20
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "24px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 14
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "20px",
+          "color": "rgb(130, 130, 130)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 65
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "24px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 15
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "20px",
+          "color": "rgb(130, 130, 130)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 65
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "600",
+          "size": "200px",
+          "color": "rgb(255, 185, 40)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 2
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "24px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 17
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "20px",
+          "color": "rgb(130, 130, 130)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 65
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "400",
+          "size": "20px",
+          "color": "rgb(255, 214, 78)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 14
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "400",
+          "size": "20px",
+          "color": "rgb(255, 214, 78)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 14
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "60px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 20
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "60px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 20
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "300",
+          "size": "20px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 62
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "300",
+          "size": "20px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 62
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgb(255, 255, 255)",
+          "radius": "35px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "400",
+          "size": "14px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 6
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "400",
+          "size": "14px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 6
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgb(255, 255, 255)",
+          "radius": "35px",
+          "textLength": 0
+        },
+        {
+          "tag": "DIV",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "400",
+          "size": "14px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 14
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "400",
+          "size": "14px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 14
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 15
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 7
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 8
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "16px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 18
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "\"Times New Roman\"",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(255, 133, 98)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "400",
+          "size": "15px",
+          "color": "rgb(250, 193, 5)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 19
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "14px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 7
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "14px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 8
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "14px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 6
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "14px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 27
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "14px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 15
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "14px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 8
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "14px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 20
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "14px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 10
+        },
+        {
+          "tag": "A",
+          "font": "Nekst, Arial, sans-serif",
+          "weight": "500",
+          "size": "14px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 6
+        }
+      ],
+      "capturedAt": "2026-10-21T00:44:18.642+06:00"
+    },
+    {
+      "name": "bolt",
+      "url": "https://bolt.eu/en/scooters/",
+      "status": 200,
+      "title": "Bolt scooter rentals | Electric scooter rides in 30+ cities",
+      "styles": [
+        {
+          "tag": "BUTTON",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "400",
+          "size": "15px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "50%",
+          "textLength": 0
+        },
+        {
+          "tag": "P",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 14
+        },
+        {
+          "tag": "A",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "600",
+          "size": "12px",
+          "color": "rgb(43, 134, 89)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 10
+        },
+        {
+          "tag": "BUTTON",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "400",
+          "size": "15px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "50%",
+          "textLength": 0
+        },
+        {
+          "tag": "P",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 16
+        },
+        {
+          "tag": "A",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "600",
+          "size": "12px",
+          "color": "rgb(43, 134, 89)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 10
+        },
+        {
+          "tag": "BUTTON",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "400",
+          "size": "15px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "50%",
+          "textLength": 0
+        },
+        {
+          "tag": "P",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 15
+        },
+        {
+          "tag": "A",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "600",
+          "size": "12px",
+          "color": "rgb(43, 134, 89)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 10
+        },
+        {
+          "tag": "BUTTON",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "400",
+          "size": "15px",
+          "color": "rgb(0, 0, 0)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "50%",
+          "textLength": 0
+        },
+        {
+          "tag": "P",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "600",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 14
+        },
+        {
+          "tag": "A",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "600",
+          "size": "12px",
+          "color": "rgb(43, 134, 89)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 10
+        },
+        {
+          "tag": "BUTTON",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "600",
+          "size": "14px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgb(43, 134, 89)",
+          "radius": "8px",
+          "textLength": 9
+        },
+        {
+          "tag": "BUTTON",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "600",
+          "size": "14px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgb(43, 134, 89)",
+          "radius": "8px",
+          "textLength": 10
+        },
+        {
+          "tag": "A",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "400",
+          "size": "14px",
+          "color": "rgb(43, 134, 89)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 18
+        },
+        {
+          "tag": "A",
+          "font": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+          "weight": "400",
+          "size": "14px",
+          "color": "rgb(43, 134, 89)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 14
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 2
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "600",
+          "size": "14px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "9999px",
+          "textLength": 7
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "600",
+          "size": "14px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgb(47, 49, 63)",
+          "radius": "9999px",
+          "textLength": 8
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 0
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgb(255, 255, 255)",
+          "radius": "8px",
+          "textLength": 8
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 14
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 7
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 6
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 7
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 6
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 5
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 12
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 15
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 9
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 8
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 14
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 15
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 10
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 11
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 16
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 25
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 9
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 16
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 25
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 16
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 10
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 3
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 16
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 17
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 8
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 12
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 8
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 22
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 7
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 10
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 15
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 3
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 9
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 8
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 11
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "8px",
+          "textLength": 3
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 39
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 48
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 65
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 65
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(47, 49, 63)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 65
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgba(18, 29, 43, 0.6)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "9999px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgba(18, 29, 43, 0.6)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "9999px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgba(18, 29, 43, 0.6)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "9999px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgba(18, 29, 43, 0.6)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "9999px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgba(18, 29, 43, 0.6)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "9999px",
+          "textLength": 0
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "12px",
+          "color": "rgba(18, 29, 43, 0.6)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 18
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "12px",
+          "color": "rgba(18, 29, 43, 0.6)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 7
+        },
+        {
+          "tag": "A",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "12px",
+          "color": "rgba(18, 29, 43, 0.6)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 7
+        },
+        {
+          "tag": "H1",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "750",
+          "size": "72px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 20
+        },
+        {
+          "tag": "P",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "18px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 65
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "650",
+          "size": "18px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgb(43, 134, 89)",
+          "radius": "40px",
+          "textLength": 14
+        },
+        {
+          "tag": "H2",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "750",
+          "size": "48px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 26
+        },
+        {
+          "tag": "P",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "18px",
+          "color": "rgba(0, 10, 7, 0.627)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 65
+        },
+        {
+          "tag": "H2",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "750",
+          "size": "48px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 19
+        },
+        {
+          "tag": "P",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "18px",
+          "color": "rgba(0, 10, 7, 0.627)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 63
+        },
+        {
+          "tag": "H3",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "650",
+          "size": "30px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 14
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "650",
+          "size": "18px",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgb(43, 134, 89)",
+          "radius": "40px",
+          "textLength": 14
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgba(1, 15, 8, 0.28)",
+          "background": "rgba(1, 34, 18, 0.067)",
+          "radius": "40px",
+          "textLength": 0
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 112, 66, 0.92)",
+          "radius": "9999px",
+          "textLength": 0
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 20, 13, 0.157)",
+          "radius": "9999px",
+          "textLength": 0
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "16px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 20, 13, 0.157)",
+          "radius": "9999px",
+          "textLength": 0
+        },
+        {
+          "tag": "BUTTON",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "400",
+          "size": "16px",
+          "color": "rgb(251, 253, 252)",
+          "background": "rgb(25, 31, 28)",
+          "radius": "40px",
+          "textLength": 0
+        },
+        {
+          "tag": "H2",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "750",
+          "size": "48px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 21
+        },
+        {
+          "tag": "P",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "18px",
+          "color": "rgba(0, 10, 7, 0.627)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 65
+        },
+        {
+          "tag": "H3",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "650",
+          "size": "24px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 13
+        },
+        {
+          "tag": "P",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "550",
+          "size": "18px",
+          "color": "rgba(0, 10, 7, 0.627)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 30
+        },
+        {
+          "tag": "H3",
+          "font": "__Inter_a5e944, __Inter_Fallback_a5e944, system-ui, sans-serif",
+          "weight": "650",
+          "size": "24px",
+          "color": "rgb(25, 31, 28)",
+          "background": "rgba(0, 0, 0, 0)",
+          "radius": "0px",
+          "textLength": 17
+        }
+      ],
+      "capturedAt": "2026-10-21T00:44:22.697+06:00"
+    }
+  ]
+}

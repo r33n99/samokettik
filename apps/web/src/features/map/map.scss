@@ -1,0 +1,156 @@
+@use "../../styles/tokens" as t;
+.transport-map {
+  position: absolute;
+  inset: 0;
+}
+.map-canvas {
+  height: 100%;
+  width: 100%;
+  background: #ecece5;
+}
+.leaflet-container {
+  font-family: Golos, sans-serif;
+}
+.leaflet-control-attribution {
+  font-size: 10px;
+  max-width: 230px;
+}
+.leaflet-top.leaflet-right {
+  top: 64px;
+  right: 12px;
+}
+.leaflet-control-zoom a {
+  border-radius: 2px;
+  color: t.$ink;
+}
+.map-tools {
+  position: absolute;
+  right: 24px;
+  top: 20px;
+  z-index: 600;
+  display: flex;
+  gap: 7px;
+}
+.map-tools button {
+  background: t.$paper;
+  border: 1px solid t.$line;
+  border-radius: 6px;
+  color: t.$ink;
+  padding: 12px 15px;
+  font-size: 12px;
+  box-shadow: 0 2px 8px #20252210;
+}
+.transport-pin {
+  border: 1.5px solid #fff;
+  background: #fff;
+  color: #849084;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 6px #20252230;
+}
+.transport-pin svg {
+  width: 17px;
+  height: 17px;
+}
+.transport-pin.available {
+  background: t.$accent;
+  color: white;
+}
+.transport-pin.reserved {
+  background: #b68b2e;
+  color: #fff;
+}
+.transport-pin.in_ride {
+  background: #45667e;
+  color: #fff;
+}
+.transport-pin.own {
+  box-shadow:
+    0 0 0 4px #fff9,
+    0 0 0 6px #45667e;
+}
+.transport-pin.selected {
+  color: #fff;
+  background: t.$ink;
+  box-shadow:
+    0 0 0 5px #fffa,
+    0 4px 14px #20252255;
+}
+.tile-error {
+  position: absolute;
+  top: 160px;
+  right: 22px;
+  z-index: 600;
+  max-width: 260px;
+  background: #fff9ed;
+  padding: 12px;
+  border: 1px solid #caa877;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.map-legend {
+  position: absolute;
+  z-index: 600;
+  right: 24px;
+  bottom: 18px;
+  background: t.$paper;
+  border: 1px solid t.$line;
+  padding: 11px 13px;
+  border-radius: 5px;
+  display: flex;
+  gap: 15px;
+  font-size: 10px;
+}
+.map-legend span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.map-legend span::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a8b0a6;
+}
+.map-legend .legend-free::before {
+  background: t.$accent;
+}
+.map-legend .legend-booked::before {
+  background: #b68b2e;
+}
+.map-legend .legend-riding::before {
+  background: #45667e;
+}
+@media (max-width: 760px) {
+  .map-tools {
+    right: 12px;
+    top: 14px;
+  }
+  .map-tools button {
+    padding: 10px;
+    font-size: 10px;
+  }
+  .map-legend {
+    top: 108px;
+    bottom: auto;
+    left: 12px;
+    right: auto;
+    padding: 8px;
+    gap: 8px;
+    font-size: 8px;
+  }
+  .leaflet-top.leaflet-right {
+    right: 2px;
+    top: 58px;
+  }
+  .leaflet-control-attribution {
+    font-size: 9px;
+    max-width: 210px;
+  }
+  .tile-error {
+    right: 10px;
+    top: 150px;
+  }
+}

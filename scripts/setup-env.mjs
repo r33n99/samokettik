@@ -5,6 +5,8 @@ const example = await readFile(new URL('.env.example', root), 'utf8');
 const contents = example.replaceAll('replace-with-local-password', randomBytes(24).toString('hex'))
   .replace('replace-with-ru-token', randomBytes(32).toString('hex'))
   .replace('replace-with-ky-token', randomBytes(32).toString('hex'))
+  .replace('replace-with-session-secret', randomBytes(32).toString('hex'))
+  .replace('DEMO_BROWSER_ENABLED=false', 'DEMO_BROWSER_ENABLED=true')
   .replace('DEMO_AUTH_ENABLED=false', 'DEMO_AUTH_ENABLED=true');
 try {
   await writeFile(new URL('.env', root), contents, { flag: 'wx', mode: 0o600 });

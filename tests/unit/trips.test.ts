@@ -52,7 +52,7 @@ describe('server geofence covers polygon boundaries, holes and multiple islands'
     expect(isWithinZone(multi, NaN, 0)).toBe(false);
     expect(() => validateZoneRings({ ...polygon, geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [2, 2]]] } })).toThrow('closed');
     const config = loadBusinessConfig();
-    expect(isWithinZone(config.serviceZone, config.seedOrigin.longitudeE7, config.seedOrigin.latitudeE7)).toBe(true);
+    expect(config.seedLocations.every(point => isWithinZone(config.serviceZone, point.longitudeE7, point.latitudeE7))).toBe(true);
     expect(() => parseBusinessConfig({ ...config, billingPolicy: 'unknown' })).toThrow();
   });
 });

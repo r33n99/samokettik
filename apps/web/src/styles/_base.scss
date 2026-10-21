@@ -1,7 +1,44 @@
-@use 'tokens' as t;
-* { box-sizing: border-box; }
-body { margin: 0; background: t.$canvas; color: t.$ink; font-family: t.$font; }
-button, a { -webkit-tap-highlight-color: transparent; }
-button { font: inherit; }
-a { color: inherit; }
-:focus-visible { outline: 3px solid t.$accent; outline-offset: 4px; }
+@use "tokens" as t;
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: t.$canvas;
+  color: t.$ink;
+  font-family: t.$font;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+button,
+input {
+  accent-color: t.$accent;
+}
+input {
+  min-height: 40px;
+}
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+a {
+  color: inherit;
+}
+:focus-visible {
+  outline: 3px solid t.$accent;
+  outline-offset: 4px;
+}

@@ -1,0 +1,31 @@
+START 2026-10-21T16:05:41.884+06:00
+COMMAND npm run test:e2e -- --grep inspect another
+
+> samokettik@0.1.0 test:e2e
+> npm run build -w @samokettik/contracts && playwright test --grep inspect another
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+Isolated E2E: fresh PostgreSQL database, real API/worker/Vite are ready; main demo data untouched.
+
+Running 4 tests using 1 worker
+
+(node:4520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\e2e\rental.spec.ts:234:3 › can inspect another scooter while reserved without refocusing the owned scooter (3.0s)
+  ok 2 [desktop] › tests\e2e\rental.spec.ts:234:3 › can inspect another scooter while riding without refocusing the owned scooter (2.9s)
+(node:23960) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23960) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [mobile] › tests\e2e\rental.spec.ts:234:3 › can inspect another scooter while reserved without refocusing the owned scooter (2.2s)
+  ok 4 [mobile] › tests\e2e\rental.spec.ts:234:3 › can inspect another scooter while riding without refocusing the owned scooter (2.4s)
+
+  4 passed (17.0s)
+
+END 2026-10-21T16:06:00.580+06:00
+EXIT 0

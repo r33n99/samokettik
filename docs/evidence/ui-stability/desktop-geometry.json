@@ -1,0 +1,69 @@
+{
+  "recordedAt": "2026-10-21T16:03:23.799+06:00",
+  "measurements": [
+    {
+      "locale": "ru",
+      "action": "На паузу",
+      "frames": 90,
+      "geometry": {
+        "top": 190,
+        "left": 24,
+        "height": 595.59375,
+        "width": 350,
+        "clientWidth": 348,
+        "clientHeight": 594,
+        "scrollHeight": 594,
+        "scrollTop": 0,
+        "actionsTop": 613.59375
+      }
+    },
+    {
+      "locale": "ru",
+      "action": "Продолжить",
+      "frames": 90,
+      "geometry": {
+        "top": 190,
+        "left": 24,
+        "height": 595.59375,
+        "width": 350,
+        "clientWidth": 348,
+        "clientHeight": 594,
+        "scrollHeight": 594,
+        "scrollTop": 0,
+        "actionsTop": 613.59375
+      }
+    },
+    {
+      "locale": "ky",
+      "action": "Тыныгуу",
+      "frames": 90,
+      "geometry": {
+        "top": 190,
+        "left": 24,
+        "height": 595.59375,
+        "width": 350,
+        "clientWidth": 348,
+        "clientHeight": 594,
+        "scrollHeight": 594,
+        "scrollTop": 0,
+        "actionsTop": 613.59375
+      }
+    },
+    {
+      "locale": "ky",
+      "action": "Улантуу",
+      "frames": 90,
+      "geometry": {
+        "top": 190,
+        "left": 24,
+        "height": 595.59375,
+        "width": 350,
+        "clientWidth": 348,
+        "clientHeight": 594,
+        "scrollHeight": 594,
+        "scrollTop": 0,
+        "actionsTop": 613.59375
+      }
+    }
+  ]
+}

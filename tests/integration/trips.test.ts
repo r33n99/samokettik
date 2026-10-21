@@ -13,6 +13,7 @@ import { DEMO_USER_IDS } from '../../apps/server/src/config/demo-identities.js';
 import { migrationsPath } from '../../apps/server/src/config/paths.js';
 import { createDatabase } from '../../apps/server/src/db/client.js';
 import { seedDatabase } from '../../apps/server/src/db/seed-data.js';
+import { redistributeDemoVehicles } from '../../apps/server/src/db/redistribute-data.js';
 import { demoPayments, idempotencyRequests, invoices, localMailbox, mailOutbox, notifications, rentals, tripIntervals, tripSimulations, vehicles } from '../../apps/server/src/db/schema.js';
 import { runReservationJobs } from '../../apps/server/src/jobs/reservations.js';
 
@@ -115,6 +116,19 @@ afterAll(async () => {
 });
 
 describe('trip lifecycle over HTTP and PostgreSQL', () => {
+  it.each(['reserved', 'riding', 'paused'] as const)('redistributes only idle demo vehicles, preserving %s and repeated runs', async mode => {
+    const id = await reserved();
+    if (mode !== 'reserved') trip(await post(`/api/v1/trips/${id}/start`));
+    if (mode === 'paused') trip(await post(`/api/v1/trips/${id}/pause`));
+    const [before] = await database.db.select().from(vehicles).where(eq(vehicles.id, vehicleId));
+    expect(await redistributeDemoVehicles(database, config)).toEqual({ moved: 29, skippedActive: 1, missing: 0 });
+    const [after] = await database.db.select().from(vehicles).where(eq(vehicles.id, vehicleId));
+    expect(after).toEqual(before);
+    const [idle] = await database.db.select().from(vehicles).where(eq(vehicles.publicCode, 'SK-006'));
+    expect(idle).toMatchObject({ ...config.seedLocations[5], batteryBp: 10000, serviceMode: 'operational' });
+    expect(await redistributeDemoVehicles(database, config)).toEqual({ moved: 0, skippedActive: 1, missing: 0 });
+    expect((await database.db.select().from(rentals).where(eq(rentals.id, id)))[0]?.state).toBe(mode);
+  });
   it('starts, pauses, resumes and finishes with contiguous server-time intervals', async () => {
     const id = await reserved(), key = randomUUID();
     const first = await post(`/api/v1/trips/${id}/start`, 'a', key);

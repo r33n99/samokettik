@@ -1,0 +1,33 @@
+START 2026-10-21T16:00:57.203+06:00
+COMMAND npm run test:e2e -- --grep inspect another|geometry stable
+
+> samokettik@0.1.0 test:e2e
+> npm run build -w @samokettik/contracts && playwright test --grep inspect another|geometry stable
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+Isolated E2E: fresh PostgreSQL database, real API/worker/Vite are ready; main demo data untouched.
+
+Running 6 tests using 1 worker
+
+(node:25744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while reserved without refocusing the owned scooter (1.7s)
+  ok 2 [desktop] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while riding without refocusing the owned scooter (3.8s)
+  ok 3 [desktop] › tests\e2e\rental.spec.ts:261:1 › pause and resume keep panel geometry stable during slow real requests and state restoration (4.6s)
+(node:23412) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23412) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 4 [mobile] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while reserved without refocusing the owned scooter (1.7s)
+  ok 5 [mobile] › tests\e2e\rental.spec.ts:233:3 › can inspect another scooter while riding without refocusing the owned scooter (1.7s)
+  ok 6 [mobile] › tests\e2e\rental.spec.ts:261:1 › pause and resume keep panel geometry stable during slow real requests and state restoration (4.6s)
+
+  6 passed (23.9s)
+
+END 2026-10-21T16:01:22.640+06:00
+EXIT 0

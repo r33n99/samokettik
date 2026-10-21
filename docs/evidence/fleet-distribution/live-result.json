@@ -1,0 +1,11 @@
+{
+  "recordedAt": "2026-10-21T15:20:56.484+06:00",
+  "count": 30,
+  "moved": 30,
+  "skippedActive": 0,
+  "coordinatesUnique": 30,
+  "allInside": true,
+  "parallelRealtimeClients": 2,
+  "snapshotsMatchDatabase": true,
+  "chargeServiceHistoryPreserved": true
+}

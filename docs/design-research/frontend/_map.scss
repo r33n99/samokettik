@@ -1,0 +1,30 @@
+.direction-map { --accent: #ae4a30;
+  .app-header { height: 84px; padding: 0 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; background: #fffefa; position: relative; z-index: 700; border-bottom: 1px solid #dedfd7; }
+  .brand { font-family: Geologica, sans-serif; }
+  .map-container { height: calc(100% - 84px); }
+  .vehicle-panel { position: absolute; left: 28px; top: 112px; z-index: 650; width: 340px; background: #fffefa; border: 1px solid #dbded6; padding: 24px; border-radius: 10px; box-shadow: 0 12px 40px #1c30271a; }
+  .panel-top { display: flex; align-items: center; justify-content: space-between; color: #71776e; font-size: 12px; margin-bottom: 22px; }
+  .close { border: 0; padding: 0; background: transparent; font-size: 22px; color: #5a6258; }
+  .map-caption { left: auto; right: 22px; }
+  .nav a[aria-current] { color: #ae4a30; }
+  .scooter-visual { background: #f2eee7; }
+  .legend { margin-top: 24px; border-top: 1px solid #e0e3dc; padding-top: 17px; }
+}
+@media(max-width: 720px) { .direction-map {
+  .app-header { height: 74px; padding: 0 15px; gap: 10px; }
+  .city { font-size: 10px; }
+  .nav { position: absolute; bottom: 0; left: 0; transform: translateY(100%); z-index: 700; background: #fffefa; padding: 0 20px; gap: 26px; width: 100%; font-size: 12px; box-shadow: 0 2px 4px #1c30270a; }
+  .map-container { height: calc(100% - 74px); }
+  .map-controls { top: 48px; }
+  .leaflet-top.leaflet-right { top: 94px; }
+  .vehicle-panel { left: 12px; right: 12px; top: auto; bottom: 12px; width: auto; padding: 18px; border-radius: 13px; }
+  .panel-top { margin-bottom: 8px; }
+  .scooter-visual { display: none; }
+  .scooter-head { margin: 10px 0 18px; }
+  .scooter-head h2 { font-size: 25px; }
+  .facts { margin-bottom: 16px; }
+  .facts dd { font-size: 24px; }
+  .legend { display: none; }
+  .map-caption { display: none; }
+  .tariffs { margin-bottom: 14px; }
+} }

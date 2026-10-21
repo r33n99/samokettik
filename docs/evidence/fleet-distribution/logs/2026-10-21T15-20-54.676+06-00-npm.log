@@ -1,0 +1,14 @@
+START 2026-10-21T15:20:54.676+06:00
+COMMAND npm run demo:redistribute
+
+> samokettik@0.1.0 demo:redistribute
+> npm run demo:redistribute -w @samokettik/server
+
+
+> @samokettik/server@0.1.0 demo:redistribute
+> tsx src/db/redistribute.ts
+
+{"moved":30,"skippedActive":0,"missing":0}
+
+END 2026-10-21T15:20:56.422+06:00
+EXIT 0

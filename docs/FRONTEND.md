@@ -1,0 +1,35 @@
+# Frontend: карта, аренда и демонстрационные пользователи
+
+Реализуется по [U012](prompts/012-frontend-task.md), выбранная композиция — [U013](prompts/013-frontend-direction.md). Исследование/варианты: [design-research/frontend](design-research/frontend/README.md). Фактические проверки и границы будут перечислены в FRONTEND-REPORT.md после завершения этапа; этот документ описывает контракты.
+
+React + TypeScript + Vite, прямой Leaflet 1.9.4 без дополнительной React-обёртки, SCSS по функциям. Два самохостящихся OFL-шрифта с проверенными кыргызскими glyphs. Leaflet отвечает за pan/zoom, geoJSON и marker events; React отвечает за данные/панели. List даёт доступный альтернативный выбор без точного попадания в маркер. Маркеры различают available/reserved/in_ride/unavailable, пауза остаётся in_ride. Геозона — серверный MultiPolygon, не упрощённый клиентский прямоугольник.
+
+## Demo mode и конфигурация
+
+GET /api/v1/client-config выдаёт публичные тарифы/длительность/порог/город/timezone, признак demo и публичный tile template; ключи/пароли не выдаются. MAP_TILE_URL — публичный HTTPS template, по умолчанию OSM standard tiles. Attribution виден на карте. Browser cache/Referer не отключаются, bulk downloading/offline tile prefetch отсутствуют. Недоступные tiles не скрывают маркеры и геозону, показывается ошибка подложки.
+
+DEMO_BROWSER_ENABLED по умолчанию false; npm run setup включает local demo и генерирует отдельный DEMO_SESSION_SECRET, сохраняя прежние env values. В Compose настройка и secret передаются только API, не Vite/build args. POST /api/v1/demo/session принимает только profile ru/ky, требует enabled demo + точный Origin из WS_ALLOWED_ORIGINS, выдаёт временный HMAC bearer на DEMO_SESSION_SECONDS (по умолчанию 3600). Профили Айжан/Бек соответствуют прежним двум seed users. Это явно общие демо-профили без пароля, **не production authentication**. Нельзя включать такой выбор профилей на приватных пользовательских данных. Password/Google/настоящие sessions/logout остаются отдельным этапом.
+
+Статический frontend bundle не содержит постоянных DEMO_USER_*_TOKEN/DEMO_SESSION_SECRET/DATABASE_URL. Временный bearer хранится в sessionStorage одной вкладки; разные вкладки/BrowserContext могут выбрать разные профили. API проверяет подпись/срок на каждом HTTP-запросе; старые CLI bearer продолжают работать только в enabled demo. Private WS получает одноразовый ticket через HTTP, без токена в URL. При смене профиля private state/история очищаются и перечитываются; late replies предыдущего подключения игнорируются.
+
+## Источник состояния и запросы
+
+Состояние транспорта, текущая бронь/поездка, стоимость, счета, история и уведомления приходят из PostgreSQL через API/WS. Нет локальной модели поездки, клиентского GPS override или расчёта текущей стоимости по таймеру. Таймер брони/отображение длительности лишь экстраполируют серверный snapshot по performance.now; ноль не отменяет бронь в клиенте. Стоимость сохраняется последним полученным серверным значением, обновляется через snapshots.
+
+useRentalApp объединяет HTTP commands и SDK snapshots. Перед каждым WS reconnect читается REST, затем первый WS snapshot закрывает окно подписки. После команды выполняется новое reconciliation; во время восстановления старый snapshot может оставаться видимым, но команды отключены. Offline сообщение объясняет продолжение поездки/тарификации на сервере. После online клиент немедленно перечитывает актуальное состояние. История загружается отдельным API, обновляется после появления нового счёта; последние100, без pagination.
+
+Все boundaries проверяются TypeBox. ApiFailure различает definitive business отказ и неопределённый ответ (network/timeout/5xx/invalid response). Command intent с UUID, body/path/kind сохраняется **до отправки** в sessionStorage своего профиля. Это metadata запроса, не хранилище статуса/цены. При потерянном ответе/перезагрузке новая операция блокируется, доступен повтор с тем же key; после definitive result pending очищается. Отказ вне зоны/declined payment можно повторить новым намерением/новым key. Ошибка sessionStorage не должна молча запускать незапоминаемый mutation. Таймаут HTTP —15s.
+
+Server остаётся единственным арбитром: один active rental, charge/zone/transition checks, расчёт суммы, finish/invoice/mail. UI подтверждает ручной finish; actual серверный отказ показывается понятно. Оплата — демонстрационная approved/declined заглушка, без банковских данных и реальных денег. Invoice detail показывает сохранённые минуты/тарифы/общую сумму. RU/KY интерфейс реализован локальным словарём; неизвестные API ошибки в KY получают понятный общий текст + requestId. Серверные письма по-прежнему RU, полноценная билингвальная почта не объявляется готовой.
+
+## Браузерная проверка
+
+npm run test:e2e поднимает собственные настоящие API/worker/Vite и новую PostgreSQL-базу samokettik_test_<uuid>. Нужен PostgreSQL с CREATEDB; основной Compose/demo не очищается. E2E_WEB_PORT по умолчанию5180. DB URL/временные signing secrets остаются в окружении процессов, не записываются в evidence. После тестов завершаются дочерние процессы и удаляется только собственная проверенная DB. Внешние tiles могут отсутствовать: арендные данные продолжают работать.
+
+Race test пропускает два настоящих POST через сетевой barrier и проверяет201/409. Потеря ответа моделируется после настоящего server commit: route.fetch затем abort, после reload повторяется тот же key. Для geofence/expiry/depletion меняются trusted fixtures **только изолированной DB**; API не содержит test clock/GPS/заряд endpoints. Отдельная startup error UI проверка подменяет503, успешный сценарий использует настоящие данные. Это разные виды fault injection, не подмена всей бизнес-системы mock backend.
+
+## Стабильность карточки и независимый просмотр U015
+
+Явный selectedId имеет приоритет над activeId в просмотре. Карточка другого транспорта показывает его данные, не подменяется своей бронью; создание второй аренды недоступно с объяснением. Своя аренда продолжает жить в server current и доступна через «Показать свой самокат». Reconnect/WS не перехватывает выбранный маркер. Фоновое завершение своей аренды не центрирует карту на чужом транспорте.
+
+Во время command текст основной кнопки остаётся в layout, индикатор рисуется абсолютно поверх него; aria-busy сообщает состояние, reduced-motion отключает вращение. Отключение команд остаётся привязано к busy/pending/ready. Сообщение связи находится в connection-strip, а не добавляет временный абзац в rental-panel. Регрессионный тест задерживает реальные POST pause/resume и GET sync на 400 мс и сравнивает geometry/scroll 90 кадров на действие для RU/KY на desktop/mobile.

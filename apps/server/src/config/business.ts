@@ -5,7 +5,7 @@ import { Type, type Static } from '@sinclair/typebox';
 import { Value } from '@sinclair/typebox/value';
 import { projectRoot } from './paths.js';
 import { ServiceZoneSchema } from '@samokettik/contracts';
-import { validateZoneRings } from '../modules/trips/geofence.js';
+import { isWithinZone, validateZoneRings } from '../modules/trips/geofence.js';
 
 const BusinessConfigSchema = Type.Object({
   productName: Type.String({ minLength: 1 }),
@@ -28,8 +28,7 @@ const BusinessConfigSchema = Type.Object({
   simulationSpeedMetersPerMinute: Type.Integer({ minimum: 0, maximum: 10000 }),
   simulationRouteSideE7: Type.Integer({ minimum: 1, maximum: 100000 }),
   fleetSize: Type.Integer({ minimum: 1, maximum: 1000 }),
-  seedOrigin: Type.Object({ latitudeE7: Type.Integer({ minimum: -900000000, maximum: 900000000 }), longitudeE7: Type.Integer({ minimum: -1800000000, maximum: 1800000000 }) }, { additionalProperties: false }),
-  seedSpacingE7: Type.Integer({ minimum: 1, maximum: 100000 }),
+  seedLocations: Type.Array(Type.Object({ latitudeE7: Type.Integer({ minimum: -900000000, maximum: 900000000 }), longitudeE7: Type.Integer({ minimum: -1800000000, maximum: 1800000000 }) }, { additionalProperties: false }), { minItems: 1, maxItems: 1000, uniqueItems: true }),
 }, { additionalProperties: false });
 export type BusinessConfig = Static<typeof BusinessConfigSchema>;
 
@@ -38,6 +37,8 @@ export function parseBusinessConfig(candidate: unknown): BusinessConfig {
   if (candidate.reservationWarningBeforeSeconds >= candidate.reservationDurationSeconds) throw new Error('Reservation warning must precede expiry');
   if (!candidate.locales.includes(candidate.defaultLocale)) throw new Error('Default locale must be supported');
   validateZoneRings(candidate.serviceZone);
+  if (candidate.seedLocations.length !== candidate.fleetSize) throw new Error('Seed locations must match fleet size');
+  if (candidate.seedLocations.some(point => !isWithinZone(candidate.serviceZone, point.longitudeE7, point.latitudeE7))) throw new Error('Seed locations must be inside the service zone');
   return candidate;
 }
 export function loadBusinessConfig(): BusinessConfig {

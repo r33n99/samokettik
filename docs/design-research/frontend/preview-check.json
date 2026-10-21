@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-10-21T00:47:45.261+06:00",
+  "results": [
+    {
+      "direction": "map",
+      "screen": "desktop",
+      "ready": true,
+      "overflow": false,
+      "markers": 30,
+      "zone": 1,
+      "tiles": 28,
+      "pageErrors": []
+    },
+    {
+      "direction": "map",
+      "screen": "mobile",
+      "ready": true,
+      "overflow": false,
+      "markers": 30,
+      "zone": 1,
+      "tiles": 12,
+      "pageErrors": []
+    },
+    {
+      "direction": "list",
+      "screen": "desktop",
+      "ready": true,
+      "overflow": false,
+      "markers": 30,
+      "zone": 1,
+      "tiles": 20,
+      "pageErrors": []
+    },
+    {
+      "direction": "list",
+      "screen": "mobile",
+      "ready": true,
+      "overflow": false,
+      "markers": 30,
+      "zone": 1,
+      "tiles": 6,
+      "pageErrors": []
+    },
+    {
+      "direction": "ride",
+      "screen": "desktop",
+      "ready": true,
+      "overflow": false,
+      "markers": 30,
+      "zone": 1,
+      "tiles": 20,
+      "pageErrors": []
+    },
+    {
+      "direction": "ride",
+      "screen": "mobile",
+      "ready": true,
+      "overflow": false,
+      "markers": 30,
+      "zone": 1,
+      "tiles": 6,
+      "pageErrors": []
+    }
+  ]
+}
