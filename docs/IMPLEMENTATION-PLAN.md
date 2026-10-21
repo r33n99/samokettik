@@ -59,3 +59,7 @@ E2E: два независимых Playwright BrowserContext с разными �
 ## Подготовка к сдаче U021
 
 README/current architecture/packages/provenance/prompts/matrix упорядочены; clean git-archive install/Compose/new volume/host dev и сценарии проверены. Обнаружены пропуск contracts build в README и зависимый от host Origin integration fixture; исправления и raw failed/passed runs сохранены. Итог — [SUBMISSION.md](SUBMISSION.md), текущая [матрица](SUBMISSION-MATRIX.md), [двухклиентский сценарий](DEMO.md). Это не закрывает E3 password/Google и KY mail; commit/push требуют отдельной команды.
+
+## Уточнение приёмки U023
+
+По явной команде пользователя E3 password/Google, KY mail и external SMTP не входят в обязательный объём и не реализуются сейчас. Уже существующие local invoice mails/auto-depletion reason и180s warning проверены без изменения бизнес-кода. [MAIL-REVIEW.md](MAIL-REVIEW.md), D59 и актуальная матрица имеют приоритет над прежними оценками обязательности в U017/U021.

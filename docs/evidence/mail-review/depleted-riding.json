@@ -1,0 +1,43 @@
+{
+  "observedAt": "2026-10-21T14:19:23.939Z",
+  "scenario": "depleted-riding",
+  "replayStatuses": [
+    200,
+    200
+  ],
+  "invoice": {
+    "id": "fc305322-bb3f-4450-896d-d892a2c1384d",
+    "rentalId": "ffa1bb3f-5716-46f1-a42a-f7a6d915142e",
+    "currency": "KGS",
+    "status": "unpaid",
+    "activeMilliseconds": "1500",
+    "pausedMilliseconds": "0",
+    "activeMinutes": "1",
+    "pausedMinutes": "0",
+    "rideRateMinorPerMinute": 800,
+    "pauseRateMinorPerMinute": 200,
+    "totalMinor": "800",
+    "billingPolicy": "ceil-per-mode-v1",
+    "createdAt": "2026-10-21T14:17:25.250Z",
+    "paidAt": null
+  },
+  "deliveredMail": {
+    "id": "18ec63d0-036c-47a7-86bb-1dcde5951468",
+    "invoiceId": "fc305322-bb3f-4450-896d-d892a2c1384d",
+    "recipient": "demo.ru@example.test",
+    "subject": "СамоКеттик: счёт за поездку ffa1bb3f-5716-46f1-a42a-f7a6d915142e",
+    "body": "Счёт: fc305322-bb3f-4450-896d-d892a2c1384d\nПоездка: ffa1bb3f-5716-46f1-a42a-f7a6d915142e\nЗавершение: 2026-10-21T14:17:25.250Z\nПричина: Автоматическое завершение: аккумулятор полностью разряжен\nДвижение: 1 мин × 8.00 KGS\nПауза: 0 мин × 2.00 KGS\nИтого: 8.00 KGS\nОплата по факту через демонстрационную заглушку. Реальное списание средств не выполнялось.",
+    "receivedAt": "2026-10-21T14:19:23.846Z"
+  },
+  "finishNotifications": [
+    {
+      "id": "c5bbb988-40fd-4c60-9f3f-a242c9a3c19f",
+      "rentalId": "ffa1bb3f-5716-46f1-a42a-f7a6d915142e",
+      "code": "TRIP_FINISHED",
+      "message": "Поездка автоматически завершена: аккумулятор разряжен. Счёт выставлен",
+      "expiresAt": null,
+      "createdAt": "2026-10-21T14:19:23.780Z",
+      "reason": "battery_depleted"
+    }
+  ]
+}

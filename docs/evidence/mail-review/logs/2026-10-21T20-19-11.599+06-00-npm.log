@@ -1,0 +1,35 @@
+START 2026-10-21T20:19:11.599+06:00
+COMMAND npm run test:e2e -- --grep two browser users compete|ride pause resume finish history|persistent warning|depletion updates
+
+> samokettik@0.1.0 test:e2e
+> npm run build -w @samokettik/contracts && playwright test --grep two browser users compete|ride pause resume finish history|persistent warning|depletion updates
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+Isolated E2E: fresh PostgreSQL database, real API/worker/Vite are ready; main demo data untouched.
+
+Running 8 tests using 1 worker
+
+(node:35512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\e2e\rental.spec.ts:166:1 › two browser users compete for one scooter; one reservation wins and cancel releases it (9.7s)
+  ok 2 [desktop] › tests\e2e\rental.spec.ts:428:1 › ride pause resume finish history and demo payment use the backend invoice (5.9s)
+  ok 3 [desktop] › tests\e2e\rental.spec.ts:675:1 › persistent warning and automatic expiration release the reservation in the browser (5.8s)
+  ok 4 [desktop] › tests\e2e\rental.spec.ts:705:1 › depletion updates the browser with one invoice, notification and local mail (5.3s)
+(node:36244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:36244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 5 [mobile] › tests\e2e\rental.spec.ts:166:1 › two browser users compete for one scooter; one reservation wins and cancel releases it (6.8s)
+  ok 6 [mobile] › tests\e2e\rental.spec.ts:428:1 › ride pause resume finish history and demo payment use the backend invoice (5.8s)
+  ok 7 [mobile] › tests\e2e\rental.spec.ts:675:1 › persistent warning and automatic expiration release the reservation in the browser (5.4s)
+  ok 8 [mobile] › tests\e2e\rental.spec.ts:705:1 › depletion updates the browser with one invoice, notification and local mail (3.4s)
+
+  8 passed (1.0m)
+
+END 2026-10-21T20:20:16.539+06:00
+EXIT 0

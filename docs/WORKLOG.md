@@ -681,3 +681,21 @@
 - 2026-10-21T20:11:53.5860918+06:00 — U022: пользователь разрешил commit/push подготовки к сдаче. Проверены git status, branch/remote, GIT_AUTHOR_IDENT/GIT_COMMITTER_IDENT и env overrides, выполнены git fetch origin и rev-list HEAD...origin/main (0/0), gh auth status. Author/committer Reen <rinni499@gmail.com>, overrides отсутствуют, GitHub r33n99. Изменения соответствуют завершённому U021; далее pre-publication validation, отдельный commit и push origin main. На момент записи commit/push ещё не выполнены.
 
 - 2026-10-21T20:11:55.351+06:00 — U021 final validation: 554publishable files,321local Markdown links, UTF8/NUL/type-bypass и2env exact-secret checks passed; 37raw log SHA256 matches,6применённых SQL побайтно HEAD; production/dependencies unchanged, test patch SHA совпал,46matrix rows,README script references valid,git diff --check0,staged0. Git status содержит только ожидаемые docs/evidence/README и integration fixture. Подробности — docs/evidence/submission/validation.json. Commit/push не выполнялись.
+
+- 2026-10-21T20:17:36.6481108+06:00 — U023 начат с чистого HEADc266805: пользователь явно уточнил обязательный объём, auth/Google/KY/external SMTP не требуются. Проверены finalizer/local mail worker/PG constraints/существующие integration и E2E. Функциональность выглядит реализованной: invoice/outbox атомарны, mailbox+ack атомарны, UNIQUE invoice и logical event. План: усилить только проверки содержимого/manual replay/auto reason, повторить настоящие PG и browser scenarios, обновить актуальные статусы без переписывания исторических прогонов. Новые функции не добавляются.
+
+- 2026-10-21T20:18:04.522+06:00 — Команда: `npm run test:db -- --run tests/integration/realtime.test.ts`; начало 2026-10-21T20:17:43.264+06:00; exit 0. Лог: `work/checks/2026-10-21T20-17-43.264+06-00-npm.log`.
+
+- 2026-10-21T20:19:34.383+06:00 — Команда: `npm run verify`; начало 2026-10-21T20:19:11.567+06:00; exit 0. Лог: `work/checks/2026-10-21T20-19-11.567+06-00-npm.log`.
+
+- 2026-10-21T20:20:13.045+06:00 — Команда: `npm run test:db`; начало 2026-10-21T20:19:11.568+06:00; exit 0. Лог: `work/checks/2026-10-21T20-19-11.568+06-00-npm.log`.
+
+- 2026-10-21T20:20:16.539+06:00 — Команда: `npm run test:e2e -- --grep two browser users compete|ride pause resume finish history|persistent warning|depletion updates`; начало 2026-10-21T20:19:11.599+06:00; exit 0. Лог: `work/checks/2026-10-21T20-19-11.599+06-00-npm.log`.
+
+- 2026-10-21T20:22:42.980+06:00 — U023 проверен: focused10PG,full54PG,verify44unit/typecheck/build,8focusedPlaywright desktop/mobile exit0. Manual письмо10.00KGS,auto riding8.00/paused2.00KGS содержат invoice/trip/time/recipient/rates/total и правильную reason; replay/concurrent delivery/ack rollback/process restart не дублируют mail. Deadline180000ms и видимое owner warning проверены,warning без email разрешён. Runtime/app/config/dependencies/SQL не менялись,только integration assertions/evidence/docs. Новая оценка по6уточнениям и реальные samples/logs: docs/MAIL-REVIEW.md. Auth/Google/KY/SMTP больше не блокеры по D59; предыдущие времена/прогоны не переписывались. Commit/push только предложены.
+
+- 2026-10-21T20:24:06.306+06:00 — U023 final validation: 565publishable files/340local Markdown links,UTF8/NUL/type-bypass/current-secret checks passed;4raw log SHA256 matches,6applied SQL byte-equal HEAD;runtime/config/dependencies unchanged,46matrix rows,git diff --check0,staged0. Результат docs/evidence/mail-review/validation.json. Commit/push не выполнялись.
+
+- 2026-10-21T20:28:33.6818555+06:00 — U024: получена команда commit/push проверенного U023. Проверены status/branch/remote, effective author и committer Reen <rinni499@gmail.com>, env overrides отсутствуют, активный GitHub r33n99. Выполнен fetch origin, main синхронизирована с origin/main (0/0). Далее final validation, отдельный commit и обычный push origin main; на момент записи публикация ещё не выполнена. Код после завершённых проверок не менялся.
+
+- 2026-10-21T20:28:34.753+06:00 — U023 final validation: 567publishable files/341local Markdown links,UTF8/NUL/type-bypass/current-secret checks passed;4raw log SHA256 matches,6applied SQL byte-equal HEAD;runtime/config/dependencies unchanged,46matrix rows,git diff --check0,staged0. Результат docs/evidence/mail-review/validation.json. Commit/push не выполнялись.

@@ -1,0 +1,62 @@
+{
+  "recordedAt": "2026-10-21T20:22:42.980+06:00",
+  "sourceHead": "c2668054fef37f76d7440b8624a6b4657c88d11e",
+  "commands": [
+    {
+      "command": "npm run test:db -- --run tests/integration/realtime.test.ts",
+      "startedAt": "2026-10-21T20:17:43.264+06:00",
+      "finishedAt": "2026-10-21T20:18:04.522+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T20-17-43.264+06-00-npm.log",
+      "sha256": "29f2d2633381d18c12a61bae9117d74583aa2c65021bbe3bf4bd37e0ca0d9e5a"
+    },
+    {
+      "command": "npm run verify",
+      "startedAt": "2026-10-21T20:19:11.567+06:00",
+      "finishedAt": "2026-10-21T20:19:34.383+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T20-19-11.567+06-00-npm.log",
+      "sha256": "c19bc75cd39f88751c184eba91b503aaf418791bf8f8498c14e5da13778e5cab"
+    },
+    {
+      "command": "npm run test:db",
+      "startedAt": "2026-10-21T20:19:11.568+06:00",
+      "finishedAt": "2026-10-21T20:20:13.045+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T20-19-11.568+06-00-npm.log",
+      "sha256": "46d239c6214fc036102b9e9b415f4e41bbc0c60139843f5c38a2b7baf5cf2969"
+    },
+    {
+      "command": "npm run test:e2e -- --grep two browser users compete|ride pause resume finish history|persistent warning|depletion updates",
+      "startedAt": "2026-10-21T20:19:11.599+06:00",
+      "finishedAt": "2026-10-21T20:20:16.539+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T20-19-11.599+06-00-npm.log",
+      "sha256": "eb3aef6d9f322a68a5d5ea85da79da83e62769a42b171c02379890e99675dba1"
+    }
+  ],
+  "samples": [
+    {
+      "scenario": "manual",
+      "observedAt": "2026-10-21T14:19:18.139Z",
+      "totalMinor": "1000",
+      "reason": "finished_by_user",
+      "file": "manual.json"
+    },
+    {
+      "scenario": "depleted-riding",
+      "observedAt": "2026-10-21T14:19:23.939Z",
+      "totalMinor": "800",
+      "reason": "battery_depleted",
+      "file": "depleted-riding.json"
+    },
+    {
+      "scenario": "depleted-paused",
+      "observedAt": "2026-10-21T14:19:24.351Z",
+      "totalMinor": "200",
+      "reason": "battery_depleted",
+      "file": "depleted-paused.json"
+    }
+  ],
+  "productionChanged": false
+}

@@ -1,6 +1,6 @@
 # Матрица сдачи кейса №11
 
-U021. Это актуализация исторического U017 после U019. Статус относится только к указанным проверкам; не означает production readiness. R40/R41 — дополнительные продуктовые предложения, не обязательные требования исходного кейса. Полный новый результат — [SUBMISSION.md](SUBMISSION.md), [raw evidence](evidence/submission/README.md). AC — **исторический** реальный900s прогон U017, не повторённый на U021; другие сокращения раскрыты ниже.
+Актуализировано 2026-10-21T20:23:21.846+06:00 по U023: auth/Google/KY/external SMTP необязательны; ровно одно local invoice mail и причина автостопа обязательны. Проверки и времена — [MAIL-REVIEW.md](MAIL-REVIEW.md). Основа — исторические U017/U019/U021. Статус относится только к указанным проверкам; не означает production readiness. R40/R41 — дополнительные продуктовые предложения, не обязательные требования исходного кейса. Текущая проверка уточнённого объёма — [MAIL-REVIEW.md](MAIL-REVIEW.md); подготовка U021 — [SUBMISSION.md](SUBMISSION.md). AC — **исторический** реальный900s прогон U017, не повторённый на U021; другие сокращения раскрыты ниже.
 
 | Требование | Реализация | Тест | Результат |
 | --- | --- | --- | --- |
@@ -20,7 +20,7 @@ U021. Это актуализация исторического U017 после
 | R14 Основной тариф8, пауза2 KGS/мин | Снимок тарифов800/200minor при start | UT/UA: независимый oracle; IT: paused intervals/config snapshot; ER invoice10 | ПРОЙДЕНО |
 | R15 Поминутное округление без float ошибок | ceil-per-mode-v1: суммарное время каждого режима округляется отдельно; BigInt/bigint | UT: края60000±1ms/large integers; UA:300 комбинаций и30разбиений | ПРОЙДЕНО; дробление пауз не добавляет минут |
 | R16 Автостоп при полном разряде | advanceSimulation считает depletionAt, общий атомарный finalizer | US exact depletion; IW riding/paused/outside/race/restart; ER depletion | ПРОЙДЕНО: после depletionAt начислений нет |
-| R17 Счёт и причина в одном письме на завершение | UNIQUE invoice/outbox; local_mailbox + ack в одной PG-транзакции | IW: ack rollback/concurrent retry/restart/recipient/amount/reason; ER one mail | ПРОЙДЕНО локально; внешняя SMTP-доставка не реализована |
+| R17 Одно invoice mail на завершение, при разряде причина | Atomic finish/invoice/outbox; local mailbox+ack, PG UNIQUE | IW manual/full content/replay/auto riding+paused/ack rollback/restart; ER depletion | ПРОЙДЕНО U023: manual/auto mail,concurrent retries/rollback/restart; разрешённая локальная доставка |
 | R18 Запрет ручного завершения вне зоны | E7/BigInt Polygon/MultiPolygon, outer/holes/edges, server GPS | UT geometry; IT manual finish outside; ER trusted GPS fixture409→return200 | ПРОЙДЕНО; автостоп при0% допускается вне зоны |
 | R19 Поездка продолжается без соединения клиента | Серверные intervals/simulation в БД; браузер только отображает | IW API down/worker restart; ER offline movement/restore | ПРОЙДЕНО |
 | R20 Генерация и изменение GPS | 30seedLocations внутри зоны; saved geometric route/progress | UL: все4компонента зоны; US closed route; IW/ER movement | ПРОЙДЕНО; дорожный роутинг/реальные парковки не подтверждены |
@@ -37,9 +37,9 @@ U021. Это актуализация исторического U017 после
 | R31 Восстановление после reconnect | REST before every WS, epochs, full snapshot, durable intent key | IW restore/restart; ER realtime/offline/reload/response lost/session expiry | ПРОЙДЕНО |
 | R32 Документированный запуск | README Docker и host dev; contracts build перед host seed/check | U021 git archive b7a6c75:новые .env/dependencies/volume/ports; Compose и dev smoke | ПРОЙДЕНО после исправления пропущенного шага README; Docker cache доступен |
 | R33 Настройки в конфиге | BusinessConfig/validated env/client-config; rate/zone snapshots | UC invalid ranges; IF public config/no secrets; IT config snapshot | ПРОЙДЕНО |
-| R34 Email+password авторизация | Есть только общий demo adapter/signed demo profile | Static review auth modules; IR disabled mode; UD explicitly demo only | НЕ РЕАЛИЗОВАНО: registration/password hashing/real sessions отсутствуют |
-| R35 Google авторизация | OIDC/callback отсутствуют, credentials не настроены | Static review; реального Google smoke нет | НЕ РЕАЛИЗОВАНО; mock не выдан за Google |
-| R36 Русский/кыргызский | UI/errors/fonts RU/KY; mail template сейчас RU | EF language/glyph evidence; ER RU/KY pause geometry; fonts cmap | ЧАСТИЧНО: KY письма и независимая языковая экспертиза отсутствуют |
+| R34 Email/password — необязательно U023 | Два demo profiles позволяют проверить конкуренцию | IR real users/HTTP race; ER два BrowserContext | НЕ ОБЯЗАТЕЛЬНО, не реализовано; не препятствие приёмке |
+| R35 Google OAuth — необязательно U023 | Не нужен для обязательного демо | Явное уточнение пользователя U023 | НЕ ОБЯЗАТЕЛЬНО, не реализуется на этом этапе |
+| R36 Кыргызский UI/mail — необязательно U023 | RU UI/mail; существующий KY UI сохраняется | EF glyphs/labels исторически; U023 не требует новых переводов | НЕ ОБЯЗАТЕЛЬНО; KY mail не является дефицитом обязательного объёма |
 | R37 Asia/Bishkek и KGS | UTC DB/API, explicit Asia/Bishkek render, integer minor units | UI-format/UT large money; EF/ER local view; config | ПРОЙДЕНО; mail timestamp остаётся явным ISO UTC |
 | R38 30 демо-самокатов по зоне | Повторяемый seed и explicit idle redistribution | IF30+repeat; UL coverage/all components; IT active preservation; live30markers | ПРОЙДЕНО |
 | R39 Минималистичный самостоятельный UI | Исследования Whoosh/Bolt,3варианта, выбор Карта U013, component SCSS | Сохранённые design-research, desktop/mobile screenshots; current browser tests | ПРОЙДЕНО; оценка дизайна субъективна |
@@ -61,4 +61,4 @@ U021. Это актуализация исторического U017 после
 Основная реализация: [reserve/cancel/idempotency](../apps/server/src/modules/reservations/service.ts), [trip transitions](../apps/server/src/modules/trips/service.ts), [billing](../apps/server/src/modules/trips/billing.ts), [finalizer](../apps/server/src/modules/trips/finalize.ts), [simulation](../apps/server/src/modules/simulation/service.ts), [jobs](../apps/server/src/jobs/transport.ts), [mailbox delivery](../apps/server/src/jobs/mail.ts), [realtime](../apps/server/src/modules/realtime/server.ts), [frontend state](../apps/web/src/state/useRentalApp.ts).
 
 
-Текущие46 строк не сворачиваются в «100%»: R34/R35 не реализованы, R36 частично, R43 ограничен проверенными сбоями. R17 локальный exactly-one не означает SMTP exactly-once; это отдельно обозначенное решение. R41 не согласовано, поэтому отсутствие debt gate не объявляется дефектом исходного задания.
+R34/R35/R36 не входят в обязательный объём по U023. R17 должен выполняться именно как одно принятое локальное invoice mail; внешний SMTP не требуется. R43 описывает пределы расширенной fault-проверки, R41 остаётся несогласованным дополнительным правилом. Итог шести уточнений и новые тесты — MAIL-REVIEW.md.

@@ -1,0 +1,43 @@
+{
+  "observedAt": "2026-10-21T14:19:18.139Z",
+  "scenario": "manual",
+  "replayStatuses": [
+    200,
+    200
+  ],
+  "invoice": {
+    "id": "45a6cc42-3868-4e8c-aab0-60054d38c01c",
+    "rentalId": "8d0d40b0-140b-4473-8fe6-fa9cbc302c15",
+    "currency": "KGS",
+    "status": "unpaid",
+    "activeMilliseconds": "197",
+    "pausedMilliseconds": "207",
+    "activeMinutes": "1",
+    "pausedMinutes": "1",
+    "rideRateMinorPerMinute": 800,
+    "pauseRateMinorPerMinute": 200,
+    "totalMinor": "1000",
+    "billingPolicy": "ceil-per-mode-v1",
+    "createdAt": "2026-10-21T14:19:17.650Z",
+    "paidAt": null
+  },
+  "deliveredMail": {
+    "id": "280595e8-8ef9-4096-849c-5521cb115e8f",
+    "invoiceId": "45a6cc42-3868-4e8c-aab0-60054d38c01c",
+    "recipient": "demo.ru@example.test",
+    "subject": "СамоКеттик: счёт за поездку 8d0d40b0-140b-4473-8fe6-fa9cbc302c15",
+    "body": "Счёт: 45a6cc42-3868-4e8c-aab0-60054d38c01c\nПоездка: 8d0d40b0-140b-4473-8fe6-fa9cbc302c15\nЗавершение: 2026-10-21T14:19:17.650Z\nПричина: Поездка завершена пользователем\nДвижение: 1 мин × 8.00 KGS\nПауза: 1 мин × 2.00 KGS\nИтого: 10.00 KGS\nОплата по факту через демонстрационную заглушку. Реальное списание средств не выполнялось.",
+    "receivedAt": "2026-10-21T14:19:17.816Z"
+  },
+  "finishNotifications": [
+    {
+      "id": "ea1472f4-13be-40e4-ba65-fc9796dd7dc3",
+      "rentalId": "8d0d40b0-140b-4473-8fe6-fa9cbc302c15",
+      "code": "TRIP_FINISHED",
+      "message": "Поездка завершена, счёт выставлен",
+      "expiresAt": null,
+      "createdAt": "2026-10-21T14:19:17.650Z",
+      "reason": "finished_by_user"
+    }
+  ]
+}

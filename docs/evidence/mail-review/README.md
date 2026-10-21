@@ -1,0 +1,3 @@
+# U023 — проверка обязательных писем
+
+Записано 2026-10-21T20:22:42.980+06:00. [Команды и SHA256](COMMANDS.json): focused10PG,full54PG,verify44unit/types/build,8focusedE2E. JSON manual/depleted-riding/depleted-paused — настоящие прочитанные owner API snapshots тестовой UUID DB; содержат только synthetic demo identity. observedAt — фактическое время чтения UTC, invoice/finish timestamp при разряде получен из trusted test fixtures/catch-up, не является выдуманным журналом разработки. Все три сценария проверяют содержимое, replay200/200 и отсутствие новых invoice/outbox/mail/notice; вне этих JSON отдельно проходят rollback/concurrent workers/restart tests. Main demo DB не изменялась.

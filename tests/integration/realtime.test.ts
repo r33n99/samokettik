@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { spawn, type ChildProcess } from 'node:child_process';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { setTimeout as delay } from 'node:timers/promises';
 import pg from 'pg';
 import { WebSocket } from 'ws';
@@ -7,7 +8,7 @@ import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import { eq, sql } from 'drizzle-orm';
 import { Value } from '@sinclair/typebox/value';
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { RealtimeFrameSchema, RealtimeTicketSchema, SyncStateSchema, type RealtimeFrame, type SyncState } from '@samokettik/contracts';
+import { RealtimeFrameSchema, RealtimeTicketSchema, SyncStateSchema, TripResultSchema, type RealtimeFrame, type SyncState } from '@samokettik/contracts';
 import { buildApp } from '../../apps/server/src/app.js';
 import { loadBusinessConfig } from '../../apps/server/src/config/business.js';
 import { loadEnvironment } from '../../apps/server/src/config/env.js';
@@ -62,6 +63,14 @@ async function connect(base = urlA, user?: 'a' | 'b') {
   return { socket, frames };
 }
 const privateStates = (frames: RealtimeFrame[]) => frames.flatMap(frame => frame.type === 'state_snapshot' ? [frame.state] : []);
+async function recordMailEvidence(scenario: string, state: SyncState, replayStatuses: number[]) {
+  await mkdir('outputs/mail-review', { recursive: true });
+  await writeFile(`outputs/mail-review/${scenario}.json`, JSON.stringify({
+    observedAt: new Date().toISOString(), scenario, replayStatuses,
+    invoice: state.invoices.items[0], deliveredMail: state.mailbox.items[0],
+    finishNotifications: state.notifications.items.filter(item => item.code === 'TRIP_FINISHED'),
+  }, null, 2) + '\n');
+}
 function closeSockets() { for (const socket of sockets) socket.terminate(); sockets.clear(); }
 async function reserveAndStart(base = urlA) {
   const reserved = await post(base, '/api/v1/reservations', 'a', { vehicleId }); expect(reserved.status).toBe(201);
@@ -104,6 +113,42 @@ afterAll(async () => {
 });
 
 describe('persistent simulation, realtime snapshots and local invoice mail', () => {
+  it('delivers a complete manual invoice mail exactly once across finish replay and concurrent mail workers', async () => {
+    const id = await reserveAndStart();
+    await delay(25);
+    expect((await post(urlA, `/api/v1/trips/${id}/pause`)).status).toBe(200);
+    await delay(25);
+    const key = randomUUID(), path = `/api/v1/trips/${id}/finish`;
+    const result = await post(urlA, path, 'a', undefined, key);
+    expect(result.status).toBe(200);
+    if (!Value.Check(TripResultSchema, result.body) || !result.body.invoice) throw new Error('Missing manual invoice');
+    const { trip, invoice } = result.body;
+    expect(invoice).toMatchObject({ totalMinor: '1000', activeMinutes: '1', pausedMinutes: '1', currency: 'KGS' });
+    expect(trip.endReason).toBe('finished_by_user');
+    const queued = await database.db.select().from(mailOutbox);
+    expect(queued).toHaveLength(1);
+    expect(queued[0]).toMatchObject({ invoiceId: invoice.id, recipient: 'demo.ru@example.test', deliveredAt: null });
+    expect(await database.db.select().from(localMailbox)).toHaveLength(0);
+    const deliveries = await Promise.all([deliverLocalMail(database, 50), deliverLocalMail(databaseB, 50)]);
+    expect(deliveries.reduce((sum, count) => sum + count, 0)).toBe(1);
+    const state = await restored(), mail = state.mailbox.items[0];
+    expect(state.mailbox.items).toHaveLength(1);
+    expect(mail).toMatchObject({ invoiceId: invoice.id, recipient: 'demo.ru@example.test', subject: `СамоКеттик: счёт за поездку ${id}`, body: queued[0]!.body });
+    for (const line of [`Счёт: ${invoice.id}`, `Поездка: ${id}`, `Завершение: ${trip.endedAt}`,
+      'Причина: Поездка завершена пользователем', 'Движение: 1 мин × 8.00 KGS', 'Пауза: 1 мин × 2.00 KGS',
+      'Итого: 10.00 KGS', 'Реальное списание средств не выполнялось.']) expect(mail!.body).toContain(line);
+    expect(mail!.body).not.toMatch(/undefined|NaN|аккумулятор полностью разряжен/);
+    const repeats = await Promise.all([post(urlB, path, 'a', undefined, key), post(urlA, path)]);
+    for (const response of repeats) { expect(response.status).toBe(200); expect(response.body).toEqual(result.body); }
+    expect(await deliverLocalMail(databaseB, 50)).toBe(0);
+    const after = await restored();
+    expect(after.mailbox.items).toEqual(state.mailbox.items);
+    expect(await database.db.select().from(invoices)).toHaveLength(1);
+    expect(await database.db.select().from(mailOutbox)).toHaveLength(1);
+    expect(after.notifications.items.filter(item => item.code === 'TRIP_FINISHED')).toHaveLength(1);
+    expect((await restored(urlB, 'b')).mailbox.items).toHaveLength(0);
+    await recordMailEvidence('manual', after, repeats.map(item => item.status));
+  });
   it('closes an already authenticated private WebSocket when its browser credential expires', async () => {
     const shortEnv = { ...env, demoBrowserEnabled: true, demoSessionSecret: 'audit-signing-key-'.repeat(4), demoSessionSeconds: 60, wsHeartbeatMs: 1000 };
     const shortApp = buildApp(shortEnv, config, createDatabase(testUrl.toString()));
@@ -199,6 +244,24 @@ describe('persistent simulation, realtime snapshots and local invoice mail', () 
     expect(mail?.recipient).toBe('demo.ru@example.test');
     expect(mail?.body).toContain(invoice!.id);
     expect(mail?.body).toContain(`Итого: ${mode === 'riding' ? '8.00' : '2.00'} KGS`);
+    expect(mail?.subject).toBe(`СамоКеттик: счёт за поездку ${id}`);
+    expect(mail?.invoiceId).toBe(invoice!.id);
+    expect(mail?.body).toContain(`Поездка: ${id}`);
+    expect(mail?.body).toContain(`Завершение: ${row!.endedAt!.toISOString()}`);
+    expect(mail?.body).toContain('Причина: Автоматическое завершение: аккумулятор полностью разряжен');
+    expect(mail?.body).toContain(`Движение: ${mode === 'riding' ? '1' : '0'} мин × 8.00 KGS`);
+    expect(mail?.body).toContain(`Пауза: ${mode === 'paused' ? '1' : '0'} мин × 2.00 KGS`);
+    const key = randomUUID(), path = `/api/v1/trips/${id}/finish`;
+    const first = await post(urlA, path, 'a', undefined, key), replay = await post(urlB, path, 'a', undefined, key);
+    expect(first.status).toBe(200); expect(replay).toEqual(first);
+    await Promise.all([runSimulationJobs(databaseB, config, 50), deliverLocalMail(database, 50), deliverLocalMail(databaseB, 50)]);
+    const delivered = await restored();
+    expect(delivered.mailbox.items).toHaveLength(1);
+    expect(delivered.mailbox.items[0]).toEqual(mail);
+    expect(await database.db.select().from(invoices)).toHaveLength(1);
+    expect(await database.db.select().from(mailOutbox)).toHaveLength(1);
+    expect(delivered.notifications.items.filter(item => item.code === 'TRIP_FINISHED')).toHaveLength(1);
+    await recordMailEvidence(`depleted-${mode}`, delivered, [first.status, replay.status]);
   });
   it('preserves one logical mail across acceptance/ack rollback and concurrent retries', async () => {
     const id = await reserveAndStart(); expect((await post(urlA, `/api/v1/trips/${id}/finish`)).status).toBe(200);
@@ -227,6 +290,9 @@ describe('persistent simulation, realtime snapshots and local invoice mail', () 
   it('delivers one reservation warning/expiry and restores current state through the API before reconnect', async () => {
     const client = await connect(urlA, 'a'), result = await post(urlA, '/api/v1/reservations', 'a', { vehicleId });
     const id: string = result.body.reservation.id;
+    const [scheduled] = await database.db.select().from(rentals).where(eq(rentals.id, id));
+    expect(scheduled!.expiresAt.getTime() - scheduled!.reservedAt.getTime()).toBe(900000);
+    expect(scheduled!.expiresAt.getTime() - scheduled!.warnAt.getTime()).toBe(180000);
     await database.db.update(rentals).set({ reservedAt: sql`clock_timestamp()-interval '13 minutes'`, warnAt: sql`clock_timestamp()-interval '1 minute'`, expiresAt: sql`clock_timestamp()+interval '400 milliseconds'` }).where(eq(rentals.id, id));
     await Promise.all([runReservationJobs(database, config, 50), runReservationJobs(databaseB, config, 50)]);
     await until(() => privateStates(client.frames).some(state => state.notifications.items.some(item => item.code === 'RESERVATION_EXPIRING')));
@@ -235,6 +301,9 @@ describe('persistent simulation, realtime snapshots and local invoice mail', () 
     const state = await restored(urlB); expect(state.current.reservation).toBeNull(); expect(state.notifications.items).toHaveLength(2);
     const reconnected = await connect(urlB, 'a'); expect(privateStates(reconnected.frames).at(-1)?.current.reservation).toBeNull();
     expect(new Set(state.notifications.items.map(item => item.id)).size).toBe(2);
+    expect((await restored(urlB, 'b')).notifications.items).toHaveLength(0);
+    expect(await database.db.select().from(mailOutbox)).toHaveLength(0);
+    expect(await database.db.select().from(localMailbox)).toHaveLength(0);
   });
   it('continues while the API process is down, catches up after worker restart and sends one invoice mail', async () => {
     await database.db.update(vehicles).set({ batteryBp: 6000 }).where(eq(vehicles.id, vehicleId));

@@ -1,0 +1,12 @@
+{
+  "recordedAt": "2026-10-21T20:28:34.753+06:00",
+  "sourceHead": "c2668054fef37f76d7440b8624a6b4657c88d11e",
+  "publishableFiles": 567,
+  "localMarkdownLinks": 341,
+  "knownSecretMatches": 0,
+  "rawLogHashes": 4,
+  "appliedMigrationsUnchanged": 6,
+  "runtimeConfigDependenciesUnchanged": true,
+  "stagedFiles": 0,
+  "diffCheck": "passed"
+}
