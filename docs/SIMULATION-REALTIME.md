@@ -55,3 +55,7 @@ Heartbeat 15s ping/pong, максимум 100 соединений, bufferedAmou
 ## Проверка и границы
 
 `npm run verify`, `npm run test:db`, `npm run test:e2e`, `npm run demo:realtime`, `npm run mail:show`; результаты — в отчёте. Isolated PG tests ускоряют только собственные config/deadlines. В основном demo остаются 900/180 секунд и 3-секундный tick. Полный 15-минутный прогон, 20–50 users load test, внешний SMTP, password/Google, продуктовые карта/аренда/history и RU/KY ещё не закрыты. До них проект не объявляется полностью готовым по всему исходному ТЗ.
+
+## Уточнение U017: срок private WebSocket
+
+Миграция0004/schema5 сохраняет auth_expires_at в ticket, отдельно от handshake expires_at. Новый ticket действует не дольше signed bearer. Consume возвращает userId и auth deadline, включая погашение другим API. Сервер закрывает открытый private socket1008 в срок, а flush проверяет deadline до и после чтения snapshot. При закрытии timer очищается. Статический CLI bearer не имеет session deadline; короткий TTL одноразового билета не ограничивает длительность такого соединения. UI после expiry проходит REST, получает401 и убирает private state; аренда продолжается на сервере. Актуальная приёмка и ограничения — CASE11-AUDIT.md; предыдущие перечни незакрытого относятся к этапу U010.

@@ -399,12 +399,10 @@ test("pause and resume keep panel geometry stable during slow real requests and 
   }
   expect(mutations).toBe(4);
   expect(syncRequests).toBeGreaterThanOrEqual(4);
-  await test
-    .info()
-    .attach("stable-panel-geometry", {
-      body: JSON.stringify(measurements, null, 2),
-      contentType: "application/json",
-    });
+  await test.info().attach("stable-panel-geometry", {
+    body: JSON.stringify(measurements, null, 2),
+    contentType: "application/json",
+  });
   await page.screenshot({
     path: `outputs/frontend-stable-panel-${test.info().project.name}.png`,
     fullPage: true,
@@ -501,6 +499,38 @@ test("ride pause resume finish history and demo payment use the backend invoice"
     path: `outputs/frontend-invoices-${test.info().project.name}.png`,
     fullPage: true,
   });
+});
+
+test("expired browser access closes private realtime and restores the same reservation after a fresh login", async ({
+  page,
+}) => {
+  test.setTimeout(80000);
+  await login(page);
+  await book(page);
+  const identity = await session(page),
+    before = await current(page);
+  expect(Date.parse(identity.expiresAt) - Date.now()).toBeLessThanOrEqual(
+    60000,
+  );
+  // Real server-issued session expiration; no client clock or token is forged.
+  await expect(
+    page.locator('.account-button[aria-label="Выбрать демо-профиль"]'),
+  ).toBeVisible({ timeout: 70000 });
+  await expect(page.locator(".rental-panel.own-rental")).toHaveCount(0);
+  expect(
+    await page.evaluate(() =>
+      sessionStorage.getItem("samokettik.demo.session"),
+    ),
+  ).toBeNull();
+  expect(
+    (
+      await page.request.get("/api/v1/sync", {
+        headers: { authorization: `Bearer ${identity.token}` },
+      })
+    ).status(),
+  ).toBe(401);
+  await login(page);
+  expect((await current(page)).reservation?.id).toBe(before.reservation?.id);
 });
 test("an offline browser restores its running ride and the worker continues movement and charge", async ({
   page,

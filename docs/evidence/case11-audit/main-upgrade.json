@@ -1,0 +1,12 @@
+{
+  "recordedAt": "2026-10-21T16:32:35.189+06:00",
+  "schemaVersion": 5,
+  "counts": {
+    "users": 2,
+    "vehicles": 30,
+    "rentals": 8,
+    "invoices": 4,
+    "demo_payments": 2
+  },
+  "existingRecordsPreserved": true
+}

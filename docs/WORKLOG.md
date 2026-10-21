@@ -493,3 +493,55 @@
 - 2026-10-21T16:10:01.591+06:00 — U016: пользователь разрешил commit/push завершённых U012–U015. git fetch origin успешен, HEAD...origin/main 0/0; effective author Reen <rinni499@gmail.com>, GIT_AUTHOR/GIT_COMMITTER overrides отсутствуют, gh active r33n99. Предпубликационный аудит: 421 файлов, 172 local Markdown links, UTF-8/NUL/type-bypass и4actual env-secret checks пройдены; 49 raw-log SHA256 совпали; применённые0000–0003 миграции побайтно равны HEAD; git diff --check exit0. Сохранены реальные результаты verify42unit/typecheck/build, PostgreSQL49, browser28 + focused4; тесты повторно не запускались, функциональный код после них не менялся. Commit/push будут выполнены следующим действием; результат будет сообщён отдельно.
 
 - 2026-10-21T16:10:47.8123291+06:00 — U016 staged review:194 изменённых/новых файлов, .env/work/outputs исключены. Author и committer git var подтвердили Reen <rinni499@gmail.com>. Первый git diff --cached --check нашёл trailing spaces только в оригинальных OFL.txt и captured Playwright error-context. Для этих внешних текстов заданы точечные whitespace attributes, как для raw logs, чтобы сохранить исходные данные. Повторная staged-проверка выполняется перед commit.
+
+- 2026-10-21T16:14:47.856+06:00 — Команда: `npm audit`; начало 2026-10-21T16:14:46.807+06:00; exit 0. Лог: `work/checks/2026-10-21T16-14-46.807+06-00-npm.log`.
+
+- 2026-10-21T16:14:55.189+06:00 — Команда: `npm run verify`; начало 2026-10-21T16:14:46.762+06:00; exit 0. Лог: `work/checks/2026-10-21T16-14-46.762+06-00-npm.log`.
+
+- 2026-10-21T16:15:19.885+06:00 — Команда: `npm run test:db`; начало 2026-10-21T16:14:46.775+06:00; exit 1. Лог: `work/checks/2026-10-21T16-14-46.775+06-00-npm.log`.
+
+- 2026-10-21T16:17:38.731+06:00 — Команда: `npm run test:db -- -t already authenticated private`; начало 2026-10-21T16:17:28.698+06:00; exit 1. Лог: `work/checks/2026-10-21T16-17-28.698+06-00-npm.log`.
+
+- 2026-10-21T16:19:12.064+06:00 — Команда: `npm run db:generate`; начало 2026-10-21T16:19:09.946+06:00; exit 0. Лог: `work/checks/2026-10-21T16-19-09.946+06-00-npm.log`.
+
+- 2026-10-21T16:19:36.100+06:00 — Команда: `npm run test:db -- -t already authenticated private|twenty distinct`; начало 2026-10-21T16:19:26.431+06:00; exit 1. Лог: `work/checks/2026-10-21T16-19-26.431+06-00-npm.log`.
+
+- 2026-10-21T16:20:08.876+06:00 — Команда: `npm run test:db -- -t twenty distinct`; начало 2026-10-21T16:20:04.116+06:00; exit 0. Лог: `work/checks/2026-10-21T16-20-04.116+06-00-npm.log`.
+
+- 2026-10-21T16:21:50.276+06:00 — Команда: `npm run verify`; начало 2026-10-21T16:21:43.123+06:00; exit 0. Лог: `work/checks/2026-10-21T16-21-43.123+06-00-npm.log`.
+
+- 2026-10-21T16:22:35.458+06:00 — Команда: `npm run test:db`; начало 2026-10-21T16:22:01.615+06:00; exit 0. Лог: `work/checks/2026-10-21T16-22-01.615+06-00-npm.log`.
+
+- 2026-10-21T16:24:23.1196284+06:00 — U017 аудит начат с чистого HEAD0f8ef30. Реальный15min test стартовал16:13:23+06:00: reserve16:13:23.301, warn16:25:23.301, expiry16:28:23.301. Unit44/verify и PostgreSQL51 прошли после WS-auth fix. Ошибка WS воспроизведена failing regression до fix. Первый20user test failed2 плюс18 unhandled errors из-за насыщения application pool наблюдателем и незавершённых promises; исправлены независимое наблюдение через удержанный connection, сброс pg_stat snapshot и Promise.allSettled/finally. Последующий targeted20user pass. Новая миграция0004 сгенерирована Drizzle Kit, SQL просмотрен; предыдущие0000–0003 не менялись. Полный browser30 и wall-clock ещё ожидаются; main DB пока не мигрировалась.
+
+- 2026-10-21T16:25:31.392+06:00 — Команда: `npm run test:e2e`; начало 2026-10-21T16:22:01.626+06:00; exit 1. Лог: `work/checks/2026-10-21T16-22-01.626+06-00-npm.log`.
+
+- 2026-10-21T16:26:31.718+06:00 — Команда: `npm exec --yes --package=prettier@3.9.10 -- prettier --write tests/acceptance/reservation-clock.test.ts tests/unit/audit-billing.test.ts tests/e2e/rental.spec.ts vitest.acceptance.config.ts`; начало 2026-10-21T16:26:30.570+06:00; exit 0. Лог: `work/checks/2026-10-21T16-26-30.570+06-00-npm.log`.
+
+- 2026-10-21T16:27:06.451+06:00 — Команда: `npm run test:db`; начало 2026-10-21T16:26:32.210+06:00; exit 0. Лог: `work/checks/2026-10-21T16-26-32.210+06-00-npm.log`.
+
+- 2026-10-21T16:28:19.346+06:00 — Команда: `node work/snapshot-audit-main.mjs before`; начало 2026-10-21T16:28:19.205+06:00; exit 0. Лог: `work/checks/2026-10-21T16-28-19.205+06-00-node.log`.
+
+- 2026-10-21T16:28:23.922+06:00 — Команда: `npm run test:acceptance`; начало 2026-10-21T16:13:20.799+06:00; exit 0. Лог: `work/checks/2026-10-21T16-13-20.799+06-00-npm.log`.
+
+- 2026-10-21T16:29:09.992+06:00 — Команда: `npm run verify`; начало 2026-10-21T16:29:01.476+06:00; exit 0. Лог: `work/checks/2026-10-21T16-29-01.476+06-00-npm.log`.
+
+- 2026-10-21T16:29:41.940+06:00 — Команда: `npm run compose:up`; начало 2026-10-21T16:28:51.213+06:00; exit 0. Лог: `work/checks/2026-10-21T16-28-51.213+06-00-npm.log`.
+
+- 2026-10-21T16:29:59.213+06:00 — Команда: `npm run test:e2e`; начало 2026-10-21T16:26:32.192+06:00; exit 0. Лог: `work/checks/2026-10-21T16-26-32.192+06-00-npm.log`.
+
+- 2026-10-21T16:32:35.206+06:00 — Команда: `node work/snapshot-audit-main.mjs after`; начало 2026-10-21T16:32:35.077+06:00; exit 0. Лог: `work/checks/2026-10-21T16-32-35.077+06-00-node.log`.
+
+- 2026-10-21T16:32:37.560+06:00 — Команда: `node work/check-live-frontend.mjs`; начало 2026-10-21T16:32:35.083+06:00; exit 0. Лог: `work/checks/2026-10-21T16-32-35.083+06-00-node.log`.
+
+- 2026-10-21T16:33:15.664+06:00 — U017 завершён:44unit/typecheck/build,51real-PG,30Playwright,1actual900s acceptance passed; npm audit0. Full wall-clock reserve2026-10-21T10:13:23.301Z,warning observed2026-10-21T16:25:24.393+06:00,worker restart2026-10-21T16:25:24.409+06:00,expired observed2026-10-21T16:28:23.791+06:00; одно warning/expiry, ended_at=deadline. Исправлен подтверждённый private-WS credential-expiry bug, добавлена Drizzle0004/schema5; main upgrade сохраняет все существовавшие business records. Failing regression/harness/E2E runs и реальные команды/SHA256 сохранены в docs/evidence/case11-audit. Полная матрица docs/CASE11-AUDIT.md фиксирует отсутствующие email/password/Google, KY mail, pagination, external SMTP и пределы fault/load checks. Git commit/push не выполнялись, предложен отдельный commit.
+
+- 2026-10-21T16:35:15.263+06:00 — U017 final source/evidence validation: 456 publishable files, 215 local Markdown links, UTF-8/NUL/type-bypass checks и4actual env-secret checks пройдены. 19 raw logs совпали с SHA256,0000–0003 migration SQL равны HEAD. git diff --check exit0, staged files0; commit/push не выполнялись. Тестовые UUID DB после завершения всех прогонов отсутствуют. Main schema5: сохранены все существовавшие IDs; счётчики invoices/payments за окно наблюдения выросли3/1→4/2, аудиторские scripts не выполняли business write в main.
+
+- 2026-10-21T16:37:33.8357945+06:00 — Снимки live desktop/mobile и readiness5 сохранены отдельно в docs/evidence/case11-audit; исторические U012 frontend/live-* восстановлены побайтно из HEAD, чтобы не подменять прежние свидетельства. UTC timestamps из DB остаются в raw JSON; в тексте отчёта расписание показано в Asia/Bishkek +06:00.
+
+- 2026-10-21T16:37:34.470+06:00 — U017 final source/evidence validation: 460 publishable files, 215 local Markdown links, UTF-8/NUL/type-bypass checks и4actual env-secret checks пройдены. 19 raw logs совпали с SHA256,0000–0003 migration SQL равны HEAD. git diff --check exit0, staged files0; commit/push не выполнялись. Тестовые UUID DB после завершения всех прогонов отсутствуют. Main schema5: сохранены все существовавшие IDs; счётчики invoices/payments за окно наблюдения выросли3/1→4/2, аудиторские scripts не выполняли business write в main.
+
+- 2026-10-21T17:21:07.5146791+06:00 — U018: получена команда commit/push завершённого U017. Перед публикацией выполнены git var GIT_AUTHOR_IDENT, git var GIT_COMMITTER_IDENT, проверка GIT_AUTHOR/GIT_COMMITTER overrides, git fetch origin, git rev-list --left-right --count HEAD...origin/main и gh auth status. Author/committer: Reen <rinni499@gmail.com>, overrides отсутствуют; активный GitHub r33n99; main синхронизирована с origin/main (0/0). Следующие действия: проверка содержимого, отдельный commit и обычный push origin main; на момент записи публикация ещё не выполнена.
+
+- 2026-10-21T17:21:08.224+06:00 — U017 final source/evidence validation: 461 publishable files, 216 local Markdown links, UTF-8/NUL/type-bypass checks и4actual env-secret checks пройдены. 19 raw logs совпали с SHA256,0000–0003 migration SQL равны HEAD. git diff --check exit0, staged files0; commit/push не выполнялись. Тестовые UUID DB после завершения всех прогонов отсутствуют. Main schema5: сохранены все существовавшие IDs; счётчики invoices/payments за окно наблюдения выросли3/1→4/2, аудиторские scripts не выполняли business write в main.

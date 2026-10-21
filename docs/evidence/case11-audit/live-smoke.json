@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-10-21T16:32:37.541+06:00",
+  "base": "http://127.0.0.1:5173",
+  "readiness": {
+    "status": "ready",
+    "database": "connected",
+    "schemaVersion": 5,
+    "reservationWorker": "running"
+  },
+  "staticBundlesChecked": 2,
+  "bundleSecretScan": "passed",
+  "results": [
+    {
+      "screen": "desktop",
+      "width": 1440,
+      "height": 900,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "markers": 30,
+      "loadedTiles": 28,
+      "font": "Golos, Arial, sans-serif",
+      "oldToast": 0,
+      "allTilesComplete": true,
+      "pageErrors": [],
+      "mainDatabaseMutations": "none; temporary demo token issued without persistence"
+    },
+    {
+      "screen": "mobile",
+      "width": 393,
+      "height": 851,
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "markers": 30,
+      "loadedTiles": 12,
+      "font": "Golos, Arial, sans-serif",
+      "oldToast": 0,
+      "allTilesComplete": true,
+      "pageErrors": [],
+      "mainDatabaseMutations": "none; temporary demo token issued without persistence"
+    }
+  ]
+}

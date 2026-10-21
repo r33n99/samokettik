@@ -1,0 +1,37 @@
+START 2026-10-21T16:19:26.431+06:00
+COMMAND npm run test:db -- -t already authenticated private|twenty distinct
+
+> samokettik@0.1.0 test:db
+> vitest run --config vitest.db.config.ts -t already authenticated private|twenty distinct
+
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql
+
+ ❯ tests/integration/reservations.test.ts (16 tests | 1 failed | 15 skipped) 2064ms
+   ❯ reservations over real HTTP and PostgreSQL (16)
+     × twenty distinct users through two PostgreSQL pools have exactly one reservation winner 1658ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > twenty distinct users through two PostgreSQL pools have exactly one reservation winner
+Error: Condition timed out
+ ❯ until tests/integration/reservations.test.ts:55:9
+     53|   const deadline = Date.now() + timeout;
+     54|   while (Date.now() < deadline) { if (await check()) return; await del…
+     55|   throw new Error('Condition timed out');
+       |         ^
+     56| }
+     57| async function lockWaiters(minimum: number): Promise<void> {
+ ❯ tests/integration/reservations.test.ts:157:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed | 2 skipped (4)
+      Tests  1 failed | 1 passed | 49 skipped (51)
+   Start at  16:19:26
+   Duration  9.08s (tests 59%, import 38%, transform 3%)
+
+
+END 2026-10-21T16:19:36.100+06:00
+EXIT 1

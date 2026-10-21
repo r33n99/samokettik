@@ -14,7 +14,8 @@ import { DEMO_USER_IDS } from '../../apps/server/src/config/demo-identities.js';
 import { migrationsPath, projectRoot } from '../../apps/server/src/config/paths.js';
 import { createDatabase } from '../../apps/server/src/db/client.js';
 import { seedDatabase } from '../../apps/server/src/db/seed-data.js';
-import { idempotencyRequests, jobHeartbeats, notifications, rentals, vehicles } from '../../apps/server/src/db/schema.js';
+import { idempotencyRequests, jobHeartbeats, notifications, rentals, users, vehicles } from '../../apps/server/src/db/schema.js';
+import { reserveVehicle } from '../../apps/server/src/modules/reservations/service.js';
 import { buildApp } from '../../apps/server/src/app.js';
 import { recordReservationHeartbeat, runReservationJobs } from '../../apps/server/src/jobs/reservations.js';
 import { recordTransportHeartbeat, runBackgroundJobs } from '../../apps/server/src/jobs/transport.js';
@@ -141,6 +142,31 @@ describe('reservations over real HTTP and PostgreSQL', () => {
     const results = await Promise.all([reserve('a', 5, randomUUID(), urlA), reserve('a', 6, randomUUID(), urlB)]);
     expect(results.map(row => row.status).sort()).toEqual([201, 409]);
     expect(results.find(row => row.status === 409)?.data).toMatchObject({ code: 'ACTIVE_RENTAL_EXISTS' });
+  });
+
+  it('twenty distinct users through two PostgreSQL pools have exactly one reservation winner', async () => {
+    const contenders = Array.from({ length: 20 }, (_, index) => ({ id: randomUUID(), emailNormalized: `audit-${index}-${randomUUID()}@example.test`, locale: 'ru' }));
+    await database.db.insert(users).values(contenders);
+    const blocker = await database.pool.connect();
+    await blocker.query('BEGIN');
+    await blocker.query('SELECT id FROM vehicles WHERE id=$1 FOR UPDATE', [vehicleId(5)]);
+    const pending = Promise.allSettled(contenders.map((user, index) => reserveVehicle(index % 2 ? databaseB : database, config, user.id, randomUUID(), vehicleId(5))));
+    try {
+      // Observe through the already-held connection; both application pools may
+      // be full while contenders deliberately wait for this vehicle lock.
+      await until(async () => {
+        await blocker.query('SELECT pg_stat_clear_snapshot()');
+        const result = await blocker.query<{ count: string }>("SELECT count(*) FROM pg_stat_activity WHERE datname=current_database() AND wait_event_type='Lock' AND state='active'");
+        return Number(result.rows[0]?.count) >= 2;
+      }, 1500);
+    } finally { await blocker.query('ROLLBACK'); blocker.release(); await pending; }
+    const settled = await pending;
+    expect(settled.every(result => result.status === 'fulfilled')).toBe(true);
+    const results = settled.flatMap(result => result.status === 'fulfilled' ? [result.value] : []);
+    expect(results.filter(result => result.status === 201)).toHaveLength(1);
+    expect(results.filter(result => result.status === 409)).toHaveLength(19);
+    expect(results.filter(result => result.status !== 201).every(result => 'code' in result.body && result.body.code === 'VEHICLE_NOT_AVAILABLE')).toBe(true);
+    expect(await database.db.select({ count: count() }).from(rentals).where(eq(rentals.state, 'reserved'))).toEqual([{ count: 1 }]);
   });
 
   it('concurrent same-key repeats return exactly the stored result across a new API instance', async () => {

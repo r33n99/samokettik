@@ -1,0 +1,271 @@
+START 2026-10-21T16:28:51.213+06:00
+COMMAND npm run compose:up
+
+> samokettik@0.1.0 compose:up
+> docker compose up --build -d --wait
+
+#1 [internal] load local bake definitions
+#1 reading from stdin 3.09kB done
+#1 DONE 0.0s
+
+#2 [worker internal] load build definition from Dockerfile
+#2 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.06kB done
+#2 DONE 0.0s
+
+#3 [web internal] load metadata for docker.io/library/node:24-bookworm-slim@sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5
+#3 ...
+
+#4 [web internal] load metadata for docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+#4 DONE 1.5s
+
+#3 [web internal] load metadata for docker.io/library/node:24-bookworm-slim@sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5
+#3 DONE 1.5s
+
+#5 [api internal] load .dockerignore
+#5 transferring context: 152B done
+#5 DONE 0.0s
+
+#6 [worker build  1/11] FROM docker.io/library/node:24-bookworm-slim@sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5
+#6 resolve docker.io/library/node:24-bookworm-slim@sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5 0.0s done
+#6 DONE 0.0s
+
+#7 [web web 1/3] FROM docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+#7 resolve docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236 0.0s done
+#7 DONE 0.0s
+
+#8 [web internal] load build context
+#8 transferring context: 98.63kB 0.0s done
+#8 DONE 0.0s
+
+#9 [api internal] load build context
+#9 transferring context: 146.74kB 0.0s done
+#9 DONE 0.0s
+
+#10 [seed build  2/11] WORKDIR /app
+#10 CACHED
+
+#11 [migrate build  3/11] COPY package.json package-lock.json tsconfig.base.json ./
+#11 DONE 0.0s
+
+#11 [seed build  3/11] COPY package.json package-lock.json tsconfig.base.json ./
+#11 DONE 0.0s
+
+#12 [web build  4/11] COPY apps/server/package.json apps/server/package.json
+#12 DONE 0.0s
+
+#13 [api build  5/11] COPY apps/web/package.json apps/web/package.json
+#13 DONE 0.0s
+
+#14 [worker build  6/11] COPY packages/contracts/package.json packages/contracts/package.json
+#14 DONE 0.0s
+
+#15 [seed build  7/11] RUN npm ci
+#15 2.322 npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.hirok.io
+#15 2.404 npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.hirok.io
+#15 5.452 
+#15 5.452 added 149 packages, and audited 153 packages in 5s
+#15 5.452 
+#15 5.452 39 packages are looking for funding
+#15 5.452   run `npm fund` for details
+#15 5.454 
+#15 5.454 found 0 vulnerabilities
+#15 5.456 npm warn install-scripts 4 packages have install scripts not yet covered by allowScripts:
+#15 5.456 npm warn install-scripts   esbuild@0.25.12 (postinstall: node install.js)
+#15 5.456 npm warn install-scripts   @parcel/watcher@2.6.0 (install: node scripts/build-from-source.js)
+#15 5.456 npm warn install-scripts   esbuild@0.25.12 (postinstall: node install.js)
+#15 5.456 npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+#15 5.456 npm warn install-scripts
+#15 5.456 npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+#15 5.459 npm notice
+#15 5.459 npm notice New major version of npm available! 11.19.1 -> 12.2.0
+#15 5.459 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+#15 5.459 npm notice To update run: npm install -g npm@12.2.0
+#15 5.459 npm notice
+#15 DONE 5.8s
+
+#15 [api build  7/11] RUN npm ci
+#15 DONE 5.8s
+
+#16 [seed build  8/11] COPY apps apps
+#16 DONE 0.1s
+
+#17 [web build  9/11] COPY packages packages
+#17 DONE 0.0s
+
+#18 [web build 10/11] COPY config config
+#18 DONE 0.0s
+
+#19 [migrate build 11/11] RUN npm run build
+#19 0.294 
+#19 0.294 > samokettik@0.1.0 build
+#19 0.294 > npm run build -w @samokettik/contracts && npm run build -w @samokettik/server && npm run build -w @samokettik/web
+#19 0.294 
+#19 0.402 
+#19 0.402 > @samokettik/contracts@0.1.0 build
+#19 0.402 > tsc -p tsconfig.json
+#19 0.402 
+#19 0.618 
+#19 0.618 > @samokettik/server@0.1.0 build
+#19 0.618 > tsc -p tsconfig.json
+#19 0.618 
+#19 1.304 
+#19 1.304 > @samokettik/web@0.1.0 build
+#19 1.304 > tsc --noEmit && vite build
+#19 1.304 
+#19 1.791 vite v8.3.4 building client environment for production...
+#19 1.810 transforming...
+#19 2.315 ✓ 283 modules transformed.
+#19 2.369 rendering chunks...
+#19 2.442 computing gzip size...
+#19 2.450 dist/index.html                   0.49 kB │ gzip:   0.35 kB
+#19 2.450 dist/assets/index-B0tQzQSm.css   31.37 kB │ gzip:  10.24 kB
+#19 2.450 dist/assets/index-mCYJ3lcy.js   470.49 kB │ gzip: 140.85 kB
+#19 2.450 
+#19 2.450 ✓ built in 658ms
+#19 DONE 2.5s
+
+#20 [web web 2/3] COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
+#20 CACHED
+
+#21 [seed] exporting to image
+#21 exporting layers
+#21 ...
+
+#22 [web web 3/3] COPY --from=build /app/apps/web/dist /usr/share/nginx/html
+#22 DONE 0.2s
+
+#23 [web] exporting to image
+#23 exporting layers 0.3s done
+#23 exporting manifest sha256:b85f05d31cbdff6d1cea4ec206b649feff082c7c2ebd4a7792f6989aca228564 done
+#23 exporting config sha256:9e35239561c35261f1f60b5cac433673fcbe146f651e0eb0d648e31dc35eca05 0.0s done
+#23 exporting attestation manifest sha256:81d3e26d7fc9aaea5f3032f96674e902747e4c0afd5798709ed7c4e912349095 0.0s done
+#23 exporting manifest list sha256:529f88ae6b68e96d3d76be63f039cb326dae11e97c600378851fa3d35aedce60 0.0s done
+#23 naming to docker.io/library/samokettik-web:latest done
+#23 unpacking to docker.io/library/samokettik-web:latest 0.0s done
+#23 DONE 0.5s
+
+#24 [worker] exporting to image
+#24 ...
+
+#25 [web] resolving provenance for metadata file
+#25 DONE 0.0s
+
+#26 [api] exporting to image
+#26 ...
+
+#21 [seed] exporting to image
+#21 exporting layers 9.7s done
+#21 exporting manifest sha256:b482dd2716d6ff0698160b99bed8f15afa88ad36b3bdb550ce73502bb2b5cc9c 0.0s done
+#21 exporting config sha256:58c809ab4a7ebe4c60a4382f7553ff0b1a16536e6956029d817b04ac8f7d8c73 0.1s done
+#21 exporting attestation manifest sha256:9c14a33bf926e2dbf066ec8f4be9c9ad7e7a8ad724bb7fbc6e5905a08e3204c9
+#21 exporting attestation manifest sha256:9c14a33bf926e2dbf066ec8f4be9c9ad7e7a8ad724bb7fbc6e5905a08e3204c9 0.1s done
+#21 exporting manifest list sha256:170b2a4a8635ee346db3bcadf455d37977605cf697c95163a7324bcb9e9f0c2c
+#21 exporting manifest list sha256:170b2a4a8635ee346db3bcadf455d37977605cf697c95163a7324bcb9e9f0c2c 0.0s done
+#21 naming to docker.io/library/samokettik-seed:latest 0.0s done
+#21 unpacking to docker.io/library/samokettik-seed:latest
+#21 ...
+
+#27 [migrate] exporting to image
+#27 exporting layers 9.7s done
+#27 exporting manifest sha256:6efe490b1b4799dd570ecf7329eb1906be3c4d273883fe03d25787e9294fa25f 0.0s done
+#27 exporting config sha256:c2773b462b685768a3aa6d29167b8c1202031bdc6c43e11ed711bfeaed6f6312 0.1s done
+#27 exporting attestation manifest sha256:d37d691c37e7ab16270a28d99281b55be72065b7931e35bc8686caa32a2b2eec 0.1s done
+#27 exporting manifest list sha256:8445fcd7f0a1a30e6f223c42d791db74c5299ac24df68d5b940c7f81a694fe2e 0.0s done
+#27 naming to docker.io/library/samokettik-migrate:latest done
+#27 unpacking to docker.io/library/samokettik-migrate:latest
+#27 ...
+
+#26 [api] exporting to image
+#26 exporting layers 9.7s done
+#26 exporting manifest sha256:e3c5e56d7c081eba92def3f2c7280add477a96e49400d52b4bfefb2bc6b9b9b4 0.0s done
+#26 exporting config sha256:7e39f3ed597776fc6aaa655e818835c8f67c05d90e89b373acfd1871fd669f7d 0.1s done
+#26 exporting attestation manifest sha256:e0322fb1d6a17f1385dce373454e81c0b851efe0ff80b5f1389c3367bf9ed8f1 0.1s done
+#26 exporting manifest list sha256:ddced717804748118013ae9f91f95763daa59a16ecfa372554169dd790dc2da9 0.0s done
+#26 naming to docker.io/library/samokettik-api:latest done
+#26 unpacking to docker.io/library/samokettik-api:latest
+#26 unpacking to docker.io/library/samokettik-api:latest 2.8s done
+#26 DONE 12.8s
+
+#27 [migrate] exporting to image
+#27 unpacking to docker.io/library/samokettik-migrate:latest 2.8s done
+#27 DONE 12.8s
+
+#21 [seed] exporting to image
+#21 unpacking to docker.io/library/samokettik-seed:latest 2.8s done
+#21 DONE 12.8s
+
+#24 [worker] exporting to image
+#24 exporting layers 9.7s done
+#24 exporting manifest sha256:5edc7dace9691d7c496bb31f8baffda872100bbfa95a750d40ad756e64741cfd 0.0s done
+#24 exporting config sha256:be4fe28d41855d8e1a0ffc970aed0c38494cb16a201104ecccac3de257d94343 0.1s done
+#24 exporting attestation manifest sha256:18f5311599f02222b80f0f46c98a8a06d2822a55c508353d558daad10ce68550 0.1s done
+#24 exporting manifest list sha256:a81d5f1060ea1c7c273e7ab81bce2fad60d638558f2276b1e77cbf5b9a67e0b9 0.0s done
+#24 naming to docker.io/library/samokettik-worker:latest done
+#24 unpacking to docker.io/library/samokettik-worker:latest 2.8s done
+#24 DONE 12.8s
+
+#28 [api] resolving provenance for metadata file
+#28 DONE 0.1s
+
+#29 [seed] resolving provenance for metadata file
+#29 DONE 0.1s
+
+#30 [migrate] resolving provenance for metadata file
+#30 DONE 0.0s
+
+#31 [worker] resolving provenance for metadata file
+#31 DONE 0.0s
+ samokettik-worker  Built
+ samokettik-api  Built
+ samokettik-web  Built
+ samokettik-migrate  Built
+ samokettik-seed  Built
+ Container samokettik-postgres-1  Running
+ Container samokettik-migrate-1  Recreate
+ Container samokettik-migrate-1  Recreated
+ Container samokettik-seed-1  Recreate
+ Container samokettik-seed-1  Recreated
+ Container samokettik-worker-1  Recreate
+ Container samokettik-worker-1  Recreated
+ Container samokettik-api-1  Recreate
+ Container samokettik-api-1  Recreated
+ Container samokettik-web-1  Recreate
+ Container samokettik-web-1  Recreated
+ Container samokettik-postgres-1  Waiting
+ Container samokettik-postgres-1  Healthy
+ Container samokettik-migrate-1  Starting
+ Container samokettik-migrate-1  Started
+ Container samokettik-migrate-1  Waiting
+ Container samokettik-migrate-1  Exited
+ Container samokettik-seed-1  Starting
+ Container samokettik-seed-1  Started
+ Container samokettik-seed-1  Waiting
+ Container samokettik-seed-1  Exited
+ Container samokettik-worker-1  Starting
+ Container samokettik-worker-1  Started
+ Container samokettik-worker-1  Waiting
+ Container samokettik-worker-1  Healthy
+ Container samokettik-api-1  Starting
+ Container samokettik-api-1  Started
+ Container samokettik-api-1  Waiting
+ Container samokettik-api-1  Healthy
+ Container samokettik-web-1  Starting
+ Container samokettik-web-1  Started
+ Container samokettik-seed-1  Waiting
+ Container samokettik-worker-1  Waiting
+ Container samokettik-api-1  Waiting
+ Container samokettik-web-1  Waiting
+ Container samokettik-postgres-1  Waiting
+ Container samokettik-migrate-1  Waiting
+ Container samokettik-migrate-1  Exited
+ Container samokettik-postgres-1  Healthy
+ Container samokettik-api-1  Healthy
+ Container samokettik-worker-1  Healthy
+ Container samokettik-seed-1  Exited
+ Container samokettik-web-1  Healthy
+
+END 2026-10-21T16:29:41.940+06:00
+EXIT 0

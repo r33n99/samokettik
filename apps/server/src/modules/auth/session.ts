@@ -54,3 +54,12 @@ export function verifyDemoSession(
     ? profile
     : null;
 }
+
+// Call only for an already authenticated request. Static CLI credentials have
+// no signed session deadline; short-lived browser credentials do.
+export function demoSessionExpiry(env: Environment, authorization: string | undefined): Date | null {
+  if (!authorization?.startsWith('Bearer ')) return null;
+  const token = authorization.slice(7);
+  if (!verifyDemoSession(env, token)) return null;
+  return new Date(Number(token.split('.')[3]) * 1000);
+}

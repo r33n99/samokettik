@@ -13,7 +13,7 @@ export const ReadinessSchema = Type.Object(
   {
     status: Type.Literal("ready"),
     database: Type.Literal("connected"),
-    schemaVersion: Type.Literal(4),
+    schemaVersion: Type.Literal(5),
     reservationWorker: Type.Literal("running"),
   },
   { additionalProperties: false },

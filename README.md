@@ -27,7 +27,7 @@ Compose последовательно запускает PostgreSQL, приме
 - Backend readiness: [http://localhost:3001/health/ready](http://localhost:3001/health/ready).
 - Данные технического стенда: [http://localhost:3001/api/v1/system](http://localhost:3001/api/v1/system).
 
-Открывается карта Бишкека; кнопка «Самокаты · 30» и маркеры читаются из PostgreSQL через API. Нажмите «Выбрать демо-профиль», затем Айжан или Бек. После входа восстанавливается текущая аренда и доступна карточка транспорта. `/health/live` проверяет процесс, `/health/ready` — БД, версию схемы 4 и свежие успешные heartbeats reservation и transport-background worker с тем же hash конфигурации. При отсутствии БД, миграции или worker readiness возвращает HTTP 503.
+Открывается карта Бишкека; кнопка «Самокаты · 30» и маркеры читаются из PostgreSQL через API. Нажмите «Выбрать демо-профиль», затем Айжан или Бек. После входа восстанавливается текущая аренда и доступна карточка транспорта. `/health/live` проверяет процесс, `/health/ready` — БД, версию схемы 5 и свежие успешные heartbeats reservation и transport-background worker с тем же hash конфигурации. При отсутствии БД, миграции или worker readiness возвращает HTTP 503.
 
 ```sh
 docker compose ps -a
@@ -192,3 +192,9 @@ npm run mail:show
 ## Распределение самокатов
 
 Новые seedLocations распределены по всей зоне Бишкека. Для существующей demo DB выполните `npm run demo:redistribute`: команда переместит только транспорт без действующей брони/поездки, сохранив заряд и историю. Seed по-прежнему не перезаписывает данные. Подробности и проверка координат: [DEMO-FLEET.md](docs/DEMO-FLEET.md). После изменения config выполните `npm run compose:up` для API/worker с одинаковой конфигурацией.
+
+## Приёмка кейса №11
+
+`npm run test:acceptance` — отдельный реальный15-минутный прогон в UUID PostgreSQL DB со своим API/worker. Предупреждение ожидается через12минут, истечение через15; после предупреждения worker перезапускается. Deadline и часы не ускоряются. Main demo DB не изменяется. Быстрые `npm test`, `npm run test:db` и `npm run test:e2e` запускаются отдельно. Итоговая матрица и ограничения — [CASE11-AUDIT.md](docs/CASE11-AUDIT.md).
+
+Миграция0004 добавляет auth_expires_at для private WS и metadata5. При `npm run compose:up` инвалидируются только старые одноразовые WS tickets; активные аренды, пользователи, счета и volume сохраняются. Временный browser token ограничивает также срок открытого private WS; после его истечения клиент снова проходит REST authentication. Изолированный Playwright использует60s browser sessions для фактического теста expiry; локальный demo TTL3600 не изменён.

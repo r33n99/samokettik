@@ -1,0 +1,6 @@
+START 2026-10-21T16:32:35.077+06:00
+COMMAND node work/snapshot-audit-main.mjs after
+{"recordedAt":"2026-10-21T16:32:35.189+06:00","schemaVersion":5,"counts":{"users":2,"vehicles":30,"rentals":8,"invoices":4,"demo_payments":2},"existingRecordsPreserved":true}
+
+END 2026-10-21T16:32:35.206+06:00
+EXIT 0

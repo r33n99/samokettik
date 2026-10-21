@@ -1,0 +1,15 @@
+{
+  "startedAt": "2026-10-21T16:13:23.261+06:00",
+  "completedAt": "2026-10-21T16:28:23.818+06:00",
+  "reservedAt": "2026-10-21T10:13:23.301Z",
+  "warnAt": "2026-10-21T10:25:23.301Z",
+  "expiresAt": "2026-10-21T10:28:23.301Z",
+  "warningObservedAt": "2026-10-21T16:25:24.393+06:00",
+  "restartedAt": "2026-10-21T16:25:24.409+06:00",
+  "expiredObservedAt": "2026-10-21T16:28:23.791+06:00",
+  "configuredDurationSeconds": 900,
+  "configuredWarningBeforeSeconds": 180,
+  "testDatabase": "samokettik_test_227e74222ccf4438a4e3eb020370eb88",
+  "clockOrDeadlineModified": false,
+  "browserRequired": false
+}

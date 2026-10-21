@@ -18,6 +18,7 @@ import { demoPayments, idempotencyRequests, invoices, localMailbox, mailOutbox, 
 import { runSimulationJobs } from '../../apps/server/src/jobs/transport.js';
 import { runReservationJobs } from '../../apps/server/src/jobs/reservations.js';
 import { deliverLocalMail } from '../../apps/server/src/jobs/mail.js';
+import { issueDemoSession } from '../../apps/server/src/modules/auth/session.js';
 
 const env = { ...loadEnvironment(), logLevel: 'silent' as const, demoAuthEnabled: true, demoRuToken: 'e'.repeat(64), demoKyToken: 'f'.repeat(64), wsReconcileMs: 60000 };
 const config = { ...loadBusinessConfig(), simulationTickMs: 100 };
@@ -101,6 +102,31 @@ afterAll(async () => {
 });
 
 describe('persistent simulation, realtime snapshots and local invoice mail', () => {
+  it('closes an already authenticated private WebSocket when its browser credential expires', async () => {
+    const shortEnv = { ...env, demoBrowserEnabled: true, demoSessionSecret: 'audit-signing-key-'.repeat(4), demoSessionSeconds: 60, wsHeartbeatMs: 1000 };
+    const shortApp = buildApp(shortEnv, config, createDatabase(testUrl.toString()));
+    const base = await shortApp.listen({ host: '127.0.0.1', port: 0 });
+    const identity = issueDemoSession(shortEnv, 'ru', Date.now() - 57000);
+    let socket: WebSocket | undefined;
+    try {
+      const response = await fetch(base + '/api/v1/realtime/tickets', { method: 'POST', headers: { authorization: `Bearer ${identity.token}` } });
+      const ticket: unknown = await response.json();
+      expect(response.status).toBe(200);
+      if (!Value.Check(RealtimeTicketSchema, ticket)) throw new Error('Invalid short-lived ticket');
+      expect(Date.parse(ticket.expiresAt)).toBeLessThanOrEqual(Date.parse(identity.expiresAt));
+      // The ticket is issued by one API and redeemed by another process/pool.
+      socket = new WebSocket(urlB.replace('http:', 'ws:') + '/api/v1/realtime', ['samokettik.v1', `ticket.${ticket.ticket}`], { origin });
+      socket.on('error', () => {});
+      let snapshots = 0, closedCode: number | undefined;
+      socket.on('message', () => snapshots++);
+      socket.on('close', code => { closedCode = code; });
+      await until(() => snapshots > 0);
+      await until(() => closedCode !== undefined, 5000);
+      expect(closedCode).toBe(1008);
+      expect(Date.now()).toBeGreaterThanOrEqual(Date.parse(identity.expiresAt));
+      expect((await fetch(base + '/api/v1/sync', { headers: { authorization: `Bearer ${identity.token}` } })).status).toBe(401);
+    } finally { socket?.terminate(); await shortApp.close(); }
+  });
   it('uses single-use expiring WS tickets, validates Origin and rejects commands over sockets', async () => {
     const response = await post(urlA, '/api/v1/realtime/tickets');
     if (!Value.Check(RealtimeTicketSchema, response.body)) throw new Error('No ticket');
@@ -166,7 +192,11 @@ describe('persistent simulation, realtime snapshots and local invoice mail', () 
     const [invoice] = await database.db.select().from(invoices); expect(mode === 'riding' ? invoice?.activeMs : invoice?.pausedMs).toBe(1500n); expect(invoice?.totalMinor).toBe(mode === 'riding' ? 800n : 200n);
     expect(await database.db.select().from(notifications)).toHaveLength(1); expect(await database.db.select().from(mailOutbox)).toHaveLength(1);
     await Promise.all([deliverLocalMail(database, 50), deliverLocalMail(databaseB, 50)]);
-    expect((await restored()).mailbox.items[0]?.body).toContain('аккумулятор полностью разряжен');
+    const mail = (await restored()).mailbox.items[0];
+    expect(mail?.body).toContain('аккумулятор полностью разряжен');
+    expect(mail?.recipient).toBe('demo.ru@example.test');
+    expect(mail?.body).toContain(invoice!.id);
+    expect(mail?.body).toContain(`Итого: ${mode === 'riding' ? '8.00' : '2.00'} KGS`);
   });
   it('preserves one logical mail across acceptance/ack rollback and concurrent retries', async () => {
     const id = await reserveAndStart(); expect((await post(urlA, `/api/v1/trips/${id}/finish`)).status).toBe(200);

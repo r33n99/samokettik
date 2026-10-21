@@ -1,0 +1,73 @@
+START 2026-10-21T16:13:20.799+06:00
+COMMAND npm run test:acceptance
+
+> samokettik@0.1.0 test:acceptance
+> vitest run --config vitest.acceptance.config.ts
+
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-reserved","recordedAt":"2026-10-21T16:13:23.320+06:00","reservedAt":"2026-10-21T10:13:23.301Z","warnAt":"2026-10-21T10:25:23.301Z","expiresAt":"2026-10-21T10:28:23.301Z","testDatabase":"samokettik_test_227e74222ccf4438a4e3eb020370eb88"}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:13:23.323+06:00","elapsedMinutes":0,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:14:23.685+06:00","elapsedMinutes":1,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:15:23.495+06:00","elapsedMinutes":2,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:16:23.385+06:00","elapsedMinutes":3,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:17:23.302+06:00","elapsedMinutes":4,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:18:23.677+06:00","elapsedMinutes":5,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:19:23.578+06:00","elapsedMinutes":6,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:20:23.438+06:00","elapsedMinutes":7,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:21:23.325+06:00","elapsedMinutes":8,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:22:23.618+06:00","elapsedMinutes":9,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:23:23.355+06:00","elapsedMinutes":10,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:24:23.583+06:00","elapsedMinutes":11,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:25:23.379+06:00","elapsedMinutes":12,"state":"reserved","warnings":0}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-warning-and-worker-restart","recordedAt":"2026-10-21T16:25:24.393+06:00"}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:26:23.807+06:00","elapsedMinutes":13,"state":"reserved","warnings":1}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:27:23.493+06:00","elapsedMinutes":14,"state":"reserved","warnings":1}
+
+stdout | tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser
+{"event":"clock-test-progress","recordedAt":"2026-10-21T16:28:23.791+06:00","elapsedMinutes":15,"state":"expired","warnings":1}
+
+ ✓ tests/acceptance/reservation-clock.test.ts > uses an actual 15-minute reservation, warns at minute 12, survives worker restart and expires once without a browser 900562ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  16:13:21
+   Duration  902.51s (tests 100%)
+
+
+END 2026-10-21T16:28:23.922+06:00
+EXIT 0

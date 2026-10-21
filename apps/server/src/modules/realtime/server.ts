@@ -13,7 +13,7 @@ import { consumeTicket } from './routes.js';
 import { syncState } from './snapshot.js';
 
 const PROTOCOL = 'samokettik.v1', DEBOUNCE_MS = 25, LISTEN_RETRY_MS = 1000;
-type ClientState = { id: string; userId: string | null; sequence: number; alive: boolean };
+type ClientState = { id: string; userId: string | null; sequence: number; alive: boolean; authExpiresAt: number | null; expiryTimer?: NodeJS.Timeout };
 export function registerRealtime(app: FastifyInstance, env: Environment, config: BusinessConfig, database: Database) {
   const server = new WebSocketServer({ noServer: true, perMessageDeflate: false, maxPayload: 1024, handleProtocols: protocols => protocols.has(PROTOCOL) ? PROTOCOL : false });
   const clients = new Map<WebSocket, ClientState>();
@@ -28,6 +28,7 @@ export function registerRealtime(app: FastifyInstance, env: Environment, config:
       const fleet = await listVehicles(database, config), privateStates = new Map<string, SyncState>();
       for (const [socket, client] of clients) {
         if (stopped || socket.readyState !== WebSocket.OPEN) continue;
+        if (client.authExpiresAt !== null && Date.now() >= client.authExpiresAt) { socket.close(1008, 'Session expired'); continue; }
         if (socket.bufferedAmount > env.wsMaxBufferedBytes) { socket.close(1013, 'Client is too slow'); continue; }
         let frame: RealtimeFrame;
         if (client.userId) {
@@ -35,6 +36,7 @@ export function registerRealtime(app: FastifyInstance, env: Environment, config:
           if (!state) { state = await syncState(database, config, client.userId); privateStates.set(client.userId, state); }
           frame = { type: 'state_snapshot', connectionId: client.id, sequence: ++client.sequence, state };
         } else frame = { type: 'fleet_snapshot', connectionId: client.id, sequence: ++client.sequence, fleet };
+        if (client.authExpiresAt !== null && Date.now() >= client.authExpiresAt) { socket.close(1008, 'Session expired'); continue; }
         if (!stopped && socket.readyState === WebSocket.OPEN) socket.send(JSON.stringify(frame), error => { if (error) socket.terminate(); });
       }
     } catch {
@@ -80,14 +82,21 @@ export function registerRealtime(app: FastifyInstance, env: Environment, config:
     try {
       const tickets = protocols.filter(value => value.startsWith('ticket.'));
       let userId: string | null = null;
+      let authExpiresAt: number | null = null;
       if (tickets.length) {
         const ticket = tickets[0]?.slice(7);
-        if (tickets.length !== 1 || !ticket || !/^[a-f0-9]{64}$/.test(ticket) || !(userId = await consumeTicket(database, ticket))) return reject(socket, '401 Unauthorized');
+        if (tickets.length !== 1 || !ticket || !/^[a-f0-9]{64}$/.test(ticket)) return reject(socket, '401 Unauthorized');
+        const identity = await consumeTicket(database, ticket);
+        if (!identity) return reject(socket, '401 Unauthorized');
+        userId = identity.userId; authExpiresAt = identity.authExpiresAt?.getTime() ?? null;
+        if (authExpiresAt !== null && Date.now() >= authExpiresAt) return reject(socket, '401 Unauthorized');
       }
       if (stopped || socket.destroyed) return socket.destroy();
       server.handleUpgrade(request, socket, head, connection => {
-        clients.set(connection, { id: randomUUID(), userId, sequence: 0, alive: true });
-        connection.on('close', () => clients.delete(connection));
+        const client: ClientState = { id: randomUUID(), userId, sequence: 0, alive: true, authExpiresAt };
+        if (authExpiresAt !== null) client.expiryTimer = setTimeout(() => connection.close(1008, 'Session expired'), Math.max(0, authExpiresAt - Date.now()));
+        clients.set(connection, client);
+        connection.on('close', () => { clearTimeout(client.expiryTimer); clients.delete(connection); });
         connection.on('error', () => connection.terminate());
         connection.on('pong', () => { const state = clients.get(connection); if (state) state.alive = true; });
         // Commands remain validated HTTP operations; sockets are read-only.

@@ -1,0 +1,399 @@
+START 2026-10-21T16:14:46.775+06:00
+COMMAND npm run test:db
+
+> samokettik@0.1.0 test:db
+> vitest run --config vitest.db.config.ts
+
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql
+
+ ❯ tests/integration/reservations.test.ts (16 tests | 2 failed) 9134ms
+   ❯ reservations over real HTTP and PostgreSQL (16)
+     × twenty distinct users through two PostgreSQL pools have exactly one reservation winner 2039ms
+     × concurrent same-key repeats return exactly the stored result across a new API instance 43ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > twenty distinct users through two PostgreSQL pools have exactly one reservation winner
+Error: timeout exceeded when trying to connect
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ tests/integration/reservations.test.ts:59:20
+     57| async function lockWaiters(minimum: number): Promise<void> {
+     58|   await until(async () => {
+     59|     const result = await database.pool.query<{ count: string }>("SELEC…
+       |                    ^
+     60|     return Number(result.rows[0]?.count) >= minimum;
+     61|   }, 1500);
+ ❯ until tests/integration/reservations.test.ts:54:39
+ ❯ lockWaiters tests/integration/reservations.test.ts:58:3
+ ❯ tests/integration/reservations.test.ts:154:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/reservations.test.ts > reservations over real HTTP and PostgreSQL > concurrent same-key repeats return exactly the stored result across a new API instance
+AssertionError: expected 409 to be 201 // Object.is equality
+
+- Expected
++ Received
+
+- 201
++ 409
+
+ ❯ tests/integration/reservations.test.ts:166:26
+    164|     const key = randomUUID();
+    165|     const [first, second] = await Promise.all([reserve('a', 5, key, ur…
+    166|     expect(first.status).toBe(201);
+       |                          ^
+    167|     expect(second).toEqual(first);
+    168|     expect(await database.db.select({ count: count() }).from(rentals))…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 18 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: timeout exceeded when trying to connect
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ runNextTicks node:internal/process/task_queues:65:5
+ ❯ listOnTimeout node:internal/timers:555:9
+ ❯ process.processTimers node:internal/timers:529:7
+ ❯ NodePgSession.transaction node_modules/drizzle-orm/node-postgres/session.js:182:48
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:99:14
+     97|   for (let attempt = 0; attempt < 3; attempt++) {
+     98|     try {
+     99|       return await database.db.transaction(async tx => {
+       |              ^
+    100|         await lockSettings(tx);
+    101|         // Advisory lock comes before user lock. Insert the FK-bearing…
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "twenty distinct users through two PostgreSQL pools have exactly one reservation winner". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: timeout exceeded when trying to connect
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ runNextTicks node:internal/process/task_queues:65:5
+ ❯ listOnTimeout node:internal/timers:555:9
+ ❯ process.processTimers node:internal/timers:529:7
+ ❯ NodePgSession.transaction node_modules/drizzle-orm/node-postgres/session.js:182:48
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:99:14
+     97|   for (let attempt = 0; attempt < 3; attempt++) {
+     98|     try {
+     99|       return await database.db.transaction(async tx => {
+       |              ^
+    100|         await lockSettings(tx);
+    101|         // Advisory lock comes before user lock. Insert the FK-bearing…
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "twenty distinct users through two PostgreSQL pools have exactly one reservation winner". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: timeout exceeded when trying to connect
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ runNextTicks node:internal/process/task_queues:65:5
+ ❯ listOnTimeout node:internal/timers:555:9
+ ❯ process.processTimers node:internal/timers:529:7
+ ❯ NodePgSession.transaction node_modules/drizzle-orm/node-postgres/session.js:182:48
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:99:14
+     97|   for (let attempt = 0; attempt < 3; attempt++) {
+     98|     try {
+     99|       return await database.db.transaction(async tx => {
+       |              ^
+    100|         await lockSettings(tx);
+    101|         // Advisory lock comes before user lock. Insert the FK-bearing…
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "twenty distinct users through two PostgreSQL pools have exactly one reservation winner". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: timeout exceeded when trying to connect
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ runNextTicks node:internal/process/task_queues:65:5
+ ❯ listOnTimeout node:internal/timers:555:9
+ ❯ process.processTimers node:internal/timers:529:7
+ ❯ NodePgSession.transaction node_modules/drizzle-orm/node-postgres/session.js:182:48
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:99:14
+     97|   for (let attempt = 0; attempt < 3; attempt++) {
+     98|     try {
+     99|       return await database.db.transaction(async tx => {
+       |              ^
+    100|         await lockSettings(tx);
+    101|         // Advisory lock comes before user lock. Insert the FK-bearing…
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "twenty distinct users through two PostgreSQL pools have exactly one reservation winner". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: timeout exceeded when trying to connect
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ runNextTicks node:internal/process/task_queues:65:5
+ ❯ listOnTimeout node:internal/timers:555:9
+ ❯ process.processTimers node:internal/timers:529:7
+ ❯ NodePgSession.transaction node_modules/drizzle-orm/node-postgres/session.js:182:48
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:99:14
+     97|   for (let attempt = 0; attempt < 3; attempt++) {
+     98|     try {
+     99|       return await database.db.transaction(async tx => {
+       |              ^
+    100|         await lockSettings(tx);
+    101|         // Advisory lock comes before user lock. Insert the FK-bearing…
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "twenty distinct users through two PostgreSQL pools have exactly one reservation winner". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: timeout exceeded when trying to connect
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ runNextTicks node:internal/process/task_queues:65:5
+ ❯ listOnTimeout node:internal/timers:555:9
+ ❯ process.processTimers node:internal/timers:529:7
+ ❯ NodePgSession.transaction node_modules/drizzle-orm/node-postgres/session.js:182:48
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:99:14
+     97|   for (let attempt = 0; attempt < 3; attempt++) {
+     98|     try {
+     99|       return await database.db.transaction(async tx => {
+       |              ^
+    100|         await lockSettings(tx);
+    101|         // Advisory lock comes before user lock. Insert the FK-bearing…
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "twenty distinct users through two PostgreSQL pools have exactly one reservation winner". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: timeout exceeded when trying to connect
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ runNextTicks node:internal/process/task_queues:65:5
+ ❯ listOnTimeout node:internal/timers:555:9
+ ❯ process.processTimers node:internal/timers:529:7
+ ❯ NodePgSession.transaction node_modules/drizzle-orm/node-postgres/session.js:182:48
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:99:14
+     97|   for (let attempt = 0; attempt < 3; attempt++) {
+     98|     try {
+     99|       return await database.db.transaction(async tx => {
+       |              ^
+    100|         await lockSettings(tx);
+    101|         // Advisory lock comes before user lock. Insert the FK-bearing…
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "twenty distinct users through two PostgreSQL pools have exactly one reservation winner". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: timeout exceeded when trying to connect
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ runNextTicks node:internal/process/task_queues:65:5
+ ❯ listOnTimeout node:internal/timers:555:9
+ ❯ process.processTimers node:internal/timers:529:7
+ ❯ NodePgSession.transaction node_modules/drizzle-orm/node-postgres/session.js:182:48
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:99:14
+     97|   for (let attempt = 0; attempt < 3; attempt++) {
+     98|     try {
+     99|       return await database.db.transaction(async tx => {
+       |              ^
+    100|         await lockSettings(tx);
+    101|         // Advisory lock comes before user lock. Insert the FK-bearing…
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "twenty distinct users through two PostgreSQL pools have exactly one reservation winner". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: timeout exceeded when trying to connect
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ runNextTicks node:internal/process/task_queues:65:5
+ ❯ listOnTimeout node:internal/timers:555:9
+ ❯ process.processTimers node:internal/timers:529:7
+ ❯ NodePgSession.transaction node_modules/drizzle-orm/node-postgres/session.js:182:48
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:99:14
+     97|   for (let attempt = 0; attempt < 3; attempt++) {
+     98|     try {
+     99|       return await database.db.transaction(async tx => {
+       |              ^
+    100|         await lockSettings(tx);
+    101|         // Advisory lock comes before user lock. Insert the FK-bearing…
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "twenty distinct users through two PostgreSQL pools have exactly one reservation winner". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: timeout exceeded when trying to connect
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ runNextTicks node:internal/process/task_queues:65:5
+ ❯ listOnTimeout node:internal/timers:555:9
+ ❯ process.processTimers node:internal/timers:529:7
+ ❯ NodePgSession.transaction node_modules/drizzle-orm/node-postgres/session.js:182:48
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:99:14
+     97|   for (let attempt = 0; attempt < 3; attempt++) {
+     98|     try {
+     99|       return await database.db.transaction(async tx => {
+       |              ^
+    100|         await lockSettings(tx);
+    101|         // Advisory lock comes before user lock. Insert the FK-bearing…
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "twenty distinct users through two PostgreSQL pools have exactly one reservation winner". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: timeout exceeded when trying to connect
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ runNextTicks node:internal/process/task_queues:65:5
+ ❯ listOnTimeout node:internal/timers:555:9
+ ❯ process.processTimers node:internal/timers:529:7
+ ❯ NodePgSession.transaction node_modules/drizzle-orm/node-postgres/session.js:182:48
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:99:14
+     97|   for (let attempt = 0; attempt < 3; attempt++) {
+     98|     try {
+     99|       return await database.db.transaction(async tx => {
+       |              ^
+    100|         await lockSettings(tx);
+    101|         // Advisory lock comes before user lock. Insert the FK-bearing…
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "twenty distinct users through two PostgreSQL pools have exactly one reservation winner". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: Reservation storage is temporarily unavailable
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:126:125
+    124|       if (['40001', '40P01'].includes(code ?? '') && attempt < 2) cont…
+    125|       if (error instanceof ReservationUnavailableError) throw error;
+    126|       if (code && (code.startsWith('08') || ['55P03', '57014', '57P01'…
+       |                                                                                                                             ^
+    127|       throw error;
+    128|     }
+ ❯ process.processTicksAndRejections node:internal/process/task_queues:105:5
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "concurrent same-key repeats return exactly the stored result across a new API instance". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: Reservation storage is temporarily unavailable
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:126:125
+    124|       if (['40001', '40P01'].includes(code ?? '') && attempt < 2) cont…
+    125|       if (error instanceof ReservationUnavailableError) throw error;
+    126|       if (code && (code.startsWith('08') || ['55P03', '57014', '57P01'…
+       |                                                                                                                             ^
+    127|       throw error;
+    128|     }
+ ❯ process.processTicksAndRejections node:internal/process/task_queues:105:5
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "concurrent same-key repeats return exactly the stored result across a new API instance". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: Reservation storage is temporarily unavailable
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:126:125
+    124|       if (['40001', '40P01'].includes(code ?? '') && attempt < 2) cont…
+    125|       if (error instanceof ReservationUnavailableError) throw error;
+    126|       if (code && (code.startsWith('08') || ['55P03', '57014', '57P01'…
+       |                                                                                                                             ^
+    127|       throw error;
+    128|     }
+ ❯ process.processTicksAndRejections node:internal/process/task_queues:105:5
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "concurrent same-key repeats return exactly the stored result across a new API instance". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: Reservation storage is temporarily unavailable
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:126:125
+    124|       if (['40001', '40P01'].includes(code ?? '') && attempt < 2) cont…
+    125|       if (error instanceof ReservationUnavailableError) throw error;
+    126|       if (code && (code.startsWith('08') || ['55P03', '57014', '57P01'…
+       |                                                                                                                             ^
+    127|       throw error;
+    128|     }
+ ❯ process.processTicksAndRejections node:internal/process/task_queues:105:5
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "concurrent same-key repeats return exactly the stored result across a new API instance". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: Reservation storage is temporarily unavailable
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:126:125
+    124|       if (['40001', '40P01'].includes(code ?? '') && attempt < 2) cont…
+    125|       if (error instanceof ReservationUnavailableError) throw error;
+    126|       if (code && (code.startsWith('08') || ['55P03', '57014', '57P01'…
+       |                                                                                                                             ^
+    127|       throw error;
+    128|     }
+ ❯ process.processTicksAndRejections node:internal/process/task_queues:105:5
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "concurrent same-key repeats return exactly the stored result across a new API instance". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: Reservation storage is temporarily unavailable
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:126:125
+    124|       if (['40001', '40P01'].includes(code ?? '') && attempt < 2) cont…
+    125|       if (error instanceof ReservationUnavailableError) throw error;
+    126|       if (code && (code.startsWith('08') || ['55P03', '57014', '57P01'…
+       |                                                                                                                             ^
+    127|       throw error;
+    128|     }
+ ❯ process.processTicksAndRejections node:internal/process/task_queues:105:5
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "concurrent same-key repeats return exactly the stored result across a new API instance". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: Reservation storage is temporarily unavailable
+ ❯ rentalCommand apps/server/src/modules/reservations/service.ts:126:125
+    124|       if (['40001', '40P01'].includes(code ?? '') && attempt < 2) cont…
+    125|       if (error instanceof ReservationUnavailableError) throw error;
+    126|       if (code && (code.startsWith('08') || ['55P03', '57014', '57P01'…
+       |                                                                                                                             ^
+    127|       throw error;
+    128|     }
+ ❯ process.processTicksAndRejections node:internal/process/task_queues:105:5
+
+This error originated in "tests/integration/reservations.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The last test to run before this error was "concurrent same-key repeats return exactly the stored result across a new API instance". This means either:
+- the error was thrown while Vitest was running this test, or
+- the error was thrown after the test completed, and this was the most recent test at that point.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  2 failed | 48 passed (50)
+     Errors  18 errors
+   Start at  16:14:47
+   Duration  32.49s (tests 88%, import 11%, transform 1%)
+
+
+END 2026-10-21T16:15:19.885+06:00
+EXIT 1

@@ -1,0 +1,157 @@
+{
+  "recordedAt": "2026-10-21T16:33:15.664+06:00",
+  "commands": [
+    {
+      "file": "logs/2026-10-21T16-13-20.799+06-00-npm.log",
+      "command": "npm run test:acceptance",
+      "startedAt": "2026-10-21T16:13:20.799+06:00",
+      "endedAt": "2026-10-21T16:28:23.922+06:00",
+      "exitCode": 0,
+      "sha256": "69ca1a59ad123dc4fc25e9481d29f9dfde9b30278f33e95f2d74c7e3dcd0e8ce"
+    },
+    {
+      "file": "logs/2026-10-21T16-14-46.762+06-00-npm.log",
+      "command": "npm run verify",
+      "startedAt": "2026-10-21T16:14:46.762+06:00",
+      "endedAt": "2026-10-21T16:14:55.189+06:00",
+      "exitCode": 0,
+      "sha256": "b7e04469aaa514ced6bc4d29a1d1eb5a0292124faabfa0cad6f5910517f63305"
+    },
+    {
+      "file": "logs/2026-10-21T16-14-46.775+06-00-npm.log",
+      "command": "npm run test:db",
+      "startedAt": "2026-10-21T16:14:46.775+06:00",
+      "endedAt": "2026-10-21T16:15:19.885+06:00",
+      "exitCode": 1,
+      "sha256": "ae89280f96c6fa59cca28611d780234c5044973b205626b98721fa3dc3802da0"
+    },
+    {
+      "file": "logs/2026-10-21T16-14-46.807+06-00-npm.log",
+      "command": "npm audit",
+      "startedAt": "2026-10-21T16:14:46.807+06:00",
+      "endedAt": "2026-10-21T16:14:47.856+06:00",
+      "exitCode": 0,
+      "sha256": "634547b41233c184237c27d9885b52e01651ce5dc71b0810999bb6d61539bd2c"
+    },
+    {
+      "file": "logs/2026-10-21T16-17-28.698+06-00-npm.log",
+      "command": "npm run test:db -- -t already authenticated private",
+      "startedAt": "2026-10-21T16:17:28.698+06:00",
+      "endedAt": "2026-10-21T16:17:38.731+06:00",
+      "exitCode": 1,
+      "sha256": "8dba1c132542094fd2fb4185930f990e9de5931980ce11b842c6b707853a2cea"
+    },
+    {
+      "file": "logs/2026-10-21T16-19-09.946+06-00-npm.log",
+      "command": "npm run db:generate",
+      "startedAt": "2026-10-21T16:19:09.946+06:00",
+      "endedAt": "2026-10-21T16:19:12.064+06:00",
+      "exitCode": 0,
+      "sha256": "8c75a2a062944a00cc78f5997abe96ebb0fb2a83c9971aff8772c5311b07f166"
+    },
+    {
+      "file": "logs/2026-10-21T16-19-26.431+06-00-npm.log",
+      "command": "npm run test:db -- -t already authenticated private|twenty distinct",
+      "startedAt": "2026-10-21T16:19:26.431+06:00",
+      "endedAt": "2026-10-21T16:19:36.100+06:00",
+      "exitCode": 1,
+      "sha256": "b7ee1b62313f52a98ce64f13e031f9ca7d66ed8a9187f2e4f2b1b490aba5d852"
+    },
+    {
+      "file": "logs/2026-10-21T16-20-04.116+06-00-npm.log",
+      "command": "npm run test:db -- -t twenty distinct",
+      "startedAt": "2026-10-21T16:20:04.116+06:00",
+      "endedAt": "2026-10-21T16:20:08.876+06:00",
+      "exitCode": 0,
+      "sha256": "6dd0a41de3eb71057f94bdc83bd65e455d0bfd439424a1b2726f96743ae00407"
+    },
+    {
+      "file": "logs/2026-10-21T16-21-43.123+06-00-npm.log",
+      "command": "npm run verify",
+      "startedAt": "2026-10-21T16:21:43.123+06:00",
+      "endedAt": "2026-10-21T16:21:50.276+06:00",
+      "exitCode": 0,
+      "sha256": "2a92aa2b142908225548e4719cabed6350f134523e99d87541ca3b0c1716a095"
+    },
+    {
+      "file": "logs/2026-10-21T16-22-01.615+06-00-npm.log",
+      "command": "npm run test:db",
+      "startedAt": "2026-10-21T16:22:01.615+06:00",
+      "endedAt": "2026-10-21T16:22:35.458+06:00",
+      "exitCode": 0,
+      "sha256": "22cb065288e6cc2eb38806f22f4a7c42fdccad9e575b3537e93b704c703becb4"
+    },
+    {
+      "file": "logs/2026-10-21T16-22-01.626+06-00-npm.log",
+      "command": "npm run test:e2e",
+      "startedAt": "2026-10-21T16:22:01.626+06:00",
+      "endedAt": "2026-10-21T16:25:31.392+06:00",
+      "exitCode": 1,
+      "sha256": "6e1e53aa21df07bdf356f8eba4cfe1e418be21a8567a771e1c21ad69f0a4d30a"
+    },
+    {
+      "file": "logs/2026-10-21T16-26-30.570+06-00-npm.log",
+      "command": "npm exec --yes --package=prettier@3.9.10 -- prettier --write tests/acceptance/reservation-clock.test.ts tests/unit/audit-billing.test.ts tests/e2e/rental.spec.ts vitest.acceptance.config.ts",
+      "startedAt": "2026-10-21T16:26:30.570+06:00",
+      "endedAt": "2026-10-21T16:26:31.718+06:00",
+      "exitCode": 0,
+      "sha256": "a91b4e9a86257b399798fc44c0f25753fae0b22e413e2902695db1d7a5d1c23e"
+    },
+    {
+      "file": "logs/2026-10-21T16-26-32.192+06-00-npm.log",
+      "command": "npm run test:e2e",
+      "startedAt": "2026-10-21T16:26:32.192+06:00",
+      "endedAt": "2026-10-21T16:29:59.213+06:00",
+      "exitCode": 0,
+      "sha256": "8181ccd20f8d189c89f2ac09ea3ef1279166fc1ee1b370047bd7bf70d9e4ece9"
+    },
+    {
+      "file": "logs/2026-10-21T16-26-32.210+06-00-npm.log",
+      "command": "npm run test:db",
+      "startedAt": "2026-10-21T16:26:32.210+06:00",
+      "endedAt": "2026-10-21T16:27:06.451+06:00",
+      "exitCode": 0,
+      "sha256": "e0e74071e33edfe4b2d843de20e86ea94d166174751ed38c96003ba18316e609"
+    },
+    {
+      "file": "logs/2026-10-21T16-28-19.205+06-00-node.log",
+      "command": "node work/snapshot-audit-main.mjs before",
+      "startedAt": "2026-10-21T16:28:19.205+06:00",
+      "endedAt": "2026-10-21T16:28:19.346+06:00",
+      "exitCode": 0,
+      "sha256": "8beb9620c4c5f201c0e6c1da930eb5c70d4dabe553321d4e139381b9bf32df4c"
+    },
+    {
+      "file": "logs/2026-10-21T16-28-51.213+06-00-npm.log",
+      "command": "npm run compose:up",
+      "startedAt": "2026-10-21T16:28:51.213+06:00",
+      "endedAt": "2026-10-21T16:29:41.940+06:00",
+      "exitCode": 0,
+      "sha256": "e79a121edc283dee2012c23f67d28d912a8ca40d0512573801794563906bf3de"
+    },
+    {
+      "file": "logs/2026-10-21T16-29-01.476+06-00-npm.log",
+      "command": "npm run verify",
+      "startedAt": "2026-10-21T16:29:01.476+06:00",
+      "endedAt": "2026-10-21T16:29:09.992+06:00",
+      "exitCode": 0,
+      "sha256": "402f8416ee1e33c453248d3e4f23f7b4844b3926fe0362456b777a02819349cd"
+    },
+    {
+      "file": "logs/2026-10-21T16-32-35.077+06-00-node.log",
+      "command": "node work/snapshot-audit-main.mjs after",
+      "startedAt": "2026-10-21T16:32:35.077+06:00",
+      "endedAt": "2026-10-21T16:32:35.206+06:00",
+      "exitCode": 0,
+      "sha256": "cc9af7ebe223e1ed3f28f8680260a624367470b9cb809916176d3375fea34acd"
+    },
+    {
+      "file": "logs/2026-10-21T16-32-35.083+06-00-node.log",
+      "command": "node work/check-live-frontend.mjs",
+      "startedAt": "2026-10-21T16:32:35.083+06:00",
+      "endedAt": "2026-10-21T16:32:37.560+06:00",
+      "exitCode": 0,
+      "sha256": "ab537ef231fd066473d816a26855fdff319b288728bbaf36c03e7cdb52362a0a"
+    }
+  ]
+}

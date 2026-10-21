@@ -1,0 +1,21 @@
+START 2026-10-21T16:20:04.116+06:00
+COMMAND npm run test:db -- -t twenty distinct
+
+> samokettik@0.1.0 test:db
+> vitest run --config vitest.db.config.ts -t twenty distinct
+
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql
+
+
+ Test Files  1 passed | 3 skipped (4)
+      Tests  1 passed | 50 skipped (51)
+   Start at  16:20:04
+   Duration  4.21s (import 80%, tests 15%, transform 4%, worker 1%)
+
+    Isolate  4 workers spawned · ~116ms startup each (spawn + environment, per file)
+             at least ~349ms faster with isolate: false — reuses workers across files instead of one per file
+
+
+END 2026-10-21T16:20:08.876+06:00
+EXIT 0

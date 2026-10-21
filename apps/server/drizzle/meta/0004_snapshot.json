@@ -1,0 +1,1466 @@
+{
+  "id": "2dca650a-3ec2-4eec-a226-182ca01de9a8",
+  "prevId": "195baae0-84c9-473e-9e90-f5575eedd0a4",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.app_metadata": {
+      "name": "app_metadata",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "schema_version": {
+          "name": "schema_version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "app_metadata_singleton": {
+          "name": "app_metadata_singleton",
+          "value": "\"app_metadata\".\"id\" = 1"
+        },
+        "app_metadata_version_positive": {
+          "name": "app_metadata_version_positive",
+          "value": "\"app_metadata\".\"schema_version\" > 0"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.demo_payments": {
+      "name": "demo_payments",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "invoice_id": {
+          "name": "invoice_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "provider": {
+          "name": "provider",
+          "type": "varchar(16)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'demo'"
+        },
+        "amount_minor": {
+          "name": "amount_minor",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "currency": {
+          "name": "currency",
+          "type": "varchar(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "demo_payments_invoice_amount_fk": {
+          "name": "demo_payments_invoice_amount_fk",
+          "tableFrom": "demo_payments",
+          "tableTo": "invoices",
+          "columnsFrom": [
+            "invoice_id",
+            "amount_minor",
+            "currency"
+          ],
+          "columnsTo": [
+            "id",
+            "total_minor",
+            "currency"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "demo_payments_invoice_id_unique": {
+          "name": "demo_payments_invoice_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "invoice_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "demo_payments_provider": {
+          "name": "demo_payments_provider",
+          "value": "\"demo_payments\".\"provider\" = 'demo'"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.idempotency_requests": {
+      "name": "idempotency_requests",
+      "schema": "",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "key": {
+          "name": "key",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "operation": {
+          "name": "operation",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "request_hash": {
+          "name": "request_hash",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "result": {
+          "name": "result",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "idempotency_requests_user_id_users_id_fk": {
+          "name": "idempotency_requests_user_id_users_id_fk",
+          "tableFrom": "idempotency_requests",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "idempotency_requests_user_id_key_pk": {
+          "name": "idempotency_requests_user_id_key_pk",
+          "columns": [
+            "user_id",
+            "key"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.invoices": {
+      "name": "invoices",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "rental_id": {
+          "name": "rental_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "currency": {
+          "name": "currency",
+          "type": "varchar(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "billing_policy": {
+          "name": "billing_policy",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ride_rate_minor_per_minute": {
+          "name": "ride_rate_minor_per_minute",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pause_rate_minor_per_minute": {
+          "name": "pause_rate_minor_per_minute",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_ms": {
+          "name": "active_ms",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "paused_ms": {
+          "name": "paused_ms",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active_minutes": {
+          "name": "active_minutes",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "paused_minutes": {
+          "name": "paused_minutes",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_minor": {
+          "name": "total_minor",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "varchar(16)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'unpaid'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "paid_at": {
+          "name": "paid_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "invoices_owner_history": {
+          "name": "invoices_owner_history",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "invoices_rental_owner_fk": {
+          "name": "invoices_rental_owner_fk",
+          "tableFrom": "invoices",
+          "tableTo": "rentals",
+          "columnsFrom": [
+            "rental_id",
+            "user_id"
+          ],
+          "columnsTo": [
+            "id",
+            "user_id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "invoices_rental_id_unique": {
+          "name": "invoices_rental_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "rental_id"
+          ]
+        },
+        "invoices_payment_identity": {
+          "name": "invoices_payment_identity",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id",
+            "total_minor",
+            "currency"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "invoices_currency_policy": {
+          "name": "invoices_currency_policy",
+          "value": "\"invoices\".\"currency\" = 'KGS' AND \"invoices\".\"billing_policy\" = 'ceil-per-mode-v1'"
+        },
+        "invoices_amounts": {
+          "name": "invoices_amounts",
+          "value": "\"invoices\".\"active_ms\" >= 0 AND \"invoices\".\"paused_ms\" >= 0 AND \"invoices\".\"ride_rate_minor_per_minute\" >= 0 AND \"invoices\".\"pause_rate_minor_per_minute\" >= 0 AND \"invoices\".\"total_minor\" >= 0\n    AND \"invoices\".\"active_minutes\" = (\"invoices\".\"active_ms\" + 59999) / 60000 AND \"invoices\".\"paused_minutes\" = (\"invoices\".\"paused_ms\" + 59999) / 60000\n    AND \"invoices\".\"total_minor\" = \"invoices\".\"active_minutes\" * \"invoices\".\"ride_rate_minor_per_minute\"::bigint + \"invoices\".\"paused_minutes\" * \"invoices\".\"pause_rate_minor_per_minute\"::bigint"
+        },
+        "invoices_payment_state": {
+          "name": "invoices_payment_state",
+          "value": "(\"invoices\".\"status\" = 'unpaid' AND \"invoices\".\"paid_at\" IS NULL) OR (\"invoices\".\"status\" = 'paid' AND \"invoices\".\"paid_at\" IS NOT NULL AND \"invoices\".\"paid_at\" >= \"invoices\".\"created_at\")"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.job_heartbeats": {
+      "name": "job_heartbeats",
+      "schema": "",
+      "columns": {
+        "name": {
+          "name": "name",
+          "type": "varchar(64)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "config_hash": {
+          "name": "config_hash",
+          "type": "varchar(64)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_success_at": {
+          "name": "last_success_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.local_mailbox": {
+      "name": "local_mailbox",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "invoice_id": {
+          "name": "invoice_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "recipient": {
+          "name": "recipient",
+          "type": "varchar(254)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "subject": {
+          "name": "subject",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "body": {
+          "name": "body",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "received_at": {
+          "name": "received_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "local_mailbox_logical_event_fk": {
+          "name": "local_mailbox_logical_event_fk",
+          "tableFrom": "local_mailbox",
+          "tableTo": "mail_outbox",
+          "columnsFrom": [
+            "id",
+            "invoice_id"
+          ],
+          "columnsTo": [
+            "id",
+            "invoice_id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "local_mailbox_invoice_id_unique": {
+          "name": "local_mailbox_invoice_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "invoice_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.mail_outbox": {
+      "name": "mail_outbox",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "invoice_id": {
+          "name": "invoice_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "recipient": {
+          "name": "recipient",
+          "type": "varchar(254)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "subject": {
+          "name": "subject",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "body": {
+          "name": "body",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "delivered_at": {
+          "name": "delivered_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "mail_outbox_pending": {
+          "name": "mail_outbox_pending",
+          "columns": [
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "where": "\"mail_outbox\".\"delivered_at\" IS NULL",
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "mail_outbox_invoice_id_invoices_id_fk": {
+          "name": "mail_outbox_invoice_id_invoices_id_fk",
+          "tableFrom": "mail_outbox",
+          "tableTo": "invoices",
+          "columnsFrom": [
+            "invoice_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "mail_outbox_invoice_id_unique": {
+          "name": "mail_outbox_invoice_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "invoice_id"
+          ]
+        },
+        "mail_outbox_identity": {
+          "name": "mail_outbox_identity",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id",
+            "invoice_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "mail_outbox_delivery_time": {
+          "name": "mail_outbox_delivery_time",
+          "value": "\"mail_outbox\".\"delivered_at\" IS NULL OR \"mail_outbox\".\"delivered_at\" >= \"mail_outbox\".\"created_at\""
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.notifications": {
+      "name": "notifications",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rental_id": {
+          "name": "rental_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "code": {
+          "name": "code",
+          "type": "varchar(40)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reason": {
+          "name": "reason",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "notifications_owner_created": {
+          "name": "notifications_owner_created",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "notifications_user_id_users_id_fk": {
+          "name": "notifications_user_id_users_id_fk",
+          "tableFrom": "notifications",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        },
+        "notifications_rental_id_rentals_id_fk": {
+          "name": "notifications_rental_id_rentals_id_fk",
+          "tableFrom": "notifications",
+          "tableTo": "rentals",
+          "columnsFrom": [
+            "rental_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        },
+        "notifications_rental_owner_fk": {
+          "name": "notifications_rental_owner_fk",
+          "tableFrom": "notifications",
+          "tableTo": "rentals",
+          "columnsFrom": [
+            "rental_id",
+            "user_id"
+          ],
+          "columnsTo": [
+            "id",
+            "user_id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "notifications_one_logical_event": {
+          "name": "notifications_one_logical_event",
+          "nullsNotDistinct": false,
+          "columns": [
+            "rental_id",
+            "code"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "notifications_code_supported": {
+          "name": "notifications_code_supported",
+          "value": "\"notifications\".\"code\" IN ('RESERVATION_EXPIRING', 'RESERVATION_EXPIRED', 'RESERVATION_UNAVAILABLE', 'TRIP_FINISHED')"
+        },
+        "notifications_deadline_reason": {
+          "name": "notifications_deadline_reason",
+          "value": "(\"notifications\".\"code\" = 'TRIP_FINISHED' AND \"notifications\".\"expires_at\" IS NULL AND \"notifications\".\"reason\" IS NOT NULL AND \"notifications\".\"reason\" IN ('finished_by_user', 'battery_depleted')) OR (\"notifications\".\"code\" <> 'TRIP_FINISHED' AND \"notifications\".\"expires_at\" IS NOT NULL AND \"notifications\".\"reason\" IS NULL)"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.realtime_tickets": {
+      "name": "realtime_tickets",
+      "schema": "",
+      "columns": {
+        "hash": {
+          "name": "hash",
+          "type": "varchar(64)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "auth_expires_at": {
+          "name": "auth_expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "realtime_tickets_expiry": {
+          "name": "realtime_tickets_expiry",
+          "columns": [
+            {
+              "expression": "expires_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "realtime_tickets_user_id_users_id_fk": {
+          "name": "realtime_tickets_user_id_users_id_fk",
+          "tableFrom": "realtime_tickets",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.rentals": {
+      "name": "rentals",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vehicle_id": {
+          "name": "vehicle_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "state": {
+          "name": "state",
+          "type": "varchar(16)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'reserved'"
+        },
+        "reserved_at": {
+          "name": "reserved_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "warn_at": {
+          "name": "warn_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ended_at": {
+          "name": "ended_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "end_reason": {
+          "name": "end_reason",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "minimum_battery_bp": {
+          "name": "minimum_battery_bp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "started_at": {
+          "name": "started_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ride_rate_minor_per_minute": {
+          "name": "ride_rate_minor_per_minute",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pause_rate_minor_per_minute": {
+          "name": "pause_rate_minor_per_minute",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "currency": {
+          "name": "currency",
+          "type": "varchar(3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "billing_policy": {
+          "name": "billing_policy",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "zone_snapshot": {
+          "name": "zone_snapshot",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "rentals_one_active_vehicle": {
+          "name": "rentals_one_active_vehicle",
+          "columns": [
+            {
+              "expression": "vehicle_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "where": "\"rentals\".\"state\" IN ('reserved', 'riding', 'paused')",
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "rentals_one_active_user": {
+          "name": "rentals_one_active_user",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "where": "\"rentals\".\"state\" IN ('reserved', 'riding', 'paused')",
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "rentals_expiry_due": {
+          "name": "rentals_expiry_due",
+          "columns": [
+            {
+              "expression": "expires_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "where": "\"rentals\".\"state\" = 'reserved'",
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "rentals_warning_due": {
+          "name": "rentals_warning_due",
+          "columns": [
+            {
+              "expression": "warn_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "where": "\"rentals\".\"state\" = 'reserved'",
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "rentals_user_history": {
+          "name": "rentals_user_history",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "reserved_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "rentals_vehicle_history": {
+          "name": "rentals_vehicle_history",
+          "columns": [
+            {
+              "expression": "vehicle_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "rentals_user_id_users_id_fk": {
+          "name": "rentals_user_id_users_id_fk",
+          "tableFrom": "rentals",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        },
+        "rentals_vehicle_id_vehicles_id_fk": {
+          "name": "rentals_vehicle_id_vehicles_id_fk",
+          "tableFrom": "rentals",
+          "tableTo": "vehicles",
+          "columnsFrom": [
+            "vehicle_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "rentals_id_owner": {
+          "name": "rentals_id_owner",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id",
+            "user_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "rentals_state_supported": {
+          "name": "rentals_state_supported",
+          "value": "\"rentals\".\"state\" IN ('reserved', 'cancelled', 'expired', 'riding', 'paused', 'finished')"
+        },
+        "rentals_deadlines": {
+          "name": "rentals_deadlines",
+          "value": "\"rentals\".\"reserved_at\" < \"rentals\".\"warn_at\" AND \"rentals\".\"warn_at\" < \"rentals\".\"expires_at\""
+        },
+        "rentals_minimum_battery": {
+          "name": "rentals_minimum_battery",
+          "value": "\"rentals\".\"minimum_battery_bp\" BETWEEN 0 AND 10000"
+        },
+        "rentals_terminal_state": {
+          "name": "rentals_terminal_state",
+          "value": "(\n    (\"rentals\".\"state\" IN ('reserved', 'riding', 'paused') AND \"rentals\".\"ended_at\" IS NULL AND \"rentals\".\"end_reason\" IS NULL) OR\n    (\"rentals\".\"state\" = 'expired' AND \"rentals\".\"ended_at\" IS NOT NULL AND \"rentals\".\"end_reason\" IS NOT NULL AND \"rentals\".\"ended_at\" = \"rentals\".\"expires_at\" AND \"rentals\".\"end_reason\" = 'reservation_expired') OR\n    (\"rentals\".\"state\" = 'cancelled' AND \"rentals\".\"ended_at\" IS NOT NULL AND \"rentals\".\"ended_at\" >= \"rentals\".\"reserved_at\"\n      AND \"rentals\".\"end_reason\" IS NOT NULL AND \"rentals\".\"end_reason\" IN ('cancelled_by_user', 'battery_too_low', 'vehicle_unavailable')) OR\n    (\"rentals\".\"state\" = 'finished' AND \"rentals\".\"ended_at\" IS NOT NULL AND \"rentals\".\"started_at\" IS NOT NULL AND \"rentals\".\"ended_at\" >= \"rentals\".\"started_at\" AND \"rentals\".\"end_reason\" IS NOT NULL AND \"rentals\".\"end_reason\" IN ('finished_by_user', 'battery_depleted'))\n  )"
+        },
+        "rentals_trip_snapshot": {
+          "name": "rentals_trip_snapshot",
+          "value": "(\n    (\"rentals\".\"state\" IN ('reserved', 'cancelled', 'expired') AND \"rentals\".\"started_at\" IS NULL AND \"rentals\".\"ride_rate_minor_per_minute\" IS NULL AND \"rentals\".\"pause_rate_minor_per_minute\" IS NULL AND \"rentals\".\"currency\" IS NULL AND \"rentals\".\"billing_policy\" IS NULL AND \"rentals\".\"zone_snapshot\" IS NULL) OR\n    (\"rentals\".\"state\" IN ('riding', 'paused', 'finished') AND \"rentals\".\"started_at\" IS NOT NULL AND \"rentals\".\"started_at\" >= \"rentals\".\"reserved_at\" AND \"rentals\".\"started_at\" < \"rentals\".\"expires_at\"\n      AND \"rentals\".\"ride_rate_minor_per_minute\" IS NOT NULL AND \"rentals\".\"ride_rate_minor_per_minute\" >= 0 AND \"rentals\".\"pause_rate_minor_per_minute\" IS NOT NULL AND \"rentals\".\"pause_rate_minor_per_minute\" >= 0\n      AND \"rentals\".\"currency\" IS NOT NULL AND \"rentals\".\"currency\" = 'KGS' AND \"rentals\".\"billing_policy\" IS NOT NULL AND \"rentals\".\"billing_policy\" = 'ceil-per-mode-v1' AND \"rentals\".\"zone_snapshot\" IS NOT NULL)\n  )"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.trip_intervals": {
+      "name": "trip_intervals",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "rental_id": {
+          "name": "rental_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mode": {
+          "name": "mode",
+          "type": "varchar(16)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ordinal": {
+          "name": "ordinal",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "started_at": {
+          "name": "started_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ended_at": {
+          "name": "ended_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "trip_intervals_one_open": {
+          "name": "trip_intervals_one_open",
+          "columns": [
+            {
+              "expression": "rental_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "where": "\"trip_intervals\".\"ended_at\" IS NULL",
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "trip_intervals_timeline": {
+          "name": "trip_intervals_timeline",
+          "columns": [
+            {
+              "expression": "rental_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "started_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "trip_intervals_rental_id_rentals_id_fk": {
+          "name": "trip_intervals_rental_id_rentals_id_fk",
+          "tableFrom": "trip_intervals",
+          "tableTo": "rentals",
+          "columnsFrom": [
+            "rental_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "trip_intervals_order": {
+          "name": "trip_intervals_order",
+          "nullsNotDistinct": false,
+          "columns": [
+            "rental_id",
+            "ordinal"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "trip_intervals_mode": {
+          "name": "trip_intervals_mode",
+          "value": "\"trip_intervals\".\"mode\" IN ('riding', 'paused')"
+        },
+        "trip_intervals_ordinal": {
+          "name": "trip_intervals_ordinal",
+          "value": "\"trip_intervals\".\"ordinal\" >= 0"
+        },
+        "trip_intervals_times": {
+          "name": "trip_intervals_times",
+          "value": "\"trip_intervals\".\"ended_at\" IS NULL OR \"trip_intervals\".\"ended_at\" >= \"trip_intervals\".\"started_at\""
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.trip_simulations": {
+      "name": "trip_simulations",
+      "schema": "",
+      "columns": {
+        "rental_id": {
+          "name": "rental_id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "last_at": {
+          "name": "last_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "distance_mm": {
+          "name": "distance_mm",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "0"
+        },
+        "distance_remainder": {
+          "name": "distance_remainder",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "ride_drain_bp_per_minute": {
+          "name": "ride_drain_bp_per_minute",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pause_drain_bp_per_minute": {
+          "name": "pause_drain_bp_per_minute",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "speed_mm_per_minute": {
+          "name": "speed_mm_per_minute",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tick_ms": {
+          "name": "tick_ms",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "route": {
+          "name": "route",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "trip_simulations_due": {
+          "name": "trip_simulations_due",
+          "columns": [
+            {
+              "expression": "last_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "trip_simulations_rental_id_rentals_id_fk": {
+          "name": "trip_simulations_rental_id_rentals_id_fk",
+          "tableFrom": "trip_simulations",
+          "tableTo": "rentals",
+          "columnsFrom": [
+            "rental_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "trip_simulations_remainders": {
+          "name": "trip_simulations_remainders",
+          "value": "\"trip_simulations\".\"distance_remainder\" BETWEEN 0 AND 59999 AND \"trip_simulations\".\"distance_mm\" >= 0"
+        },
+        "trip_simulations_rates": {
+          "name": "trip_simulations_rates",
+          "value": "\"trip_simulations\".\"ride_drain_bp_per_minute\" BETWEEN 1 AND 10000000 AND \"trip_simulations\".\"pause_drain_bp_per_minute\" BETWEEN 1 AND 10000000 AND \"trip_simulations\".\"speed_mm_per_minute\" BETWEEN 0 AND 10000000 AND \"trip_simulations\".\"tick_ms\" BETWEEN 100 AND 60000"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "email_normalized": {
+          "name": "email_normalized",
+          "type": "varchar(254)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password_hash": {
+          "name": "password_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "locale": {
+          "name": "locale",
+          "type": "varchar(2)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'ru'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "users_email_normalized_unique": {
+          "name": "users_email_normalized_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email_normalized"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "users_email_normalized": {
+          "name": "users_email_normalized",
+          "value": "\"users\".\"email_normalized\" = lower(trim(\"users\".\"email_normalized\")) AND length(\"users\".\"email_normalized\") > 3"
+        },
+        "users_locale_supported": {
+          "name": "users_locale_supported",
+          "value": "\"users\".\"locale\" IN ('ru', 'ky')"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.vehicles": {
+      "name": "vehicles",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "public_code": {
+          "name": "public_code",
+          "type": "varchar(16)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "service_mode": {
+          "name": "service_mode",
+          "type": "varchar(16)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'operational'"
+        },
+        "battery_bp": {
+          "name": "battery_bp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "battery_remainder": {
+          "name": "battery_remainder",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "latitude_e7": {
+          "name": "latitude_e7",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "longitude_e7": {
+          "name": "longitude_e7",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 1
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "vehicles_public_code_unique": {
+          "name": "vehicles_public_code_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "public_code"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "vehicles_battery_range": {
+          "name": "vehicles_battery_range",
+          "value": "\"vehicles\".\"battery_bp\" BETWEEN 0 AND 10000"
+        },
+        "vehicles_battery_fraction": {
+          "name": "vehicles_battery_fraction",
+          "value": "\"vehicles\".\"battery_remainder\" BETWEEN 0 AND 59999 AND (\"vehicles\".\"battery_bp\" > 0 OR \"vehicles\".\"battery_remainder\" = 0)"
+        },
+        "vehicles_latitude_range": {
+          "name": "vehicles_latitude_range",
+          "value": "\"vehicles\".\"latitude_e7\" BETWEEN -900000000 AND 900000000"
+        },
+        "vehicles_longitude_range": {
+          "name": "vehicles_longitude_range",
+          "value": "\"vehicles\".\"longitude_e7\" BETWEEN -1800000000 AND 1800000000"
+        },
+        "vehicles_service_mode": {
+          "name": "vehicles_service_mode",
+          "value": "\"vehicles\".\"service_mode\" IN ('operational', 'maintenance')"
+        },
+        "vehicles_version_positive": {
+          "name": "vehicles_version_positive",
+          "value": "\"vehicles\".\"version\" > 0"
+        }
+      },
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

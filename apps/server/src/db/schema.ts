@@ -210,4 +210,5 @@ export const realtimeTickets = pgTable('realtime_tickets', {
   hash: varchar('hash', { length: 64 }).primaryKey(),
   userId: uuid('user_id').notNull().references(() => users.id, { onDelete: 'restrict' }),
   expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull(),
+  authExpiresAt: timestamp('auth_expires_at', { withTimezone: true, mode: 'date' }),
 }, table => [index('realtime_tickets_expiry').on(table.expiresAt)]);

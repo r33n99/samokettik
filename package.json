@@ -20,6 +20,7 @@
     "db:check": "npm run db:check -w @samokettik/server",
     "test": "vitest run",
     "test:db": "vitest run --config vitest.db.config.ts",
+    "test:acceptance": "vitest run --config vitest.acceptance.config.ts",
     "test:e2e": "npm run build -w @samokettik/contracts && playwright test",
     "demo:reservations": "node scripts/demo-reservations.mjs",
     "demo:trips": "node scripts/demo-trips.mjs",

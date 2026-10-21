@@ -1,0 +1,37 @@
+START 2026-10-21T16:17:28.698+06:00
+COMMAND npm run test:db -- -t already authenticated private
+
+> samokettik@0.1.0 test:db
+> vitest run --config vitest.db.config.ts -t already authenticated private
+
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql
+
+ ❯ tests/integration/realtime.test.ts (9 tests | 1 failed | 8 skipped) 5726ms
+   ❯ persistent simulation, realtime snapshots and local invoice mail (9)
+     × closes an already authenticated private WebSocket when its browser credential expires 5275ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/realtime.test.ts > persistent simulation, realtime snapshots and local invoice mail > closes an already authenticated private WebSocket when its browser credential expires
+Error: Condition timed out
+ ❯ until tests/integration/realtime.test.ts:46:9
+     44|   const deadline = Date.now() + timeout;
+     45|   while (Date.now() < deadline) { if (await check()) return; await del…
+     46|   throw new Error('Condition timed out');
+       |         ^
+     47| }
+     48| async function connect(base = urlA, user?: 'a' | 'b') {
+ ❯ tests/integration/realtime.test.ts:122:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 skipped (4)
+      Tests  1 failed | 50 skipped (51)
+   Start at  16:17:29
+   Duration  9.47s (tests 64%, import 34%, transform 1%)
+
+
+END 2026-10-21T16:17:38.731+06:00
+EXIT 1

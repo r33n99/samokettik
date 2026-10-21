@@ -33,6 +33,7 @@ export default async function setup() {
     DEMO_USER_RU_TOKEN: randomBytes(32).toString("hex"),
     DEMO_USER_KY_TOKEN: randomBytes(32).toString("hex"),
     DEMO_SESSION_SECRET: randomBytes(32).toString("hex"),
+    DEMO_SESSION_SECONDS: "60",
     WS_ALLOWED_ORIGINS: base,
     BOOKING_JOB_POLL_MS: "100",
   };
