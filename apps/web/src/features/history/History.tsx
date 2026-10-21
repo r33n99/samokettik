@@ -1,9 +1,10 @@
 import { useState } from "react";
-import type { Invoice } from "@samokettik/contracts";
+import { TripHistorySchema, InvoiceHistorySchema, type Invoice } from "@samokettik/contracts";
 import type { RentalApp } from "../../state/useRentalApp";
 import { text, errorText, type Locale } from "../../i18n/text";
 import { dateTime, duration, money } from "../../ui/format";
 import { Modal } from "../../ui/Modal";
+import { useHistoryPage } from "./useHistoryPage";
 import "./history.scss";
 export function History({
   app,
@@ -18,14 +19,19 @@ export function History({
 }) {
   const t = text(locale),
     [selected, setSelected] = useState<Invoice | null>(null);
+  const refreshKey = `${app.connection}:${app.sync?.invoices.items.map((i) => `${i.id}:${i.status}`).join(",") ?? ""}`;
+  const trips = useHistoryPage("/api/v1/trips", TripHistorySchema, app.session?.token, view === "trips", refreshKey);
+  const bills = useHistoryPage("/api/v1/invoices", InvoiceHistorySchema, app.session?.token, view === "invoices", refreshKey);
+  const page = view === "trips" ? trips : bills;
+  const pageInvoices = view === "trips" ? trips.data?.items.flatMap((item) => item.invoice ? [item.invoice] : []) : bills.data?.items;
   const invoice = selected
-    ? (app.sync?.invoices.items.find((i) => i.id === selected.id) ?? selected)
+    ? (pageInvoices?.find((i) => i.id === selected.id) ?? app.sync?.invoices.items.find((i) => i.id === selected.id) ?? selected)
     : null;
   return (
     <section className="history-page">
       <div className="history-heading">
         <h1>{view === "trips" ? t.trips : t.invoices}</h1>
-        {app.session ? <p>{t.historyLimit}</p> : null}
+        {app.session ? <p>{t.page} {page.page}</p> : null}
       </div>
       {!app.session ? (
         <div className="empty-history">
@@ -34,20 +40,20 @@ export function History({
             {t.signIn}
           </button>
         </div>
-      ) : view === "trips" && app.historyError ? (
+      ) : page.error ? (
         <div role="alert">
           <p>{t.error}</p>
-          <button className="secondary" onClick={app.refresh}>
+          <button className="secondary" onClick={page.reload} disabled={app.offline}>
             {t.retry}
           </button>
         </div>
-      ) : !app.sync || (view === "trips" && !app.history) ? (
+      ) : !app.sync || !page.data ? (
         <p role="status">{t.loading}</p>
       ) : view === "trips" ? (
-        app.history?.items.length ? (
-          <div className="history-list">
-            {app.history.items.map(({ trip, invoice }) => (
-              <article className="history-entry" key={trip.id}>
+        trips.data?.items.length ? (
+          <div className="history-list" aria-busy={page.loading}>
+            {trips.data.items.map(({ trip, invoice }) => (
+              <article className="history-entry" key={trip.id} data-trip-id={trip.id}>
                 <div>
                   <p className="entry-date">
                     {dateTime(trip.endedAt ?? trip.startedAt, locale)}
@@ -80,6 +86,7 @@ export function History({
                     <button
                       className="text-button"
                       type="button"
+                      disabled={page.loading}
                       onClick={() => setSelected(invoice)}
                     >
                       {t.detail}
@@ -92,10 +99,10 @@ export function History({
         ) : (
           <p className="empty-history">{t.emptyTrips}</p>
         )
-      ) : app.sync.invoices.items.length ? (
-        <div className="history-list">
-          {app.sync.invoices.items.map((item) => (
-            <article className="history-entry invoice-entry" key={item.id}>
+      ) : bills.data?.items.length ? (
+        <div className="history-list" aria-busy={page.loading}>
+          {bills.data.items.map((item) => (
+            <article className="history-entry invoice-entry" key={item.id} data-invoice-id={item.id}>
               <div>
                 <p className="entry-date">{dateTime(item.createdAt, locale)}</p>
                 <h2>{item.id.slice(0, 8)}</h2>
@@ -110,6 +117,7 @@ export function History({
                 <button
                   className="secondary"
                   type="button"
+                  disabled={page.loading}
                   onClick={() => setSelected(item)}
                 >
                   {item.status === "unpaid" ? t.pay : t.detail}
@@ -121,6 +129,17 @@ export function History({
       ) : (
         <p className="empty-history">{t.emptyInvoices}</p>
       )}
+      {app.session && page.data ? (
+        <nav className="history-pagination" aria-label={t.pagination}>
+          <button type="button" className="secondary" onClick={page.previous} disabled={page.page === 1 || page.loading || app.offline}>
+            {t.previousPage}
+          </button>
+          <span role="status" aria-live="polite">{page.loading ? t.loading : `${t.page} ${page.page}`}</span>
+          <button type="button" className="secondary" onClick={() => { if (page.data?.nextCursor) page.next(page.data.nextCursor); }} disabled={!page.data.nextCursor || page.loading || page.error || app.offline}>
+            {t.nextPage}
+          </button>
+        </nav>
+      ) : null}
       {invoice ? (
         <Modal
           title={t.details}

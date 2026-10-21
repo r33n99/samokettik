@@ -41,10 +41,10 @@ export function App() {
   useEffect(() => {
     if (app.session) setLoginOpen(false);
   }, [app.session]);
-  function select(id: string) {
+  function select(id: string, focus = false) {
     setSelectedId(id);
     setListOpen(false);
-    setFitRequest((v) => v + 1);
+    if (focus) setFitRequest((v) => v + 1);
     setView("map");
   }
   const notifications = app.sync?.notifications.items ?? [];
@@ -223,7 +223,7 @@ export function App() {
             config={app.config}
             selectedId={selected?.id ?? null}
             activeId={activeId}
-            onSelect={select}
+            onSelect={(id) => select(id)}
             locale={locale}
             fitRequest={fitRequest}
           />
@@ -238,7 +238,7 @@ export function App() {
             <button
               className="locate-toggle"
               type="button"
-              onClick={() => select(activeId)}
+              onClick={() => select(activeId, true)}
             >
               {t.locate}
             </button>
@@ -357,7 +357,7 @@ export function App() {
                   className="vehicle-list-row"
                   type="button"
                   key={v.id}
-                  onClick={() => select(v.id)}
+                  onClick={() => select(v.id, true)}
                 >
                   <ScooterIcon />
                   <span>

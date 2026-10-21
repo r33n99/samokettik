@@ -1,6 +1,6 @@
 # СамоКеттик — матрица требований и проверок
 
-Актуальный полный аудит U017: [Требование — Реализация — Тест — Результат](CASE11-AUDIT.md). Его результаты и ограничения имеют приоритет над историческими статусами этапов ниже.
+Актуальный полный аудит U017: [Требование — Реализация — Тест — Результат](CASE11-AUDIT.md). Его результаты и ограничения имеют приоритет над историческими статусами этапов ниже. Последующее обновление историй и карты U019: [HISTORY-MAP-REPORT.md](HISTORY-MAP-REPORT.md).
 
 Исходный запрос: [точный текст](prompts/001-project-task.md). После U002 реализован каркас, после U004 — серверная бронь, worker и persistent уведомления. После U008 реализованы серверные поездки/billing/demo payment и зона; U012/U013 добавили согласованный frontend: карта/аренда/history/demo. Доказательства U008: [TRIPS-REPORT.md](TRIPS-REPORT.md); U010: [REALTIME-REPORT.md](REALTIME-REPORT.md); U012: [FRONTEND-REPORT.md](FRONTEND-REPORT.md). Статус `План` означает отсутствие доказательства выполнения. Частично выполненные инфраструктурные требования отмечены ниже; доказательства — [FOUNDATION-REPORT.md](FOUNDATION-REPORT.md) и [RESERVATIONS-REPORT.md](RESERVATIONS-REPORT.md). Открытые продуктовые решения нельзя автоматически превратить в принятые критерии.
 
@@ -31,8 +31,8 @@
 | R21 | Симуляция каждые 3 секунды | I/M: simulationTickMs=3000, отсутствие overlapping cycles, задержанный tick не меняет скорость/длительность | E6 | Номинальный tick 3000ms + poll lag, elapsed-time catch-up, без overlapping cycles в процессе; live default и test задержки проверены |
 | R22 | Изменение заряда | U/I/E: riding/pause разные коэффициенты; carry дробного остатка; charge 0..10000; остановка при 0 | E6 | Расход riding100/paused20 bp/min, BigInt остатки /60000 между ticks и арендами, ноль/auto stop проверены |
 | R23 | Текущая бронь/поездка | I/E: текущая собственная rental, корректный timer, pause, reconnect; чужая информация недоступна | E4–E8 | Current reservation/trip в карточке, server timer/cost, restore после reload/reconnect; чужие данные не используются |
-| R24 | История поездок | I/E: только completed, owner filter, pagination, время Asia/Bishkek; отмены не выданы как поездки | E5,E8 | Рабочая RU/KY история последних100 завершённых поездок, owner API, местное время/тарифы; cursor pagination не реализована |
-| R25 | История счетов | I/E: сумма/статус/причина/детали, owner filter, pagination, неизменность после config change | E5,E7,E8 | Рабочая история/детали счетов и статусы оплаты, owner API; последние100 без cursor pagination |
+| R24 | История поездок | I/E: finished only, owner filter, pagination, Asia/Bishkek | E5,E8 | U019: cursor API,20 по умолчанию, Next/Back, проверка >100, ties/microseconds/new insert; см. HISTORY-MAP-REPORT |
+| R25 | История счетов | I/E: owner filter, pagination, детали/оплата старых счетов | E5,E7,E8 | U019: cursor API, Next/Back/retry и оплата за пределами100 последних; см. HISTORY-MAP-REPORT |
 | R26 | Оплата по факту заглушкой | I/E: успех/отказ, retry после отказа, двойной pay с разными keys → один success; реальные карты не используются | E7 | Approved/declined demo payment из UI с реальным API/PG, один receipt; без эквайринга |
 | R27 | Понятные ошибки/уведомления | I/E: runtime validation, стабильные code/requestId, RU/KY сообщения, без SQL/stack, unavailable reason и offline state | E3–E9 | Loading/error/offline/reconnect, понятные RU/KY UI/errors и requestId; серверная почта пока RU |
 | R28 | Раздельные frontend и backend по сети | I/M: отдельные Compose services, реальные HTTP/WS, backend не заменён mock/localStorage | E1,E9 | Отдельные React frontend/Fastify API/worker, настоящие HTTP/WS/PG; изолированный браузерный набор и Compose проверены |

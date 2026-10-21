@@ -11,9 +11,10 @@
 .leaflet-container {
   font-family: Golos, sans-serif;
 }
-.leaflet-control-attribution {
+.transport-map .leaflet-control-attribution {
   font-size: 10px;
   max-width: 230px;
+  margin: 0;
 }
 .leaflet-top.leaflet-right {
   top: 64px;
@@ -93,7 +94,7 @@
   position: absolute;
   z-index: 600;
   right: 24px;
-  bottom: 18px;
+  bottom: 28px;
   background: t.$paper;
   border: 1px solid t.$line;
   padding: 11px 13px;

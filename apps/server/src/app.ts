@@ -130,7 +130,7 @@ export function buildApp(
           .where(eq(appMetadata.id, 1));
         // Query an application table as well, so missing migrations are not reported as ready.
         await database.db.select({ id: vehicles.id }).from(vehicles).limit(1);
-        if (metadata?.schemaVersion !== 5)
+        if (metadata?.schemaVersion !== 6)
           throw new Error("Schema version mismatch");
         if (
           !(await reservationWorkerHealthy(
@@ -150,7 +150,7 @@ export function buildApp(
         return {
           status: "ready" as const,
           database: "connected" as const,
-          schemaVersion: 5 as const,
+          schemaVersion: 6 as const,
           reservationWorker: "running" as const,
         };
       } catch {

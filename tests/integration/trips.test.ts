@@ -1,11 +1,12 @@
 import { randomUUID } from 'node:crypto';
+import { seedHistory } from '../support/history-fixture.js';
 import { setTimeout as delay } from 'node:timers/promises';
 import pg from 'pg';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import { and, eq, sql } from 'drizzle-orm';
 import { Value } from '@sinclair/typebox/value';
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { TripResultSchema, PaymentResultSchema, type ServiceZone } from '@samokettik/contracts';
+import { TripResultSchema, PaymentResultSchema, TripHistorySchema, InvoiceHistorySchema, type ServiceZone } from '@samokettik/contracts';
 import { buildApp } from '../../apps/server/src/app.js';
 import { loadBusinessConfig } from '../../apps/server/src/config/business.js';
 import { loadEnvironment } from '../../apps/server/src/config/env.js';
@@ -302,5 +303,52 @@ describe('trip lifecycle over HTTP and PostgreSQL', () => {
       expect(trip(await post(`/api/v1/trips/${id}/finish`, 'a', randomUUID(), undefined, base)).invoice?.totalMinor).toBe('800');
     } finally { await fresh.close(); }
     expect(await database.db.select().from(rentals).where(and(eq(rentals.id, id), eq(rentals.state, 'finished')))).toHaveLength(1);
+  });
+});
+
+
+describe('cursor history pagination', () => {
+  it('traverses more than 100 records with ties and microseconds, excludes new head records and foreign owners', async () => {
+    await seedHistory(database.pool, DEMO_USER_IDS.ru, vehicleId, 105, zone);
+    await seedHistory(database.pool, DEMO_USER_IDS.ky, vehicleId, 1, zone);
+    for (const endpoint of ['trips', 'invoices'] as const) {
+      const expected = await database.pool.query<{ id: string }>(endpoint === 'trips'
+        ? "SELECT id FROM rentals WHERE user_id=$1 AND state='finished' ORDER BY ended_at DESC,id DESC"
+        : 'SELECT id FROM invoices WHERE user_id=$1 ORDER BY created_at DESC,id DESC', [DEMO_USER_IDS.ru]);
+      const collected: string[] = [];
+      let cursor: string | null = null, first = true;
+      do {
+        const response = await get('/api/v1/' + endpoint + '?limit=7' + (cursor ? '&cursor=' + cursor : ''));
+        expect(response.status).toBe(200);
+        const value = response.data;
+        if (!Value.Check(TripHistorySchema, value) && !Value.Check(InvoiceHistorySchema, value)) throw new Error('Invalid history response');
+        const pageIds = value.items.map(item => 'trip' in item ? item.trip.id : item.id);
+        expect(pageIds.length).toBeLessThanOrEqual(7);
+        collected.push(...pageIds);
+        cursor = value.nextCursor;
+        if (first) {
+          expect((await get('/api/v1/' + endpoint + '?cursor=' + cursor, 'b')).data).toEqual({ items: [], nextCursor: null });
+          const id = await started(); trip(await post('/api/v1/trips/' + id + '/finish'));
+          first = false;
+        }
+      } while (cursor);
+      expect(collected).toEqual(expected.rows.map(row => row.id));
+      expect(new Set(collected).size).toBe(collected.length);
+    }
+  });
+  it('validates cursors and page bounds, provides empty pages and the default 20 rows', async () => {
+    for (const endpoint of ['trips', 'invoices']) {
+      expect((await get('/api/v1/' + endpoint)).data).toEqual({ items: [], nextCursor: null });
+      for (const query of ['limit=0', 'limit=101', 'limit=1.5', 'cursor=broken', 'extra=1'])
+        expect((await get('/api/v1/' + endpoint + '?' + query)).status).toBe(400);
+      expect((await get('/api/v1/' + endpoint + '?cursor=' + randomUUID())).data).toEqual({ items: [], nextCursor: null });
+    }
+    await seedHistory(database.pool, DEMO_USER_IDS.ru, vehicleId, 21, zone);
+    for (const endpoint of ['trips', 'invoices']) {
+      const response = await get('/api/v1/' + endpoint);
+      const value = response.data;
+      if (!Value.Check(TripHistorySchema, value) && !Value.Check(InvoiceHistorySchema, value)) throw new Error('Invalid history');
+      expect(value.items).toHaveLength(20); expect(value.nextCursor).not.toBeNull();
+    }
   });
 });

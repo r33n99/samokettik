@@ -1,0 +1,31 @@
+START 2026-10-21T17:30:47.997+06:00
+COMMAND npm run test:e2e -- --grep marker clicks|histories paginate
+
+> samokettik@0.1.0 test:e2e
+> npm run build -w @samokettik/contracts && playwright test --grep marker clicks|histories paginate
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+Isolated E2E: fresh PostgreSQL database, real API/worker/Vite are ready; main demo data untouched.
+
+Running 4 tests using 1 worker
+
+(node:27472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:27472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\e2e\rental.spec.ts:765:1 › marker clicks preserve the viewport and the explicit locate button restores the owned scooter (2.2s)
+  ok 2 [desktop] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice (3.2s)
+(node:14096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:14096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [mobile] › tests\e2e\rental.spec.ts:765:1 › marker clicks preserve the viewport and the explicit locate button restores the owned scooter (1.7s)
+  ok 4 [mobile] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice (4.6s)
+
+  4 passed (17.4s)
+
+END 2026-10-21T17:31:06.839+06:00
+EXIT 0

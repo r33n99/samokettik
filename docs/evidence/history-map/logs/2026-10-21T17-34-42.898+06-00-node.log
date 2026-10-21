@@ -1,0 +1,6 @@
+START 2026-10-21T17:34:42.898+06:00
+COMMAND node work/check-history-map-live.mjs
+{"recordedAt":"2026-10-21T17:34:45.668+06:00","bundleSecretScan":"passed","views":[{"screen":"desktop","horizontalOverflow":false,"verticalOverflow":false,"markers":30,"allTilesComplete":true},{"screen":"mobile","horizontalOverflow":false,"verticalOverflow":false,"markers":30,"allTilesComplete":true}]}
+
+END 2026-10-21T17:34:45.688+06:00
+EXIT 0

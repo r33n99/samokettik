@@ -401,3 +401,6 @@ OSM tiles — внешний ресурс: attribution видна, массов�
 ## Аудит U017 и схема5
 
 Добавлен auth_expires_at в realtime_tickets: deadline signed browser credential переносится между API, действует для handshake и открытого private WS. Новая миграция0004 инвалидирует только старые короткоживущие tickets; прежние миграции и business records сохраняются. Данные real auth/Google по-прежнему не реализованы. Точные результаты и ограничения — [CASE11-AUDIT.md](CASE11-AUDIT.md).
+
+
+U019: histories GET /trips и GET /invoices используют keyset по timestamp/id с owner filter, UUID cursor и limit1–100/default20; отдельные составные индексы Drizzle0005, readiness6. React history получает страницы по API; private sync100 служит сигналом обновления, не полным архивом.

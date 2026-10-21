@@ -1,0 +1,31 @@
+START 2026-10-21T17:26:20.314+06:00
+COMMAND npm run db:generate
+
+> samokettik@0.1.0 db:generate
+> npm run db:generate -w @samokettik/server
+
+
+> @samokettik/server@0.1.0 db:generate
+> drizzle-kit generate --config drizzle.config.ts
+
+Reading config file 'C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\apps\server\drizzle.config.ts'
+14 tables
+app_metadata 2 columns 0 indexes 0 fks
+demo_payments 6 columns 0 indexes 1 fks
+idempotency_requests 6 columns 0 indexes 1 fks
+invoices 15 columns 2 indexes 1 fks
+job_heartbeats 3 columns 0 indexes 0 fks
+local_mailbox 6 columns 0 indexes 1 fks
+mail_outbox 7 columns 1 indexes 1 fks
+notifications 7 columns 1 indexes 3 fks
+realtime_tickets 4 columns 1 indexes 1 fks
+rentals 16 columns 7 indexes 2 fks
+trip_intervals 6 columns 2 indexes 1 fks
+trip_simulations 9 columns 1 indexes 1 fks
+users 5 columns 0 indexes 0 fks
+vehicles 9 columns 0 indexes 0 fks
+
+[✓] Your SQL migration file ➜ drizzle\0005_little_grim_reaper.sql 🚀
+
+END 2026-10-21T17:26:21.923+06:00
+EXIT 0

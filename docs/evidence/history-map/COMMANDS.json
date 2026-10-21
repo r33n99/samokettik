@@ -1,0 +1,125 @@
+{
+  "recordedAt": "2026-10-21T17:39:58.641+06:00",
+  "commands": [
+    {
+      "command": "npm run db:generate",
+      "startedAt": "2026-10-21T17:26:20.314+06:00",
+      "finishedAt": "2026-10-21T17:26:21.923+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-26-20.314+06-00-npm.log",
+      "sha256": "8963e1eec381970d9e3297a9bce91f070a14b783d6a412dc4e79045c8c17e589"
+    },
+    {
+      "command": "npm run typecheck",
+      "startedAt": "2026-10-21T17:27:01.194+06:00",
+      "finishedAt": "2026-10-21T17:27:03.946+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-27-01.194+06-00-npm.log",
+      "sha256": "5a2e34d8f95aa0bbe4e4357d8aaee6f7d8584a5c413750754a1166d47be949ae"
+    },
+    {
+      "command": "npm run test:db -- --run tests/integration/trips.test.ts",
+      "startedAt": "2026-10-21T17:28:32.324+06:00",
+      "finishedAt": "2026-10-21T17:28:37.633+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-28-32.324+06-00-npm.log",
+      "sha256": "621faac1f524611b6dac5af6fb24e5f26017f8da1e927ba7073adaf9acfeb730"
+    },
+    {
+      "command": "npm run test:e2e -- --grep marker clicks|histories paginate",
+      "startedAt": "2026-10-21T17:29:58.856+06:00",
+      "finishedAt": "2026-10-21T17:30:18.947+06:00",
+      "exitCode": 1,
+      "file": "logs/2026-10-21T17-29-58.856+06-00-npm.log",
+      "sha256": "2a322d0b785703b204406d72384e046e9c525eb9709cb71297d383158fe8a160"
+    },
+    {
+      "command": "npm run verify",
+      "startedAt": "2026-10-21T17:30:13.127+06:00",
+      "finishedAt": "2026-10-21T17:30:21.691+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-30-13.127+06-00-npm.log",
+      "sha256": "589907972eea0f579049ee1ec529453fc233b6b6a4a6a8ecbb64cdc8e6ce5a7e"
+    },
+    {
+      "command": "npm run test:db",
+      "startedAt": "2026-10-21T17:30:13.129+06:00",
+      "finishedAt": "2026-10-21T17:30:45.679+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-30-13.129+06-00-npm.log",
+      "sha256": "81a85baa987240bb0a4d89985d51d1bf380f625ef49f1e2db69a57e0dcf06579"
+    },
+    {
+      "command": "npm run test:e2e -- --grep marker clicks|histories paginate",
+      "startedAt": "2026-10-21T17:30:47.997+06:00",
+      "finishedAt": "2026-10-21T17:31:06.839+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-30-47.997+06-00-npm.log",
+      "sha256": "69c7c5f26743b687f089417b5cff65270c278dc94f1e7159a307ea2f1561a8e2"
+    },
+    {
+      "command": "npm run test:e2e",
+      "startedAt": "2026-10-21T17:31:14.725+06:00",
+      "finishedAt": "2026-10-21T17:35:44.419+06:00",
+      "exitCode": 1,
+      "file": "logs/2026-10-21T17-31-14.725+06-00-npm.log",
+      "sha256": "71d3b4f96dc134e6d49a4cf766279f5c3535c2b01aefa8c5517e58e79c8cd81a"
+    },
+    {
+      "command": "node work/history-map-snapshot.mjs before",
+      "startedAt": "2026-10-21T17:33:34.524+06:00",
+      "finishedAt": "2026-10-21T17:33:34.645+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-33-34.524+06-00-node.log",
+      "sha256": "4cc759f64c11f47b9558f3434ff1426b2420f1db52dfa9339e2df2b38802b37d"
+    },
+    {
+      "command": "npm run compose:up",
+      "startedAt": "2026-10-21T17:33:34.700+06:00",
+      "finishedAt": "2026-10-21T17:34:02.151+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-33-34.700+06-00-npm.log",
+      "sha256": "6773e6bda9d540cbf6a939fd10d9b54a33b074ab39db8e73b49eda2369654a38"
+    },
+    {
+      "command": "node work/history-map-snapshot.mjs after",
+      "startedAt": "2026-10-21T17:34:13.319+06:00",
+      "finishedAt": "2026-10-21T17:34:13.437+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-34-13.319+06-00-node.log",
+      "sha256": "2fa178f66fe1a359958b35132b5c4298800ed1d5dda84e9b9459108e2edb606b"
+    },
+    {
+      "command": "npm run verify",
+      "startedAt": "2026-10-21T17:34:13.490+06:00",
+      "finishedAt": "2026-10-21T17:34:20.725+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-34-13.490+06-00-npm.log",
+      "sha256": "564d57016cb9aad7df9f0426ce4a1d0999e52342357ca5604586acc8051e7342"
+    },
+    {
+      "command": "node work/check-history-map-live.mjs",
+      "startedAt": "2026-10-21T17:34:42.898+06:00",
+      "finishedAt": "2026-10-21T17:34:45.688+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-34-42.898+06-00-node.log",
+      "sha256": "d29a774de066940c035448c9336ae7547d8660d9401ffa8d13eb8250b2e0e5d3"
+    },
+    {
+      "command": "npm run test:e2e",
+      "startedAt": "2026-10-21T17:36:17.867+06:00",
+      "finishedAt": "2026-10-21T17:39:50.804+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-36-17.867+06-00-npm.log",
+      "sha256": "1f0e33d01d678164c3a66a19322f15a2afc18fdb27d1c2e02feef1d1c4fd31e4"
+    },
+    {
+      "command": "npm run typecheck",
+      "startedAt": "2026-10-21T17:36:58.541+06:00",
+      "finishedAt": "2026-10-21T17:37:01.234+06:00",
+      "exitCode": 0,
+      "file": "logs/2026-10-21T17-36-58.541+06-00-npm.log",
+      "sha256": "a99f36d8a9738598085020c4582644b4066c120615f2389e12070659f8490a8a"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+START 2026-10-21T17:28:32.324+06:00
+COMMAND npm run test:db -- --run tests/integration/trips.test.ts
+
+> samokettik@0.1.0 test:db
+> vitest run --config vitest.db.config.ts --run tests/integration/trips.test.ts
+
+
+ RUN  v5.0.5 C:/Users/Rinni/Documents/Codex/2026-10-19/senior-fullstack-developer-software-architect-postgresql
+
+
+ Test Files  1 passed (1)
+      Tests  19 passed (19)
+   Start at  17:28:32
+   Duration  4.71s (tests 74%, import 21%, transform 5%)
+
+
+END 2026-10-21T17:28:37.633+06:00
+EXIT 0

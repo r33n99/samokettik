@@ -13,7 +13,7 @@ export const ReadinessSchema = Type.Object(
   {
     status: Type.Literal("ready"),
     database: Type.Literal("connected"),
-    schemaVersion: Type.Literal(5),
+    schemaVersion: Type.Literal(6),
     reservationWorker: Type.Literal("running"),
   },
   { additionalProperties: false },
@@ -361,7 +361,17 @@ export const ClientConfigSchema = Type.Object(
 );
 export type ClientConfig = Static<typeof ClientConfigSchema>;
 export const TripHistorySchema = Type.Object(
-  { items: Type.Array(TripResultSchema) },
+  { items: Type.Array(TripResultSchema), nextCursor: Type.Union([UuidSchema, Type.Null()]) },
   { additionalProperties: false },
 );
 export type TripHistory = Static<typeof TripHistorySchema>;
+export const InvoiceHistorySchema = Type.Object(
+  { items: Type.Array(InvoiceSchema), nextCursor: Type.Union([UuidSchema, Type.Null()]) },
+  { additionalProperties: false },
+);
+export type InvoiceHistory = Static<typeof InvoiceHistorySchema>;
+export const HistoryQuerySchema = Type.Object(
+  { cursor: Type.Optional(UuidSchema), limit: Type.Optional(Type.Integer({ minimum: 1, maximum: 100, default: 20 })) },
+  { additionalProperties: false },
+);
+export type HistoryQuery = Static<typeof HistoryQuerySchema>;

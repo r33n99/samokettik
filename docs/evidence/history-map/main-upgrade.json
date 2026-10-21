@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-10-21T17:39:58.641+06:00",
+  "beforeSchema": 5,
+  "afterSchema": 6,
+  "existingRecordsPreserved": true,
+  "beforeCounts": {
+    "users": 2,
+    "vehicles": 30,
+    "rentals": 9,
+    "invoices": 4,
+    "demo_payments": 2
+  },
+  "afterCounts": {
+    "users": 2,
+    "vehicles": 30,
+    "rentals": 9,
+    "invoices": 4,
+    "demo_payments": 2
+  }
+}

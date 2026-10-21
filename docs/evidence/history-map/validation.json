@@ -1,0 +1,10 @@
+{
+  "recordedAt": "2026-10-21T19:37:07.227+06:00",
+  "files": 499,
+  "links": 228,
+  "actualEnvSecretScan": "passed",
+  "rawLogHashes": 15,
+  "oldMigrationsUnchanged": 5,
+  "gitDiffCheck": "passed",
+  "stagedFiles": 0
+}

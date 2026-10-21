@@ -8,14 +8,12 @@ import {
   TripResultSchema,
   PaymentResultSchema,
   ServiceZoneSchema,
-  TripHistorySchema,
   UuidSchema,
   type ClientConfig,
   type DemoProfile,
   type DemoSession,
   type ServiceZone,
   type SyncState,
-  type TripHistory,
   type VehicleList,
 } from "@samokettik/contracts";
 import { createApiClient, ApiFailure } from "../api/client";
@@ -68,8 +66,7 @@ export function useRentalApp() {
     [config, setConfig] = useState<ClientConfig | null>(null),
     [zone, setZone] = useState<ServiceZone | null>(null);
   const [fleet, setFleet] = useState<VehicleList | null>(null),
-    [sync, setSync] = useState<SyncState | null>(null),
-    [history, setHistory] = useState<TripHistory | null>(null);
+    [sync, setSync] = useState<SyncState | null>(null);
   const [connection, setConnection] = useState<RealtimeStatus>("restoring"),
     [offline, setOffline] = useState(!navigator.onLine),
     [busy, setBusy] = useState(false),
@@ -79,7 +76,6 @@ export function useRentalApp() {
     });
   const [error, setError] = useState<ApiFailure | null>(null),
     [fatal, setFatal] = useState(false),
-    [historyError, setHistoryError] = useState(false),
     [revision, setRevision] = useState(0),
     [initialRevision, setInitialRevision] = useState(0);
   const epoch = useRef(0),
@@ -97,7 +93,6 @@ export function useRentalApp() {
     sessionRef.current = null;
     setSession(null);
     setSync(null);
-    setHistory(null);
     setPending(null);
     setBusy(false);
     setError(null);
@@ -167,21 +162,6 @@ export function useRentalApp() {
       client.stop();
     };
   }, [session, revision, leave]);
-  const lastInvoice = sync?.invoices.items[0]?.id;
-  useEffect(() => {
-    if (!session) return;
-    const controller = new AbortController();
-    setHistoryError(false);
-    void createApiClient({ token: session.token })
-      .get("/api/v1/trips", TripHistorySchema, controller.signal)
-      .then((data) => {
-        if (!controller.signal.aborted) setHistory(data);
-      })
-      .catch(() => {
-        if (!controller.signal.aborted) setHistoryError(true);
-      });
-    return () => controller.abort();
-  }, [session, lastInvoice, revision]);
   async function login(profile: DemoProfile) {
     if (busy) return;
     setBusy(true);
@@ -196,7 +176,6 @@ export function useRentalApp() {
       if (generation !== epoch.current) return;
       sessionStorage.setItem("samokettik.demo.session", JSON.stringify(value));
       setSync(null);
-      setHistory(null);
       sessionRef.current = value;
       setSession(value);
     } catch (error) {
@@ -293,14 +272,12 @@ export function useRentalApp() {
     session,
     fleet,
     sync,
-    history,
     connection,
     offline,
     busy,
     pending,
     error,
     fatal,
-    historyError,
     login,
     leave,
     command,

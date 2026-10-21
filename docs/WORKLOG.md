@@ -545,3 +545,49 @@
 - 2026-10-21T17:21:07.5146791+06:00 — U018: получена команда commit/push завершённого U017. Перед публикацией выполнены git var GIT_AUTHOR_IDENT, git var GIT_COMMITTER_IDENT, проверка GIT_AUTHOR/GIT_COMMITTER overrides, git fetch origin, git rev-list --left-right --count HEAD...origin/main и gh auth status. Author/committer: Reen <rinni499@gmail.com>, overrides отсутствуют; активный GitHub r33n99; main синхронизирована с origin/main (0/0). Следующие действия: проверка содержимого, отдельный commit и обычный push origin main; на момент записи публикация ещё не выполнена.
 
 - 2026-10-21T17:21:08.224+06:00 — U017 final source/evidence validation: 461 publishable files, 216 local Markdown links, UTF-8/NUL/type-bypass checks и4actual env-secret checks пройдены. 19 raw logs совпали с SHA256,0000–0003 migration SQL равны HEAD. git diff --check exit0, staged files0; commit/push не выполнялись. Тестовые UUID DB после завершения всех прогонов отсутствуют. Main schema5: сохранены все существовавшие IDs; счётчики invoices/payments за окно наблюдения выросли3/1→4/2, аудиторские scripts не выполняли business write в main.
+
+- 2026-10-21T17:24:42.1290577+06:00 — U019 начат: изучены AGENTS.md, контракты, history endpoints, React state, карта и browser tests. Существующие истории обрезаются до100; кнопка locate уже есть, фокусировка смешивает выбор с перемещением. План: keyset cursor pagination, отдельное явное действие focus, Leaflet prefix=false с сохранением OSM attribution. Прочитаны PostgreSQL и React skills, официальная документация Leaflet и PostgreSQL row comparison; реализация и проверки ещё не завершены.
+
+- 2026-10-21T17:26:21.923+06:00 — Команда: `npm run db:generate`; начало 2026-10-21T17:26:20.314+06:00; exit 0. Лог: `work/checks/2026-10-21T17-26-20.314+06-00-npm.log`.
+
+- 2026-10-21T17:27:03.946+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T17:27:01.194+06:00; exit 0. Лог: `work/checks/2026-10-21T17-27-01.194+06-00-npm.log`.
+
+- 2026-10-21T17:28:37.633+06:00 — Команда: `npm run test:db -- --run tests/integration/trips.test.ts`; начало 2026-10-21T17:28:32.324+06:00; exit 0. Лог: `work/checks/2026-10-21T17-28-32.324+06-00-npm.log`.
+
+- 2026-10-21T17:30:18.947+06:00 — Команда: `npm run test:e2e -- --grep marker clicks|histories paginate`; начало 2026-10-21T17:29:58.856+06:00; exit 1. Лог: `work/checks/2026-10-21T17-29-58.856+06-00-npm.log`.
+
+- 2026-10-21T17:30:21.691+06:00 — Команда: `npm run verify`; начало 2026-10-21T17:30:13.127+06:00; exit 0. Лог: `work/checks/2026-10-21T17-30-13.127+06-00-npm.log`.
+
+- 2026-10-21T17:30:45.679+06:00 — Команда: `npm run test:db`; начало 2026-10-21T17:30:13.129+06:00; exit 0. Лог: `work/checks/2026-10-21T17-30-13.129+06-00-npm.log`.
+
+- 2026-10-21T17:30:47.8855544+06:00 — U019 targeted PostgreSQL:19/19 passed, verify:44 unit/typecheck/build passed. Первый targeted E2E:2/4 passed,2 failed при проверке повторного чтения истории после503: статус страницы оставался прежним до запуска эффекта, тест успевал прочитать пустой error layout. Loading/error теперь устанавливаются синхронно при Next/Back/Retry; повторный прогон требуется. Первоначальная PowerShell-команда добавления SQL завершилась ParserError до исполнения; исправлен quoting, миграция сгенерирована и проверена targeted PG tests.
+
+- 2026-10-21T17:31:06.839+06:00 — Команда: `npm run test:e2e -- --grep marker clicks|histories paginate`; начало 2026-10-21T17:30:47.997+06:00; exit 0. Лог: `work/checks/2026-10-21T17-30-47.997+06-00-npm.log`.
+
+- 2026-10-21T17:33:34.645+06:00 — Команда: `node work/history-map-snapshot.mjs before`; начало 2026-10-21T17:33:34.524+06:00; exit 0. Лог: `work/checks/2026-10-21T17-33-34.524+06-00-node.log`.
+
+- 2026-10-21T17:34:02.151+06:00 — Команда: `npm run compose:up`; начало 2026-10-21T17:33:34.700+06:00; exit 0. Лог: `work/checks/2026-10-21T17-33-34.700+06-00-npm.log`.
+
+- 2026-10-21T17:34:13.437+06:00 — Команда: `node work/history-map-snapshot.mjs after`; начало 2026-10-21T17:34:13.319+06:00; exit 0. Лог: `work/checks/2026-10-21T17-34-13.319+06-00-node.log`.
+
+- 2026-10-21T17:34:20.725+06:00 — Команда: `npm run verify`; начало 2026-10-21T17:34:13.490+06:00; exit 0. Лог: `work/checks/2026-10-21T17-34-13.490+06-00-npm.log`.
+
+- 2026-10-21T17:34:45.688+06:00 — Команда: `node work/check-history-map-live.mjs`; начало 2026-10-21T17:34:42.898+06:00; exit 0. Лог: `work/checks/2026-10-21T17-34-42.898+06-00-node.log`.
+
+- 2026-10-21T17:35:44.419+06:00 — Команда: `npm run test:e2e`; начало 2026-10-21T17:31:14.725+06:00; exit 1. Лог: `work/checks/2026-10-21T17-31-14.725+06-00-npm.log`.
+
+- 2026-10-21T17:36:17.8079820+06:00 — U019 первый полный E2E:33 passed/1 failed (mobile,60s timeout): тест выбирал последнюю строку истории, которую ранее уже оплатил desktop. Harness теперь выбирает unpaid на последней странице и фиксирует invoiceId перед оплатой; business logic не менялась. Error context сохранён в docs/evidence/history-map/failures; traceZIP с временными credentials не публикуется. Повторный полный прогон запускается. Compose/readiness6 healthy; main IDs и counts2/30/9/4/2 сохранены; read-only live RU/KY1440x900 и393x851 прошёл без overflow/page errors,30markers/loaded tiles, actual-secret bundle scan passed.
+
+- 2026-10-21T17:37:01.234+06:00 — Команда: `npm run typecheck`; начало 2026-10-21T17:36:58.541+06:00; exit 0. Лог: `work/checks/2026-10-21T17-36-58.541+06-00-npm.log`.
+
+- 2026-10-21T17:39:50.804+06:00 — Команда: `npm run test:e2e`; начало 2026-10-21T17:36:17.867+06:00; exit 0. Лог: `work/checks/2026-10-21T17-36-17.867+06-00-npm.log`.
+
+- 2026-10-21T17:39:58.641+06:00 — U019 завершён: финальный полный E2E34/34 exit0 (без retries), verify44unit/typecheck/build exit0, real-PG53/53 exit0, дополнительный typecheck после исправления fixture exit0. Compose обновлён доschema6, main records/counts2/30/9/4/2 сохранены, live RU/KY desktop/mobile и actual-secret bundle scan passed. React checklist: отдельный history hook, abort устаревших запросов, primitive refreshKey, profile-key reset, доступные nav/labels/disabled; SCSS модули. Документы/ограничения/сырые failed+passed логи и screenshots: docs/HISTORY-MAP-REPORT.md, docs/evidence/history-map. Commit только предложен, push не выполнялся.
+
+- 2026-10-21T17:39:59.380+06:00 — U019 pre-delivery validation: 497 publishable files,226 local Markdown links, UTF8/NUL/no-type-bypass и4actual-secret scans passed; 15raw SHA256 matches,5 applied migrations byte-equal HEAD; git diff --check0,staged0. Результаты — docs/evidence/history-map/validation.json. Commit/push не выполнялись.
+
+- 2026-10-21T17:40:25.654+06:00 — U019 pre-delivery validation: 498 publishable files,227 local Markdown links, UTF8/NUL/no-type-bypass и4actual-secret scans passed; 15raw SHA256 matches,5 applied migrations byte-equal HEAD; git diff --check0,staged0. Результаты — docs/evidence/history-map/validation.json. Commit/push не выполнялись.
+
+- 2026-10-21T19:37:06.1346651+06:00 — U020: пользователь разрешил commit/push завершённого U019. Выполнены git status, branch/remote, git var GIT_AUTHOR_IDENT и GIT_COMMITTER_IDENT, проверка env overrides, git fetch origin, rev-list HEAD...origin/main и gh auth status. Author/committer Reen <rinni499@gmail.com>, overrides отсутствуют; GitHub r33n99; main синхронизирована с origin/main (0/0). Состав изменений соответствует U019; функциональный код после проверенного этапа не менялся. Далее выполняются проверка содержимого, отдельный commit и обычный push origin main; на момент записи публикация ещё не выполнена.
+
+- 2026-10-21T19:37:07.227+06:00 — U019 pre-delivery validation: 499 publishable files,228 local Markdown links, UTF8/NUL/no-type-bypass и4actual-secret scans passed; 15raw SHA256 matches,5 applied migrations byte-equal HEAD; git diff --check0,staged0. Результаты — docs/evidence/history-map/validation.json. Commit/push не выполнялись.

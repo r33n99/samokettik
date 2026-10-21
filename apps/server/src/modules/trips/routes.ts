@@ -1,7 +1,7 @@
 import { Type } from '@sinclair/typebox';
-import { and, desc, eq } from 'drizzle-orm';
+import { and, desc, eq, sql } from 'drizzle-orm';
 import type { FastifyInstance } from 'fastify';
-import { ErrorResponseSchema, InvoiceSchema, PaymentResultSchema, ServiceZoneSchema, TripResultSchema, UuidSchema } from '@samokettik/contracts';
+import { ErrorResponseSchema, HistoryQuerySchema, InvoiceHistorySchema, TripHistorySchema, PaymentResultSchema, ServiceZoneSchema, TripResultSchema, UuidSchema, type HistoryQuery } from '@samokettik/contracts';
 import type { BusinessConfig } from '../../config/business.js';
 import type { Environment } from '../../config/env.js';
 import type { Database } from '../../db/client.js';
@@ -37,19 +37,29 @@ export function registerTripRoutes(app: FastifyInstance, env: Environment, confi
     }, { isolationLevel: 'repeatable read', accessMode: 'read only' });
     return result ?? reply.status(404).send({ code: 'TRIP_NOT_FOUND', message: 'Поездка не найдена', requestId: request.id });
   });
-  app.get('/api/v1/trips', { schema: { response: { 200: Type.Object({ items: Type.Array(TripResultSchema) }, { additionalProperties: false }), ...errors } } }, async request => {
+  app.get<{ Querystring: HistoryQuery }>('/api/v1/trips', { schema: { querystring: HistoryQuerySchema, response: { 200: TripHistorySchema, ...errors } } }, async request => {
     const userId = owner(env, request);
+    const { cursor, limit = 20 } = request.query;
     return database.db.transaction(async tx => {
       const time = await databaseNow(tx);
-      const rows = await tx.select().from(rentals).where(and(eq(rentals.userId, userId), eq(rentals.state, 'finished'))).orderBy(desc(rentals.endedAt), desc(rentals.id)).limit(100);
+      // Resolve the timestamp in PostgreSQL to preserve microsecond precision.
+      // An unknown/foreign cursor produces an empty page, never another owner's data.
+      const rows = await tx.select().from(rentals).where(and(eq(rentals.userId, userId), eq(rentals.state, 'finished'), cursor
+        ? sql`(${rentals.endedAt}, ${rentals.id}) < (SELECT ended_at, id FROM rentals WHERE id = ${cursor}::uuid AND user_id = ${userId}::uuid AND state = 'finished')`
+        : undefined)).orderBy(desc(rentals.endedAt), desc(rentals.id)).limit(limit + 1);
+      const page = rows.slice(0, limit);
       const items = [];
-      for (const row of rows) items.push(await tripResult(tx, row, time));
-      return { items };
+      for (const row of page) items.push(await tripResult(tx, row, time));
+      return { items, nextCursor: rows.length > limit ? page.at(-1)!.id : null };
     }, { isolationLevel: 'repeatable read', accessMode: 'read only' });
   });
-  app.get('/api/v1/invoices', { schema: { response: { 200: Type.Object({ items: Type.Array(InvoiceSchema) }, { additionalProperties: false }), ...errors } } }, async request => {
-    const rows = await database.db.select().from(invoices).where(eq(invoices.userId, owner(env, request))).orderBy(desc(invoices.createdAt), desc(invoices.id)).limit(100);
-    return { items: rows.map(invoiceDto) };
+  app.get<{ Querystring: HistoryQuery }>('/api/v1/invoices', { schema: { querystring: HistoryQuerySchema, response: { 200: InvoiceHistorySchema, ...errors } } }, async request => {
+    const userId = owner(env, request), { cursor, limit = 20 } = request.query;
+    const rows = await database.db.select().from(invoices).where(and(eq(invoices.userId, userId), cursor
+      ? sql`(${invoices.createdAt}, ${invoices.id}) < (SELECT created_at, id FROM invoices WHERE id = ${cursor}::uuid AND user_id = ${userId}::uuid)`
+      : undefined)).orderBy(desc(invoices.createdAt), desc(invoices.id)).limit(limit + 1);
+    const page = rows.slice(0, limit);
+    return { items: page.map(invoiceDto), nextCursor: rows.length > limit ? page.at(-1)!.id : null };
   });
   app.post<{ Params: { id: string }; Headers: { 'idempotency-key': string }; Body: { outcome?: 'approved' | 'declined' } }>('/api/v1/invoices/:id/pay-demo', {
     preValidation: async request => { if (request.body === undefined) request.body = {}; },

@@ -1,0 +1,147 @@
+START 2026-10-21T17:29:58.856+06:00
+COMMAND npm run test:e2e -- --grep marker clicks|histories paginate
+
+> samokettik@0.1.0 test:e2e
+> npm run build -w @samokettik/contracts && playwright test --grep marker clicks|histories paginate
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+Isolated E2E: fresh PostgreSQL database, real API/worker/Vite are ready; main demo data untouched.
+
+Running 4 tests using 1 worker
+
+(node:10944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\e2e\rental.spec.ts:765:1 › marker clicks preserve the viewport and the explicit locate button restores the owned scooter (1.6s)
+  x  2 [desktop] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice (4.1s)
+(node:23448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [mobile] › tests\e2e\rental.spec.ts:765:1 › marker clicks preserve the viewport and the explicit locate button restores the owned scooter (1.9s)
+  x  4 [mobile] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice (4.4s)
+
+
+  1) [desktop] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 22
+    + Received  +  1
+
+    - Array [
+    -   "9c185cba-918d-4902-ac82-418f92043cd4",
+    -   "5e66d439-6b9d-420e-b7d0-d91d02e20768",
+    -   "fb082e63-21e0-43b1-8587-1cb2e08f0886",
+    -   "e82cc388-22fb-47c1-b12c-d533f106830c",
+    -   "9a555be5-0bdf-41a5-ac9b-e8bfd0d31166",
+    -   "11a2809b-2a7b-4b6b-aa8b-bb7fa5fb889d",
+    -   "feea945a-46be-4183-8555-4a06d387bcbe",
+    -   "fa7583a3-f154-496c-8beb-1e43f518beac",
+    -   "a74aab22-76f4-4c95-90de-66b09bad9f1e",
+    -   "582ef8d3-59eb-4275-8141-2b358b8f45c5",
+    -   "f4e6e411-bd95-4f93-828a-7efa129173b6",
+    -   "3d4b4080-5d2c-45f8-acd3-66ef497ccc67",
+    -   "ee59bd59-9df3-4ec9-ac06-06afd616c1c6",
+    -   "6e62723c-1689-4f0a-91f0-d0ceebe657b8",
+    -   "f686de68-5a0c-4f0d-9916-5505b93f4b25",
+    -   "d6458756-2389-47e9-9849-93f756137c2a",
+    -   "c937bffe-dd0c-471d-b61f-5d9fe5dc174f",
+    -   "1b74dd2f-25a6-46b5-87c8-ae2aadd8d453",
+    -   "4a90ff5f-5b26-4a0e-91a7-114e231f0cf2",
+    -   "3c885226-0bbf-4ae5-85c8-870e34e75cdb",
+    - ]
+    + Array []
+
+      812 |       await expect(page.locator('.history-page').getByRole('alert')).toBeVisible();
+      813 |       await page.locator('.history-page').getByRole('button', { name: 'Повторить', exact: true }).click();
+    > 814 |       await expect(nav.getByRole('status')).toHaveText('Страница 2'); expect(await read()).toEqual(second);
+          |                                                                                            ^
+      815 |       await nav.getByRole('button', { name: 'Назад', exact: true }).click();
+      816 |       await expect(nav.getByRole('status')).toHaveText('Страница 1');
+      817 |     }
+        at C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:814:92
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-desktop\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-desktop\error-context.md
+
+    Error Context: test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-desktop\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 22
+    + Received  +  1
+
+    - Array [
+    -   "d3341a0d-3254-4d66-ae67-247970a3b2df",
+    -   "87151473-18f0-41e5-8499-77d65686fabc",
+    -   "23a33d20-1096-4f81-835b-9e49fd215d49",
+    -   "0d700a15-d8dc-4ca0-83d0-923026c4eabd",
+    -   "ff29c7f2-ccbf-4ce3-81e9-aad38121c313",
+    -   "fae4d67b-1e4b-4061-b218-0da53b94d612",
+    -   "c7d03a94-5ea6-4504-b7fa-5bd738c73377",
+    -   "6a3c10dd-8dde-4e98-b342-7e308f24449e",
+    -   "c475f4bb-4833-485c-a835-2ba481aeeaff",
+    -   "b92cff45-2308-4085-9d7e-455ad022fff3",
+    -   "b27f705b-f07f-47b0-acf9-85f7d440b300",
+    -   "9b69c0ef-f67e-4f82-8736-1f4918c1eba2",
+    -   "c03130ec-fc45-4ee4-9b04-c188c96da2e9",
+    -   "a81ccd28-8faa-4910-a544-31380aa6a496",
+    -   "671efb84-10c8-47a0-8f03-96d2ee699f39",
+    -   "0cec224e-70a7-4a0c-9f42-423819a0956b",
+    -   "574ab3e6-859e-4580-9803-85bf8bb71211",
+    -   "4791e2a1-4522-4e28-8797-d1df1af97092",
+    -   "33437a59-ffdc-4690-ac71-dfd8a01c05f2",
+    -   "328572be-d20c-4b18-857f-767ee06336c1",
+    - ]
+    + Array []
+
+      812 |       await expect(page.locator('.history-page').getByRole('alert')).toBeVisible();
+      813 |       await page.locator('.history-page').getByRole('button', { name: 'Повторить', exact: true }).click();
+    > 814 |       await expect(nav.getByRole('status')).toHaveText('Страница 2'); expect(await read()).toEqual(second);
+          |                                                                                            ^
+      815 |       await nav.getByRole('button', { name: 'Назад', exact: true }).click();
+      816 |       await expect(nav.getByRole('status')).toHaveText('Страница 1');
+      817 |     }
+        at C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:814:92
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-mobile\error-context.md
+
+    Error Context: test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice 
+    [mobile] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice 
+  2 passed (18.5s)
+
+END 2026-10-21T17:30:18.947+06:00
+EXIT 1

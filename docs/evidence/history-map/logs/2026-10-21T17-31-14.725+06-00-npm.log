@@ -1,0 +1,98 @@
+START 2026-10-21T17:31:14.725+06:00
+COMMAND npm run test:e2e
+
+> samokettik@0.1.0 test:e2e
+> npm run build -w @samokettik/contracts && playwright test
+
+
+> @samokettik/contracts@0.1.0 build
+> tsc -p tsconfig.json
+
+Isolated E2E: fresh PostgreSQL database, real API/worker/Vite are ready; main demo data untouched.
+
+Running 34 tests using 1 worker
+
+(node:22016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\e2e\foundation.spec.ts:2:1 › map reads real API fleet and geozone, supports keyboard list and RU/KY (1.5s)
+  ok  2 [desktop] › tests\e2e\foundation.spec.ts:56:1 › tile failure leaves authoritative markers, geozone and accessible selection usable (739ms)
+  ok  3 [desktop] › tests\e2e\foundation.spec.ts:82:1 › startup API error is explained and retry loads actual data (559ms)
+  ok  4 [desktop] › tests\e2e\realtime.spec.ts:3:1 › WebSocket reconnection restores authoritative fleet through API (1.5s)
+  ok  5 [desktop] › tests\e2e\rental.spec.ts:166:1 › two browser users compete for one scooter; one reservation wins and cancel releases it (2.8s)
+  ok  6 [desktop] › tests\e2e\rental.spec.ts:237:3 › can inspect another scooter while reserved without refocusing the owned scooter (1.8s)
+  ok  7 [desktop] › tests\e2e\rental.spec.ts:237:3 › can inspect another scooter while riding without refocusing the owned scooter (2.5s)
+  ok  8 [desktop] › tests\e2e\rental.spec.ts:304:1 › pause and resume keep panel geometry stable during slow real requests and state restoration (7.7s)
+  ok  9 [desktop] › tests\e2e\rental.spec.ts:428:1 › ride pause resume finish history and demo payment use the backend invoice (2.7s)
+  ok 10 [desktop] › tests\e2e\rental.spec.ts:507:1 › expired browser access closes private realtime and restores the same reservation after a fresh login (1.0m)
+  ok 11 [desktop] › tests\e2e\rental.spec.ts:538:1 › an offline browser restores its running ride and the worker continues movement and charge (4.6s)
+  ok 12 [desktop] › tests\e2e\rental.spec.ts:580:1 › a response lost after commit is replayed with the same key even after page reload (1.5s)
+  ok 13 [desktop] › tests\e2e\rental.spec.ts:632:1 › server rejects finish outside the polygon and allows it after trusted coordinates return (2.0s)
+  ok 14 [desktop] › tests\e2e\rental.spec.ts:675:1 › persistent warning and automatic expiration release the reservation in the browser (4.6s)
+  ok 15 [desktop] › tests\e2e\rental.spec.ts:705:1 › depletion updates the browser with one invoice, notification and local mail (1.8s)
+  ok 16 [desktop] › tests\e2e\rental.spec.ts:765:1 › marker clicks preserve the viewport and the explicit locate button restores the owned scooter (1.5s)
+  ok 17 [desktop] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice (3.3s)
+(node:32120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 18 [mobile] › tests\e2e\foundation.spec.ts:2:1 › map reads real API fleet and geozone, supports keyboard list and RU/KY (1.4s)
+  ok 19 [mobile] › tests\e2e\foundation.spec.ts:56:1 › tile failure leaves authoritative markers, geozone and accessible selection usable (693ms)
+  ok 20 [mobile] › tests\e2e\foundation.spec.ts:82:1 › startup API error is explained and retry loads actual data (568ms)
+  ok 21 [mobile] › tests\e2e\realtime.spec.ts:3:1 › WebSocket reconnection restores authoritative fleet through API (1.5s)
+  ok 22 [mobile] › tests\e2e\rental.spec.ts:166:1 › two browser users compete for one scooter; one reservation wins and cancel releases it (2.5s)
+  ok 23 [mobile] › tests\e2e\rental.spec.ts:237:3 › can inspect another scooter while reserved without refocusing the owned scooter (1.6s)
+  ok 24 [mobile] › tests\e2e\rental.spec.ts:237:3 › can inspect another scooter while riding without refocusing the owned scooter (1.7s)
+  ok 25 [mobile] › tests\e2e\rental.spec.ts:304:1 › pause and resume keep panel geometry stable during slow real requests and state restoration (7.7s)
+  ok 26 [mobile] › tests\e2e\rental.spec.ts:428:1 › ride pause resume finish history and demo payment use the backend invoice (3.0s)
+  ok 27 [mobile] › tests\e2e\rental.spec.ts:507:1 › expired browser access closes private realtime and restores the same reservation after a fresh login (1.0m)
+  ok 28 [mobile] › tests\e2e\rental.spec.ts:538:1 › an offline browser restores its running ride and the worker continues movement and charge (5.4s)
+  ok 29 [mobile] › tests\e2e\rental.spec.ts:580:1 › a response lost after commit is replayed with the same key even after page reload (1.6s)
+  ok 30 [mobile] › tests\e2e\rental.spec.ts:632:1 › server rejects finish outside the polygon and allows it after trusted coordinates return (1.7s)
+  ok 31 [mobile] › tests\e2e\rental.spec.ts:675:1 › persistent warning and automatic expiration release the reservation in the browser (4.6s)
+  ok 32 [mobile] › tests\e2e\rental.spec.ts:705:1 › depletion updates the browser with one invoice, notification and local mail (1.8s)
+  ok 33 [mobile] › tests\e2e\rental.spec.ts:765:1 › marker clicks preserve the viewport and the explicit locate button restores the owned scooter (1.5s)
+  x  34 [mobile] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice (1.0m)
+
+
+  1) [mobile] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('.history-entry').last().getByRole('button', { name: 'Оплатить в демо', exact: true })
+
+
+      825 |     if (view === 'invoices') {
+      826 |       const last = page.locator('.history-entry').last();
+    > 827 |       await last.getByRole('button', { name: 'Оплатить в демо', exact: true }).click();
+          |                                                                                ^
+      828 |       await page.getByRole('dialog').getByRole('button', { name: 'Оплатить в демо', exact: true }).click();
+      829 |       await expect(page.getByRole('dialog').getByText('Оплачен', { exact: true })).toBeVisible();
+      830 |       await page.getByRole('dialog').getByRole('button', { name: 'Закрыть', exact: true }).click();
+        at C:\Users\Rinni\Documents\Codex\2026-10-19\senior-fullstack-developer-software-architect-postgresql\tests\e2e\rental.spec.ts:827:80
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-mobile\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-mobile\error-context.md
+
+    Error Context: test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-mobile\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\rental-histories-paginate--0ee01-or-and-pay-an-older-invoice-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [mobile] › tests\e2e\rental.spec.ts:793:1 › histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice 
+  33 passed (4.5m)
+
+END 2026-10-21T17:35:44.419+06:00
+EXIT 1

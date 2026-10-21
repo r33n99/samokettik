@@ -2,6 +2,9 @@ import { randomUUID } from "node:crypto";
 import { writeFile } from "node:fs/promises";
 import { setTimeout as delay } from "node:timers/promises";
 import pg from "pg";
+import { seedHistory } from "../support/history-fixture.js";
+import { loadBusinessConfig } from "../../apps/server/src/config/business.js";
+import { DEMO_USER_IDS } from "../../apps/server/src/config/demo-identities.js";
 import {
   expect,
   test,
@@ -756,4 +759,79 @@ test("depletion updates the browser with one invoice, notification and local mai
     [rental.vehicleId],
   );
   await delay(120);
+});
+
+
+test('marker clicks preserve the viewport and the explicit locate button restores the owned scooter', async ({ page }) => {
+  await login(page); await book(page);
+  await page.getByRole('button', { name: 'Самокаты', exact: true }).click();
+  const pin = page.locator('.transport-pin.available').filter({ hasNot: page.locator('.own') });
+  await expect(pin.first()).toBeAttached();
+  const choose = await page.locator('.transport-pin.available').evaluateAll(elements => elements.map(element => {
+    const r = element.getBoundingClientRect(), x = r.x+r.width/2, y = r.y+r.height/2;
+    return { label: element.getAttribute('aria-label'), x, y, visible: x>40 && x<innerWidth-40 && y>160 && y<innerHeight-100 && element.contains(document.elementFromPoint(x,y)) };
+  }).find(item => item.visible));
+  expect(choose?.label).toBeTruthy();
+  const marker = page.getByRole('button', { name: choose!.label!, exact: true });
+  const before = await marker.boundingBox();
+  await marker.click();
+  await expect(marker).toHaveClass(/selected/);
+  const after = await marker.boundingBox();
+  expect(Math.abs(after!.x + after!.width/2 - before!.x - before!.width/2)).toBeLessThan(1);
+  expect(Math.abs(after!.y + after!.height/2 - before!.y - before!.height/2)).toBeLessThan(1);
+  await expect(page.getByRole('complementary', { name: 'Выбранный самокат' })).toBeVisible();
+  await page.getByRole('button', { name: 'Показать свой самокат', exact: true }).click();
+  await expect(page.locator('.transport-pin.own.selected')).toBeInViewport();
+  const attribution = page.locator('.leaflet-control-attribution');
+  await expect(attribution).not.toContainText('Leaflet');
+  await expect(attribution.getByRole('link', { name: 'OpenStreetMap' })).toBeInViewport({ ratio: 1 });
+  const credit = await attribution.boundingBox(), panel = await page.locator('.rental-panel').boundingBox();
+  expect(credit!.y).toBeGreaterThanOrEqual(panel!.y + panel!.height);
+  await page.screenshot({ path: 'outputs/history-map-' + test.info().project.name + '.png', fullPage: true });
+});
+
+test('histories paginate beyond 100 rows, navigate back, recover an error and pay an older invoice', async ({ page }) => {
+  test.setTimeout(60000);
+  await seedHistory(pool, DEMO_USER_IDS.ru, '10000000-0000-4000-8000-000000000005', 105, loadBusinessConfig().serviceZone);
+  await login(page);
+  for (const view of ['trips', 'invoices'] as const) {
+    await page.getByRole('navigation').first().getByRole('button', { name: view === 'trips' ? 'Поездки' : 'Счета', exact: true }).click();
+    const nav = page.getByRole('navigation', { name: 'Страницы истории' });
+    await expect(nav.getByRole('status')).toHaveText('Страница 1');
+    const attr = view === 'trips' ? 'data-trip-id' : 'data-invoice-id';
+    const read = () => page.locator('.history-entry').evaluateAll((rows, name) => rows.map(row => row.getAttribute(name)), attr);
+    const first = await read(); expect(first).toHaveLength(20);
+    await nav.getByRole('button', { name: 'Далее', exact: true }).click();
+    await expect(nav.getByRole('status')).toHaveText('Страница 2');
+    const second = await read(); expect(second.some(id => first.includes(id))).toBe(false);
+    await nav.getByRole('button', { name: 'Назад', exact: true }).click();
+    await expect(nav.getByRole('status')).toHaveText('Страница 1'); expect(await read()).toEqual(first);
+    if (view === 'invoices') {
+      await page.route('**/api/v1/invoices?*', route => route.fulfill({ status: 503, json: { code: 'TEMPORARY', message: 'test fixture', requestId: 'fixture' } }), { times: 1 });
+      await nav.getByRole('button', { name: 'Далее', exact: true }).click();
+      await expect(page.locator('.history-page').getByRole('alert')).toBeVisible();
+      await page.locator('.history-page').getByRole('button', { name: 'Повторить', exact: true }).click();
+      await expect(nav.getByRole('status')).toHaveText('Страница 2'); expect(await read()).toEqual(second);
+      await nav.getByRole('button', { name: 'Назад', exact: true }).click();
+      await expect(nav.getByRole('status')).toHaveText('Страница 1');
+    }
+    const seen = [...first]; let number = 1;
+    while (await nav.getByRole('button', { name: 'Далее', exact: true }).isEnabled()) {
+      await nav.getByRole('button', { name: 'Далее', exact: true }).click(); number++;
+      await expect(nav.getByRole('status')).toHaveText('Страница ' + number);
+      seen.push(...await read());
+    }
+    expect(seen.length).toBeGreaterThan(100); expect(new Set(seen).size).toBe(seen.length);
+    if (view === 'invoices') {
+      const unpaid = page.locator('.history-entry').filter({ has: page.getByRole('button', { name: 'Оплатить в демо', exact: true }) }).last();
+      const invoiceId = await unpaid.getAttribute('data-invoice-id');
+      const last = page.locator('[data-invoice-id="' + invoiceId + '"]');
+      await last.getByRole('button', { name: 'Оплатить в демо', exact: true }).click();
+      await page.getByRole('dialog').getByRole('button', { name: 'Оплатить в демо', exact: true }).click();
+      await expect(page.getByRole('dialog').getByText('Оплачен', { exact: true })).toBeVisible();
+      await page.getByRole('dialog').getByRole('button', { name: 'Закрыть', exact: true }).click();
+      await expect(last).toContainText('Оплачен');
+      await page.screenshot({ path: 'outputs/history-pagination-' + test.info().project.name + '.png', fullPage: true });
+    }
+  }
 });

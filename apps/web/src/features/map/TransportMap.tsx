@@ -37,7 +37,7 @@ export function TransportMap({
     lastFleet = useRef(fleet),
     selectRef = useRef(onSelect),
     selectedRef = useRef(selectedId),
-    lastFitRequest = useRef(0);
+    lastFitRequest = useRef(fitRequest);
   lastFleet.current = fleet;
   selectRef.current = onSelect;
   selectedRef.current = selectedId;
@@ -52,7 +52,7 @@ export function TransportMap({
     });
     map.current = instance;
     L.control.zoom({ position: "topright" }).addTo(instance);
-    L.control.attribution({ position: "topright" }).addTo(instance);
+    L.control.attribution({ position: "bottomright", prefix: false }).addTo(instance);
     const tiles = L.tileLayer(config.tileUrl, {
       maxZoom: 19,
       attribution:
@@ -119,6 +119,7 @@ export function TransportMap({
           title,
           alt: title,
           riseOnHover: true,
+          autoPanOnFocus: false,
         }).addTo(instance);
         marker.on("click", () => selectRef.current(vehicle.id));
         markers.current.set(vehicle.id, marker);
@@ -147,8 +148,8 @@ export function TransportMap({
     const instance = map.current;
     const explicitFocus = fitRequest !== lastFitRequest.current;
     lastFitRequest.current = fitRequest;
-    // Background rental changes must not take focus from a browsed vehicle.
-    if (!explicitFocus && selectedRef.current !== activeId) return;
+    // Selecting a marker, receiving sync, or changing the active rental never pans.
+    if (!explicitFocus) return;
     if (vehicle && instance) {
       instance.setView(
         [vehicle.latitude, vehicle.longitude],
@@ -160,7 +161,7 @@ export function TransportMap({
           animate: false,
         });
     }
-  }, [fitRequest, activeId]);
+  }, [fitRequest]);
   function fitFleet() {
     map.current?.fitBounds(
       fleet.items.map((v) => [v.latitude, v.longitude]),

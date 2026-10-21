@@ -1,0 +1,6 @@
+START 2026-10-21T17:33:34.524+06:00
+COMMAND node work/history-map-snapshot.mjs before
+{"phase":"before","version":5,"counts":{"users":2,"vehicles":30,"rentals":9,"invoices":4,"demo_payments":2},"existingRecordsPreserved":null}
+
+END 2026-10-21T17:33:34.645+06:00
+EXIT 0

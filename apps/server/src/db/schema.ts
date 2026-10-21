@@ -62,6 +62,7 @@ export const rentals = pgTable('rentals', {
   index('rentals_expiry_due').on(table.expiresAt).where(sql`${table.state} = 'reserved'`),
   index('rentals_warning_due').on(table.warnAt).where(sql`${table.state} = 'reserved'`),
   index('rentals_user_history').on(table.userId, table.reservedAt),
+  index('rentals_finished_cursor').on(table.userId, table.endedAt, table.id).where(sql`${table.state} = 'finished'`),
   index('rentals_vehicle_history').on(table.vehicleId),
   check('rentals_state_supported', sql`${table.state} IN ('reserved', 'cancelled', 'expired', 'riding', 'paused', 'finished')`),
   check('rentals_deadlines', sql`${table.reservedAt} < ${table.warnAt} AND ${table.warnAt} < ${table.expiresAt}`),
@@ -148,6 +149,7 @@ export const invoices = pgTable('invoices', {
   foreignKey({ name: 'invoices_rental_owner_fk', columns: [table.rentalId, table.userId], foreignColumns: [rentals.id, rentals.userId] }).onDelete('restrict'),
   unique('invoices_payment_identity').on(table.id, table.totalMinor, table.currency),
   index('invoices_owner_history').on(table.userId, table.createdAt),
+  index('invoices_owner_cursor').on(table.userId, table.createdAt, table.id),
   check('invoices_currency_policy', sql`${table.currency} = 'KGS' AND ${table.billingPolicy} = 'ceil-per-mode-v1'`),
   check('invoices_amounts', sql`${table.activeMs} >= 0 AND ${table.pausedMs} >= 0 AND ${table.rideRateMinorPerMinute} >= 0 AND ${table.pauseRateMinorPerMinute} >= 0 AND ${table.totalMinor} >= 0
     AND ${table.activeMinutes} = (${table.activeMs} + 59999) / 60000 AND ${table.pausedMinutes} = (${table.pausedMs} + 59999) / 60000
